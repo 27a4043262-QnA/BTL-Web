@@ -22,30 +22,30 @@ Dự án được xây dựng với mục tiêu tạo ra một giao diện trự
 ## CẤU TRÚC THƯ MỤC
 ```
 Edutrack/
-├── index.html                   Trang chủ
+├── index.html                  
 ├── pages/  
-│   ├── courses.html             Trang danh mục môn học / tài liệu
-│   ├── course-detail.html       Trang chi tiết môn học
-│   ├── gpa-calculator.html      Công cụ tính điểm GPA & Lập kế hoạch
-│   ├── advising-contact.html    Trang đăng ký tư vấn / Cố vấn học tập
-│   └── about.html               Trang giới thiệu dự án, Persona & Nhóm
+│   ├── courses.html             
+│   ├── course-detail.html       
+│   ├── gpa-calculator.html      
+│   ├── advising-contact.html    
+│   └── about.html               
 ├── assets/
-│   ├── images/                  Banner, avatar giảng viên, icon
+│   ├── images/                 
 │   ├── css/
 │   │   ├── bootstrap.min.css
-│   │   └── main.css             CSS tùy biến (Design system riêng)
+│   │   └── main.css
 │   ├── js/
 │   │   ├── jquery.min.js
-│   │   ├── main.js              Xử lý chung & AJAX/JSON
-│   │   ├── validation.js        Kiểm tra lỗi form
-│   │   └── calculator.js        Thuật toán tính GPA & gợi ý điểm
+│   │   ├── main.js              
+│   │   ├── validation.js      
+│   │   └── calculator.js       
 │   └── data/
-│       └── courses.json         Dữ liệu 12+ môn học mô phỏng
+│       └── courses.json
 ├── docs/
-│   ├── wireframes/              Ảnh bản vẽ phác thảo UI
-│   ├── report.pdf               Báo cáo 8-12 trang
-│   └── AI_USAGE.md              Nhật ký sử dụng AI
-└── README.md                    Mô tả dự án, link demo, phân công
+│   ├── wireframes/            
+│   ├── report.pdf          
+│   └── AI_USAGE.md            
+└── README.md                    
 ```
 ## THÀNH VIÊN
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🍒 Lê Quỳnh Anh <br>
