@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTrack - Tư vấn lộ trình học tập cá nhân hóa</title>
+</head>
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+        <a href="index.html">EduTrack</a>
+
+        <nav aria-label="Menu chính">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="pages/courses.html">Môn học</a></li>
+                <li><a href="pages/gpa.html">Tính GPA</a></li>
+                <li><a href="pages/advice.html">Tư vấn</a></li>
+                <li><a href="pages/about.html">Giới thiệu</a></li>
+                <li><a href="pages/gpa.html">Bắt đầu ngay</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main>
+
+        <!-- KHỐI 1: TÌM KIẾM CỐ VẤN (HERO) -->
+        <section>
+            <p><strong>TƯ VẤN HỌC TẬP 1-1</strong></p>
+            <h1>Tư vấn lộ trình học tập cá nhân hóa</h1>
+            <p>EduTrack kết nối bạn với những cố vấn và sinh viên khóa trước giàu kinh nghiệm để thiết lập lộ trình học tập vững chắc, chọn môn thông minh và tối ưu hóa điểm số GPA.</p>
+            
+            <form>
+                <input type="text" placeholder="Tìm kiếm cố vấn theo tên, môn học hoặc chuyên ngành...">
+                <select>
+                    <option value="">Tất cả các chuyên ngành</option>
+                    <option value="cntt">Công nghệ thông tin</option>
+                    <option value="kt">Kinh tế</option>
+                    <option value="nn">Ngoại ngữ</option>
+                </select>
+                <button type="submit">Tìm kiếm</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- KHỐI 2: FORM ĐĂNG KÝ LỊCH HẸN -->
+        <section>
+            <p><strong>YÊU CẦU TƯ VẤN</strong></p>
+            <h2>Đăng ký lịch hẹn tư vấn</h2>
+            <p>Điền thông tin và lựa chọn chủ đề để EduTrack sắp xếp cố vấn phù hợp nhất với bạn.</p>
+
+            <form>
+                <p>
+                    <label for="fullname">Họ và tên:</label><br>
+                    <input type="text" id="fullname" placeholder="Nhập đầy đủ họ tên của bạn">
+                </p>
+                <p>
+                    <label for="email">Email sinh viên:</label><br>
+                    <input type="email" id="email" placeholder="Nhập địa chỉ email trường học">
+                </p>
+                <p>
+                    <label for="phone">Số điện thoại:</label><br>
+                    <input type="tel" id="phone" placeholder="Nhập số điện thoại liên lạc">
+                </p>
+                <p>
+                    <label for="major">Ngành học hiện tại:</label><br>
+                    <input type="text" id="major" placeholder="Ví dụ: Khoa học máy tính, Kinh tế...">
+                </p>
+                <p>
+                    <label for="semester">Học kỳ hiện tại:</label><br>
+                    <select id="semester">
+                        <option value="">Chọn học kỳ của bạn</option>
+                        <option value="1">Học kỳ 1</option>
+                        <option value="2">Học kỳ 2</option>
+                        <option value="3">Học kỳ 3</option>
+                        <option value="4">Học kỳ 4</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="topic">Chủ đề cần tư vấn:</label><br>
+                    <select id="topic">
+                        <option value="">Lộ trình học tập / Cải thiện GPA...</option>
+                        <option value="gpa">Cải thiện GPA</option>
+                        <option value="roadmap">Lập lộ trình học tập</option>
+                        <option value="subject">Chọn môn học</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="message">Mô tả ngắn vấn đề của bạn:</label><br>
+                    <textarea id="message" rows="4" cols="50" placeholder="Hãy mô tả chi tiết thắc mắc hoặc khó khăn bạn đang gặp phải..."></textarea>
+                </p>
+                <p>
+                    <label>Thời gian rảnh đề xuất (Chọn tối đa 2 khung giờ):</label><br>
+                    <input type="checkbox" id="t1" name="time">
+                    <label for="t1">Thứ Hai (09:00 - 11:00)</label><br>
+                    
+                    <input type="checkbox" id="t2" name="time" checked>
+                    <label for="t2">Thứ Tư (14:00 - 16:00) ✓</label><br>
+                    
+                    <input type="checkbox" id="t3" name="time">
+                    <label for="t3">Thứ Sáu (10:00 - 12:00)</label>
+                </p>
+                <p>
+                    <button type="submit">Gửi yêu cầu tư vấn</button>
+                </p>
+                <p><small>Yêu cầu sẽ được phản hồi và xác nhận lịch qua email trong vòng 24 giờ.</small></p>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- KHỐI 3: TRA CỨU NHANH -->
+        <section>
+            <p><strong>TRA CỨU NHANH</strong></p>
+            <h2>Kiểm tra thông tin đăng ký</h2>
+            <p>Nhập email hoặc mã đăng ký (được gửi trong email xác nhận) để theo dõi trạng thái lịch hẹn.</p>
+
+            <form>
+                <input type="text" placeholder="Ví dụ: sv.nguyenvana@hust.edu.vn">
+                <button type="submit">Kiểm tra</button>
+            </form>
+
+            <!-- Thay <div> bằng <article> cho thẻ kết quả tra cứu -->
+            <article>
+                <h3>MÃ ĐĂNG KÝ: ET-2026-8945 — [ĐÃ XÁC NHẬN]</h3>
+                <ul>
+                    <li><strong>Người đăng ký:</strong> Nguyễn Văn A</li>
+                    <li><strong>Cố vấn đảm nhận:</strong> ThS. Lê Hoàng Lâm (Ban Đào Tạo)</li>
+                    <li><strong>Chủ đề hỗ trợ:</strong> Cải thiện GPA & Lập lộ trình học kỳ 2</li>
+                    <li><strong>Thời gian & Hình thức:</strong> 14:00 - Thứ Tư, 25/03/2026 (Online qua Google Meet)</li>
+                </ul>
+            </article>
+        </section>
+
+        <hr>
+
+        <!-- KHỐI 4: THÔNG BÁO & LỊCH SỬ -->
+        <section>
+            <p><strong>CẬP NHẬT HOẠT ĐỘNG</strong></p>
+            <h2>Thông báo & Lịch sử tư vấn</h2>
+            <p>Theo dõi dòng thời gian phản hồi từ điều phối viên và cố vấn học tập của bạn.</p>
+
+            <ul>
+                <li>
+                    Yêu cầu tư vấn của bạn (Mã ET-2026-8945) đã được xác nhận. Vui lòng kiểm tra email để nhận liên kết Google Meet.
+                    <br><small><i>10 phút trước</i></small>
+                </li>
+                <li>
+                    Cố vấn ThS. Lê Hoàng Lâm đã gửi tài liệu chuẩn bị trước buổi gặp mặt (Lộ trình phân bổ tín chỉ mẫu).
+                    <br><small><i>2 giờ trước</i></small>
+                </li>
+                <li>
+                    Yêu cầu đổi lịch hẹn học kỳ mới của bạn đã được tiếp nhận và đang chờ cố vấn duyệt.
+                    <br><small><i>Hôm qua</i></small>
+                </li>
+                <li>
+                    Hệ thống đã tự động phân bổ bạn vào nhóm tư vấn 'Cải thiện GPA khối ngành Đại Cương'.
+                    <br><small><i>3 ngày trước</i></small>
+                </li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- KHỐI 5: ĐỘI NGŨ CỐ VẤN -->
+        <section>
+            <p><strong>ĐỘI NGŨ CHUYÊN GIA</strong></p>
+            <h2>Đội ngũ cố vấn giàu kinh nghiệm</h2>
+            <p>Các thầy cô ban đào tạo và cựu sinh viên xuất sắc luôn sẵn sàng lắng nghe và giải đáp mọi thắc mắc học tập của bạn.</p>
+
+            <!-- Thay <div> bằng <article> cho từng Profile cố vấn -->
+            <article>
+                <h3>ThS. Nguyễn Văn A</h3>
+                <p>Chuyên viên Ban Đào tạo - HUST</p>
+                <p><strong>Chuyên môn:</strong> Xây dựng kế hoạch học tập & Giải quyết khủng hoảng tín chỉ</p>
+                <p><strong>Đánh giá:</strong> ⭐ 4.9 (đã làm 120 buổi)</p>
+                <button type="button">Đặt lịch ngay</button>
+            </article>
+            <br>
+            <article>
+                <h3>TS. Trần Thị B</h3>
+                <p>Giảng viên Khoa Kinh tế - NEU</p>
+                <p><strong>Chuyên môn:</strong> Dự phòng GPA & Định hướng chuyên ngành kinh tế</p>
+                <p><strong>Đánh giá:</strong> ⭐ 4.8 (đã làm 95 buổi)</p>
+                <button type="button">Đặt lịch ngay</button>
+            </article>
+            <br>
+            <article>
+                <h3>Lê Hoàng C</h3>
+                <p>Cựu Thủ khoa K65 - UET</p>
+                <p><strong>Chuyên môn:</strong> Kinh nghiệm học vượt, ôn tập Đại cương và săn học bổng</p>
+                <p><strong>Đánh giá:</strong> ⭐ 5.0 (đã làm 142 buổi)</p>
+                <button type="button">Đặt lịch ngay</button>
+            </article>
+        </section>
+
+        <hr>
+
+        <!-- KHỐI 6: CÂU HỎI THƯỜNG GẶP (FAQ) -->
+        <section>
+            <p><strong>GIẢI ĐÁP THẮC MẮC</strong></p>
+            <h2>Câu hỏi thường gặp về dịch vụ tư vấn</h2>
+            <p>Tìm kiếm nhanh câu trả lời cho các thắc mắc phổ biến về quy trình đặt lịch và hỗ trợ học thuật.</p>
+
+            <details>
+                <summary><strong>Quy trình đăng ký và nhận tư vấn diễn ra như thế nào?</strong></summary>
+                <p>Sau khi bạn gửi form đăng ký, ban điều phối của EduTrack sẽ đối chiếu yêu cầu của bạn để tìm cố vấn phù hợp. Lịch hẹn và link meet sẽ được gửi tự động qua email của bạn trong tối đa 24h làm việc.</p>
+            </details>
+            <br>
+            <details>
+                <summary><strong>Việc nhận tư vấn lộ trình học tập và GPA có mất phí không?</strong></summary>
+                <p>Tất cả các dịch vụ tư vấn cơ bản về lập lộ trình học tập và hướng dẫn tính GPA trên EduTrack hoàn toàn miễn phí cho sinh viên.</p>
+            </details>
+            <br>
+            <details>
+                <summary><strong>Thời gian phản hồi và hỗ trợ thông thường là bao lâu?</strong></summary>
+                <p>Hệ thống hoạt động liên tục. Các yêu cầu đặt lịch thông thường sẽ được xác nhận nhanh chóng trong ngày. Buổi họp trực tuyến thường kéo dài từ 30 đến 45 phút.</p>
+            </details>
+            <br>
+            <details>
+                <summary><strong>Tôi có thể thay đổi lịch hẹn hoặc hủy buổi tư vấn không?</strong></summary>
+                <p>Hoàn toàn được. Bạn có thể nhấn vào liên kết 'Đổi lịch/Hủy hẹn' được cung cấp sẵn ở cuối email xác nhận trước giờ hẹn ít nhất 2 tiếng.</p>
+            </details>
+        </section>
+
+    </main>
+
+    <hr>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div>
+            <h2>EduTrack</h2>
+            <p>Nền tảng công nghệ hỗ trợ sinh viên lập kế hoạch học tập, quản lý điểm số và bứt phá GPA một cách thông minh.</p>
+        </div>
+
+        <div>
+            <h3>Về EduTrack</h3>
+            <ul>
+                <li><a href="pages/about.html">Giới thiệu</a></li>
+                <li><a href="#">Đội ngũ</a></li>
+                <li><a href="#">Tuyển dụng</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Môn học</h3>
+            <ul>
+                <li><a href="pages/courses.html">Đại cương</a></li>
+                <li><a href="pages/courses.html">Cơ sở ngành</a></li>
+                <li><a href="pages/courses.html">Chuyên ngành</a></li>
+                <li><a href="pages/courses.html">Tài liệu miễn phí</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Tính năng</h3>
+            <ul>
+                <li><a href="pages/gpa.html">Tính GPA</a></li>
+                <li><a href="pages/advice.html">Tư vấn lộ trình</a></li>
+                <li><a href="#">Theo dõi tiến độ</a></li>
+                <li><a href="#">Cộng đồng</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Điều khoản</h3>
+            <ul>
+                <li><a href="#">Chính sách bảo mật</a></li>
+                <li><a href="#">Điều khoản sử dụng</a></li>
+                <li><a href="#">Hỗ trợ khách hàng</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <p>&copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.</p>
+            <p>
+                <a href="#">Facebook</a> | 
+                <a href="#">YouTube</a> | 
+                <a href="#">Instagram</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
