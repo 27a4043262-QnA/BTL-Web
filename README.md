@@ -49,7 +49,7 @@ Edutrack/
 ```
 ## THÀNH VIÊN
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🍒 Lê Quỳnh Anh <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🦄 Ngô Huyền Anh <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🌻 Ngô Huyền Anh <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🌷 Lê Ngọc Ánh <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🧀 Phan Kim Chi <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💗 Nguyễn Hoài Thương <br>
