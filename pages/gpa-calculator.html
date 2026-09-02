@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tính & Dự phóng GPA - EduTrack</title>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+
+        <div class="logo">
+            <a href="../index.html">
+                <strong>EduTrack</strong>
+            </a>
+        </div>
+
+        <nav aria-label="Điều hướng chính">
+            <ul>
+                <li>
+                    <a href="../index.html">Trang chủ</a>
+                </li>
+
+                <li>
+                    <a href="courses.html">Môn học</a>
+                </li>
+
+                <li>
+                    <a href="gpa-calculator.html" aria-current="page">
+                        Tính GPA
+                    </a>
+                </li>
+
+                <li>
+                    <a href="advising-contact.html">
+                        Tư vấn
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        Giới thiệu
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <a href="gpa-calculator.html">
+            Bắt đầu ngay
+        </a>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main>
+
+        <!-- ================= HERO ================= -->
+        <section>
+
+            <h1>
+                Công cụ Tính & Dự phóng GPA
+            </h1>
+
+            <p>
+                Nhập số tín chỉ và điểm (hoặc hệ quy đổi)
+                để tính GPA hiện tại và dự phóng GPA theo từng kỳ.
+            </p>
+
+            <div>
+                <a href="#input-data">
+                    Xem ví dụ
+                </a>
+
+                <a href="#input-data">
+                    Bắt đầu ngay
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- ================= NHẬP DỮ LIỆU ================= -->
+        <section id="input-data">
+
+            <h2>Nhập dữ liệu</h2>
+
+            <p>
+                Bạn có thể dùng chế độ "Tính" hoặc "Dự phóng".
+                Hệ quy đổi có thể thay đổi đối theo thang điểm của trường.
+            </p>
+
+
+            <form id="gpa-form">
+
+                <!-- CHẾ ĐỘ -->
+                <div>
+                    <label for="mode">
+                        Chế độ
+                    </label>
+
+                    <select id="mode" name="mode">
+                        <option value="">
+                            Chọn chế độ tính
+                        </option>
+
+                        <option value="calculate">
+                            Tính GPA
+                        </option>
+
+                        <option value="forecast">
+                            Dự phóng GPA
+                        </option>
+                    </select>
+
+                    <small>
+                        Tính GPA hiện tại hoặc dự phóng GPA theo kỳ
+                    </small>
+                </div>
+
+
+                <!-- THANG ĐIỂM -->
+                <div>
+                    <label for="grading-scale">
+                        Thang điểm (GPA Scale)
+                    </label>
+
+                    <select id="grading-scale" name="grading-scale">
+
+                        <option value="">
+                            Chọn thang điểm
+                        </option>
+
+                        <option value="4">
+                            4.0
+                        </option>
+
+                        <option value="10">
+                            10.0
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Tự quy đổi điểm theo thang điểm bạn chọn
+                    </small>
+                </div>
+
+
+                <!-- TỔNG TÍN CHỈ -->
+                <div>
+                    <label for="completed-credits">
+                        Tổng số tín chỉ đã tích lũy
+                    </label>
+
+                    <input
+                        type="number"
+                        id="completed-credits"
+                        name="completed-credits"
+                        min="0"
+                        placeholder="Ví dụ: 72">
+
+                    <small>
+                        Nhập số tín chỉ đã tích lũy
+                    </small>
+                </div>
+
+
+                <!-- GPA HIỆN TẠI -->
+                <div>
+                    <label for="current-gpa">
+                        GPA hiện tại (tùy chọn)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="current-gpa"
+                        name="current-gpa"
+                        min="0"
+                        max="4"
+                        step="0.01"
+                        placeholder="Ví dụ: 3.42">
+
+                    <small>
+                        Dùng để đối chiếu với kết quả
+                    </small>
+                </div>
+
+
+                <!-- MÔN ĐÃ CÓ -->
+                <div>
+                    <label for="existing-courses">
+                        Tùy chọn môn đã có
+                    </label>
+
+                    <textarea
+                        id="existing-courses"
+                        name="existing-courses"
+                        rows="3"
+                        placeholder="Nhập danh sách môn (tên - tín chỉ - điểm)"></textarea>
+
+                    <small>
+                        Gợi ý: chỉ cần nhập phần tên môn, tín chỉ và điểm
+                    </small>
+                </div>
+
+
+                <!-- MÔN HIỆN TẠI -->
+                <div>
+                    <label for="current-courses">
+                        Thêm môn vào kỳ hiện tại
+                    </label>
+
+                    <textarea
+                        id="current-courses"
+                        name="current-courses"
+                        rows="3"
+                        placeholder="Tên môn / tín chỉ / điểm"></textarea>
+
+                    <small>
+                        Có thể thêm nhiều môn
+                    </small>
+                </div>
+
+
+                <!-- MỤC TIÊU GPA -->
+                <div>
+                    <label for="target-gpa">
+                        Mục tiêu GPA
+                    </label>
+
+                    <input
+                        type="number"
+                        id="target-gpa"
+                        name="target-gpa"
+                        min="0"
+                        max="4"
+                        step="0.01"
+                        placeholder="Ví dụ: 3.7">
+
+                    <small>
+                        Dành cho chế độ dự phóng
+                    </small>
+                </div>
+
+
+                <!-- TÍN CHỈ CÒN LẠI -->
+                <div>
+                    <label for="remaining-credits">
+                        Tín chỉ còn lại mỗi kỳ
+                    </label>
+
+                    <input
+                        type="number"
+                        id="remaining-credits"
+                        name="remaining-credits"
+                        min="0"
+                        placeholder="Ví dụ: 15">
+
+                    <small>
+                        Ước lượng dùng để mô phỏng theo kế hoạch
+                    </small>
+                </div>
+
+
+                <!-- BUTTON -->
+                <div>
+
+                    <button type="reset">
+                        Làm mới
+                    </button>
+
+                    <button type="submit">
+                        Tính & Dự phóng
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ================= KẾT QUẢ ================= -->
+        <section id="result">
+
+            <h2>Kết quả tóm tắt</h2>
+
+            <p>
+                Các con số sẽ cập nhật ngay khi bạn thay đổi dữ liệu đầu vào.
+            </p>
+
+
+            <div>
+
+                <button type="button">
+                    Lưu kế hoạch
+                </button>
+
+                <button type="button">
+                    Xuất kết quả (PDF)
+                </button>
+
+            </div>
+
+
+            <!-- GPA HIỆN TẠI -->
+            <article>
+
+                <h3>GPA hiện tại (ước tính)</h3>
+
+                <output id="current-gpa-result">
+                    3.42
+                </output>
+
+                <p>
+                    +0.05 so với lần trước
+                </p>
+
+            </article>
+
+
+            <!-- GPA MỤC TIÊU -->
+            <article>
+
+                <h3>GPA mục tiêu</h3>
+
+                <output id="target-gpa-result">
+                    3.70
+                </output>
+
+                <p>
+                    Cần cải thiện +0.28
+                </p>
+
+            </article>
+
+
+            <!-- TÍN CHỈ CÒN LẠI -->
+            <article>
+
+                <h3>Tín chỉ còn lại</h3>
+
+                <output id="remaining-credits-result">
+                    45
+                </output>
+
+                <p>
+                    trong 3 kỳ
+                </p>
+
+            </article>
+
+
+            <!-- ĐIỂM TRUNG BÌNH -->
+            <article>
+
+                <h3>
+                    Điểm trung bình cần đạt
+                </h3>
+
+                <output id="required-average">
+                    A-/B+ tương đương
+                </output>
+
+                <p>
+                    tùy theo thang điểm
+                </p>
+
+            </article>
+
+
+            <!-- BIỂU ĐỒ -->
+            <article>
+
+                <h3>
+                    GPA theo từng kỳ (dự phóng)
+                </h3>
+
+                <p>
+                    GPA
+                </p>
+
+                <div id="gpa-chart">
+
+                    <p>
+                        Biểu đồ GPA theo từng kỳ sẽ được hiển thị tại đây.
+                    </p>
+
+                    <p>
+                        Kỳ 1 → Kỳ 2 → Kỳ 3
+                    </p>
+
+                </div>
+
+                <p>
+                    Kỳ
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- ================= PHÂN TÍCH NHANH ================= -->
+        <section id="analysis">
+
+            <h2>Phân tích nhanh</h2>
+
+            <p>
+                Trực quan hóa ảnh hưởng của tín chỉ/điểm đến GPA.
+            </p>
+
+
+            <!-- ĐÓNG GÓP THEO NHÓM MÔN -->
+            <article>
+
+                <h3>
+                    Đóng góp theo nhóm môn
+                </h3>
+
+                <p>
+                    Điểm quy đổi
+                </p>
+
+                <div id="subject-group-chart">
+
+                    <p>
+                        Biểu đồ đóng góp theo nhóm môn
+                    </p>
+
+                </div>
+
+                <p>
+                    Nhóm môn
+                </p>
+
+            </article>
+
+
+            <!-- CƠ CẤU TÍN CHỈ -->
+            <article>
+
+                <h3>
+                    Cơ cấu tín chỉ theo mức điểm
+                </h3>
+
+                <p>
+                    Tỉ lệ (%)
+                </p>
+
+                <div id="grade-distribution-chart">
+
+                    <p>
+                        Biểu đồ cơ cấu tín chỉ theo mức điểm
+                    </p>
+
+                </div>
+
+                <p>
+                    Mức điểm
+                </p>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+
+        <section>
+
+            <h2>EduTrack</h2>
+
+            <p>
+                Nền tảng công nghệ hỗ trợ sinh viên lập kế hoạch học tập,
+                quản lý điểm số và dự phóng GPA một cách thông minh.
+            </p>
+
+        </section>
+
+
+        <section>
+
+            <h2>Về EduTrack</h2>
+
+            <ul>
+                <li>
+                    <a href="about.html">Giới thiệu</a>
+                </li>
+
+                <li>
+                    <a href="about.html">Đội ngũ</a>
+                </li>
+
+                <li>
+                    <a href="advising-contact.html">Tuyển dụng</a>
+                </li>
+
+                <li>
+                    <a href="advising-contact.html">Liên hệ</a>
+                </li>
+            </ul>
+
+        </section>
+
+
+        <section>
+
+            <h2>Môn học</h2>
+
+            <ul>
+                <li>
+                    <a href="courses.html">Đại cương</a>
+                </li>
+
+                <li>
+                    <a href="courses.html">Cơ sở ngành</a>
+                </li>
+
+                <li>
+                    <a href="courses.html">Chuyên ngành</a>
+                </li>
+
+                <li>
+                    <a href="courses.html">Tài liệu miễn phí</a>
+                </li>
+            </ul>
+
+        </section>
+
+
+        <section>
+
+            <h2>Tính năng</h2>
+
+            <ul>
+                <li>
+                    <a href="gpa-calculator.html">Tính GPA</a>
+                </li>
+
+                <li>
+                    <a href="gpa-calculator.html">Tư vấn lộ trình</a>
+                </li>
+
+                <li>
+                    <a href="gpa-calculator.html">Theo dõi tiến độ</a>
+                </li>
+
+                <li>
+                    <a href="advising-contact.html">Cộng đồng</a>
+                </li>
+            </ul>
+
+        </section>
+
+
+        <section>
+
+            <h2>Điều khoản</h2>
+
+            <ul>
+                <li>
+                    <a href="#">Chính sách bảo mật</a>
+                </li>
+
+                <li>
+                    <a href="#">Điều khoản sử dụng</a>
+                </li>
+
+                <li>
+                    <a href="advising-contact.html">
+                        Hỗ trợ khách hàng
+                    </a>
+                </li>
+            </ul>
+
+        </section>
+
+
+        <div>
+
+            <p>
+                &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
