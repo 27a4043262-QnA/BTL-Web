@@ -1,4 +1,4 @@
-# Website quản lý tiến độ học tập
+# Website quản lý tiến độ học tập EduTrack
 ## MÔ TẢ DỰ ÁN
 Website quản lý tiến độ học tập sinh viên là một hệ thống được xây dựng nhằm hỗ trợ sinh viên quản lý và theo dõi quá trình học tập một cách thuận tiện, chính xác và hiệu quả.
 
