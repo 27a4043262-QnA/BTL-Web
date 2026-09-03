@@ -1,8 +1,8 @@
 # Website quản lý tiến độ học tập EduTrack
 ## MÔ TẢ DỰ ÁN
-Website quản lý tiến độ học tập sinh viên là một hệ thống được xây dựng nhằm hỗ trợ sinh viên quản lý và theo dõi quá trình học tập một cách thuận tiện, chính xác và hiệu quả.
+Website quản lý tiến độ học tập EduTrack là một hệ thống được xây dựng nhằm hỗ trợ sinh viên ngành Hệ thống thông tin quản lý - Học viện Ngân hàng trong việc tổng hợp tài liệu học tập, quản lý và theo dõi quá trình học tập một cách thuận tiện, chính xác và hiệu quả.
 
-Website cho phép sinh viên quản lý thông tin môn học, số tín chỉ, điểm số và theo dõi GPA theo từng học kỳ cũng như GPA tích lũy. Thông qua hệ thống, sinh viên có thể nắm bắt tiến độ học tập, đánh giá kết quả hiện tại và xây dựng kế hoạch cải thiện kết quả trong các học kỳ tiếp theo.
+Website cho phép sinh viên quản lý thông tin môn học, số tín chỉ, điểm số và theo dõi GPA theo từng học kỳ cũng như GPA tích lũy. Bên cạnh đó, hệ thống cung cấp tài liệu học tập, bài tập và đề kiểm tra tham khảo theo từng môn học, giúp sinh viên chủ động trong quá trình học tập và ôn luyện. Thông qua hệ thống, sinh viên có thể nắm bắt tiến độ học tập, đánh giá kết quả hiện tại và xây dựng kế hoạch cải thiện kết quả trong các học kỳ tiếp theo.
 
 Dự án được xây dựng với mục tiêu tạo ra một giao diện trực quan, dễ sử dụng và thuận tiện, phù hợp với nhu cầu quản lý kết quả học tập của sinh viên.
 ## CHỨC NĂNG
@@ -12,6 +12,7 @@ Dự án được xây dựng với mục tiêu tạo ra một giao diện trự
 🧮 Tự động tính toán GPA theo học kỳ và GPA tích lũy. <br>
 📊 Hỗ trợ sinh viên theo dõi tiến độ học tập. <br>
 🎯 Đưa ra lộ trình học tập phù hợp với mục tiêu cá nhân. <br>
+📖 Tổng hợp tài liệu học tập, đề ôn tập theo từng môn học. <br>
 💻 Cung cấp giao diện trực quan, dễ sử dụng. <br>
 
 ## CÔNG NGHỆ
@@ -28,7 +29,9 @@ Edutrack/
 │   ├── course-detail.html       
 │   ├── gpa-calculator.html      
 │   ├── advising-contact.html    
-│   └── about.html               
+│   ├── about.html
+│   ├── login.html
+│   └── register.html       
 ├── assets/
 │   ├── images/                 
 │   ├── css/
