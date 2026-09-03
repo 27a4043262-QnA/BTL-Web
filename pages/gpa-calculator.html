@@ -17,31 +17,37 @@
     <ul>
       <li><a href="../index.html">Trang chủ</a></li>
       <li><a href="courses.html">Môn học</a></li>
-      <li><a href="course-detail.html">Chi tiết môn học</a></li>
       <li><a href="gpa-calculator.html" aria-current="page">Tính GPA</a></li>
       <li><a href="advising-contact.html">Tư vấn</a></li>
       <li><a href="about.html">Giới thiệu</a></li>
     </ul>
   </nav>
+  <a href="advising-contact.html" class="btn-cta">Bắt đầu ngay</a>
 </header>
 
 <!-- ================= MAIN (chỉ 1 thẻ main / trang) ================= -->
 <main>
 
-  <!-- Breadcrumb điều hướng phụ -->
-  <nav aria-label="breadcrumb">
-    <ol>
-      <li><a href="../index.html">Trang chủ</a></li>
-      <li aria-current="page">Công cụ Tính GPA</li>
-    </ol>
-  </nav>
+  <!-- ============ HERO ============ -->
+  <section id="hero-gpa" aria-labelledby="hero-gpa-h1">
+    <h1 id="hero-gpa-h1">Công cụ Tính &amp; Dự phóng GPA</h1>
+    <p>Nhập số tín chỉ và điểm (hoặc hệ quy đổi) để tính GPA hiện tại và dự phóng GPA theo từng kỳ.</p>
 
-  <h1>Công cụ Tính &amp; Dự phóng GPA</h1>
-  <p>Nhập điểm từng môn để tính GPA hiện tại, hoặc dùng công cụ tính ngược để biết cần đạt bao nhiêu điểm mỗi kỳ.</p>
+    <div class="hero-actions">
+      <a href="#vi-du" class="btn-outline">Xem ví dụ</a>
+      <a href="#bang-nhap-diem" class="btn-primary">Bắt đầu ngay</a>
+    </div>
 
-  <!-- ============ SECTION 1: BẢNG NHẬP ĐIỂM ============ -->
+    <div class="hero-tabs" role="tablist" aria-label="Chế độ tính GPA">
+      <button type="button" role="tab" aria-selected="true" id="tab-tinh-hien-tai">Tính GPA hiện tại</button>
+      <button type="button" role="tab" aria-selected="false" id="tab-du-phong">Dự phóng GPA mục tiêu</button>
+    </div>
+  </section>
+
+  <!-- ============ SECTION: BẢNG NHẬP ĐIỂM ============ -->
   <section id="bang-nhap-diem" aria-labelledby="bang-nhap-diem-h2">
     <h2 id="bang-nhap-diem-h2">Bảng nhập điểm các môn</h2>
+    <p class="section-intro">Nhập số tín chỉ và điểm thành phần cho từng môn để tính GPA học kỳ hiện tại.</p>
 
     <form id="form-diem" action="#" method="post">
       <table>
@@ -131,10 +137,10 @@
     </form>
   </section>
 
-  <!-- ============ SECTION 2: CÔNG CỤ TÍNH NGƯỢC GPA ============ -->
+  <!-- ============ SECTION: FORM DỰ PHÓNG (CÔNG CỤ TÍNH NGƯỢC GPA) ============ -->
   <section id="tinh-nguoc-gpa" aria-labelledby="tinh-nguoc-gpa-h2">
     <h2 id="tinh-nguoc-gpa-h2">Công cụ tính ngược GPA</h2>
-    <p>Nhập GPA mục tiêu và số tín chỉ còn lại để biết điểm trung bình cần đạt mỗi kỳ.</p>
+    <p class="section-intro">Nhập GPA mục tiêu và số tín chỉ còn lại để biết điểm trung bình cần đạt mỗi kỳ.</p>
 
     <form id="form-tinh-nguoc" action="#" method="post">
       <fieldset>
@@ -178,6 +184,80 @@
     </form>
   </section>
 
+  <!-- ============ SECTION: KẾT QUẢ TÓM TẮT ============ -->
+  <section id="ket-qua-tom-tat" aria-labelledby="ket-qua-tom-tat-h2">
+    <h2 id="ket-qua-tom-tat-h2">Kết quả tóm tắt</h2>
+    <p class="section-intro">Các con số sẽ cập nhật ngay khi bạn thay đổi dữ liệu đầu vào.</p>
+
+    <div class="ket-qua-actions">
+      <button type="button" id="btn-luu-ke-hoach">Lưu kế hoạch</button>
+      <button type="button" id="btn-xuat-pdf">Xuất kết quả (PDF)</button>
+    </div>
+
+    <ul class="ket-qua-list">
+      <li>
+        <article>
+          <p class="ket-qua-nhan">GPA hiện tại (ước tính)</p>
+          <p class="ket-qua-so" id="ket-qua-gpa-hien-tai">3.42</p>
+          <p class="ket-qua-ghi-chu">+0.05 so với lần trước</p>
+        </article>
+      </li>
+      <li>
+        <article>
+          <p class="ket-qua-nhan">GPA mục tiêu</p>
+          <p class="ket-qua-so" id="ket-qua-gpa-muc-tieu">3.70</p>
+          <p class="ket-qua-ghi-chu">Cần cải thiện +0.28</p>
+        </article>
+      </li>
+      <li>
+        <article>
+          <p class="ket-qua-nhan">Tín chỉ còn lại</p>
+          <p class="ket-qua-so" id="ket-qua-tin-chi-con-lai">45</p>
+          <p class="ket-qua-ghi-chu">trong 3 kỳ</p>
+        </article>
+      </li>
+      <li>
+        <article>
+          <p class="ket-qua-nhan">Điểm trung bình cần đạt (ước tính)</p>
+          <p class="ket-qua-so" id="ket-qua-diem-can-dat">A-/B+ tương đương</p>
+          <p class="ket-qua-ghi-chu">tuỳ theo thang điểm</p>
+        </article>
+      </li>
+    </ul>
+
+    <figure class="bieu-do-duong">
+      <figcaption>GPA theo từng kỳ (dự phóng)</figcaption>
+      <canvas id="chart-gpa-theo-ky" role="img" aria-label="Biểu đồ đường thể hiện GPA dự phóng theo từng kỳ"></canvas>
+    </figure>
+  </section>
+
+  <!-- ============ SECTION: PHÂN TÍCH NHANH ============ -->
+  <section id="phan-tich-nhanh" aria-labelledby="phan-tich-nhanh-h2">
+    <h2 id="phan-tich-nhanh-h2">Phân tích nhanh</h2>
+    <p class="section-intro">Trực quan hóa ảnh hưởng của tín chỉ/điểm đến GPA.</p>
+
+    <ul class="bieu-do-list">
+      <li>
+        <article>
+          <h3>Đóng góp theo nhóm môn</h3>
+          <figure>
+            <figcaption>Điểm quy đổi</figcaption>
+            <canvas id="chart-dong-gop-nhom-mon" role="img" aria-label="Biểu đồ cột thể hiện đóng góp theo nhóm môn"></canvas>
+          </figure>
+        </article>
+      </li>
+      <li>
+        <article>
+          <h3>Cơ cấu tín chỉ theo mức điểm</h3>
+          <figure>
+            <figcaption>Tỉ lệ (%)</figcaption>
+            <canvas id="chart-co-cau-tin-chi" role="img" aria-label="Biểu đồ tròn thể hiện cơ cấu tín chỉ theo mức điểm"></canvas>
+          </figure>
+        </article>
+      </li>
+    </ul>
+  </section>
+
   <!-- ============ ASIDE: MẸO TĂNG ĐIỂM (nội dung bên lề, không phải nội dung chính) ============ -->
   <aside id="meo-tang-diem" aria-labelledby="meo-tang-diem-h2">
     <h2 id="meo-tang-diem-h2">Mẹo tăng điểm GPA</h2>
@@ -193,13 +273,38 @@
 
 <!-- ================= FOOTER (Khung Global do QA dựng — copy nguyên khối này) ================= -->
 <footer>
-  <p>&copy; 2026 EduTrack. Đồ án môn học — Nhóm phát triển EduTrack.</p>
-  <nav aria-label="Liên kết chân trang">
+  <div class="foot-brand">
+    <p class="logo">EduTrack</p>
+    <p>Nền tảng công nghệ hỗ trợ sinh viên lập kế hoạch học tập, quản lý điểm số và bứt phá GPA một cách thông minh.</p>
+  </div>
+  <nav aria-label="Về EduTrack">
+    <h3>Về EduTrack</h3>
     <ul>
-      <li><a href="about.html">Về dự án</a></li>
+      <li><a href="about.html">Giới thiệu</a></li>
+      <li><a href="about.html#doi-ngu">Đội ngũ</a></li>
+      <li><a href="#">Tuyển dụng</a></li>
       <li><a href="advising-contact.html">Liên hệ</a></li>
     </ul>
   </nav>
+  <nav aria-label="Môn học">
+    <h3>Môn học</h3>
+    <ul>
+      <li><a href="courses.html">Đại cương</a></li>
+      <li><a href="courses.html">Cơ sở ngành</a></li>
+      <li><a href="courses.html">Chuyên ngành</a></li>
+      <li><a href="#">Tài liệu miễn phí</a></li>
+    </ul>
+  </nav>
+  <nav aria-label="Tính năng">
+    <h3>Tính năng</h3>
+    <ul>
+      <li><a href="gpa-calculator.html">Tính GPA</a></li>
+      <li><a href="advising-contact.html">Tư vấn lộ trình</a></li>
+      <li><a href="#">Theo dõi tiến độ</a></li>
+      <li><a href="#">Cộng đồng</a></li>
+    </ul>
+  </nav>
+  <p class="copyright">&copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.</p>
 </footer>
 
 <script src="../assets/js/gpa-calculator.js"></script>
