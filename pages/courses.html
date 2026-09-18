@@ -10,17 +10,18 @@
     <header>
         <!-- Logo -->
         <div class="logo">
-            <img src="#" alt="EduTrack Logo">
-            <a href="index.html"> EduTrack </a>
+            <img src="../assets/images/course/logo.png" alt="EduTrack Logo" width="70" height="70">
+            <a> EduTrack </a>
         </div>
         <!-- Navigation Menu -->
             <ul>
-                <li><a href="index.html">Trang chủ</a></li>
-                <li><a href="pages/courses.html">Môn học</a></li>
-                <li><a href="pages/gpa-calculator.html">Tính GPA</a></li>
-                <li><a href="pages/advising-contact.html">Tư vấn</a></li>
-                <li><a href="pages/about.html">Giới thiệu</a></li>
-                <li><a href="#">Bắt đầu ngay</a></li>
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="courses.html">Môn học</a></li>
+                <li><a href="gpa-calculator.html">Tính GPA</a></li>
+                <li><a href="advising-contact.html">Tư vấn</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><button type="button" onclick="window.location.href='pages/login.html'">Bắt đầu ngay</button></li>
+
             </ul>  
     </header>
 
@@ -41,25 +42,11 @@
   <section>
     <!-- Bộ nút lọc theo khối kiến thức -->
     <div>
-      <button type="button">Tất cả</button>
-      <button type="button">Đại cương</button>
-      <button type="button">Cơ sở ngành</button>
-      <button type="button">Chuyên ngành</button>
+      <button type="button" data-filter="all" aria-pressed="true">Tất cả</button>
+      <button type="button" data-filter="dai-cuong" aria-pressed="false">Đại cương</button>
+      <button type="button" data-filter="co-so-nganh" aria-pressed="false">Cơ sở ngành</button>
+      <button type="button" data-filter="chuyen-nganh" aria-pressed="false">Chuyên ngành</button>
     </div>
-    <!-- Bên phải: Cụm Form bao gồm Dropdown Học kỳ + Ô Tìm kiếm -->
-    <form action="#" method="GET" role="search">
-        
-        <!-- Dropdown Học kỳ -->
-        <div>
-            <label for="semester-select">Chọn học kỳ:</label>
-            <select id="semester-select" name="semester">
-                <option value="">-- Tất cả học kỳ --</option>
-                <option value="1">Học kỳ 1</option>
-                <option value="2">Học kỳ 2</option>
-                <option value="3">Học kỳ 3</option>
-            </select>
-        </div>
-        </form>
     <!-- Ô tìm kiếm môn học -->
       <form action="#" method="GET">
         <label for="course-search">Tìm kiếm môn học:</label>
@@ -67,75 +54,131 @@
       </form>
   </section>
   <!-- Danh sách môn học -->
-  <section>
+  <section id="course-list">
     <!-- Card 1: Đại cương -->
-    <article>
-        <img src="../assets/images/course/vat-ly-1.jpg" alt="Minh họa môn Vật lý đại cương 1">
+    <article data-category="dai-cuong">
+        <img src="../assets/images/course/01_nang_luc_so_ung_dung.png" alt="Minh họa môn Năng lực số ứng dụng">
       <div>
           <span>Đại cương</span>
           <span>3 Tín chỉ</span>
-          <h2>Vật lý đại cương 1</h2>
-          <p>Tìm hiểu các nguyên lý cơ học cổ điển, động học chất điểm, chất lưu và nhiệt học cơ bản.</p>
+          <h2>Năng lực số ứng dụng</h2>
+          <p>Trang bị kỹ năng sử dụng công nghệ số, công cụ văn phòng, Internet và bảo mật thông tin trong học tập và công việc.</p>
+        <a href="course-detail.html">Xem chi tiết &rarr;</a>
+        </div>
+    </article>
+    <article data-category="dai-cuong">
+        <img src="../assets/images/course/02_toan_danh_cho_kinh_te.png" alt="Minh họa môn Toán dành cho kinh tế">
+      <div>
+          <span>Đại cương</span>
+          <span>3 Tín chỉ</span>
+          <h2>Toán dành cho kinh tế</h2>
+          <p>Cung cấp kiến thức toán học nền tảng và các phương pháp ứng dụng toán trong phân tích và giải quyết bài toán kinh tế.</p>
+        <a href="course-detail.html">Xem chi tiết &rarr;</a>
+        </div>
+    </article>
+     <article data-category="dai-cuong">
+        <img src="../assets/images/course/03_phap_luat_dai_cuong.png" alt="Minh họa môn Pháp luật đại cương">
+      <div>
+          <span>Đại cương</span>
+          <span>3 Tín chỉ</span>
+          <h2>Pháp luật đại cương</h2>
+          <p>Giúp sinh viên nắm được những kiến thức cơ bản về pháp luật, quyền và nghĩa vụ của công dân trong xã hội.</p>
+        <a href="course-detail.html">Xem chi tiết &rarr;</a>
+        </div>
+    </article>
+     <article data-category="dai-cuong">
+        <img src="../assets/images/course/04_xac_suat_thong_ke.png" alt="Minh họa môn Xác suất thống kê">
+      <div>
+          <span>Đại cương</span>
+          <span>3 Tín chỉ</span>
+          <h2>Xác suất thống kê</h2>
+          <p>Cung cấp kiến thức về xác suất, thống kê và ứng dụng trong phân tích dữ liệu và ra quyết định.</p>
         <a href="course-detail.html">Xem chi tiết &rarr;</a>
         </div>
     </article>
     <!-- Card 2: Cơ sở ngành -->
-    <article>
-        <img src="../assets/images/course/kien-truc-may-tinh.jpg" alt="Minh họa môn Kiến trúc máy tính">
+    <article data-category="co-so-nganh">
+        <img src="../assets/images/course/05_co_so_lap_trinh.png" alt="Minh họa môn Cơ sở lập trình">
       <div>
           <span>Cơ sở ngành</span>
           <span>3 Tín chỉ</span>
-          <h2>Kiến trúc máy tính</h2>
-          <p>Nghiên cứu cách tổ chức phần cứng, các đơn vị xử lý trung tâm, bộ nhớ và tập lệnh ASM.</p>
+          <h2>Cơ sở lập trình</h2>
+          <p>Giới thiệu các khái niệm cơ bản về lập trình, ngôn ngữ lập trình và kỹ thuật giải quyết vấn đề.</p>
           <a href="course-detail.html">Xem chi tiết &rarr;</a>
       </div>
     </article>
-    <!-- Card 3: Chuyên ngành -->
-    <article>
-        <img src="../assets/images/course/an-toan-thong-tin.webp" alt="Minh họa môn An toàn thông tin">
-      <div>
-          <span>Chuyên ngành</span>
-          <span>3 Tín chỉ</span>
-          <h2>An toàn thông tin</h2>
-          <p>Giới thiệu các nguyên lý mật mã học, kiểm soát truy cập và bảo vệ hệ thống trước tấn công.</p>
-          <a href="course-detail.html">Xem chi tiết &rarr;</a>
-      </div>
-    </article>
-    <!-- Card 4: Đại cương -->
-    <article>
-        <img src="../assets/images/course/toan-cao-cap-a1.jpg" alt="Minh họa môn Toán cao cấp A1">
-      <div>
-          <span>Đại cương</span>
-          <span>3 Tín chỉ</span>
-          <h2>Toán cao cấp A1</h2>
-          <p>Giới thiệu các nguyên lý giới hạn, đạo hàm, tích phân một biến số và ứng dụng trong khoa học.</p>
-        <a href="course-detail.html">Xem chi tiết &rarr;</a>
-      </div>
-    </article>
-    <!-- Card 5: Cơ sở ngành -->
-    <article>
-        <img src="../assets/images/course/oop.jpg" alt="Minh họa môn Lập trình hướng đối tượng">
+    <article data-category="co-so-nganh">
+        <img src="../assets/images/course/06_co_so_du_lieu.png" alt="Minh họa môn Cơ sở dữ liệu">
       <div>
           <span>Cơ sở ngành</span>
-          <span>4 Tín chỉ</span>
-          <h2>Lập trình hướng đối tượng</h2>
-        <p>Nắm vững các khái niệm cơ bản về OOP như kế thừa, đa hình, đóng gói và trừu tượng hóa.</p>
-        <a href="course-detail.html">Xem chi tiết &rarr;</a>
-      </div>
-    </article>
-    <!-- Card 6: Chuyên ngành -->
-    <article>
-        <img src="../assets/images/course/co-so-du-lieu.jpg" alt="Minh họa môn Cơ sở dữ liệu">
-     
-      <div>
-          <span>Chuyên ngành</span>
           <span>3 Tín chỉ</span>
           <h2>Cơ sở dữ liệu</h2>
           <p>Thiết kế và truy vấn cơ sở dữ liệu quan hệ sử dụng SQL, chuẩn hóa dữ liệu.</p>
           <a href="course-detail.html">Xem chi tiết &rarr;</a>
       </div>
     </article>
-     </section>
+    <article data-category="co-so-nganh">
+        <img src="../assets/images/course/07_cau_truc_du_lieu_va_giai_thuat.png" alt="Minh họa môn Cấu trúc dữ liệu và giải thuật">
+      <div>
+          <span>Cơ sở ngành</span>
+          <span>3 Tín chỉ</span>
+          <h2>Cấu trúc dữ liệu và giải thuật</h2>
+          <p>Giới thiệu các cấu trúc dữ liệu cơ bản và các thuật toán giải quyết vấn đề.</p>
+          <a href="course-detail.html">Xem chi tiết &rarr;</a>
+      </div>
+    </article>
+    <article data-category="co-so-nganh">
+        <img src="../assets/images/course/08_toan_roi_rac.png" alt="Minh họa môn Toán rời rạc">
+      <div>
+          <span>Cơ sở ngành</span>
+          <span>3 Tín chỉ</span>
+          <h2>Toán rời rạc</h2>
+          <p>Giới thiệu các khái niệm cơ bản về toán rời rạc và ứng dụng trong khoa học máy tính.</p>
+          <a href="course-detail.html">Xem chi tiết &rarr;</a>
+      </div>
+    </article>
+    <!-- Card 3: Chuyên ngành -->
+    <article data-category="chuyen-nganh">
+        <img src="../assets/images/course/09_phan_tich_nghiep_vu_BA.png" alt="Minh họa môn Phân tích nghiệp vụ BA">
+      <div>
+          <span>Chuyên ngành</span>
+          <span>3 Tín chỉ</span>
+          <h2>Phân tích nghiệp vụ BA</h2>
+          <p>Giới thiệu các phương pháp và kỹ thuật phân tích nghiệp vụ trong phát triển phần mềm.</p>
+          <a href="course-detail.html">Xem chi tiết &rarr;</a>
+      </div>
+    </article>
+    <article data-category="chuyen-nganh">
+        <img src="../assets/images/course/10_he_thong_thong_tin_quan_ly.png" alt="Minh họa môn Hệ thống thông tin quản lý">
+      <div>
+          <span>Chuyên ngành</span>
+          <span>3 Tín chỉ</span>
+          <h2>Hệ thống thông tin quản lý</h2>
+          <p>Giới thiệu các khái niệm và ứng dụng của hệ thống thông tin trong doanh nghiệp.</p>
+          <a href="course-detail.html">Xem chi tiết &rarr;</a>
+      </div>
+    </article>
+    <article data-category="chuyen-nganh">
+        <img src="../assets/images/course/11_tri_tue_nhan_tao.png" alt="Minh họa môn Trí tuệ nhân tạo">
+      <div>
+          <span>Chuyên ngành</span>
+          <span>3 Tín chỉ</span>
+          <h2>Trí tuệ nhân tạo</h2>
+          <p>Giới thiệu các khái niệm và kỹ thuật trong lĩnh vực trí tuệ nhân tạo.</p>
+          <a href="course-detail.html">Xem chi tiết &rarr;</a>
+      </div>
+    </article>
+    <article data-category="chuyen-nganh">
+        <img src="../assets/images/course/12_lap_trinh_web_PHP_MySQL.png" alt="Minh họa môn Lập trình web PHP & MySQL">
+      <div>
+          <span>Chuyên ngành</span>
+          <span>3 Tín chỉ</span>
+          <h2>Lập trình web PHP & MySQL</h2>
+          <p>Giới thiệu các kỹ thuật lập trình web sử dụng PHP và MySQL.</p>
+          <a href="course-detail.html">Xem chi tiết &rarr;</a>
+      </div>
+    </article>
+     </section> 
     <!-- KHỐI 4: PHÂN TRANG (PAGINATION) -->
   <nav aria-label="Điều hướng trang danh mục">
     <ul>
@@ -147,11 +190,11 @@
     </ul>
   </nav>
 </main>
- <!-- FOOTER -->
+  <!-- FOOTER -->
     <footer>
         <!-- Giới thiệu EduTrack -->
         <section>
-            <img src="assets/images/logo.png" alt="EduTrack Logo">
+            <img src="../assets/images/course/logo.png" alt="EduTrack Logo" width="70" height="70">
             <h2> EduTrack</h2>
             <p> Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông minh. </p>
         </section>
@@ -159,7 +202,7 @@
         <section>
             <h2>Về EduTrack</h2>
             <ul>
-                <li><a href="pages/about.html">Giới thiệu</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
                 <li><a href="#">Đội ngũ</a></li>
                 <li><a href="#">Liên hệ</a></li>
             </ul>
@@ -168,18 +211,18 @@
         <section>
             <h2>Môn học</h2>
             <ul>
-                <li><a href="pages/courses.html">Đại cương</a></li>
-                <li><a href="pages/courses.html">Cơ sở ngành</a></li>
-                <li><a href="pages/courses.html">Chuyên ngành</a></li>
-                <li><a href="pages/courses.html">Tài liệu ôn tập</a></li>
+
+                <li><a href="courses.html?category=dai-cuong">Đại cương</a></li>
+                <li><a href="courses.html?category=co-so-nganh">Cơ sở ngành</a></li>
+                <li><a href="courses.html?category=chuyen-nganh">Chuyên ngành</a></li>
             </ul>
         </section>
         <!-- Tính năng -->
         <section>
             <h2>Tính năng</h2>
             <ul>
-                <li><a href="pages/gpa-calculator.html">Tính GPA</a></li>
-                <li><a href="pages/advising-contact.html">Tư vấn lộ trình</a></li>
+                <li><a href="gpa-calculator.html">Tính GPA</a></li>
+                <li><a href="advising-contact.html">Tư vấn lộ trình</a></li>
                 <li><a href="#">Theo dõi tiến độ</a></li>
             </ul>
         </section>
