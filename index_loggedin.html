@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trang chủ</title>
+  <title>Trang chủ - Đăng nhập</title>
 </head>
 <body>
 <!-- HEADER -->
@@ -66,42 +66,131 @@
                 <h3>Theo dõi GPA</h3>
                 <p> Cập nhật kết quả học tập và theo dõi GPA liên tục để biết tiến độ thực quản. </p>
         </section>
-        <!-- 4. SECTION: CÔNG CỤ TÍNH GPA -->
-        <section>
-            <!-- Nội dung bên trái -->
-                <p> CÔNG CỤ MIỄN PHÍ </p>
-                <h2>Công cụ tính GPA thông minh</h2>
-                <p> Không còn phải loay hoay với bảng Excel phức tạp. Chỉ cần nhập điểm thành phần, EduTrack tự động quy đổi điểm hệ 4 và hệ 10 chuẩn xác, giúp bạn theo dõi kết quả học tập dễ dàng. </p>
-                <button type="button" onclick="window.location.href='pages/gpa-calculator.html'">Tính GPA ngay</button>
-            <!-- Nội dung bên phải -->
-                <h3>Bảng điểm học kỳ 1</h3>
-                <li>Năm học 2024 - 2025</li>
-                <li>Đang hoạt động</li>
-            <!-- Môn 1 -->
-                <strong>Toán cao cấp A1</strong>
-                <li><small>MATH1011 - 3 tín chỉ</small></li>
-                <strong>A</strong>
-                <strong>4.0</strong>
-            <!-- Môn 2 -->
-                <li><strong>Lập trình Python</strong></li>
-                <li><small>CSE101 - 4 tín chỉ</small></li>
-                <strong>B</strong>
-                <strong>3.5</strong>
-            <!-- Môn 3 -->
-                <li><strong>Kinh tế vi mô</strong></li>
-                <li><small>ECON201 - 3 tín chỉ</small></li>
-                <strong>A</strong>
-                <strong>4.0</strong>
-            <!-- Môn 4 -->
-                <li><strong>Tiếng Anh chuyên ngành</strong></li>
-                <li><small>ENG102 - 2 tín chỉ</small></li>
-                <strong>B</strong>
-                <strong>3.0</strong>
-            <!-- Tổng GPA -->
-                <li>Điểm trung bình học kỳ (GPA)</li>
-                <small>Tổng tín chỉ tích lũy: 12 tín chỉ</small>
-                <li><strong>3.66 / 4.0</strong></li>
-        </section>
+         <!-- ===== GPA DASHBOARD SECTION (cá nhân hóa - chỉ hiện khi đã đăng nhập) ===== -->
+    <section class="gpa-dashboard" id="gpa-dashboard">
+      <span class="section-label">Công Cụ Tính GPA</span>
+      <h2>GPA hiện tại của bạn</h2>
+      <p>Theo dõi và quản lý điểm số các môn học của bạn một cách dễ dàng. Cập nhật thông tin để EduTrack giúp bạn tính toán GPA chính xác nhất.</p>
+ 
+      <div class="gpa-dashboard-grid">
+ 
+        <!-- Khối biểu đồ GPA -->
+        <div class="gpa-current-card">
+          <div class="gpa-current-header">
+            <h3>GPA hiện tại</h3>
+            <select class="term-select">
+              <option>Học kỳ hiện tại</option>
+            </select>
+          </div>
+ 
+          <div class="gpa-chart">
+            <!-- Biểu đồ vòng tròn GPA -->
+            <strong class="gpa-value">3.48</strong>
+            <span class="gpa-max">/ 4.0</span>
+          </div>
+ 
+          <div class="gpa-summary">
+            <div>
+              <span>Tổng số tín chỉ</span>
+              <strong>18</strong>
+            </div>
+            <div>
+              <span>Tổng số môn học</span>
+              <strong>6</strong>
+            </div>
+            <div>
+              <span>Số môn đạt</span>
+              <strong>5</strong>
+            </div>
+            <div>
+              <span>Số môn chưa đạt</span>
+              <strong>1</strong>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Khối bảng danh sách môn học -->
+        <div class="course-list-card">
+          <div class="course-list-header">
+            <h3>Danh sách môn học</h3>
+            <select class="term-select">
+              <option>Học kỳ hiện tại</option>
+            </select>
+          </div>
+ 
+          <table class="course-table">
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Mã môn</th>
+                <th>Tên môn học</th>
+                <th>Tín chỉ</th>
+                <th>Điểm tổng kết</th>
+                <th>Xếp loại</th>
+                <th>Điểm dự phóng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>CS101</td>
+                <td>Lập trình cơ bản</td>
+                <td>3</td>
+                <td>8.5</td>
+                <td><span class="grade-tag">B+</span></td>
+                <td>7.8</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>MA101</td>
+                <td>Giải tích 1</td>
+                <td>3</td>
+                <td>7.5</td>
+                <td><span class="grade-tag">B</span></td>
+                <td>6.8</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>PH101</td>
+                <td>Vật lý đại cương</td>
+                <td>3</td>
+                <td>8.0</td>
+                <td><span class="grade-tag">B+</span></td>
+                <td>7.2</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>EN101</td>
+                <td>Tiếng Anh cơ bản</td>
+                <td>3</td>
+                <td>9.0</td>
+                <td><span class="grade-tag">A</span></td>
+                <td>8.5</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>EC102</td>
+                <td>Kinh tế vi mô</td>
+                <td>3</td>
+                <td>7.0</td>
+                <td><span class="grade-tag">B</span></td>
+                <td>6.5</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>IT101</td>
+                <td>Cơ sở dữ liệu</td>
+                <td>3</td>
+                <td>8.8</td>
+                <td><span class="grade-tag">A</span></td>
+                <td>8.1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+ 
+      </div>
+    </section>
         <!-- 5. SECTION: TIN TỨC NỔI BẬT -->
         <section>
             <!-- Header -->
@@ -163,8 +252,7 @@
         <!-- 7. SECTION CALL TO ACTION -->
         <section>
             <h2>Sẵn sàng bứt phá GPA?</h2>
-            <p>Đăng ký tài khoản miễn phí ngay hôm nay và xây dựng lộ trình học tập tối ưu cùng cộng đồng sinh viên và các môn học.</p>
-            <button type="button" onclick="window.location.href='pages/register.html'">Đăng ký ngay</button>
+            <button type="button" onclick="window.location.href='pages/gpa-calculator.html'">Dự phóng GPA ngay</button>
             <button type="button" onclick="window.location.href='pages/about.html'">Tìm hiểu thêm</button>
         </section>
     </main>
