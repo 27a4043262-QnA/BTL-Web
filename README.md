@@ -29,7 +29,9 @@ Edutrack/
 │   ├── course-detail.html       
 │   ├── gpa-calculator.html      
 │   ├── advising-contact.html    
-│   └── about.html               
+│   ├── about.html
+│   ├── login.html
+│   └── register.html       
 ├── assets/
 │   ├── images/                 
 │   ├── css/
