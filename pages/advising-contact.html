@@ -9,220 +9,273 @@
 
     <!-- ================= HEADER ================= -->
     <header>
-        <!-- Logo -->
-        <div class="logo">
-            <img src="#" alt="EduTrack Logo">
-            <a href="index.html">EduTrack</a>
-        </div>
-        <!-- Navigation Menu -->
-        <nav aria-label="Menu chính">
-            <ul>
-                <li><a href="index.html">Trang chủ</a></li>
-                <li><a href="pages/courses.html">Môn học</a></li>
-                <li><a href="pages/gpa-calculator.html">Tính GPA</a></li>
-                <li><a href="pages/advising-contact.html">Tư vấn</a></li>
-                <li><a href="pages/about.html">Giới thiệu</a></li>
-                <li><a href="#">Bắt đầu ngay</a></li>
-            </ul> 
-        </nav> 
-    </header>
+  <div class="logo">
+    <a href="../index.html">EduTrack</a>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="../index.html">Trang chủ</a></li>
+      <li><a href="courses.html" aria-current="page">Môn học</a></li>
+      <li><a href="gpa-calculator.html">Tính GPA</a></li>
+      <li><a href="advising-contact.html">Tư vấn</a></li>
+      <li><a href="about.html">Giới thiệu</a></li>
+    </ul>
+  </nav>
+  <a href="login.html" class="btn-cta">Bắt đầu ngay</a>
+</header>
 
     <!-- ================= MAIN CONTENT ================= -->
     <main>
-
-        <!-- KHỐI MỚI: TÓM TẮT DỮ LIỆU GPA (trường hợp đã có dữ liệu, đến từ trang Tính GPA) -->
-        <section>
-    <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;">Tóm tắt dữ liệu GPA</h2>
-    <p>
-        GPA hiện tại: <strong>3.42</strong> ·
-        Mục tiêu: <strong>3.70</strong> ·
-        Còn <strong>45</strong> tín chỉ
-        &nbsp;·&nbsp;
-        <a href="pages/gpa-calculator.html">Sửa dữ liệu</a>
-    </p>
+        <!-- Top Banner Trang tư vấn -->
+        <section class="consult-banner">
+            <h1>Trang tư vấn</h1>
+            <p>Dựa trên kết quả bài test năng lực và dự phòng, EduTrack sẽ phân tích, đưa ra lộ trình học tập phù hợp nhất với bạn.</p>
+            <ul>
+                <li>Đánh giá năng lực qua bài test</li>
+                <li>Cảnh báo và gợi ý cải thiện</li>
+                <li>Lộ trình cá nhân hóa</li>
+                <li>Theo dõi tiến độ liên tục</li>
+            </ul>
         </section>
 
-        <hr>
+        <!-- Khối 1: Làm bài test đầu vào -->
+        <section class="section-test">
+            <header>
+                <h2>1. Làm bài test đầu vào</h2>
+                <p>Đánh giá năng lực hiện tại của bạn ở từng môn học để xác định điểm mạnh, điểm yếu và mức độ sẵn sàng cho lộ trình học tập.</p>
+                <p><strong>Bài test gồm 5 môn chính</strong> <span>(Tùy theo ngành học bạn chọn)</span></p>
+            </header>
 
-        <!-- KHỐI 1: ĐỊNH HƯỚNG HỌC TẬP & LỘ TRÌNH -->
-        <section>
-            <p><strong>ĐỊNH HƯỚNG HỌC TẬP</strong></p>
-            <h1>Định hướng học tập & Lộ trình</h1>
-            <p>Chia sẻ các phương pháp quản lý thời gian, kỹ năng ôn thi hiệu quả và lời khuyên khi chọn môn học thay thế hoặc học cải thiện.</p>
-
-            <div>
-                <!-- Card 1 -->
+            <div class="test-cards-list">
                 <article>
-                    <div><!-- Icon Lịch/Thời gian --></div>
-                    <h3>Quản lý thời gian hiệu quả</h3>
-                    <p>Lập lịch học tuần, phân bổ thời gian ôn tập theo môn và dành buffer cho các môn khó để tránh tình trạng học dồn dập.</p>
+                    <h3>Năng lực số ứng dụng</h3>
+                    <p>Kiến thức, tư duy logic, giải quyết vấn đề.</p>
+                    <button type="button" disabled>Đã hoàn thành</button>
+                    <p><strong>7.5</strong> / 10</p>
+                    <progress value="7.5" max="10">7.5/10</progress>
                 </article>
 
-                <!-- Card 2 -->
                 <article>
-                    <div><!-- Icon Sách/Kỹ năng --></div>
-                    <h3>Kỹ năng ôn thi hiệu quả</h3>
-                    <p>Tập trung vào đề cương chi tiết, làm bài tập mẫu và ôn theo chủ đề thay vì chỉ đọc lý thuyết để tăng khả năng ghi nhớ.</p>
+                    <h3>Pháp luật đại cương</h3>
+                    <p>Tư duy phân tích, công thức, ứng dụng thực tế.</p>
+                    <button type="button" disabled>Đã hoàn thành</button>
+                    <p><strong>6.2</strong> / 10</p>
+                    <progress value="6.2" max="10">6.2/10</progress>
                 </article>
 
-                <!-- Card 3 -->
                 <article>
-                    <div><!-- Icon Cải thiện điểm --></div>
-                    <h3>Chọn môn thay thế/học cải thiện</h3>
-                    <p>Ưu tiên học cải thiện môn yếu trước, sau đó mới mở rộng sang môn thay thế để tối ưu hóa điểm trung bình tích lũy.</p>
+                    <h3>Cơ sở dữ liệu</h3>
+                    <p>Kiến thức cơ bản, phản ứng và bài tập.</p>
+                    <button type="button" disabled>Đã hoàn thành</button>
+                    <p><strong>8.1</strong> / 10</p>
+                    <progress value="8.1" max="10">8.1/10</progress>
+                </article>
+
+                <article>
+                    <h3>Toán rời rạc</h3>
+                    <p>Nghe, nói, đọc, viết và ngữ pháp.</p>
+                    <button type="button" disabled>Đã hoàn thành</button>
+                    <p><strong>5.8</strong> / 10</p>
+                    <progress value="5.8" max="10">5.8/10</progress>
+                </article>
+
+                <article>
+                    <h3>Hệ thống thông tin quản lý</h3>
+                    <p>Đọc hiểu, phân tích, viết luận.</p>
+                    <button type="button" disabled>Đã hoàn thành</button>
+                    <p><strong>7.0</strong> / 10</p>
+                    <progress value="7.0" max="10">7.0/10</progress>
                 </article>
             </div>
         </section>
 
-        <hr>
+        <!-- Khối 2: Kết quả phân tích & cảnh báo -->
+        <section class="section-analysis">
+            <header>
+                <h2>2. Kết quả phân tích & cảnh báo</h2>
+                <p>Dựa trên kết quả bài test và so sánh với lộ trình dự phòng, hệ thống sẽ đưa ra cảnh báo chung và gợi ý cải thiện cho bạn.</p>
+            </header>
 
-        <!-- KHỐI 2: GIẢI ĐÁP THẮC MẮC (FAQ) -->
-        <section>
-            <p><strong>HỎI ĐÁP</strong></p>
-            <h2>Giải đáp thắc mắc (FAQ & Hỏi đáp trực tuyến)</h2>
-            <p>Tổng hợp các câu hỏi thường gặp về quy chế đào tạo, cách tính điểm tích lũy và quy đổi thang điểm để sinh viên dễ dàng tra cứu.</p>
+            <div class="analysis-wrapper">
+                <!-- Tổng quan -->
+                <article class="overview-card">
+                    <h3>Tổng quan kết quả học lực</h3>
+                    <p>Mức học lực: <span>Trung bình</span></p>
+                    <p><strong>6.8</strong> / 10</p>
+                    <p>Điểm trung bình</p>
+                    <ul>
+                        <li>Năng lực số ứng dụng: <span>7.5</span></li>
+                        <li>Pháp luật đại cương: <span>6.2</span></li>
+                        <li>Cơ sở dữ liệu: <span>8.1</span></li>
+                        <li>Toán rời rạc: <span>5.8</span></li>
+                        <li>Hệ thống thông tin quản lý: <span>7.0</span></li>
+                    </ul>
+                </article>
 
-            <details>
-                <summary><strong>Quy chế đào tạo áp dụng cho sinh viên như thế nào?</strong></summary>
-                <p>Quy chế đào tạo quy định tổng số tín chỉ phải tích lũy, điều kiện xét tốt nghiệp, điều kiện học cải thiện và các mức điểm xếp loại học tập.</p>
-            </details>
-            <br>
-            <details>
-                <summary><strong>Cách tính điểm tích lũy và điểm trung bình học kỳ như thế nào?</strong></summary>
-                <p>Điểm tích lũy được tính theo thang 4, còn điểm trung bình học kỳ được tính theo thang 10. Bạn cần theo dõi cả hai chỉ số để điều chỉnh kế hoạch học tập.</p>
-            </details>
-            <br>
-            <details>
-                <summary><strong>Quy đổi thang điểm 4 sang thang điểm 10 được thực hiện như thế nào?</strong></summary>
-                <p>Mỗi điểm 4 tương ứng với khoảng 8.0 điểm 10. Bạn có thể tham khảo bảng quy đổi để ước lượng điểm trung bình trước khi có kết quả chính thức.</p>
-            </details>
-            <br>
-            <details>
-                <summary><strong>Quy chế xét học bổng và điều kiện duy trì học bổng ra sao?</strong></summary>
-                <p>Học bổng thường xét dựa trên điểm trung bình học kỳ và tổng số tín chỉ tích lũy. Bạn cần duy trì điểm cao và không bị rơi vào các môn điểm F để đủ điều kiện xét học bổng.</p>
-            </details>
+                <!-- Cảnh báo & Gợi ý -->
+                <article class="warning-card">
+                    <h3>Cảnh báo và gợi ý cải thiện</h3>
+                    <p>Kết quả bài test cho thấy học lực hiện tại của bạn chưa thực sự ổn định so với lộ trình dự phòng. Bạn cần tập trung cải thiện một số kỹ năng và kiến thức quan trọng, đặc biệt là:</p>
+                    
+                    <section class="priority-box">
+                        <h4>Ưu tiên cải thiện: Năng lực số ứng dụng và Pháp luật đại cương</h4>
+                        <p>Đây là 2 môn có mức điểm thấp hơn so với yêu cầu của lộ trình, ảnh hưởng lớn đến tổng kết quả học tập và cơ hội đạt mục tiêu của bạn.</p>
+                        <a href="pages/courses.html"><button type="button">Xem chi tiết &rarr;</button></a>
+                    </section>
+
+                    <blockquote>
+                        Đừng lo! Chỉ cần bạn học đúng phương pháp và theo đúng lộ trình, EduTrack sẽ luôn đồng hành và giúp bạn tiến bộ từng ngày.
+                    </blockquote>
+                </article>
+            </div>
         </section>
 
-        <hr>
+        <!-- Khối 3: Nhận lộ trình học tập cá nhân hóa -->
+        <section class="section-roadmap">
+            <header>
+                <h2>3. Nhận lộ trình học tập cá nhân hóa</h2>
+                <p>Dựa trên kết quả bài test và cảnh báo, hệ thống đề xuất xây dựng lộ trình học tập chi tiết cho từng môn, bao gồm mục tiêu, các khóa học gợi ý, phương pháp học và thời gian dự kiến hoàn thành.</p>
+            </header>
 
-        <!-- KHỐI 3: HỎI ĐÁP TỰ ĐỘNG (CHATBOT HỖ TRỢ) -->
-        <section>
-            <p><strong>HỖ TRỢ TRỰC TUYẾN</strong></p>
-            <h2>Hỏi đáp tự động (Chatbot hỗ trợ)</h2>
-            <p>Đặt câu hỏi riêng tư và nhận tư vấn trực tiếp từ hệ thống hoặc cố vấn học tập. Bạn có thể hỏi về lộ trình học tập, cách tính điểm hoặc quy chế đào tạo.</p>
+            <!-- Bộ lọc môn học -->
+            <nav aria-label="Lọc lộ trình theo môn học">
+                <ul>
+                    <li><button type="button">Tổng quan</button></li>
+                    <li><button type="button">Năng lực số ứng dụng</button></li>
+                    <li><button type="button">Pháp luật đại cương</button></li>
+                    <li><button type="button">Cơ sở dữ liệu</button></li>
+                    <li><button type="button">Toán rời rạc</button></li>
+                    <li><button type="button">Hệ thống thông tin quản lý</button></li>
+                </ul>
+            </nav>
 
-            <div>
-                <!-- Cột trái: Khung hội thoại Chatbot -->
+            <div class="roadmap-wrapper">
+                <article class="target-card">
+                    <h3>Mục tiêu tổng thể</h3>
+                    <h4>Tăng điểm trung bình từ 6.8 lên 8.5+</h4>
+                    <p>Trong vòng 6 tháng tới</p>
+                    <ul>
+                        <li>Cải thiện kỹ năng nền tảng cho Năng lực số ứng dụng và Pháp luật đại cương</li>
+                        <li>Nâng cao khả năng làm bài và tư duy</li>
+                        <li>Đạt mức điểm ổn định ở tất cả các môn</li>
+                    </ul>
+                </article>
+
+                <article class="timeline-card">
+                    <h3>Lộ trình học tập theo giai đoạn</h3>
+                    <ol>
+                        <li>
+                            <h4>Giai đoạn 1: Củng cố nền tảng (Tuần 1 – 2)</h4>
+                            <p>Ôn lại kiến thức cơ bản, nắm vững lý thuyết | 5 môn</p>
+                        </li>
+                        <li>
+                            <h4>Giai đoạn 2: Luyện đề nâng cao (Tuần 3 – 6)</h4>
+                            <p>Làm đề theo chủ đề, cải thiện kỹ năng làm bài | 5 môn</p>
+                        </li>
+                        <li>
+                            <h4>Giai đoạn 3: Tăng tốc và hoàn thiện (Tuần 7 – 12)</h4>
+                            <p>Luyện đề tổng hợp, mô phỏng thi thực | 5 môn</p>
+                        </li>
+                    </ol>
+                </article>
+            </div>
+        </section>
+
+        <!-- Khối 4: Chi tiết lộ trình từng môn học -->
+        <section class="section-subjects">
+            <header>
+                <h2>4. Chi tiết lộ trình từng môn học</h2>
+                <p>Nhấn vào từng môn học để xem chi tiết lộ trình, khóa học gợi ý, tài liệu và phương pháp học cụ thể.</p>
+                <p><em>Lộ trình được cá nhân hóa dựa trên kết quả bài test và mục tiêu học tập của bạn.</em></p>
+            </header>
+
+            <div class="subject-grid">
                 <article>
-                    <header>
-                        <h3>Chatbot hỗ trợ</h3>
-                        <span>Trực tuyến</span>
-                        <p><small>Trả lời tự động hoặc chuyển cho cố vấn</small></p>
-                    </header>
+                    <h3>Năng lực số ứng dụng</h3>
+                    <p>Tư duy logic - Giải quyết vấn đề</p>
+                    <a href="pages/courses.html">Xem chi tiết &rarr;</a>
+                </article>
 
-                    <!-- Lịch sử đoạn chat -->
-                    <div>
-                        <!-- Bot: lời chào đã cá nhân hóa theo dữ liệu ở khối tóm tắt phía trên -->
-                        <div>
-                            <p>Chào bạn, mình thấy GPA hiện tại của bạn là 3.42 và mục tiêu 3.70. Bạn muốn mình gợi ý lộ trình đạt mục tiêu này không?</p>
-                            <time datetime="10:00">10:00</time>
-                        </div>
+                <article>
+                    <h3>Pháp luật đại cương</h3>
+                    <p>Hiểu biết pháp lý - Áp dụng thực tiễn</p>
+                    <a href="pages/courses.html">Xem chi tiết &rarr;</a>
+                </article>
 
-                        <!-- User -->
-                        <div>
-                            <p>Vâng, giúp em với.</p>
+                <article>
+                    <h3>Cơ sở dữ liệu</h3>
+                    <p>Thiết kế - Triển khai</p>
+                    <a href="pages/courses.html">Xem chi tiết &rarr;</a>
+                </article>
+
+                <article>
+                    <h3>Toán rời rạc</h3>
+                    <p>Tư duy logic - Giải quyết vấn đề</p>
+                    <a href="pages/courses.html">Xem chi tiết &rarr;</a>
+                </article>
+
+                <article>
+                    <h3>Hệ thống thông tin quản lý</h3>
+                    <p>Phân tích - Ứng dụng</p>
+                    <a href="pages/courses.html">Xem chi tiết &rarr;</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Khối 5: Hỏi đáp tự động Chatbot (Dùng thẻ aside ngữ nghĩa) -->
+        <aside class="section-chatbot">
+            <header>
+                <h2>Hỏi đáp tự động (Chatbot hỗ trợ)</h2>
+                <p>Đặt câu hỏi liên quan đến tư vấn, lộ trình học tập, cách tính điểm, quy chế đào tạo,... Bạn có thể hỏi về lộ trình học tập, cách tính điểm hiệu quả hoặc quy chế đào tạo.</p>
+                <p><strong>Hỗ trợ trực tuyến</strong></p>
+            </header>
+
+            <div class="chatbot-wrapper">
+                <!-- Khung Chat -->
+                <section class="chat-window">
+                    <div class="chat-messages">
+                        <article class="msg-bot">
+                            <p><strong>Bot:</strong> Chào bạn! Tôi có thể giúp gì cho bạn hôm nay? Bạn cần tư vấn về lộ trình học tập, cách tính điểm hay quy chế đào tạo?</p>
                             <time datetime="10:02">10:02</time>
-                        </div>
+                        </article>
 
-                        <!-- Bot -->
-                        <div>
-                            <p>Để lên 3.70, bạn cần đạt trung bình khoảng 3.85 ở các môn còn lại trong 45 tín chỉ. Nếu chia đều 3 kỳ, hãy ưu tiên các môn chuyên ngành và cố gắng đạt A- trở lên.</p>
-                            <time datetime="10:03">10:03</time>
-                        </div>
+                        <article class="msg-user">
+                            <p><strong>Bạn:</strong> Em đang có GPA 2.8 và muốn lên 3.2 trong học kỳ này. Em cần gợi ý gì ạ?</p>
+                            <time datetime="10:02">10:02</time>
+                        </article>
+
+                        <article class="msg-bot">
+                            <p><strong>Bot:</strong> Để lên 3.2, bạn cần cải thiện khoảng 3-4 môn trong khoảng 3-4 môn còn lại. Nếu bạn có 6 môn trong học kỳ, hãy ưu tiên các môn chuyên ngành và cố gắng đạt B+ trở lên.</p>
+                            <time datetime="10:02">10:02</time>
+                        </article>
                     </div>
 
-                    <!-- Ô nhập tin nhắn -->
-                    <form>
-                        <input type="text" placeholder="Nhập câu hỏi của bạn..." aria-label="Nhập câu hỏi của bạn">
+                    <form action="#" method="get">
+                        <label for="chat-input">Nhập câu hỏi của bạn:</label>
+                        <input type="text" id="chat-input" name="chat_input" placeholder="Nhập câu hỏi của bạn...">
                         <button type="submit">Gửi</button>
                     </form>
-                </article>
+                </section>
 
-                <!-- Cột phải: Hướng dẫn sử dụng -->
-                <aside>
+                <!-- Hướng dẫn sử dụng -->
+                <article class="chat-guide">
                     <h3>Hướng dẫn sử dụng</h3>
                     <p>Bạn có thể hỏi chatbot về lộ trình học tập, cách tính điểm, quy chế đào tạo hoặc các vấn đề liên quan đến học bổng.</p>
-
                     <ol>
                         <li>Nhập câu hỏi ngắn gọn và cụ thể để chatbot trả lời nhanh hơn.</li>
-                        <li>Nếu cần tư vấn sâu, chatbot sẽ chuyển yêu cầu sang cố vấn học tập để hỗ trợ riêng tư.</li>
-                        <li>Bạn có thể đặt câu hỏi về quy chế xét học bổng, điều kiện tốt nghiệp hoặc các vấn đề liên quan đến học cải thiện.</li>
+                        <li>Nhấn câu từ tư vấn, chatbot sẽ chuyển yêu cầu sang cố vấn học tập để hỗ trợ riêng tư.</li>
+                        <li>Bạn có thể đặt câu hỏi về quy chế xét học bổng, điều kiện xét tốt nghiệp hoặc các vấn đề liên quan đến học cải thiện.</li>
                     </ol>
-
-                    <div>
-                        <p>Nếu bạn cần hỗ trợ nhanh, hãy nhập câu hỏi và gửi ngay. Hệ thống sẽ phản hồi trong vòng vài phút làm việc.</p>
-                    </div>
-                </aside>
+                    <p>Nếu bạn cần hỗ trợ nhanh, hãy nhập câu hỏi và gửi ngay. Hệ thống sẽ phản hồi trong vòng vài giây làm việc.</p>
+                </article>
             </div>
-        </section>
+        </aside>
 
+        <!-- CTA Banner cuối trang -->
+        <section class="cta-banner">
+            <h2>Bạn không đơn độc trên hành trình này!</h2>
+            <p>EduTrack luôn đồng hành, phân tích – tư vấn – cá nhân hóa lộ trình học tập phù hợp với bạn.</p>
+            <a href="pages/courses.html"><button type="button">Bắt đầu học ngay</button></a>
+        </section>
     </main>
-
-    <!-- ================= FOOTER ================= -->
-    <footer>
-        <!-- Giới thiệu EduTrack -->
-        <section>
-            <img src="assets/images/logo.png" alt="EduTrack Logo">
-            <h2>EduTrack</h2>
-            <p>Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông minh.</p>
-        </section>
-
-        <!-- Về EduTrack -->
-        <section>
-            <h2>Về EduTrack</h2>
-            <ul>
-                <li><a href="pages/about.html">Giới thiệu</a></li>
-                <li><a href="#">Đội ngũ</a></li>
-                <li><a href="#">Liên hệ</a></li>
-            </ul>
-        </section>
-
-        <!-- Môn học -->
-        <section>
-            <h2>Môn học</h2>
-            <ul>
-                <li><a href="pages/courses.html">Đại cương</a></li>
-                <li><a href="pages/courses.html">Cơ sở ngành</a></li>
-                <li><a href="pages/courses.html">Chuyên ngành</a></li>
-                <li><a href="pages/courses.html">Tài liệu ôn tập</a></li>
-            </ul>
-        </section>
-
-        <!-- Tính năng -->
-        <section>
-            <h2>Tính năng</h2>
-            <ul>
-                <li><a href="pages/gpa-calculator.html">Tính GPA</a></li>
-                <li><a href="pages/advising-contact.html">Tư vấn lộ trình</a></li>
-                <li><a href="#">Theo dõi tiến độ</a></li>
-            </ul>
-        </section>
-
-        <!-- Điều khoản -->
-        <section>
-            <h2>Điều khoản</h2>
-            <ul>
-                <li><a href="#">Chính sách bảo mật</a></li>
-                <li><a href="#">Điều khoản sử dụng</a></li>
-                <li><a href="#">Hỗ trợ khách hàng</a></li>
-            </ul>
-        </section>
-
-        <!-- Copyright -->
-        <section>
-            <p>&copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.</p>
-        </section>
-    </footer>
-
-</body>
-</html>
+    <!-- ================= END MAIN ================= -->
