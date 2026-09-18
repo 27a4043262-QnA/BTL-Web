@@ -8,21 +8,24 @@
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <a href="../index.html">EduTrack</a>
-  </div>
-  <nav>
-    <ul>
-      <li><a href="../index.html">Trang chủ</a></li>
-      <li><a href="courses.html" aria-current="page">Môn học</a></li>
-      <li><a href="gpa-calculator.html">Tính GPA</a></li>
-      <li><a href="advising-contact.html">Tư vấn</a></li>
-      <li><a href="about.html">Giới thiệu</a></li>
-    </ul>
-  </nav>
-  <a href="advising-contact.html" class="btn-cta">Bắt đầu ngay</a>
-</header>
+<!-- HEADER -->
+    <header>
+        <!-- Logo -->
+        <div class="logo">
+            <img src="../assets/images/course/logo.png" alt="EduTrack Logo" width="70" height="70">
+            <a> EduTrack </a>
+        </div>
+        <!-- Navigation Menu -->
+            <ul>
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="courses.html">Môn học</a></li>
+                <li><a href="gpa-calculator.html">Tính GPA</a></li>
+                <li><a href="advising-contact.html">Tư vấn</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><button type="button" onclick="window.location.href='pages/login.html'">Bắt đầu ngay</button></li>
+
+            </ul>  
+    </header>
 
     <!-- MAIN CONTENT: chỉ 1 main duy nhất -->
      <main>
@@ -240,41 +243,59 @@
   </article>
 </main>
 
-    <!-- FOOTER -->
-<footer>
-  <div class="foot-brand">
-    <p class="logo">EduTrack</p>
-    <p>Nền tảng công nghệ hỗ trợ sinh viên lập kế hoạch học tập, quản lý điểm số và bứt phá GPA một cách thông minh.</p>
-  </div>
-  <nav aria-label="Về EduTrack">
-    <h3>Về EduTrack</h3>
-    <ul>
-      <li><a href="about.html">Giới thiệu</a></li>
-      <li><a href="about.html#doi-ngu">Đội ngũ</a></li>
-      <li><a href="#">Tuyển dụng</a></li>
-      <li><a href="advising-contact.html">Liên hệ</a></li>
-    </ul>
-  </nav>
-  <nav aria-label="Môn học">
-    <h3>Môn học</h3>
-    <ul>
-      <li><a href="courses.html">Đại cương</a></li>
-      <li><a href="courses.html">Cơ sở ngành</a></li>
-      <li><a href="courses.html">Chuyên ngành</a></li>
-      <li><a href="#">Tài liệu miễn phí</a></li>
-    </ul>
-  </nav>
-  <nav aria-label="Tính năng">
-    <h3>Tính năng</h3>
-    <ul>
-      <li><a href="gpa-calculator.html">Tính GPA</a></li>
-      <li><a href="advising-contact.html">Tư vấn lộ trình</a></li>
-      <li><a href="#">Theo dõi tiến độ</a></li>
-      <li><a href="#">Cộng đồng</a></li>
-    </ul>
-  </nav>
-  <p class="copyright">&copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.</p>
-</footer>
+  
+ <!-- FOOTER -->
+    <footer>
+        <!-- Giới thiệu EduTrack -->
+        <section>
+            <img src="../assets/images/course/logo.png" alt="EduTrack Logo" width="70" height="70">
+            <h2> EduTrack</h2>
+            <p> Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông minh. </p>
+        </section>
+        <!-- Về EduTrack -->
+        <section>
+            <h2>Về EduTrack</h2>
+            <ul>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="#">Đội ngũ</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </section>
+        <!-- Môn học -->
+        <section>
+            <h2>Môn học</h2>
+            <ul>
+
+                <li><a href="courses.html?category=dai-cuong">Đại cương</a></li>
+                <li><a href="courses.html?category=co-so-nganh">Cơ sở ngành</a></li>
+                <li><a href="courses.html?category=chuyen-nganh">Chuyên ngành</a></li>
+            </ul>
+        </section>
+        <!-- Tính năng -->
+        <section>
+            <h2>Tính năng</h2>
+            <ul>
+                <li><a href="gpa-calculator.html">Tính GPA</a></li>
+                <li><a href="advising-contact.html">Tư vấn lộ trình</a></li>
+                <li><a href="#">Theo dõi tiến độ</a></li>
+            </ul>
+        </section>
+        <!-- Điều khoản -->
+        <section>
+            <h2>Điều khoản</h2>
+            <ul>
+                <li><a href="#">Chính sách bảo mật</a></li>
+                <li><a href="#">Điều khoản sử dụng</a></li>
+                <li><a href="#">Hỗ trợ khách hàng</a></li>
+            </ul>
+        </section>
+        <!-- Copyright -->
+        <section>
+            <p>
+                &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
+            </p>
+        </section>
+    </footer>
 
 </body>
 </html>
