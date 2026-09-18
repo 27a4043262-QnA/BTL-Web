@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dự phóng GPA | EduTrack</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+ <!-- HEADER -->
+    <header>
+        <!-- Logo -->
+        <div class="logo">
+            <img src="../assets/images/course/logo.png" alt="EduTrack Logo" width="70" height="70">
+            <a> EduTrack </a>
+        </div>
+        <!-- Navigation Menu -->
+            <ul>
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="courses.html">Môn học</a></li>
+                <li><a href="gpa-calculator.html">Tính GPA</a></li>
+                <li><a href="advising-contact.html">Tư vấn</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><button type="button" onclick="window.location.href='pages/login.html'">Bắt đầu ngay</button></li>
+
+            </ul>  
+    </header>
+
+<!-- ================= MAIN (chỉ 1 thẻ main / trang) ================= -->
+<main>
+
+ <!-- ===== HERO SECTION ===== -->
+    <section class="forecast-hero" id="forecast-hero">
+      <h1>Công cụ Tính &amp; Dự phóng GPA</h1>
+      <p>Công cụ tính dự phóng GPA, điểm học phần và theo dõi điểm, ưu, dựa trên tín chỉ, học phần, điểm quá trình và điểm thi, giúp bạn dễ dàng kiểm tra và tối ưu hóa kết quả học tập.</p>
+      <div class="forecast-hero-buttons">
+        <a href="#forecast-form" class="btn btn-primary">✎ Tạo tính ngay</a>
+        <a href="#" class="btn btn-secondary">Tìm hiểu thêm</a>
+      </div>
+    </section>
+ 
+    <!-- ===== FORM SECTION ===== -->
+    <section class="forecast-form" id="forecast-form">
+ 
+      <div class="form-heading">
+        <img src="images/icon-forecast.svg" alt="">
+        <div>
+          <h2>Dự phóng điểm học kỳ tới</h2>
+          <p>Tính toán, dự đoán điểm học kỳ tới dựa trên kết quả đã học hiện tại và xu hướng tiến độ học tập của bạn, giúp bạn lên kế hoạch và điều chỉnh kịp thời để đạt kết quả mong muốn.</p>
+        </div>
+        <img src="images/icon-graduate-cap.svg" alt="" class="form-heading-icon">
+      </div>
+ 
+      <div class="forecast-form-grid">
+ 
+        <!-- Cột trái: Thông tin hiện tại -->
+        <div class="form-card">
+          <h3><img src="images/icon-calendar.svg" alt=""> Thông tin hiện tại</h3>
+          <p>Nhập thông tin điểm và tín chỉ các môn học hiện tại để tính toán.</p>
+ 
+          <div class="field">
+            <label for="current-term">Học kỳ và Năm học hiện tại</label>
+            <select id="current-term" name="current-term">
+              <option>Học kỳ 1 - Năm học 2024 - 2025</option>
+            </select>
+          </div>
+ 
+          <div class="current-info-tags">
+            <span class="info-tag">Tổng tín chỉ: 15</span>
+            <span class="info-tag">Đã tích lũy: 12</span>
+            <span class="info-tag">Chưa đạt: 3</span>
+            <span class="info-tag">Chọn ngành</span>
+          </div>
+ 
+          <div class="field">
+            <label>Nhập điểm các môn học hiện tại</label>
+            <p class="field-hint">Nhập điểm và tín chỉ cho các môn đã học trong học kỳ này.</p>
+ 
+            <table class="forecast-course-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Môn học</th>
+                  <th>Tín chỉ</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><img src="images/icon-book-small.svg" alt=""></td>
+                  <td><input type="text" value="Lập trình cơ bản"></td>
+                  <td><input type="number" value="8.5"></td>
+                  <td><button type="button" class="btn-icon-delete">✕</button></td>
+                </tr>
+                <tr>
+                  <td><img src="images/icon-book-small.svg" alt=""></td>
+                  <td><input type="text" value="Cơ sở dữ liệu"></td>
+                  <td><input type="number" value="7.5"></td>
+                  <td><button type="button" class="btn-icon-delete">✕</button></td>
+                </tr>
+                <tr>
+                  <td><img src="images/icon-book-small.svg" alt=""></td>
+                  <td><input type="text" value="Tiếng Anh"></td>
+                  <td><input type="number" value="6.8"></td>
+                  <td><button type="button" class="btn-icon-delete">✕</button></td>
+                </tr>
+              </tbody>
+            </table>
+ 
+            <button type="button" class="btn btn-add-row">+ Thêm môn học</button>
+          </div>
+        </div>
+ 
+        <!-- Cột phải: Thông tin mục tiêu -->
+        <div class="form-card">
+          <h3><img src="images/icon-target.svg" alt=""> Thông tin mục tiêu</h3>
+          <p>Đặt mục tiêu điểm để hệ thống dự phóng.</p>
+ 
+          <div class="calc-fields-row">
+            <div class="field">
+              <label for="target-gpa">GPA mục tiêu <span class="required">*</span></label>
+              <select id="target-gpa" name="target-gpa">
+                <option>Phấn đấu đạt 3.5 - 4.0</option>
+              </select>
+              <p class="field-hint">Nhập mong muốn cho các môn còn lại</p>
+            </div>
+            <div class="field">
+              <label for="floor-score">Điểm sàn (nếu có)</label>
+              <input type="text" id="floor-score" name="floor-score" placeholder="Nhập điểm sàn (ví dụ: 5.0, 5.5...)">
+            </div>
+          </div>
+ 
+          <div class="calc-fields-row">
+            <div class="field">
+              <label for="target-remaining">Điểm mong muốn cho các môn còn lại <span class="required">*</span></label>
+              <input type="text" id="target-remaining" name="target-remaining" placeholder="Nhập điểm trung bình mong muốn...">
+              <p class="field-hint">Nhập số điểm cần đạt thêm</p>
+            </div>
+            <div class="field">
+              <label for="credits-needed">Số tín chỉ cần đạt thêm <span class="required">*</span></label>
+              <input type="text" id="credits-needed" name="credits-needed" placeholder="Nhập số tín chỉ cần đạt thêm (ví dụ: 6-9)">
+            </div>
+          </div>
+ 
+          <div class="field">
+            <label for="target-timeframe">
+              <img src="images/icon-calendar-small.svg" alt="">
+              Chọn thời gian (học kỳ, năm học...)
+            </label>
+            <select id="target-timeframe" name="target-timeframe">
+              <option>Chọn thời gian (học kỳ, năm học...)</option>
+            </select>
+          </div>
+ 
+          <div class="field">
+            <label for="forecast-method">Phương pháp tính dự phóng</label>
+            <select id="forecast-method" name="forecast-method">
+              <option>Dựa trên điểm hiện tại và xu hướng</option>
+            </select>
+          </div>
+        </div>
+ 
+      </div>
+ 
+      <div class="forecast-note">
+        <img src="images/icon-info.svg" alt="">
+        <p>Lưu ý: Kết quả dự phóng chỉ mang tính chất tham khảo, phụ thuộc vào nhiều yếu tố như độ khó của môn học, chính sách của trường và nỗ lực của bạn.</p>
+      </div>
+ 
+      <div class="calc-actions">
+        <button type="button" class="btn btn-outline">↺ Làm mới</button>
+        <button type="button" class="btn btn-primary">▦ Tính và dự phóng GPA</button>
+      </div>
+ 
+    </section>
+ 
+    <!-- ===== RESULT SECTION ===== -->
+    <section class="forecast-result" id="forecast-result">
+ 
+      <div class="result-heading">
+        <img src="images/icon-result.svg" alt="">
+        <div>
+          <h2>Kết quả dự phóng điểm học kỳ tới</h2>
+          <p>Xem kết quả dự phóng điểm và các chỉ số quan trọng để đánh giá khả năng đạt mục tiêu của bạn.</p>
+        </div>
+        <button type="button" class="btn btn-outline">✦ Nâng cấp để mở rộng</button>
+      </div>
+ 
+      <div class="result-toolbar">
+        <select class="result-type-select">
+          <option>Loại kết quả</option>
+        </select>
+        <button type="button" class="btn btn-primary btn-sm">⬇ Xuất file (PDF/CSV)</button>
+      </div>
+ 
+      <!-- Thẻ chỉ số tổng quan -->
+      <div class="forecast-stats-grid">
+        <div class="forecast-stat-card">
+          <img src="images/icon-wifi.svg" alt="">
+          <div>
+            <span>Điểm trung bình hiện tại</span>
+            <strong>3.42</strong>
+            <span class="stat-sub">So với 3.00 của mục tiêu</span>
+          </div>
+        </div>
+        <div class="forecast-stat-card">
+          <img src="images/icon-target-small.svg" alt="">
+          <div>
+            <span>GPA mục tiêu</span>
+            <strong>3.70</strong>
+            <span class="stat-sub stat-sub-success">Đã đạt 92.4% mục tiêu</span>
+          </div>
+        </div>
+        <div class="forecast-stat-card">
+          <img src="images/icon-credit.svg" alt="">
+          <div>
+            <span>Tín chỉ tích lũy</span>
+            <strong>15</strong>
+            <span class="stat-sub">Trong 60 tín chỉ</span>
+          </div>
+        </div>
+        <div class="forecast-stat-card">
+          <img src="images/icon-star.svg" alt="">
+          <div>
+            <span>Điểm trung bình cần đạt để đạt mục tiêu</span>
+            <strong>4.18 - 5.00</strong>
+            <span class="stat-sub">Tùy theo phương án học</span>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Biểu đồ lộ trình -->
+      <div class="forecast-chart-card">
+        <h3><img src="images/icon-chart-small.svg" alt=""> Dự báo theo lộ trình (lý thuyết)</h3>
+ 
+        <div class="forecast-chart" id="roadmap-chart">
+          <!-- Biểu đồ đường: Học 1 → Học 4, dữ liệu 3.41 / 3.30 / 3.61 / 3.70 -->
+        </div>
+ 
+        <div class="forecast-note">
+          <img src="images/icon-info.svg" alt="">
+          <p>Lưu ý: Kết quả dự phóng chỉ mang tính chất tham khảo, phụ thuộc vào nhiều yếu tố như độ khó của môn học, chính sách của trường và nỗ lực của bạn.</p>
+        </div>
+      </div>
+ 
+    </section>
+ 
+    <!-- ===== QUICK ANALYSIS SECTION ===== -->
+    <section class="quick-analysis" id="quick-analysis">
+ 
+      <div class="result-heading">
+        <img src="images/icon-analysis.svg" alt="">
+        <div>
+          <h2>Phân tích nhanh</h2>
+          <p>Biểu đồ và số liệu giúp bạn nắm bắt tổng quan về tình hình học tập và đưa ra quyết định phù hợp.</p>
+        </div>
+        <button type="button" class="btn btn-outline">✦ Nâng cấp để mở rộng</button>
+      </div>
+ 
+      <div class="analysis-grid">
+ 
+        <!-- Biểu đồ cột: Tổng quan theo môn học -->
+        <div class="analysis-card">
+          <div class="analysis-card-header">
+            <h3><img src="images/icon-bar-chart.svg" alt=""> Tổng quan theo môn học</h3>
+            <select class="term-select">
+              <option>Học kỳ 1</option>
+            </select>
+          </div>
+          <p>Điểm trung bình, số lượng môn và tín chỉ theo từng môn học.</p>
+ 
+          <div class="bar-chart" id="subject-bar-chart">
+            <!-- Biểu đồ cột: Lập trình cơ bản 4.0, Cơ sở dữ liệu 3.8, Cấu trúc dữ liệu và giải thuật 3.6, Tiếng Anh 4.2, Toán rời rạc 3.7, Hệ điều hành 3.9 -->
+          </div>
+        </div>
+ 
+        <!-- Biểu đồ tròn: Cơ cấu tín chỉ theo môn học -->
+        <div class="analysis-card">
+          <div class="analysis-card-header">
+            <h3><img src="images/icon-pie-chart.svg" alt=""> Cơ cấu tín chỉ theo môn học</h3>
+            <select class="term-select">
+              <option>Học kỳ 1</option>
+            </select>
+          </div>
+          <p>Tỷ lệ phần trăm tín chỉ từng nhóm môn đã đăng ký.</p>
+ 
+          <div class="pie-chart-wrapper">
+            <div class="pie-chart" id="credit-pie-chart">
+              <!-- Biểu đồ tròn: Đại cương 52%, Cơ sở ngành 20%, Chuyên ngành 20%, Tự chọn 8% -->
+            </div>
+            <ul class="pie-legend">
+              <li><span class="legend-dot legend-dot-1"></span> Đại cương <strong>52%</strong></li>
+              <li><span class="legend-dot legend-dot-2"></span> Cơ sở ngành <strong>20%</strong></li>
+              <li><span class="legend-dot legend-dot-3"></span> Chuyên ngành <strong>20%</strong></li>
+              <li><span class="legend-dot legend-dot-4"></span> Tự chọn <strong>8%</strong></li>
+            </ul>
+          </div>
+        </div>
+ 
+      </div>
+    </section>
+ 
+</main>
+
+ <!-- FOOTER -->
+    <footer>
+        <!-- Giới thiệu EduTrack -->
+        <section>
+            <img src="../assets/images/course/logo.png" alt="EduTrack Logo" width="70" height="70">
+            <h2> EduTrack</h2>
+            <p> Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông minh. </p>
+        </section>
+        <!-- Về EduTrack -->
+        <section>
+            <h2>Về EduTrack</h2>
+            <ul>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="#">Đội ngũ</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </section>
+        <!-- Môn học -->
+        <section>
+            <h2>Môn học</h2>
+            <ul>
+
+                <li><a href="courses.html?category=dai-cuong">Đại cương</a></li>
+                <li><a href="courses.html?category=co-so-nganh">Cơ sở ngành</a></li>
+                <li><a href="courses.html?category=chuyen-nganh">Chuyên ngành</a></li>
+            </ul>
+        </section>
+        <!-- Tính năng -->
+        <section>
+            <h2>Tính năng</h2>
+            <ul>
+                <li><a href="gpa-calculator.html">Tính GPA</a></li>
+                <li><a href="advising-contact.html">Tư vấn lộ trình</a></li>
+                <li><a href="#">Theo dõi tiến độ</a></li>
+            </ul>
+        </section>
+        <!-- Điều khoản -->
+        <section>
+            <h2>Điều khoản</h2>
+            <ul>
+                <li><a href="#">Chính sách bảo mật</a></li>
+                <li><a href="#">Điều khoản sử dụng</a></li>
+                <li><a href="#">Hỗ trợ khách hàng</a></li>
+            </ul>
+        </section>
+        <!-- Copyright -->
+        <section>
+            <p>
+                &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
+            </p>
+        </section>
+    </footer>
+ </body>
+</html>

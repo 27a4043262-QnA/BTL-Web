@@ -30,246 +30,268 @@
 <!-- ================= MAIN (chỉ 1 thẻ main / trang) ================= -->
 <main>
 
-  <!-- ============ HERO ============ -->
-  <section id="hero-gpa" aria-labelledby="hero-gpa-h1">
-    <h1 id="hero-gpa-h1">Công cụ Tính &amp; Dự phóng GPA</h1>
-    <p>Nhập số tín chỉ và điểm (hoặc hệ quy đổi) để tính GPA hiện tại và dự phóng GPA theo từng kỳ.</p>
-
-    <div class="hero-actions">
-      <a href="#vi-du" class="btn-outline">Xem ví dụ</a>
-      <a href="#bang-nhap-diem" class="btn-primary">Bắt đầu ngay</a>
-    </div>
-
-    <div class="hero-tabs" role="tablist" aria-label="Chế độ tính GPA">
-      <button type="button" role="tab" aria-selected="true" id="tab-tinh-hien-tai">Tính GPA hiện tại</button>
-      <button type="button" role="tab" aria-selected="false" id="tab-du-phong">Dự phóng GPA mục tiêu</button>
-    </div>
-  </section>
-
-  <!-- ============ SECTION: BẢNG NHẬP ĐIỂM ============ -->
-  <section id="bang-nhap-diem" aria-labelledby="bang-nhap-diem-h2">
-    <h2 id="bang-nhap-diem-h2">Bảng nhập điểm các môn</h2>
-    <p class="section-intro">Nhập số tín chỉ và điểm thành phần cho từng môn để tính GPA học kỳ hiện tại.</p>
-
-    <form id="form-diem" action="#" method="post">
-      <table>
-        <caption>Bảng điểm học kỳ hiện tại — nhập số tín chỉ và điểm thành phần cho từng môn</caption>
-        <colgroup>
-          <col style="width:5%">
-          <col style="width:25%">
-          <col style="width:10%">
-          <col style="width:12%">
-          <col style="width:12%">
-          <col style="width:12%">
-          <col style="width:12%">
-          <col style="width:12%">
-        </colgroup>
-        <thead>
-          <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Tên môn</th>
-            <th scope="col">Số TC</th>
-            <th scope="col">Điểm CC</th>
-            <th scope="col">Điểm GK</th>
-            <th scope="col">Điểm CK</th>
-            <th scope="col">Điểm hệ 4</th>
-            <th scope="col">Thao tác</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>
-              <label for="mon-1" class="sr-only">Tên môn 1</label>
-              <input type="text" id="mon-1" name="mon-1" list="danh-sach-mon" placeholder="Ví dụ: Giải tích 1" required>
-            </td>
-            <td>
-              <label for="tc-1" class="sr-only">Số tín chỉ môn 1</label>
-              <input type="number" id="tc-1" name="tc-1" min="1" max="6" placeholder="3" required>
-            </td>
-            <td>
-              <label for="cc-1" class="sr-only">Điểm chuyên cần môn 1</label>
-              <input type="number" id="cc-1" name="cc-1" min="0" max="10" step="0.1" placeholder="0-10">
-            </td>
-            <td>
-              <label for="gk-1" class="sr-only">Điểm giữa kỳ môn 1</label>
-              <input type="number" id="gk-1" name="gk-1" min="0" max="10" step="0.1" placeholder="0-10">
-            </td>
-            <td>
-              <label for="ck-1" class="sr-only">Điểm cuối kỳ môn 1</label>
-              <input type="number" id="ck-1" name="ck-1" min="0" max="10" step="0.1" placeholder="0-10">
-            </td>
-            <td>
-              <output name="diem4-1" for="cc-1 gk-1 ck-1">—</output>
-            </td>
-            <td>
-              <button type="button" class="btn-xoa-dong">Xóa</button>
-            </td>
-          </tr>
-          <!-- Các dòng môn tiếp theo (2, 3, ...) lặp lại cấu trúc trên; JS sẽ chèn động khi bấm "Thêm môn" -->
-        </tbody>
-        <tfoot>
-          <tr>
-            <th scope="row" colspan="2">Tổng cộng</th>
-            <td><output id="tong-tin-chi" name="tong-tin-chi" for="tc-1">0</output></td>
-            <td colspan="3"></td>
-            <td><output id="gpa-hoc-ky" name="gpa-hoc-ky" for="tong-tin-chi">0.00</output></td>
-            <td></td>
-          </tr>
-        </tfoot>
-      </table>
-
-      <!-- datalist gợi ý tên môn học, dùng chung với ô nhập tên môn -->
-      <datalist id="danh-sach-mon">
-        <option value="Giải tích 1">
-        <option value="Lập trình căn bản">
-        <option value="Vật lý đại cương">
-        <option value="Xác suất thống kê">
-        <option value="Cấu trúc dữ liệu và giải thuật">
-        <option value="Cơ sở dữ liệu">
-        <option value="Mạng máy tính">
-        <option value="Kinh tế học đại cương">
-      </datalist>
-
-      <div class="bang-actions">
-        <button type="button" id="btn-them-mon">+ Thêm môn</button>
-        <button type="submit" id="btn-tinh-gpa">Tính GPA học kỳ</button>
-        <button type="reset">Làm mới bảng</button>
+  <section class="gpa-hero" id="gpa-hero">
+      <div class="gpa-hero-text">
+        <h1>Công cụ Tính &amp; Dự phóng GPA</h1>
+        <p>Công cụ tính và dự phóng GPA giúp sinh viên theo dõi kết quả học tập, tính toán GPA chính xác và chủ động định hướng điểm số trong các học kỳ tiếp theo.</p>
+        <div class="gpa-hero-buttons">
+          <a href="#calc-section" class="btn btn-primary">Tính GPA hiện tại</a>
+          <a href="#" class="btn btn-secondary">Dự phóng GPA mùa tới</a>
+        </div>
       </div>
-    </form>
-  </section>
-
-  <!-- ============ SECTION: FORM DỰ PHÓNG (CÔNG CỤ TÍNH NGƯỢC GPA) ============ -->
-  <section id="tinh-nguoc-gpa" aria-labelledby="tinh-nguoc-gpa-h2">
-    <h2 id="tinh-nguoc-gpa-h2">Công cụ tính ngược GPA</h2>
-    <p class="section-intro">Nhập GPA mục tiêu và số tín chỉ còn lại để biết điểm trung bình cần đạt mỗi kỳ.</p>
-
-    <form id="form-tinh-nguoc" action="#" method="post">
-      <fieldset>
-        <legend>Thông tin hiện tại</legend>
-
-        <div class="form-row">
-          <label for="gpa-hien-tai">GPA hiện tại</label>
-          <input type="number" id="gpa-hien-tai" name="gpa-hien-tai" min="0" max="4" step="0.01" placeholder="Ví dụ: 2.8" required>
-        </div>
-
-        <div class="form-row">
-          <label for="tin-chi-tich-luy">Tín chỉ đã tích lũy</label>
-          <input type="number" id="tin-chi-tich-luy" name="tin-chi-tich-luy" min="0" placeholder="Ví dụ: 90" required>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Mục tiêu</legend>
-
-        <div class="form-row">
-          <label for="gpa-muc-tieu">GPA mục tiêu (ra trường)</label>
-          <input type="number" id="gpa-muc-tieu" name="gpa-muc-tieu" min="0" max="4" step="0.01" placeholder="Ví dụ: 3.2" required>
-        </div>
-
-        <div class="form-row">
-          <label for="tin-chi-con-lai">Số tín chỉ còn lại</label>
-          <input type="number" id="tin-chi-con-lai" name="tin-chi-con-lai" min="1" placeholder="Ví dụ: 30" required>
-        </div>
-      </fieldset>
-
-      <div class="form-actions">
-        <button type="submit" id="btn-tinh-nguoc">Tính điểm cần đạt</button>
-        <button type="reset">Đặt lại</button>
+      <div class="gpa-hero-image">
+        <img src="images/gpa-hero.svg" alt="Sinh viên học tập với laptop">
       </div>
-
-      <p class="ket-qua-nguoc">
-        Điểm trung bình cần đạt:
-        <output id="diem-can-dat" name="diem-can-dat" for="gpa-hien-tai tin-chi-tich-luy gpa-muc-tieu tin-chi-con-lai">—</output>
-        / 4.0
-      </p>
-    </form>
-  </section>
-
-  <!-- ============ SECTION: KẾT QUẢ TÓM TẮT ============ -->
-  <section id="ket-qua-tom-tat" aria-labelledby="ket-qua-tom-tat-h2">
-    <h2 id="ket-qua-tom-tat-h2">Kết quả tóm tắt</h2>
-    <p class="section-intro">Các con số sẽ cập nhật ngay khi bạn thay đổi dữ liệu đầu vào.</p>
-
-    <div class="ket-qua-actions">
-      <button type="button" id="btn-luu-ke-hoach">Lưu kế hoạch</button>
-      <button type="button" id="btn-xuat-pdf">Xuất kết quả (PDF)</button>
-    </div>
-
-    <ul class="ket-qua-list">
-      <li>
-        <article>
-          <p class="ket-qua-nhan">GPA hiện tại (ước tính)</p>
-          <p class="ket-qua-so" id="ket-qua-gpa-hien-tai">3.42</p>
-          <p class="ket-qua-ghi-chu">+0.05 so với lần trước</p>
-        </article>
-      </li>
-      <li>
-        <article>
-          <p class="ket-qua-nhan">GPA mục tiêu</p>
-          <p class="ket-qua-so" id="ket-qua-gpa-muc-tieu">3.70</p>
-          <p class="ket-qua-ghi-chu">Cần cải thiện +0.28</p>
-        </article>
-      </li>
-      <li>
-        <article>
-          <p class="ket-qua-nhan">Tín chỉ còn lại</p>
-          <p class="ket-qua-so" id="ket-qua-tin-chi-con-lai">45</p>
-          <p class="ket-qua-ghi-chu">trong 3 kỳ</p>
-        </article>
-      </li>
-      <li>
-        <article>
-          <p class="ket-qua-nhan">Điểm trung bình cần đạt (ước tính)</p>
-          <p class="ket-qua-so" id="ket-qua-diem-can-dat">A-/B+ tương đương</p>
-          <p class="ket-qua-ghi-chu">tuỳ theo thang điểm</p>
-        </article>
-      </li>
-    </ul>
-
-    <figure class="bieu-do-duong">
-      <figcaption>GPA theo từng kỳ (dự phóng)</figcaption>
-      <canvas id="chart-gpa-theo-ky" role="img" aria-label="Biểu đồ đường thể hiện GPA dự phóng theo từng kỳ"></canvas>
-    </figure>
-  </section>
-
-  <!-- ============ SECTION: PHÂN TÍCH NHANH ============ -->
-  <section id="phan-tich-nhanh" aria-labelledby="phan-tich-nhanh-h2">
-    <h2 id="phan-tich-nhanh-h2">Phân tích nhanh</h2>
-    <p class="section-intro">Trực quan hóa ảnh hưởng của tín chỉ/điểm đến GPA.</p>
-
-    <ul class="bieu-do-list">
-      <li>
-        <article>
-          <h3>Đóng góp theo nhóm môn</h3>
-          <figure>
-            <figcaption>Điểm quy đổi</figcaption>
-            <canvas id="chart-dong-gop-nhom-mon" role="img" aria-label="Biểu đồ cột thể hiện đóng góp theo nhóm môn"></canvas>
-          </figure>
-        </article>
-      </li>
-      <li>
-        <article>
-          <h3>Cơ cấu tín chỉ theo mức điểm</h3>
-          <figure>
-            <figcaption>Tỉ lệ (%)</figcaption>
-            <canvas id="chart-co-cau-tin-chi" role="img" aria-label="Biểu đồ tròn thể hiện cơ cấu tín chỉ theo mức điểm"></canvas>
-          </figure>
-        </article>
-      </li>
-    </ul>
-  </section>
-
-  <!-- ============ ASIDE: MẸO TĂNG ĐIỂM (nội dung bên lề, không phải nội dung chính) ============ -->
-  <aside id="meo-tang-diem" aria-labelledby="meo-tang-diem-h2">
-    <h2 id="meo-tang-diem-h2">Mẹo tăng điểm GPA</h2>
-    <ul>
-      <li>Ưu tiên đăng ký lại các môn điểm thấp có số tín chỉ lớn — cải thiện nhanh hơn.</li>
-      <li>Rải đều tín chỉ mỗi kỳ, tránh dồn môn khó vào cùng một học kỳ.</li>
-      <li>Theo dõi GPA dự phóng thường xuyên để điều chỉnh kế hoạch học tập kịp thời.</li>
-    </ul>
-    <p><a href="advising-contact.html">Đặt lịch tư vấn với cố vấn học tập →</a></p>
-  </aside>
+    </section>
+ 
+    <!-- ===== CALCULATOR SECTION ===== -->
+    <section class="gpa-calculator" id="calc-section">
+ 
+      <div class="calc-heading">
+        <img src="images/icon-calc.svg" alt="">
+        <div>
+          <h2>Tính điểm cuối kỳ</h2>
+          <p>Nhập điểm thành phần và mục tiêu điểm tổng kết để tính điểm cuối kỳ cần đạt cho từng môn học.</p>
+        </div>
+        <button type="button" class="btn btn-outline">Hướng dẫn sử dụng</button>
+      </div>
+ 
+      <!-- Bước 1: Thông tin chung -->
+      <div class="calc-step" id="step-info">
+        <h3><span class="step-badge">1</span> Thông tin chung</h3>
+ 
+        <div class="calc-fields-row">
+          <div class="field">
+            <label for="school-year">Năm học</label>
+            <select id="school-year" name="school-year">
+              <option>2026 - 2027</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="semester">Học kỳ</label>
+            <select id="semester" name="semester">
+              <option>Học kỳ 1</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="grade-scale">Thang điểm</label>
+            <select id="grade-scale" name="grade-scale">
+              <option>Hệ 4.0</option>
+            </select>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Bước 2: Trọng số điểm thành phần -->
+      <div class="calc-step" id="step-weights">
+        <h3><span class="step-badge">2</span> Cài đặt trọng số điểm thành phần</h3>
+        <p>Bạn có thể sử dụng công thức mặc định hoặc tùy chỉnh trọng số theo quy định của trường.</p>
+ 
+        <div class="calc-fields-row">
+          <div class="field">
+            <label for="weight-attendance">Chuyên cần</label>
+            <div class="input-suffix">
+              <input type="number" id="weight-attendance" name="weight-attendance" value="10">
+              <span>%</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="weight-midterm">Giữa kỳ</label>
+            <div class="input-suffix">
+              <input type="number" id="weight-midterm" name="weight-midterm" value="30">
+              <span>%</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="weight-final">Cuối kỳ</label>
+            <div class="input-suffix">
+              <input type="number" id="weight-final" name="weight-final" value="60">
+              <span>%</span>
+            </div>
+          </div>
+        </div>
+ 
+        <button type="button" class="btn btn-outline">Tùy chỉnh công thức</button>
+      </div>
+ 
+      <!-- Bước 3: Danh sách môn học -->
+      <div class="calc-step" id="step-courses">
+        <div class="calc-step-header">
+          <h3><span class="step-badge">3</span> Danh sách môn học</h3>
+          <button type="button" class="btn btn-primary btn-sm">+ Thêm môn học</button>
+        </div>
+ 
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>STT</th>
+              <th>Tên môn học</th>
+              <th>Mã môn</th>
+              <th>Tín chỉ</th>
+              <th>Chuyên cần (10%)</th>
+              <th>Giữa kỳ 1 (30%)</th>
+              <th>Giữa kỳ 2 (30%)</th>
+              <th>Cuối kỳ (30%)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="drag-handle">⠿</td>
+              <td>1</td>
+              <td><input type="text" value="Toán cao cấp A1"></td>
+              <td><input type="text" value="MATH101"></td>
+              <td><input type="number" value="3"></td>
+              <td><input type="number" value="9.0"></td>
+              <td><input type="number" value="8.5"></td>
+              <td><input type="number" value="8.0"></td>
+              <td><input type="number" value="7.5"></td>
+              <td><button type="button" class="btn-icon-delete">🗑</button></td>
+            </tr>
+            <tr>
+              <td class="drag-handle">⠿</td>
+              <td>2</td>
+              <td><input type="text" value="Vật lý đại cương"></td>
+              <td><input type="text" value="PHYS101"></td>
+              <td><input type="number" value="3"></td>
+              <td><input type="number" value="8.5"></td>
+              <td><input type="number" value="7.5"></td>
+              <td><input type="number" value="7.0"></td>
+              <td><input type="number" value="6.5"></td>
+              <td><button type="button" class="btn-icon-delete">🗑</button></td>
+            </tr>
+            <tr>
+              <td class="drag-handle">⠿</td>
+              <td>3</td>
+              <td><input type="text" value="Lập trình C"></td>
+              <td><input type="text" value="IT101"></td>
+              <td><input type="number" value="4"></td>
+              <td><input type="number" value="9.5"></td>
+              <td><input type="number" value="8.5"></td>
+              <td><input type="number" value="8.0"></td>
+              <td><input type="number" value="8.0"></td>
+              <td><button type="button" class="btn-icon-delete">🗑</button></td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <button type="button" class="btn btn-add-row">+ Thêm môn học</button>
+ 
+        <div class="calc-actions">
+          <button type="button" class="btn btn-outline">↺ Làm mới</button>
+          <button type="button" class="btn btn-primary">▦ Tính điểm</button>
+        </div>
+      </div>
+ 
+    </section>
+ 
+    <!-- ===== RESULT SECTION ===== -->
+    <section class="gpa-result" id="gpa-result">
+ 
+      <div class="result-heading">
+        <img src="images/icon-result.svg" alt="">
+        <div>
+          <h2>Kết quả</h2>
+          <p>Kết quả tính điểm của từng môn học và điểm trung bình học kỳ.</p>
+        </div>
+      </div>
+ 
+      <div class="result-summary">
+        <div class="result-gpa-card">
+          <img src="images/icon-graduate.svg" alt="">
+          <div>
+            <span>Điểm trung bình học kỳ (GPA)</span>
+            <strong class="result-gpa-value">8.1 <small>/ 10.0</small></strong>
+            <span class="result-tag">Xếp loại: Khá</span>
+          </div>
+        </div>
+ 
+        <div class="result-stat-card">
+          <img src="images/icon-book.svg" alt="">
+          <strong>3</strong>
+          <span>Tổng số môn</span>
+        </div>
+        <div class="result-stat-card">
+          <img src="images/icon-credit.svg" alt="">
+          <strong>10</strong>
+          <span>Tổng số tín chỉ</span>
+        </div>
+        <div class="result-stat-card">
+          <img src="images/icon-calc-small.svg" alt="">
+          <strong>7.9</strong>
+          <span>Điểm trung bình hệ 10</span>
+        </div>
+        <div class="result-stat-card">
+          <img src="images/icon-star.svg" alt="">
+          <strong>3.3</strong>
+          <span>Điểm trung bình hệ 4</span>
+        </div>
+      </div>
+ 
+      <!-- Bảng chi tiết kết quả từng môn -->
+      <div class="result-detail">
+        <h3>Chi tiết kết quả từng môn</h3>
+ 
+        <table class="calc-table result-table">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Môn học</th>
+              <th>Mã môn</th>
+              <th>Tín chỉ</th>
+              <th>Chuyên cần (10%)</th>
+              <th>Giữa kỳ 1 (30%)</th>
+              <th>Giữa kỳ 2 (30%)</th>
+              <th>Cuối kỳ (30%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Toán cao cấp A1</td>
+              <td>MATH101</td>
+              <td>3</td>
+              <td>9.0</td>
+              <td>8.5</td>
+              <td>8.0</td>
+              <td>7.5</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Vật lý đại cương</td>
+              <td>PHYS101</td>
+              <td>3</td>
+              <td>8.5</td>
+              <td>7.5</td>
+              <td>7.0</td>
+              <td>6.5</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Lập trình C</td>
+              <td>IT101</td>
+              <td>4</td>
+              <td>9.5</td>
+              <td>8.5</td>
+              <td>8.0</td>
+              <td>8.0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+ 
+      <!-- Banner dự phóng GPA -->
+      <div class="forecast-banner">
+        <img src="images/icon-forecast.svg" alt="">
+        <div>
+          <strong>Với GPA hiện tại, bạn có muốn dự phóng điểm cho kỳ tới?</strong>
+          <p>Dựa trên kết quả hiện tại và kế hoạch học tập, hệ thống sẽ ước tính điểm trung bình kỳ tới của bạn.</p>
+        </div>
+        <a href="#" class="btn btn-primary">✦ Tính dự phóng ngay</a>
+      </div>
+ 
+    </section>
 
 </main>
 
