@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang chủ</title>
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
 <!-- HEADER -->
@@ -27,142 +28,257 @@
             </ul>
         </header>
     <!-- MAIN CONTENT -->
-    <main>
+    <main class="home">
         <!-- 1. HERO SECTION -->
-        <section>
-            <!-- Nội dung bên trái -->
-            <h1> Lập kế hoạch thông minh — Bứt phá GPA </h1>
-            <p> Giúp sinh viên tối ưu hóa lộ trình học tập, tính điểm GPA mục tiêu thông minh và tiếp cận kho tài liệu ôn thi chất lượng cao. </p>
-            <button type="button" onclick="window.location.href='pages/about.html'"> Khám phá ngay </button>
-            <!-- Nội dung bên phải -->
-            <figure><img src="assets/images/minh họa trang chủ.jpg" alt="Minh họa quản lý tiến độ học tập" width="350" height="250"></figure>
+        <section class="hero">
+            <div class="container hero-inner">
+                <!-- Nội dung bên trái -->
+                <div class="hero-text">
+                    <h1> Lập kế hoạch thông minh — Bứt phá GPA </h1>
+                    <p> Giúp sinh viên tối ưu hóa lộ trình học tập, tính điểm GPA mục tiêu thông minh và tiếp cận kho tài liệu ôn thi chất lượng cao. </p>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='pages/about.html'"> Khám phá ngay </button>
+                </div>
+                <!-- Nội dung bên phải -->
+                <figure class="hero-image">
+                    <img src="assets/images/minh họa trang chủ.jpg" alt="Minh họa quản lý tiến độ học tập" width="350" height="250">
+                </figure>
+            </div>
         </section>
         <!-- 2. SECTION SỐ LIỆU -->
-        <section>
-            <strong> 120+ </strong>
-            <div> Môn học đại cương và chuyên ngành </div>
-            <strong> 1000+ </strong>
-            <div> Sinh viên tin tưởng và sử dụng</div>
-            <strong> 800+ </strong>
-            <div> Tài liệu ôn thi và đề cương chuẩn </div>
+        <section class="stats">
+            <div class="container grid-3">
+                <div class="stat-card">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM20 17v4H6.5"/></svg>
+                    </div>
+                    <div>
+                         <strong> 120+ </strong>
+                       <div> Môn học đại cương và chuyên ngành </div>
+                     </div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div>
+                         <strong> 1000+ </strong>
+                         <div> Sinh viên tin tưởng và sử dụng</div>
+                     </div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
+                    </div>
+                    <div>
+                        <strong> 800+ </strong>
+                         <div> Tài liệu ôn thi và đề cương chuẩn </div>
+                          </div>
+                </div>
+            </div>
         </section>
         <!-- 3. SECTION: CÁCH EDUTRACK GIÚP BẠN -->
-        <section>
-            <!-- Tiêu đề -->
-            <p> QUY TRÌNH ĐƠN GIẢN </p>
-            <h2> Cách EduTrack giúp bạn </h2>
-            <!-- Bước 1 -->
-            <div>
-                <div> 01 </div>
-                <h3>Chọn môn học</h3>
-                <p> Tìm kiếm hàng trăm môn học đại cương và chuyên ngành có sẵn trên hệ thống. </p>
+        <section class="steps">
+            <div class="container">
+                <!-- Tiêu đề -->
+                <div class="section-head center">
+                    <p class="eyebrow"> QUY TRÌNH ĐƠN GIẢN </p>
+                    <h2> Cách EduTrack giúp bạn </h2>
+                </div>
+                <div class="grid-3">
+                    <!-- Bước 1 -->
+                    <div class="step-card">
+                        <div class="step-top">
+                            <div class="icon-box small">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+                            </div>
+                            <div class="step-num"> 01 </div>
+                        </div>
+                        <h3>Chọn môn học</h3>
+                        <p> Tìm kiếm hàng trăm môn học đại cương và chuyên ngành có sẵn trên hệ thống. </p>
+                    </div>
+                    <!-- Bước 2 -->
+                    <div class="step-card">
+                        <div class="step-top">
+                            <div class="icon-box small">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                            </div>
+                            <div class="step-num"> 02 </div>
+                        </div>
+                        <h3>Lên kế hoạch</h3>
+                        <p> Sắp xếp thời gian biểu, đặt mục tiêu điểm số chi tiết theo từng tín chỉ. </p>
+                    </div>
+                    <!-- Bước 3 -->
+                    <div class="step-card">
+                        <div class="step-top">
+                            <div class="icon-box small">
+                                <svg viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+                            </div>
+                            <div class="step-num"> 03 </div>
+                        </div>
+                        <h3>Theo dõi GPA</h3>
+                        <p> Cập nhật kết quả học tập và theo dõi GPA liên tục để biết tiến độ thực quản. </p>
+                    </div>
+                </div>
             </div>
-            <!-- Bước 2 -->
-            <div>
-                <div> 02 </div>
-                <h3>Lên kế hoạch</h3>
-                <p> Sắp xếp thời gian biểu, đặt mục tiêu điểm số chi tiết theo từng tín chỉ. </p>
-            </div>
-            <!-- Bước 3 -->
-            <div>
-                <div> 03 </div>
-                <h3>Theo dõi GPA</h3>
-                <p> Cập nhật kết quả học tập và theo dõi GPA liên tục để biết tiến độ thực quản. </p>
         </section>
         <!-- 4. SECTION: CÔNG CỤ TÍNH GPA -->
-        <section>
-            <!-- Nội dung bên trái -->
-                <p> CÔNG CỤ MIỄN PHÍ </p>
-                <h2>Công cụ tính GPA thông minh</h2>
-                <p> Không còn phải loay hoay với bảng Excel phức tạp. Chỉ cần nhập điểm thành phần, EduTrack tự động quy đổi điểm hệ 4 và hệ 10 chuẩn xác, giúp bạn theo dõi kết quả học tập dễ dàng. </p>
-                <button type="button" onclick="window.location.href='pages/gpa-calculator.html'">Tính GPA ngay</button>
-            <!-- Nội dung bên phải -->
-                <h3>Bảng điểm học kỳ 1</h3>
-                <li>Năm học 2024 - 2025</li>
-                <li>Đang hoạt động</li>
-            <!-- Môn 1 -->
-                <strong>Toán cao cấp A1</strong>
-                <li><small>MATH1011 - 3 tín chỉ</small></li>
-                <strong>A</strong>
-                <strong>4.0</strong>
-            <!-- Môn 2 -->
-                <li><strong>Lập trình Python</strong></li>
-                <li><small>CSE101 - 4 tín chỉ</small></li>
-                <strong>B</strong>
-                <strong>3.5</strong>
-            <!-- Môn 3 -->
-                <li><strong>Kinh tế vi mô</strong></li>
-                <li><small>ECON201 - 3 tín chỉ</small></li>
-                <strong>A</strong>
-                <strong>4.0</strong>
-            <!-- Môn 4 -->
-                <li><strong>Tiếng Anh chuyên ngành</strong></li>
-                <li><small>ENG102 - 2 tín chỉ</small></li>
-                <strong>B</strong>
-                <strong>3.0</strong>
-            <!-- Tổng GPA -->
-                <li>Điểm trung bình học kỳ (GPA)</li>
-                <small>Tổng tín chỉ tích lũy: 12 tín chỉ</small>
-                <li><strong>3.66 / 4.0</strong></li>
+         <section class="gpa">
+            <div class="container gpa-grid">
+                <!-- Nội dung bên trái -->
+                <div class="gpa-text">
+                    <p class="badge"> CÔNG CỤ MIỄN PHÍ </p>
+                    <h2>Công cụ tính GPA thông minh</h2>
+                    <p> Không còn phải loay hoay với bảng Excel phức tạp. Chỉ cần nhập điểm thành phần, EduTrack tự động quy đổi điểm hệ 4 và hệ 10 chuẩn xác, giúp bạn theo dõi kết quả học tập dễ dàng. </p>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='pages/gpa-calculator.html'">Tính GPA ngay</button>
+                </div>
+                <!-- Nội dung bên phải -->
+                <div class="card gpa-card">
+                    <div class="gpa-card-head">
+                        <h3>Bảng điểm học kỳ 1</h3>
+                        <ul class="gpa-tags">
+                            <li>Năm học 2024 - 2025</li>
+                            <li class="active">Đang hoạt động</li>
+                        </ul>
+                    </div>
+                    <ul class="subject-list">
+                        <!-- Môn 1 -->
+                        <li class="subject">
+                            <div class="subject-info">
+                                <strong>Toán cao cấp A1</strong>
+                                <small>MATH1011 - 3 tín chỉ</small>
+                            </div>
+                            <strong class="grade grade-a">A</strong>
+                            <strong class="subject-point">4.0</strong>
+                        </li>
+                        <!-- Môn 2 -->
+                        <li class="subject">
+                            <div class="subject-info">
+                                <strong>Lập trình Python</strong>
+                                <small>CSE101 - 4 tín chỉ</small>
+                            </div>
+                            <strong class="grade grade-b">B</strong>
+                            <strong class="subject-point">3.5</strong>
+                        </li>
+                        <!-- Môn 3 -->
+                        <li class="subject">
+                            <div class="subject-info">
+                                <strong>Kinh tế vi mô</strong>
+                                <small>ECON201 - 3 tín chỉ</small>
+                            </div>
+                            <strong class="grade grade-a">A</strong>
+                            <strong class="subject-point">4.0</strong>
+                        </li>
+                        <!-- Môn 4 -->
+                        <li class="subject">
+                            <div class="subject-info">
+                                <strong>Tiếng Anh chuyên ngành</strong>
+                                <small>ENG102 - 2 tín chỉ</small>
+                            </div>
+                            <strong class="grade grade-b">B</strong>
+                            <strong class="subject-point">3.0</strong>
+                        </li>
+                    </ul>
+                    <!-- Tổng GPA -->
+                    <div class="gpa-total">
+                        <div>
+                            <p>Điểm trung bình học kỳ (GPA)</p>
+                            <small>Tổng tín chỉ tích lũy: 12 tín chỉ</small>
+                        </div>
+                        <strong>3.66 / 4.0</strong>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- 5. SECTION: TIN TỨC NỔI BẬT -->
-        <section>
-            <!-- Header -->
-                <p> TIN TỨC & SỰ KIỆN</p>
-                <h2>Tin tức nổi bật</h2>
-                <a href="#">Xem tất cả →</a>
-            <!-- Danh sách tin tức -->
-            <!-- Tin 1 -->
-            <article>
-                <img src="#" alt="Hướng dẫn đăng ký học phần">
-                <h3>Hướng dẫn đăng ký học phần học kỳ mới năm 2025</h3>
-                <p>Tổng hợp các mốc thời gian, lưu ý quan trọng và hướng dẫn chi tiết cách đăng ký môn học trên hệ thống.</p>
-                <a href="#">Đọc thêm →</a>
-            </article>
-            <!-- Tin 2 -->
-            <article>
-                <img src="#" alt="Kỹ năng giúp sinh viên bứt phá GPA">
-                <h3>5 kỹ năng giúp sinh viên bứt phá GPA</h3>
-                <p>Những thói quen học tập và kỹ năng quản lý thời gian giúp bạn đạt kết quả học tập trong học kỳ.</p>
-                <a href="#">Đọc thêm →</a>
-            </article>
-            <!-- Tin 3 -->
-            <article>
-                <img src="#" alt="Học bổng và cơ hội du học">
-                <h3>Học bổng và cơ hội du học 2025</h3>
-                <p>Cập nhật danh sách học bổng, chương trình trao đổi sinh viên và cơ hội học tập mới nhất.</p>
-                <a href="#">Đọc thêm →</a>
-            </article>
+        <section class="news">
+            <div class="container">
+                <!-- Header -->
+                <div class="section-head row">
+                    <div>
+                        <p class="badge"> TIN TỨC & SỰ KIỆN</p>
+                        <h2 class="big">Tin tức nổi bật</h2>
+                    </div>
+                    <a href="#" class="see-all">Xem tất cả →</a>
+                </div>
+                <!-- Danh sách tin tức -->
+                <div class="grid-3">
+                    <!-- Tin 1 -->
+                    <article class="news-card">
+                        <img src="#" alt="Hướng dẫn đăng ký học phần">
+                        <h3>Hướng dẫn đăng ký học phần học kỳ mới năm 2025</h3>
+                        <p>Tổng hợp các mốc thời gian, lưu ý quan trọng và hướng dẫn chi tiết cách đăng ký môn học trên hệ thống.</p>
+                        <a href="#" class="read-more">Đọc thêm →</a>
+                    </article>
+                    <!-- Tin 2 -->
+                    <article class="news-card">
+                        <img src="#" alt="Kỹ năng giúp sinh viên bứt phá GPA">
+                        <h3>5 kỹ năng giúp sinh viên bứt phá GPA</h3>
+                        <p>Những thói quen học tập và kỹ năng quản lý thời gian giúp bạn đạt kết quả học tập trong học kỳ.</p>
+                        <a href="#" class="read-more">Đọc thêm →</a>
+                    </article>
+                    <!-- Tin 3 -->
+                    <article class="news-card">
+                        <img src="#" alt="Học bổng và cơ hội du học">
+                        <h3>Học bổng và cơ hội du học 2025</h3>
+                        <p>Cập nhật danh sách học bổng, chương trình trao đổi sinh viên và cơ hội học tập mới nhất.</p>
+                        <a href="#" class="read-more">Đọc thêm →</a>
+                    </article>
+                </div>
+            </div>
         </section>
         <!-- 6. SECTION CẢM NHẬN SINH VIÊN -->
-        <section>
-            <p> TRẢI NGHIỆM THỰC TẾ </p>
-            <h2> Cảm nhận từ sinh viên </h2>
-            <!-- Slide 1 -->
-                <blockquote>
-                    <p> "EduTrack giúp mình quản lý điểm số và kế hoạch học tập dễ dàng hơn. Mình có thể chủ động theo dõi GPA của mình." </p>
-                </blockquote>
-                    <strong> Lê Ngọc Ánh </strong>
-                    <p> Sinh viên năm 1 </p>
-            <!-- Slide 2 -->
-                <blockquote>
-                    <p> "Kho tài liệu của môn học được phân loại rất rõ ràng. Nhờ vậy mình nhanh chóng tìm được nội dung cần ôn thi." </p>
-                </blockquote>
-                    <strong> Phan Kim Chi </strong>
-                    <p> Sinh viên năm 3 </p>
-            <!-- Slide 3 -->
-                <blockquote>
-                    <p> "Được tư vấn về định hướng học tập nên mình biết cách sắp xếp các môn học và mục tiêu GPA phù hợp." </p>
-                </blockquote>
-                    <strong> Nguyễn Hoài Thương </strong>
-                    <p> Sinh viên năm 2 </p>
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-head center">
+                    <p class="eyebrow"> TRẢI NGHIỆM THỰC TẾ </p>
+                    <h2> Cảm nhận từ sinh viên </h2>
+                </div>
+                <div class="grid-3">
+                    <!-- Slide 1 -->
+                    <div class="testi-card">
+                        <blockquote>
+                            <p> "EduTrack giúp mình quản lý điểm số và kế hoạch học tập dễ dàng hơn. Mình có thể chủ động theo dõi GPA của mình." </p>
+                        </blockquote>
+                        <div class="author">
+                            <strong> Lê Ngọc Ánh </strong>
+                            <p> Sinh viên năm 1 </p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="testi-card">
+                        <blockquote>
+                            <p> "Kho tài liệu của môn học được phân loại rất rõ ràng. Nhờ vậy mình nhanh chóng tìm được nội dung cần ôn thi." </p>
+                        </blockquote>
+                        <div class="author">
+                            <strong> Phan Kim Chi </strong>
+                            <p> Sinh viên năm 3 </p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="testi-card">
+                        <blockquote>
+                            <p> "Được tư vấn về định hướng học tập nên mình biết cách sắp xếp các môn học và mục tiêu GPA phù hợp." </p>
+                        </blockquote>
+                        <div class="author">
+                            <strong> Nguyễn Hoài Thương </strong>
+                            <p> Sinh viên năm 2 </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- 7. SECTION CALL TO ACTION -->
-        <section>
-            <h2>Sẵn sàng bứt phá GPA?</h2>
-            <p>Đăng ký tài khoản miễn phí ngay hôm nay và xây dựng lộ trình học tập tối ưu cùng cộng đồng sinh viên và các môn học.</p>
-            <button type="button" onclick="window.location.href='pages/register.html'">Đăng ký ngay</button>
-            <button type="button" onclick="window.location.href='pages/about.html'">Tìm hiểu thêm</button>
+        <section class="cta">
+            <div class="container">
+                <div class="cta-box">
+                    <h2>Sẵn sàng bứt phá GPA?</h2>
+                    <p>Đăng ký tài khoản miễn phí ngay hôm nay và xây dựng lộ trình học tập tối ưu cùng cộng đồng sinh viên và các môn học.</p>
+                    <div class="cta-actions">
+                        <button type="button" class="btn btn-primary" onclick="window.location.href='pages/register.html'">Đăng ký ngay</button>
+                        <button type="button" class="btn btn-outline" onclick="window.location.href='pages/about.html'">Tìm hiểu thêm</button>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer>
