@@ -232,13 +232,13 @@ header ul li a:hover {
 }
 
 .button-link {
-  background: #238B68;
-  color: #fff;
+  background: #FFFFFF;
+  color: #2F527F;
   border: none;
   padding: 8px 14px;
   border-radius: 10px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 800;
   cursor: pointer;
   transition: background 0.2s;
   white-space: nowrap;
