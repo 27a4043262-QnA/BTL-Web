@@ -175,22 +175,22 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 10px 7px;
+  padding: 2px 7px 2px 30px;
   background: #2F527F;
 }
 .logo {
   display: flex;
   align-items: center;
-  gap: 1px;
+  gap: 3px;
   flex-shrink: 0;
 }
 .logo img {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
 }
 .logo a {
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 700;
   color: #fff;
   text-decoration: none;
@@ -202,7 +202,7 @@ header ul {
   align-items: center;
   justify-content: center;
   list-style: none;
-  gap: 17px;
+  gap: 70px;
   margin: 0;
   padding: 0;
   padding-right: 140px;
@@ -211,20 +211,24 @@ header ul {
 header ul li a {
   text-decoration: none;
   color: #fff;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 700;
   transition: color 0.2s;
   white-space: nowrap;
 }
 
 header ul li a:hover {
-  color: #238B68;
+  color: #000000;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 /* Nút "Bắt đầu ngay" — tách khỏi dòng chảy flex, dính phải */
 .button{
   position: absolute;
-  right: 7px;
+  right: 60px;
   top: 0;
   bottom: 0;              
   display: flex;            
@@ -237,19 +241,21 @@ header ul li a:hover {
   border: none;
   padding: 8px 14px;
   border-radius: 10px;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
   transition: background 0.2s;
   white-space: nowrap;
 }
 
 .button-link:hover {
-  background: #1d7759;
+  background: #f1eaea;
+  color: #5f8dca;
 }
 
 .button-link:active {
-  background: #238B68;
+  background: #ffffff;
+  color: #2F527F;
 }
 
 /* ===== FOOTER ===== */
