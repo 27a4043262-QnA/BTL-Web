@@ -1,5 +1,5 @@
 :root {
-    /* Màu sắc */
+    /* ===== COLORS ===== */
     --primary-color: #2F527F;
     --secondary-color: #238B68;
 
@@ -11,22 +11,22 @@
     --white-color: #FFFFFF;
     --border-color: #E5E7EB;
 
-    /* Font */
+    /* ===== FONT ===== */
     --font-family: Arial, Helvetica, sans-serif;
 
-    /* Khoảng cách */
+    /* ===== SPACING ===== */
     --spacing-1: 4px;
     --spacing-2: 8px;
     --spacing-3: 16px;
     --spacing-4: 24px;
     --spacing-5: 32px;
 
-    /* Bo góc */
+    /* ===== BORDER RADIUS ===== */
     --radius-small: 6px;
     --radius-medium: 10px;
     --radius-large: 16px;
 
-    /* Đổ bóng */
+    /* ===== SHADOW ===== */
     --shadow-small: 0 2px 6px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.10);
     --shadow-large: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -50,7 +50,6 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
-    min-height: 100vh;
 }
 
 img {
@@ -77,20 +76,7 @@ a {
 
 ul,
 ol {
-    margin: 0;
-    padding: 0;
     list-style: none;
-}
-
-/* ===== ACCESSIBILITY ===== */
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-    outline: 3px solid rgba(35, 139, 104, 0.5);
-    outline-offset: 2px;
 }
 
 /* ===== GLOBAL LAYOUT ===== */
@@ -101,8 +87,6 @@ textarea:focus-visible {
     margin: 0 auto;
     padding: 0 24px;
 }
-
-/* Flexbox */
 
 .flex {
     display: flex;
@@ -120,8 +104,6 @@ textarea:focus-visible {
     justify-content: space-between;
 }
 
-/* Grid */
-
 .grid {
     display: grid;
 }
@@ -129,14 +111,62 @@ textarea:focus-visible {
 .grid-2 {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
+    gap: var(--spacing-4);
 }
 
 .grid-3 {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+    gap: var(--spacing-4);
 }
+
+/* ===== ACCESSIBILITY ===== */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(35, 139, 104, 0.5);
+    outline-offset: 2px;
+}
+
+/* ===== COMMON COMPONENTS ===== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border: none;
+    border-radius: var(--radius-medium);
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+.card {
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-small);
+}
+
 
 /* HEADER */
 header {
