@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh mục môn học - EduTrack</title>
     <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/courses.css">
+<link rel="stylesheet" href="../assets/css/courses.css">
 </head>
 <body>
   <!-- HEADER -->
@@ -225,13 +225,15 @@
   <!-- FOOTER -->
     <footer>
         <!-- Giới thiệu EduTrack -->
-        <section>
-            <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
-            <h2> EduTrack</h2>
+        <section class="footer-intro">
+            <div class="footer-logo">
+                <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
+                <h2> EduTrack</h2>
+            </div>
             <p> Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông minh. </p>
         </section>
         <!-- Về EduTrack -->
-        <section>
+        <section class="footer-column">
             <h2>Về EduTrack</h2>
             <ul>
                 <li><a href="about.html">Giới thiệu</a></li>
@@ -240,17 +242,16 @@
             </ul>
         </section>
         <!-- Môn học -->
-        <section>
+        <section class="footer-column">
             <h2>Môn học</h2>
             <ul>
-
-                <li><a href="courses.html?category=dai-cuong">Đại cương</a></li>
-                <li><a href="courses.html?category=co-so-nganh">Cơ sở ngành</a></li>
-                <li><a href="courses.html?category=chuyen-nganh">Chuyên ngành</a></li>
+                <li><a href="courses.html">Đại cương</a></li>
+                <li><a href="courses.html">Cơ sở ngành</a></li>
+                <li><a href="courses.html">Chuyên ngành</a></li>
             </ul>
         </section>
         <!-- Tính năng -->
-        <section>
+        <section class="footer-column">
             <h2>Tính năng</h2>
             <ul>
                 <li><a href="gpa-calculator.html">Tính GPA</a></li>
@@ -259,7 +260,7 @@
             </ul>
         </section>
         <!-- Điều khoản -->
-        <section>
+        <section class="footer-column">
             <h2>Điều khoản</h2>
             <ul>
                 <li><a href="#">Chính sách bảo mật</a></li>
@@ -268,10 +269,10 @@
             </ul>
         </section>
         <!-- Copyright -->
-        <section>
-            <p>
-                &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
-            </p>
+        <section class="footer-bottom">
+        <span>
+            &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
+        </span>
         </section>
     </footer>
  </body>
