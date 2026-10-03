@@ -1,0 +1,370 @@
+/* =========================================================
+   course-detail.css  -  Trang chi tiết môn học (EduTrack)
+   Gắn SAU main.css:
+   <link rel="stylesheet" href="../assets/css/main.css">
+   <link rel="stylesheet" href="../assets/css/course-detail.css">
+   ========================================================= */
+
+/* ---------- NỀN TRANG ---------- */
+body { background: #fff; }
+
+/* ---------- KHUNG CHÍNH + BIẾN MÀU ---------- */
+#course-detail {
+  /* Màu chữ / viền / nền xám */
+  --cd-ink: #2d3986;          /* chữ thường */
+  --cd-muted: #6b6b6b;        /* chữ phụ */
+  --cd-line: #e3e3e3;         /* viền */
+  --cd-soft: #f0f0f0;         /* nền thanh xám */
+  --cd-radius: 8px;
+
+  /* Màu theo trang danh mục */
+  --cd-heading: #2e2a8a;      /* tiêu đề lớn (h1, h2) */
+  --cd-title: #1e1b6e;        /* tiêu đề nhỏ (h3, tên môn) */
+  --cd-chip-bg: #eef0ff;      /* nền chip "Đại cương" */
+  --cd-chip-text: #3730a3;    /* chữ chip */
+  --cd-btn: #2c4988;          /* nút */
+  --cd-btn-hover: #3e6ba8;
+
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  color: var(--cd-ink);
+  background: #fff;
+
+  /* Lưới 2 cột: nội dung chính | cột thông tin bên phải */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  column-gap: 40px;
+  align-items: start;
+}
+
+#course-detail h1,
+#course-detail h2,
+#course-detail h3 { margin: 0; }
+
+#course-detail h1,
+#course-detail h2 { color: var(--cd-heading); }
+
+#course-detail h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* ---------- HERO ---------- */
+/* .course-hero "biến mất" để phần giới thiệu + aside trở thành ô con của lưới chính */
+#course-detail .course-hero { display: contents; }
+
+#course-detail .course-hero-main {
+  grid-column: 1;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--cd-line);
+}
+
+#course-detail .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--cd-muted);
+}
+
+#course-detail .chip {
+  background: var(--cd-chip-bg);
+  color: var(--cd-chip-text);
+  border: 0;
+  border-radius: 999px;          /* bo tròn kiểu viên thuốc */
+  padding: 4px 12px;
+  font-weight: 700;
+}
+
+#course-detail h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+#course-detail .course-hero-main > p:last-child {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--cd-muted);
+}
+
+/* ---------- ASIDE: Thông tin chi tiết (đứng yên, không trượt theo) ---------- */
+#course-detail .quickfacts {
+  grid-column: 2;
+  grid-row: 1 / span 3;          /* cao ngang hero + nội dung + tài liệu */
+  border: 1px solid var(--cd-line);
+  border-radius: 12px;
+  padding: 20px;
+  background: #fff;
+}
+
+#course-detail .quickfacts h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+#course-detail .quickfacts table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+#course-detail .quickfacts th,
+#course-detail .quickfacts td { padding: 8px 0; }
+
+#course-detail .quickfacts th {
+  text-align: left;
+  font-weight: 400;
+  color: var(--cd-muted);
+}
+
+#course-detail .quickfacts td {
+  text-align: right;
+  font-weight: 700;
+}
+
+/* ---------- NÚT ---------- */
+#course-detail .btn-cta {
+  display: inline-block;
+  background: var(--cd-btn);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s;
+}
+#course-detail .btn-cta:hover { background: var(--cd-btn-hover); }
+
+#course-detail .btn-block {
+  display: block;
+  margin-top: 16px;
+}
+
+#course-detail .btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+/* ---------- NỘI DUNG MÔN HỌC (bảng -> các thanh xám) ---------- */
+#course-content,
+#course-materials {
+  grid-column: 1;
+  margin-top: 36px;
+}
+
+/* Ẩn tiêu đề cột nhưng vẫn giữ cho trình đọc màn hình */
+#course-content thead,
+#course-materials thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+#course-content table,
+#course-content tbody,
+#course-materials table,
+#course-materials tbody { display: block; }
+
+#course-content tbody,
+#course-materials tbody {
+  display: grid;
+  gap: 8px;
+}
+
+#course-content tr {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  background: var(--cd-soft);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+#course-content td { padding: 0; }
+
+#course-content td:first-child {          /* số thứ tự trong vòng tròn */
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #d9d9d9;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+#course-content td:nth-child(2) { font-weight: 600; }
+
+#course-content td:last-child {
+  font-size: 12px;
+  color: var(--cd-muted);
+}
+
+/* ---------- TÀI LIỆU THAM KHẢO (bảng -> thẻ có viền) ---------- */
+#course-materials tr {
+  display: grid;
+  grid-template-columns: 1fr 50px 70px 32px;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid var(--cd-line);
+  border-radius: var(--cd-radius);
+  padding: 12px 16px;
+  font-size: 13px;
+}
+
+#course-materials td { padding: 0; }
+
+#course-materials td:first-child::before {   /* icon file */
+  content: "▤";
+  margin-right: 10px;
+  color: var(--cd-muted);
+}
+
+#course-materials td:nth-child(2),
+#course-materials td:nth-child(3) {
+  font-size: 11px;
+  color: var(--cd-muted);
+  text-align: right;
+}
+
+#course-materials td:last-child { text-align: center; }
+
+#course-materials td:last-child a {
+  font-size: 0;                  /* ẩn chữ, chỉ hiện icon */
+  text-decoration: none;
+  color: var(--cd-ink);
+}
+#course-materials td:last-child a::before {
+  content: "⤓";
+  font-size: 18px;
+}
+
+/* ---------- ĐÁNH GIÁ + FAQ (full-width) ---------- */
+#course-reviews-faq {
+  grid-column: 1 / -1;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--cd-line);
+}
+
+#reviews { margin-bottom: 48px; }
+
+#reviews article {
+  background: #fff;
+  border: 1px solid var(--cd-line);
+  border-radius: var(--cd-radius);
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+
+#reviews article h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--cd-title);
+}
+
+#reviews article p {
+  margin: 0 0 6px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cd-muted);
+}
+
+#reviews > p { font-size: 13px; }
+#reviews > p a { color: var(--cd-chip-text); text-underline-offset: 3px; }
+
+/* FAQ */
+.faq-item {
+  border: 1px solid var(--cd-line);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background: #fff;
+}
+
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cd-title);
+  cursor: pointer;
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {          /* mũi tên: đóng = ›, mở = ⌄ */
+  content: "›";
+  font-size: 20px;
+  line-height: 1;
+  color: var(--cd-muted);
+  transition: transform .2s;
+}
+.faq-item[open] summary::after { transform: rotate(90deg); }
+
+.faq-item p {
+  margin: 0;
+  padding: 0 16px 14px;
+  font-size: 13px;
+  color: var(--cd-muted);
+}
+
+/* ---------- MÔN HỌC LIÊN QUAN ---------- */
+#course-detail .related-courses {
+  grid-column: 1 / -1;
+  margin-top: 56px;
+}
+
+.related-courses ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.related-courses .course-card {
+  background: #fff;
+  border: 1px solid var(--cd-line);
+  border-radius: var(--cd-radius);
+  padding: 16px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.related-courses .course-card h3 {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--cd-muted);
+}
+
+.related-courses .course-card h3 a {
+  display: block;                 /* tên môn nằm riêng 1 dòng */
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cd-title);
+  text-decoration: none;
+}
+.related-courses .course-card h3 a:hover { text-decoration: underline; }
