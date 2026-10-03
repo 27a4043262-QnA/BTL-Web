@@ -274,14 +274,14 @@ main h2 {
 }
 
 .giai-phap-list img {
-  grid-row: 1 / 3;
-  width: 88px;
-  height: 88px;
-  padding: 20px;
-  border-radius: 12px;
-  background: var(--green-soft);
-  object-fit: contain;
-  font-size: 0;
+  grid-row: 1 / 3 !important;
+  width: 100%!important;
+  height: 100% !important;
+  padding: 8px !important;
+  border-radius: 12px ;
+  background: var(--green-soft) ;
+  object-fit: cover !important; ;
+  font-size: 0 ;
 }
 
 .giai-phap-list h3 {
@@ -295,28 +295,22 @@ main h2 {
 }
 
 /* =========================================================
-   5. ĐỘI NGŨ
+   5. ĐỘI NGŨ — 5 người trên 1 hàng
    ========================================================= */
 #doi-ngu {
   background: var(--bg);
 }
 
 .doi-ngu-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   margin-top: 44px !important;
 }
 
-/* 4 thẻ / hàng như wireframe, thẻ thứ 5 xuống hàng và căn giữa */
-.doi-ngu-list > li {
-  flex: 0 0 calc((100% - 60px) / 4);
-}
-
 .doi-ngu-list article {
   height: 100%;
-  padding: 28px 16px 24px;
+  padding: 24px 12px;
   background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -333,7 +327,7 @@ main h2 {
 .doi-ngu-list .avatar {
   width: 56px;
   height: 56px;
-  margin: 0 auto 16px;
+  margin: 0 auto 14px;
   border-radius: 50%;
   border: 2px solid var(--green-light);
   background: var(--green-soft);
@@ -355,24 +349,12 @@ main h2 {
   font-size: 15px;
 }
 
-.doi-ngu-list .vai-tro {
-  margin: 4px 0 12px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--green-dark);
-}
-
-.doi-ngu-list p:last-child {
-  font-size: 12px;
-  color: var(--text-light);
-}
-
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width: 1024px) {
-  .doi-ngu-list > li {
-    flex-basis: calc((100% - 40px) / 3);
+  .doi-ngu-list {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -414,7 +396,7 @@ main h2 {
     grid-template-columns: 1fr;
   }
 
-  .doi-ngu-list > li {
-    flex-basis: calc((100% - 20px) / 2);
+  .doi-ngu-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
