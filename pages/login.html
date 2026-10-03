@@ -4,44 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập - EduTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
 </head>
 <body>
-    <!-- NỘI DUNG BÊN TRÁI -->
-        <li>Chào mừng bạn đến với EduTrack</li>
+    <div class="login-page">
+    <!-- NỘI DUNG BÊN TRÁI --> 
+    <section class="login-intro">
+    <div class="login-intro-content">
+        <div class="login-badge">
+            <span>Chào mừng bạn đến với EduTrack</span>
+        </div>
         <h1>Hành trình học tập hiệu quả hơn cùng EduTrack</h1>
-        <p>Theo dõi tiến độ, tính GPA, quản lý môn học và khám phá những cơ hội phát triển bản thân - tất cả trong một nền tảng.</p>
+        <p class="login-intro-description">Theo dõi tiến độ, tính GPA, quản lý môn học và khám phá những cơ hội phát triển bản thân - tất cả trong một nền tảng.</p>
         <!-- Hình minh họa -->
-            <img src="../assets/images/minh họa login, register.png" alt="EduTrack quản lý học tập" width="350" height="200">
+        <div class="login-illustration">
+            <img src="../assets/images/minh họa login, register.png" alt="EduTrack quản lý học tập">
+        </div>
         <!-- 3 lợi ích -->
+        <div class="login-benefits">
         <!-- Lợi ích 1 -->
-            <h3>Theo dõi tiến độ</h3>
-            <p>Nắm bắt kết quả học tập mỗi lúc, mọi nơi.</p>
-        <!-- Lợi ích 2 -->
-            <h3>Quản lý môn học</h3>
-            <p>Dễ dàng theo dõi lịch học, điểm số và tín chỉ.</p>
-        <!-- Lợi ích 3 -->
-            <h3>Tối ưu tương lai</h3>
-            <p>Tư vấn học tập, định hướng nghề nghiệp.</p>
+            <div class="benefit-content">
+                <h3>Theo dõi tiến độ</h3>
+                <p>Nắm bắt kết quả học tập mọi lúc, mọi nơi.</p>
+            </div>
+            <!-- Lợi ích 2 -->
+            <div class="benefit-content">
+                <h3>Quản lý môn học</h3>
+                <p>Dễ dàng theo dõi lịch học, điểm số và tín chỉ.</p>
+            </div>
+            <!-- Lợi ích 3 -->
+            <div class="benefit-content">
+                <h3>Tối ưu tương lai</h3>
+                <p>Tư vấn lộ trình học tập, định hướng nghề nghiệp.</p>
+            </div>
+        </div>
+    </div>
+    </section>
     <!-- NỘI DUNG BÊN PHẢI -->
-        <h2>Đăng nhập</h2>
-        <p>Vui lòng đăng nhập vào tài khoản của bạn để tiếp tục sử dụng EduTrack.</p>
-        <!-- Email / Số điện thoại -->
-            <li>Email hoặc số điện thoại</li>
-            <input type="text" id="email" name="email" placeholder="Nhập email hoặc số điện thoại">
-        <!-- Mật khẩu -->
-            <li>Mật khẩu</li>
-            <input type="password" id="password" name="password" placeholder="Nhập mật khẩu">
-        <!-- Ghi nhớ + Quên mật khẩu -->
-            <p><input type="checkbox">Ghi nhớ đăng nhập
-            <a href="#">Quên mật khẩu?</a>
-            </p>
-        <!-- Button đăng nhập -->
-            <button type="button" onclick="login()"><a href="../index_loggedin.html">Đăng nhập →</a></button>
-            <p>Hoặc đăng nhập với</p>
-            <button type="button" onclick="loginWithGoogle()">Đăng nhập với Google</button>
-        <!-- Đăng ký -->
-            <p>Bạn chưa có tài khoản?
-            <a href="register.html">Đăng ký ngay</a>
-            </p>
+    <section class="login-form-section">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>Đăng nhập</h2>
+                <p>Vui lòng đăng nhập vào tài khoản của bạn để tiếp tục sử dụng.</p>
+            </div>
+            <!-- Form-->
+            <form class="login-form">
+                <!-- Email / Số điện thoại -->
+                <div class="login-form-group">
+                    <label for="email">Email hoặc số điện thoại</label>
+                    <input type="text" id="email" name="email" placeholder="Nhập email hoặc số điện thoại" autocomplete="username">
+                </div>
+                <!-- Mật khẩu -->
+                <div class="login-form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" autocomplete="current-password">
+                </div>
+                <!-- Ghi nhớ + Quên mật khẩu -->
+                <div class="login-options">
+                    <label class="remember-login">
+                        <input type="checkbox" name="remember">
+                        <span>Ghi nhớ đăng nhập</span>
+                    </label>
+                    <a href="#">Quên mật khẩu?</a>
+                </div>
+                <!-- Button đăng nhập -->
+                <a href="../index_loggedin.html" class="login-submit"> Đăng nhập → </a>
+                <div class="login-divider">    
+                    <span>Hoặc đăng nhập với</span>
+                </div>
+                <button type="button" class="google-login" onclick="loginWithGoogle()">Đăng nhập với Google</button>
+                <!-- Đăng ký -->
+                <p class="register-link">Bạn chưa có tài khoản?
+                    <a href="register.html">Đăng ký ngay</a>
+                </p>
+            </form>
+        </div>
+    </section>
+    </div>
 </body>
 </html>
