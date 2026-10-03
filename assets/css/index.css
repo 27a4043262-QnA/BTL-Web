@@ -4,9 +4,9 @@
    ========================================================= */
 
 :root {
-  --navy: #1E3A6E;
+  --navy: #2F527F;
   --green: #22C55E;
-  --green-dark: #16A34A;
+  --green-dark: #238B68;
   --green-soft: #E8F8EE;
   --green-light: #BBF0CF;
   --blue-soft: #E0EDFF;
@@ -865,7 +865,7 @@ body {
     margin-right: auto;
   }
 
-  .grid-3 {
+  .home.grid-3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -875,7 +875,7 @@ body {
     padding: 0 16px;
   }
 
-  .grid-3 {
+  .home.grid-3 {
     grid-template-columns: 1fr;
   }
 
