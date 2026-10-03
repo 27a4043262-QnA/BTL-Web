@@ -1,54 +1,36 @@
 /* =========================================================
    course-detail.css  -  Trang chi tiết môn học (EduTrack)
+   TUÂN THỦ main.css: màu, cỡ chữ, khoảng cách, bo góc, đổ bóng
+   đều lấy từ biến (var(--...)) của main.css, KHÔNG ghi cứng mã màu.
+   Muốn đổi giao diện, sửa biến trong :root của main.css.
+
    Gắn SAU main.css:
    <link rel="stylesheet" href="../assets/css/main.css">
    <link rel="stylesheet" href="../assets/css/course-detail.css">
+   (nếu file bạn đặt tên khác thì sửa href cho khớp)
    ========================================================= */
 
-/* ---------- NỀN TRANG ---------- */
-body { background: #fff; }
-
-/* ---------- KHUNG CHÍNH + BIẾN MÀU ---------- */
+/* ---------- KHUNG CHÍNH ---------- */
 #course-detail {
-  /* Màu chữ / viền / nền xám */
-  --cd-ink: #2d3986;          /* chữ thường */
-  --cd-muted: #6b6b6b;        /* chữ phụ */
-  --cd-line: #e3e3e3;         /* viền */
-  --cd-soft: #f0f0f0;         /* nền thanh xám */
-  --cd-radius: 8px;
-
-  /* Màu theo trang danh mục */
-  --cd-heading: #2e2a8a;      /* tiêu đề lớn (h1, h2) */
-  --cd-title: #1e1b6e;        /* tiêu đề nhỏ (h3, tên môn) */
-  --cd-chip-bg: #eef0ff;      /* nền chip "Đại cương" */
-  --cd-chip-text: #3730a3;    /* chữ chip */
-  --cd-btn: #2c4988;          /* nút */
-  --cd-btn-hover: #3e6ba8;
-
-  max-width: 1120px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 32px 24px 64px;
-  color: var(--cd-ink);
-  background: #fff;
+  padding: var(--spacing-5) var(--spacing-4) var(--spacing-7);
 
   /* Lưới 2 cột: nội dung chính | cột thông tin bên phải */
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
-  column-gap: 40px;
+  column-gap: var(--spacing-6);
   align-items: start;
 }
 
+/* Màu chữ heading và link lấy từ main.css (h1-h3, a), ở đây chỉ chỉnh khoảng cách */
 #course-detail h1,
 #course-detail h2,
 #course-detail h3 { margin: 0; }
 
-#course-detail h1,
-#course-detail h2 { color: var(--cd-heading); }
-
 #course-detail h2 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 16px;
+  font-size: var(--font-size-h3);
+  margin-bottom: var(--spacing-3);
 }
 
 /* ---------- HERO ---------- */
@@ -57,112 +39,110 @@ body { background: #fff; }
 
 #course-detail .course-hero-main {
   grid-column: 1;
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--cd-line);
+  padding-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--border-color);
 }
 
 #course-detail .breadcrumb {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 0 12px;
+  margin: 0 0 var(--spacing-3);
   font-size: 12px;
-  color: var(--cd-muted);
+  color: var(--text-light);
 }
 
+/* Chip khối kiến thức: màu theo data-category, giống .course-tag ở trang danh mục */
 #course-detail .chip {
-  background: var(--cd-chip-bg);
-  color: var(--cd-chip-text);
-  border: 0;
+  background: #eff6ff;
+  color: #4e3ec6;                /* mặc định = Đại cương */
   border-radius: 999px;          /* bo tròn kiểu viên thuốc */
   padding: 4px 12px;
   font-weight: 700;
 }
+#course-detail .chip[data-category="co-so-nganh"]  { color: #2898c8; }
+#course-detail .chip[data-category="chuyen-nganh"] { color: #407cd1; }
 
 #course-detail h1 {
-  font-size: 32px;
-  line-height: 1.2;
-  margin-bottom: 12px;
+  font-size: var(--font-size-h2);
+  margin-bottom: var(--spacing-3);
 }
 
 #course-detail .course-hero-main > p:last-child {
   margin: 0;
-  max-width: 62ch;
-  font-size: 14px;
+  font-size: var(--font-size-small);
   line-height: 1.7;
-  color: var(--cd-muted);
+  color: var(--text-light);
 }
 
-/* ---------- ASIDE: Thông tin chi tiết (đứng yên, không trượt theo) ---------- */
+/* ---------- ASIDE: Thông tin chi tiết ---------- */
 #course-detail .quickfacts {
   grid-column: 2;
   grid-row: 1 / span 3;          /* cao ngang hero + nội dung + tài liệu */
-  border: 1px solid var(--cd-line);
-  border-radius: 12px;
-  padding: 20px;
-  background: #fff;
+  padding: var(--spacing-4);
+  background: var(--white-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-small);
 }
 
 #course-detail .quickfacts h2 {
-  font-size: 16px;
-  margin-bottom: 12px;
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-3);
 }
 
 #course-detail .quickfacts table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
+  font-size: var(--font-size-small);
 }
 
 #course-detail .quickfacts th,
-#course-detail .quickfacts td { padding: 8px 0; }
+#course-detail .quickfacts td { padding: var(--spacing-2) 0; }
 
 #course-detail .quickfacts th {
   text-align: left;
   font-weight: 400;
-  color: var(--cd-muted);
+  color: var(--text-light);
 }
 
 #course-detail .quickfacts td {
   text-align: right;
   font-weight: 700;
+  color: var(--text-dark);
 }
 
-/* ---------- NÚT ---------- */
+/* ---------- NÚT (cùng kiểu với .et-btn-primary của main.css) ---------- */
 #course-detail .btn-cta {
   display: inline-block;
-  background: var(--cd-btn);
-  color: #fff;
+  background: var(--primary-color);
+  color: var(--white-color);
   border: 0;
-  border-radius: 6px;
-  padding: 10px 18px;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
+  border-radius: var(--radius-medium);
+  padding: 10px var(--spacing-3);
+  font-size: var(--font-size-small);
+  font-weight: 700;
   text-align: center;
   text-decoration: none;
-  cursor: pointer;
-  transition: background .15s;
+  transition: background-color 0.2s;
 }
-#course-detail .btn-cta:hover { background: var(--cd-btn-hover); }
+#course-detail .btn-cta:hover { background: var(--primary-dark); }
 
 #course-detail .btn-block {
   display: block;
-  margin-top: 16px;
+  margin-top: var(--spacing-3);
 }
 
 #course-detail .btn-icon {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 20px;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-4);
 }
 
-/* ---------- NỘI DUNG MÔN HỌC (bảng -> các thanh xám) ---------- */
+/* ---------- NỘI DUNG MÔN HỌC (bảng -> các thanh) ---------- */
 #course-content,
 #course-materials {
   grid-column: 1;
-  margin-top: 36px;
+  margin-top: var(--spacing-5);
 }
 
 /* Ẩn tiêu đề cột nhưng vẫn giữ cho trình đọc màn hình */
@@ -183,7 +163,7 @@ body { background: #fff; }
 #course-content tbody,
 #course-materials tbody {
   display: grid;
-  gap: 8px;
+  gap: var(--spacing-2);
 }
 
 #course-content tr {
@@ -191,10 +171,10 @@ body { background: #fff; }
   grid-template-columns: 32px 1fr auto;
   align-items: center;
   gap: 12px;
-  background: var(--cd-soft);
-  border-radius: 6px;
   padding: 10px 14px;
-  font-size: 13px;
+  background: var(--background-alt);
+  border-radius: var(--radius-small);
+  font-size: var(--font-size-small);
 }
 
 #course-content td { padding: 0; }
@@ -205,16 +185,20 @@ body { background: #fff; }
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: #d9d9d9;
+  background: var(--white-color);
+  color: var(--primary-color);
   font-size: 11px;
   font-weight: 700;
 }
 
-#course-content td:nth-child(2) { font-weight: 600; }
+#course-content td:nth-child(2) {
+  font-weight: 700;
+  color: var(--text-dark);
+}
 
 #course-content td:last-child {
   font-size: 12px;
-  color: var(--cd-muted);
+  color: var(--text-light);
 }
 
 /* ---------- TÀI LIỆU THAM KHẢO (bảng -> thẻ có viền) ---------- */
@@ -223,11 +207,11 @@ body { background: #fff; }
   grid-template-columns: 1fr 50px 70px 32px;
   align-items: center;
   gap: 12px;
-  background: #fff;
-  border: 1px solid var(--cd-line);
-  border-radius: var(--cd-radius);
-  padding: 12px 16px;
-  font-size: 13px;
+  padding: 12px var(--spacing-3);
+  background: var(--white-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-medium);
+  font-size: var(--font-size-small);
 }
 
 #course-materials td { padding: 0; }
@@ -235,13 +219,13 @@ body { background: #fff; }
 #course-materials td:first-child::before {   /* icon file */
   content: "▤";
   margin-right: 10px;
-  color: var(--cd-muted);
+  color: var(--text-light);
 }
 
 #course-materials td:nth-child(2),
 #course-materials td:nth-child(3) {
-  font-size: 11px;
-  color: var(--cd-muted);
+  font-size: 12px;
+  color: var(--text-light);
   text-align: right;
 }
 
@@ -250,7 +234,7 @@ body { background: #fff; }
 #course-materials td:last-child a {
   font-size: 0;                  /* ẩn chữ, chỉ hiện icon */
   text-decoration: none;
-  color: var(--cd-ink);
+  color: var(--primary-color);
 }
 #course-materials td:last-child a::before {
   content: "⤓";
@@ -260,54 +244,51 @@ body { background: #fff; }
 /* ---------- ĐÁNH GIÁ + FAQ (full-width) ---------- */
 #course-reviews-faq {
   grid-column: 1 / -1;
-  margin-top: 56px;
-  padding-top: 40px;
-  border-top: 1px solid var(--cd-line);
+  margin-top: var(--spacing-6);
+  padding-top: var(--spacing-5);
+  border-top: 1px solid var(--border-color);
 }
 
-#reviews { margin-bottom: 48px; }
+#reviews { margin-bottom: var(--spacing-6); }
 
 #reviews article {
-  background: #fff;
-  border: 1px solid var(--cd-line);
-  border-radius: var(--cd-radius);
-  padding: 16px 20px;
+  padding: var(--spacing-3) 20px;
   margin-bottom: 12px;
+  background: var(--white-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-medium);
 }
 
 #reviews article h3 {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 4px;
-  color: var(--cd-title);
+  font-size: var(--font-size-small);
+  margin-bottom: var(--spacing-1);
 }
 
 #reviews article p {
   margin: 0 0 6px;
-  font-size: 13px;
+  font-size: var(--font-size-small);
   line-height: 1.6;
-  color: var(--cd-muted);
+  color: var(--text-light);
 }
 
-#reviews > p { font-size: 13px; }
-#reviews > p a { color: var(--cd-chip-text); text-underline-offset: 3px; }
+#reviews > p { font-size: var(--font-size-small); }
 
 /* FAQ */
 .faq-item {
-  border: 1px solid var(--cd-line);
-  border-radius: 6px;
-  margin-bottom: 8px;
-  background: #fff;
+  margin-bottom: var(--spacing-2);
+  background: var(--white-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-small);
 }
 
 .faq-item summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 16px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--cd-title);
+  padding: 14px var(--spacing-3);
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  color: var(--text-dark);
   cursor: pointer;
   list-style: none;
 }
@@ -317,54 +298,74 @@ body { background: #fff; }
   content: "›";
   font-size: 20px;
   line-height: 1;
-  color: var(--cd-muted);
+  color: var(--text-light);
   transition: transform .2s;
 }
 .faq-item[open] summary::after { transform: rotate(90deg); }
 
 .faq-item p {
   margin: 0;
-  padding: 0 16px 14px;
-  font-size: 13px;
-  color: var(--cd-muted);
+  padding: 0 var(--spacing-3) 14px;
+  font-size: var(--font-size-small);
+  color: var(--text-light);
 }
 
 /* ---------- MÔN HỌC LIÊN QUAN ---------- */
 #course-detail .related-courses {
   grid-column: 1 / -1;
-  margin-top: 56px;
+  margin-top: var(--spacing-6);
 }
 
+/* main.css chỉ bỏ chấm đầu dòng trong nav/footer nên ở đây phải tự reset */
 .related-courses ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing-3);
 }
 
 .related-courses .course-card {
-  background: #fff;
-  border: 1px solid var(--cd-line);
-  border-radius: var(--cd-radius);
-  padding: 16px;
   height: 100%;
-  box-sizing: border-box;
+  padding: var(--spacing-3);
+  background: var(--white-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-small);
 }
 
 .related-courses .course-card h3 {
   font-size: 12px;
   font-weight: 400;
-  color: var(--cd-muted);
+  color: var(--text-light);
 }
 
 .related-courses .course-card h3 a {
   display: block;                 /* tên môn nằm riêng 1 dòng */
   margin-bottom: 6px;
-  font-size: 16px;
+  font-size: var(--font-size-base);
   font-weight: 700;
-  color: var(--cd-title);
-  text-decoration: none;
+  color: var(--text-dark);
+  text-decoration: none;          /* main.css gạch chân link trong <li> */
 }
 .related-courses .course-card h3 a:hover { text-decoration: underline; }
+
+/* ---------- RESPONSIVE (cùng mốc với main.css: 991px / 767px) ---------- */
+@media (max-width: 991px) {
+  #course-detail { grid-template-columns: minmax(0, 1fr); }
+  #course-detail .quickfacts {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: var(--spacing-4);
+  }
+  .related-courses ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  #course-detail { padding: var(--spacing-4) var(--spacing-3) var(--spacing-6); }
+  .related-courses ul { grid-template-columns: minmax(0, 1fr); }
+  #course-materials tr { grid-template-columns: 1fr auto; }
+  #course-materials td:nth-child(2),
+  #course-materials td:nth-child(3) { display: none; }
+}
