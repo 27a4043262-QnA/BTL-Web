@@ -4,46 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký - EduTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/register.css">
 </head>
 <body>
+    <div class="register-page">
     <!-- NỘI DUNG BÊN TRÁI -->
-        <li>Bắt đầu hành trình học tập cùng EduTrack</li>
-        <h1>Nền tảng học tập thông minh dành cho thế hệ sinh viên hiện đại</h1>
-        <p>Học tập linh hoạt, quản lý điểm số hiệu quả, theo dõi tiến độ học tập và phát triển bản thân - tất cả trong một nền tảng.</p>
-        <!-- Hình minh họa -->
-            <img src="../assets/images/minh họa login, register.png" alt="EduTrack quản lý học tập" width="350" height="200">
-        <!-- 3 lợi ích -->
-        <!-- Lợi ích 1 -->
-            <h3>Theo dõi tiến độ</h3>
-            <p>Nắm bắt kết quả học tập mỗi lúc, mọi nơi.</p>
-        <!-- Lợi ích 2 -->
-            <h3>Quản lý môn học</h3>
-            <p>Dễ dàng theo dõi lịch học, điểm số và tín chỉ.</p>
-        <!-- Lợi ích 3 -->
-            <h3>Tối ưu tương lai</h3>
-            <p>Tư vấn học tập, định hướng nghề nghiệp.</p>
+    <section class="register-intro">
+        <div class="register-intro-content">
+            <div class="register-badge">
+                <span>Bắt đầu hành trình học tập cùng EduTrack</span>
+            </div>
+            <h1>Nền tảng học tập dành cho thế hệ sinh viên hiện đại</h1>
+            <p class="register-intro-description">Học tập linh hoạt, quản lý điểm số hiệu quả, theo dõi tiến độ học tập và phát triển bản thân - tất cả trong một nền tảng.</p>
+            <!-- Hình minh họa -->
+            <div class="register-illustration">
+                <img src="../assets/images/minh họa login, register.png" alt="EduTrack quản lý học tập">
+            </div>
+            <!-- 3 lợi ích -->
+            <div class="register-benefits">
+                <!-- Lợi ích 1 -->
+                <div class="benefit-content">
+                    <h3>Theo dõi tiến độ</h3>
+                    <p>Nắm bắt kết quả học tập mỗi lúc, mọi nơi.</p>
+                </div>
+                <!-- Lợi ích 2 -->
+                <div class="benefit-content">
+                    <h3>Quản lý môn học</h3>
+                    <p>Dễ dàng theo dõi lịch học, điểm số và tín chỉ.</p>
+                </div>
+                <!-- Lợi ích 3 -->
+                <div class="benefit-content">
+                    <h3>Tối ưu tương lai</h3>
+                    <p>Tư vấn lộ trình học tập, định hướng nghề nghiệp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- NỘI DUNG BÊN PHẢI -->
-        <h2>Đăng ký</h2>
-        <p>Tạo tài khoản EduTrack để bắt đầu hành trình học tập hiệu quả và dễ dàng hơn.</p>
-        <!-- Họ tên -->
-            <li>Họ và tên</li>
-            <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên của bạn">
-        <!-- Email / Số điện thoại -->
-            <li>Email hoặc số điện thoại</li>
-            <input type="text" id="email" name="email" placeholder="Nhập email hoặc số điện thoại của bạn">
-        <!-- Mật khẩu -->
-            <li>Mật khẩu</li>
-            <input type="password" id="password" name="password" placeholder="Nhập mật khẩu">
-        <!-- Xác nhận mật khẩu -->
-            <li>Xác nhận mật khẩu</li>
-            <input type="password" id="password" name="password" placeholder="Nhập lại mật khẩu">
-            <!-- Button đăng nhập -->
-            <p><button type="button" onclick="login()"><a href="login.html">Đăng ký tài khoản →</a></button></p>
-            <p>Hoặc đăng ký với</p>
-            <button type="button" onclick="loginWithGoogle()">Đăng ký với Google</button>
-        <!-- Đăng ký -->
-            <p>Đã có tài khoản?
-            <a href="login.html">Đăng nhập ngay</a>
-            </p>
+    <section class="register-form-section">
+        <div class="register-card">
+            <div class="register-header">
+                <h2>Đăng ký</h2>
+                <p>Tạo tài khoản để bắt đầu hành trình học tập hiệu quả hơn.</p>
+            </div>
+            <form class="register-form">
+                <!-- Họ tên -->
+                <div class="register-form-group">
+                    <label for="fullname">Họ và tên</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên của bạn">
+                </div>
+                <!-- Email / Số điện thoại -->
+                <div class="register-form-group">
+                    <label for="email">Email hoặc số điện thoại</label>
+                    <input type="text" id="email" name="email" placeholder="Nhập email hoặc số điện thoại của bạn">
+                </div>
+                <!-- Mật khẩu -->
+                <div class="register-form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" name="password" placeholder="Nhập mật khẩu">
+                </div>
+                <!-- Xác nhận mật khẩu -->
+                <div class="register-form-group">
+                    <label for="confirm-password">Xác nhận mật khẩu</label>
+                    <input type="password" id="password" name="password" placeholder="Nhập lại mật khẩu">
+                </div>
+                <!-- Button đăng ký -->
+                <a href="login.html" class="register-submit">Đăng ký tài khoản →</a>
+                <div class="register-divider">
+                    <span>Hoặc đăng ký với</span>
+                </div>
+                <button type="button" class="google-register" onclick="loginWithGoogle()">Đăng ký với Google</button>
+                <!-- Đăng nhập -->
+                <p class="login-link">Đã có tài khoản?
+                    <a href="login.html">Đăng nhập ngay</a>
+                </p>
+            </form>
+        </div>
+    </section>
+    </div>
 </body>
 </html>
