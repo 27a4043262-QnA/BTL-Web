@@ -4,38 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Công cụ Tính & Dự phóng GPA | EDUTRACK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/css/gpa-calculator.css">
   </head>
   <body>
+    <!-- HEADER -->
     <header>
-      <!-- Logo -->
-      <div class="logo">
-        <img
-          src="../assets/images/logo.png"
-          alt="EduTrack Logo"
-          width="70"
-          height="70"
-        />
-        <a href="../index.html">EduTrack</a>
-      </div>
-      <!-- Navigation -->
-        <ul>
-          <li><a href="index.html">Trang chủ</a></li>
-          <li><a href="pages/courses.html">Môn học</a></li>
-          <li><a href="pages/gpa-calculator.html">Tính GPA</a></li>
-          <li><a href="pages/advising-contact.html">Tư vấn</a></li>
-          <li><a href="pages/about.html">Giới thiệu</a></li>
-          <li class="button">
-            <button type="button" class="button-link" onclick="window.location.href='login.html'">Bắt đầu ngay</button>
-          </li>
-        </ul>
+        <!-- Logo -->
+        <div class="logo">
+            <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
+            <a> EduTrack </a>
+        </div>
+        <!-- Navigation Menu -->
+            <ul>
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="courses.html">Môn học</a></li>
+                <li><a href="gpa-calculator.html">Tính GPA</a></li>
+                <li><a href="advising-contact.html">Tư vấn</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li class="button">
+                    <button type="button" class="button-link" onclick="window.location.href='login.html'">Bắt đầu ngay</button>
+                </li>
+            </ul>  
     </header>
     <!-- Main -->
-    <main>
+    <main id="main-content">
       <!-- Hero section -->
       <section class="gpa-hero" id="gpa-hero">
         <div class="gpa-hero-text">
-          <h1>Công cụ Tính & Dự phóng GPA</h1>
+          <h1>Công cụ Tính &amp; Dự phóng GPA</h1>
           <p>
             Công cụ tính và dự phóng GPA giúp sinh viên theo dõi kết quả học
             tập, tính toán GPA chính xác và chủ động định hướng điểm số trong
@@ -43,15 +43,15 @@
           </p>
         </div>
 
-        <div class="gpa-hero-buttons">
-          <button type="button" id="btnCalculator" class="btn btn-primary">
-            Tính GPA hiện tại
-          </button>
+<div class="gpa-hero-buttons">
+  <button type="button" id="btnCalculator" class="et-btn et-btn-primary" aria-pressed="true">
+    Tính GPA hiện tại
+  </button>
 
-          <button type="button" id="btnProjection" class="btn btn-secondary">
-            Dự phóng GPA
-          </button>
-        </div>
+  <button type="button" id="btnProjection" class="et-btn et-btn-secondary" aria-pressed="false">
+    Dự phóng GPA
+  </button>
+</div>
 
         <div class="gpa-hero-image">
           <img
@@ -77,7 +77,7 @@
             </p>
           </div>
 
-          <button type="button" class="btn btn-outline">
+          <button type="button" class="et-btn et-btn-outline">
             Hướng dẫn sử dụng
           </button>
         </div>
@@ -118,45 +118,37 @@
           </p>
 
           <div class="calc-fields-row">
-            <div class="field">
-              <label for="weight-attendance">Chuyên cần</label>
-              <div class="input-suffix">
-                <input
-                  type="number"
-                  id="weight-attendance"
-                  name="weight-attendance"
-                  value="10"
-                />
-                <span>%</span>
-              </div>
-            </div>
-            <div class="field">
-              <label for="weight-midterm">Giữa kỳ</label>
-              <div class="input-suffix">
-                <input
-                  type="number"
-                  id="weight-midterm"
-                  name="weight-midterm"
-                  value="30"
-                />
-                <span>%</span>
-              </div>
-            </div>
-            <div class="field">
-              <label for="weight-final">Cuối kỳ</label>
-              <div class="input-suffix">
-                <input
-                  type="number"
-                  id="weight-final"
-                  name="weight-final"
-                  value="60"
-                />
-                <span>%</span>
-              </div>
-            </div>
-          </div>
+  <div class="field">
+    <label for="weight-attendance">Chuyên cần</label>
+    <div class="input-suffix">
+      <input type="number" id="weight-attendance" name="weight-attendance" value="10" min="0" max="100" />
+      <span>%</span>
+    </div>
+  </div>
+  <div class="field">
+    <label for="weight-midterm1">Giữa kỳ 1</label>
+    <div class="input-suffix">
+      <input type="number" id="weight-midterm1" name="weight-midterm1" value="15" min="0" max="100" />
+      <span>%</span>
+    </div>
+  </div>
+  <div class="field">
+    <label for="weight-midterm2">Giữa kỳ 2</label>
+    <div class="input-suffix">
+      <input type="number" id="weight-midterm2" name="weight-midterm2" value="15" min="0" max="100" />
+      <span>%</span>
+    </div>
+  </div>
+  <div class="field">
+    <label for="weight-final">Cuối kỳ</label>
+    <div class="input-suffix">
+      <input type="number" id="weight-final" name="weight-final" value="60" min="0" max="100" />
+      <span>%</span>
+    </div>
+  </div>
+</div>
 
-          <button type="button" class="btn btn-outline">
+          <button type="button" class="et-btn et-btn-outline">
             Tùy chỉnh công thức
           </button>
         </div>
@@ -165,7 +157,7 @@
         <div class="calc-step" id="step-courses">
           <div class="calc-step-header">
             <h3><span class="step-badge">3</span> Danh sách môn học</h3>
-            <button type="button" class="btn btn-primary btn-sm">
+            <button type="button" class="et-btn et-btn-primary et-btn-sm">
               + Thêm môn học
             </button>
           </div>
@@ -173,69 +165,63 @@
           <table class="calc-table">
             <thead>
               <tr>
-                <th></th>
+                <th><span class="sr-only">Kéo để sắp xếp</span></th>                
                 <th>STT</th>
                 <th>Tên môn học</th>
                 <th>Mã môn</th>
                 <th>Tín chỉ</th>
                 <th>Chuyên cần (10%)</th>
-                <th>Giữa kỳ 1 (30%)</th>
-                <th>Giữa kỳ 2 (30%)</th>
-                <th>Cuối kỳ (30%)</th>
-                <th></th>
+                <th>Giữa kỳ 1 (15%)</th>
+                <th>Giữa kỳ 2 (15%)</th>
+                <th>Cuối kỳ (60%)</th>
+                <th><span class="sr-only">Xóa</span></th>  
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="drag-handle">⠿</td>
-                <td>1</td>
-                <td><input type="text" value="Toán cao cấp A1" /></td>
-                <td><input type="text" value="MATH101" /></td>
-                <td><input type="number" value="3" /></td>
-                <td><input type="number" value="9.0" /></td>
-                <td><input type="number" value="8.5" /></td>
-                <td><input type="number" value="8.0" /></td>
-                <td><input type="number" value="7.5" /></td>
-                <td>
-                  <button type="button" class="btn-icon-delete">🗑</button>
-                </td>
-              </tr>
-              <tr>
-                <td class="drag-handle">⠿</td>
-                <td>2</td>
-                <td><input type="text" value="Vật lý đại cương" /></td>
-                <td><input type="text" value="PHYS101" /></td>
-                <td><input type="number" value="3" /></td>
-                <td><input type="number" value="8.5" /></td>
-                <td><input type="number" value="7.5" /></td>
-                <td><input type="number" value="7.0" /></td>
-                <td><input type="number" value="6.5" /></td>
-                <td>
-                  <button type="button" class="btn-icon-delete">🗑</button>
-                </td>
-              </tr>
-              <tr>
-                <td class="drag-handle">⠿</td>
-                <td>3</td>
-                <td><input type="text" value="Lập trình C" /></td>
-                <td><input type="text" value="IT101" /></td>
-                <td><input type="number" value="4" /></td>
-                <td><input type="number" value="9.5" /></td>
-                <td><input type="number" value="8.5" /></td>
-                <td><input type="number" value="8.0" /></td>
-                <td><input type="number" value="8.0" /></td>
-                <td>
-                  <button type="button" class="btn-icon-delete">🗑</button>
-                </td>
-              </tr>
+  <td class="drag-handle" aria-hidden="true">⠿</td>
+  <td>1</td>
+  <td><input type="text"   aria-label="Tên môn học"     value="Toán cao cấp A1" /></td>
+  <td><input type="text"   aria-label="Mã môn"          value="MATH101" /></td>
+  <td><input type="number" aria-label="Tín chỉ"         value="3" min="1" /></td>
+  <td><input type="number" aria-label="Điểm chuyên cần" value="9.0" min="0" max="10" step="0.1" /></td>
+  <td><input type="number" aria-label="Điểm giữa kỳ 1"  value="8.5" min="0" max="10" step="0.1" /></td>
+  <td><input type="number" aria-label="Điểm giữa kỳ 2"  value="8.0" min="0" max="10" step="0.1" /></td>
+  <td><input type="number" aria-label="Điểm cuối kỳ"    value="7.5" min="0" max="10" step="0.1" /></td>
+  <td><button type="button" class="btn-icon-delete" aria-label="Xóa môn Toán cao cấp A1">🗑</button></td>
+</tr>
+<tr>
+  <td class="drag-handle" aria-hidden="true">⠿</td>
+  <td>2</td>
+  <td><input type="text"   aria-label="Tên môn học"     value="Vật lý đại cương" /></td>
+  <td><input type="text"   aria-label="Mã môn"          value="PHYS101" /></td>
+  <td><input type="number" aria-label="Tín chỉ"         value="3" min="1" /></td>
+  <td><input type="number" aria-label="Điểm chuyên cần" value="8.5" min="0" max="10" step="0.1" /></td>
+  <td><input type="number" aria-label="Điểm giữa kỳ 1"  value="7.5" min="0" max="10" step="0.1" /></td>
+  <td><input type="number" aria-label="Điểm giữa kỳ 2"  value="7.0" min="0" max="10" step="0.1" /></td>
+  <td><input type="number" aria-label="Điểm cuối kỳ"    value="6.5" min="0" max="10" step="0.1" /></td>
+  <td><button type="button" class="btn-icon-delete" aria-label="Xóa môn Vật lý đại cương">🗑</button></td>
+</tr>
+<tr>
+  <td class="drag-handle" aria-hidden="true">⠿</td>
+  <td>3</td>
+  <td><input type="text"   aria-label="Tên môn học"     value="Lập trình C" /></td>
+  <td><input type="text"   aria-label="Mã môn"          value="IT101" /></td>
+  <td><input type="number" aria-label="Tín chỉ"         value="4" min="1" /></td>
+  <td><input type="number" aria-label="Điểm chuyên cần" value="9.5" min="0" max="10" step="0.1" /></td>
+  <td><input type="number" aria-label="Điểm giữa kỳ 1"  value="8.5" min="0" max="10" step="0.1" /></td>
+  <td><input type="number" aria-label="Điểm giữa kỳ 2"  value="8.0" min="0" max="10" step="0.1" /></td>
+  <td><input type="number" aria-label="Điểm cuối kỳ"    value="8.0" min="0" max="10" step="0.1" /></td>
+  <td><button type="button" class="btn-icon-delete" aria-label="Xóa môn Lập trình C">🗑</button></td>
+</tr>
             </tbody>
           </table>
 
-          <button type="button" class="btn btn-add-row">+ Thêm môn học</button>
+          <button type="button" 	class="et-btn btn-add-row">+ Thêm môn học</button>
 
           <div class="calc-actions">
-            <button type="button" class="btn btn-outline">↺ Làm mới</button>
-            <button type="button" class="btn btn-primary">▦ Tính điểm</button>
+            <button type="button" class="et-btn et-btn-outline">↺ Làm mới</button>
+            <button type="button" class="et-btn et-btn-primary">▦ Tính điểm</button>
           </div>
         </div>
       </section>
@@ -243,7 +229,7 @@
       <!-- ===== RESULT SECTION ===== -->
       <section class="gpa-result" id="gpa-result">
         <div class="result-heading">
-          <img src="images/icon-result.svg" alt="" />
+          <img src="../assets/images/icon-result.svg" alt="" />
           <div>
             <h2>Kết quả</h2>
             <p>Kết quả tính điểm của từng môn học và điểm trung bình học kỳ.</p>
@@ -252,7 +238,7 @@
 
         <div class="result-summary">
           <div class="result-gpa-card">
-            <img src="images/icon-graduate.svg" alt="" />
+            <img src="../assets/images/icon-graduate.svg" alt="" />
             <div>
               <span>Điểm trung bình học kỳ (GPA)</span>
               <strong class="result-gpa-value"
@@ -263,22 +249,22 @@
           </div>
 
           <div class="result-stat-card">
-            <img src="images/icon-book.svg" alt="" />
+            <img src="../assets/images/icon-book.svg" alt="" />
             <strong>3</strong>
             <span>Tổng số môn</span>
           </div>
           <div class="result-stat-card">
-            <img src="images/icon-credit.svg" alt="" />
+            <img src="../assets/images/icon-credit.svg" alt="" />
             <strong>10</strong>
             <span>Tổng số tín chỉ</span>
           </div>
           <div class="result-stat-card">
-            <img src="images/icon-calc-small.svg" alt="" />
+            <img src="../assets/images/icon-calc-small.svg" alt="" />
             <strong>7.9</strong>
             <span>Điểm trung bình hệ 10</span>
           </div>
           <div class="result-stat-card">
-            <img src="images/icon-star.svg" alt="" />
+            <img src="../assets/images/icon-star.svg" alt="" />
             <strong>3.3</strong>
             <span>Điểm trung bình hệ 4</span>
           </div>
@@ -296,9 +282,9 @@
                 <th>Mã môn</th>
                 <th>Tín chỉ</th>
                 <th>Chuyên cần (10%)</th>
-                <th>Giữa kỳ 1 (30%)</th>
-                <th>Giữa kỳ 2 (30%)</th>
-                <th>Cuối kỳ (30%)</th>
+                <th>Giữa kỳ 1 (15%)</th>
+                <th>Giữa kỳ 2 (15%)</th>
+                <th>Cuối kỳ (60%)</th>
               </tr>
             </thead>
             <tbody>
@@ -338,7 +324,7 @@
 
         <!-- Banner dự phóng GPA -->
         <div class="forecast-banner">
-          <img src="images/icon-forecast.svg" alt="" />
+          <img src="../assets/images/icon-forecast.svg" alt="" />
           <div>
             <strong
               >Với GPA hiện tại, bạn có muốn dự phóng điểm cho kỳ tới?</strong
@@ -348,8 +334,9 @@
               tính điểm trung bình kỳ tới của bạn.
             </p>
           </div>
-          <a href="#" class="btn btn-primary">✦ Tính dự phóng ngay</a>
-        </div>
+<button type="button" id="btnForecast" class="et-btn et-btn-primary">
+    ✦ Tính dự phóng ngay
+</button>        </div>
       </section>
       </div>
 
@@ -357,8 +344,7 @@
 <!-- ================= DỰ PHÓNG GPA ====================== -->
 <!-- ===================================================== -->
 
-<div id="projection-wrapper" style="display: none;">
-
+<div id="projection-wrapper" hidden>
     <!-- ================= PHẦN NHẬP DỰ PHÓNG ================= -->
     <section class="gpa-projection" id="projection-section">
 
@@ -865,7 +851,7 @@
             <p>
                 <strong>Lưu ý:</strong>
                 Kết quả dự phóng chỉ mang tính chất tham khảo, phụ thuộc
-                vào nhiều yếu tố như điểm số đầu vào, cách tính của trường
+                vào nhiều yếu tố như độ khó môn học, cách tính của trường
                 và năng lực của bạn.
             </p>
 
@@ -877,7 +863,7 @@
 
             <button
                 type="button"
-                class="btn btn-outline"
+                class="et-btn et-btn-outline"
                 id="btnResetProjection"
             >
                 ↻ Làm mới
@@ -885,7 +871,7 @@
 
             <button
                 type="button"
-                class="btn btn-primary"
+                class="et-btn et-btn-primary"
                 id="btnCalculateProjection"
             >
                 ▣ Tính và dự phóng GPA
@@ -931,7 +917,7 @@
 
             <button
                 type="button"
-                class="btn btn-success"
+                class="et-btn et-btn-success"
                 id="btnExpandProjection"
             >
                 ⊕ Nâng cấp để mở rộng
@@ -966,7 +952,7 @@
 
             <button
                 type="button"
-                class="btn btn-success"
+                class="et-btn et-btn-success"
                 id="btnExportProjection"
             >
                 ↓ Xuất file (PDF/CSV)
@@ -1174,9 +1160,9 @@
 
                 <p>
                     <strong>Lưu ý:</strong>
-                    Kết quả dự phóng mang tính chất tham khảo, phụ thuộc
-                    vào nhiều yếu tố như điểm đầu vào, chính sách của trường
-                    và năng lực của bạn.
+                Kết quả dự phóng chỉ mang tính chất tham khảo, phụ thuộc
+                vào nhiều yếu tố như độ khó môn học, cách tính của trường
+                và năng lực của bạn.
                 </p>
 
             </div>
@@ -1223,7 +1209,7 @@
 
             <button
                 type="button"
-                class="btn btn-success"
+                class="et-btn et-btn-success"
                 id="btnExpandAnalysis"
             >
                 ⊕ Nâng cấp để mở rộng
@@ -1490,16 +1476,18 @@
 
 </div>
     </main>
-    <!-- FOOTER -->
+ <!-- FOOTER -->
     <footer>
         <!-- Giới thiệu EduTrack -->
-        <section>
-            <img src="../assets/images/course/logo.png" alt="EduTrack Logo" width="70" height="70">
-            <h2> EduTrack</h2>
+        <section class="footer-intro">
+            <div class="footer-logo">
+                <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
+                <h2> EduTrack</h2>
+            </div>
             <p> Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông minh. </p>
         </section>
         <!-- Về EduTrack -->
-        <section>
+        <section class="footer-column">
             <h2>Về EduTrack</h2>
             <ul>
                 <li><a href="about.html">Giới thiệu</a></li>
@@ -1508,18 +1496,16 @@
             </ul>
         </section>
         <!-- Môn học -->
-        <section>
+        <section class="footer-column">
             <h2>Môn học</h2>
             <ul>
-
-
-                <li><a href="courses.html?category=dai-cuong">Đại cương</a></li>
-                <li><a href="courses.html?category=co-so-nganh">Cơ sở ngành</a></li>
-                <li><a href="courses.html?category=chuyen-nganh">Chuyên ngành</a></li>
+                <li><a href="courses.html">Đại cương</a></li>
+                <li><a href="courses.html">Cơ sở ngành</a></li>
+                <li><a href="courses.html">Chuyên ngành</a></li>
             </ul>
         </section>
         <!-- Tính năng -->
-        <section>
+        <section class="footer-column">
             <h2>Tính năng</h2>
             <ul>
                 <li><a href="gpa-calculator.html">Tính GPA</a></li>
@@ -1528,7 +1514,7 @@
             </ul>
         </section>
         <!-- Điều khoản -->
-        <section>
+        <section class="footer-column">
             <h2>Điều khoản</h2>
             <ul>
                 <li><a href="#">Chính sách bảo mật</a></li>
@@ -1537,11 +1523,39 @@
             </ul>
         </section>
         <!-- Copyright -->
-        <section>
-            <p>
-                &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
-            </p>
+        <section class="footer-bottom">
+        <span>
+            &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
+        </span>
         </section>
     </footer>
+<script>
+  const calc = document.getElementById('calculator-wrapper');
+  const proj = document.getElementById('projection-wrapper');
+  const btnCalc = document.getElementById('btnCalculator');
+  const btnProj = document.getElementById('btnProjection');
+  const btnForecast = document.getElementById('btnForecast');
+
+  function show(mode) {
+    const isCalc = mode === 'calc';
+    calc.hidden = !isCalc;
+    proj.hidden = isCalc;
+
+    btnCalc.classList.toggle('et-btn-primary', isCalc);
+    btnCalc.classList.toggle('et-btn-secondary', !isCalc);
+    btnProj.classList.toggle('et-btn-primary', !isCalc);
+    btnProj.classList.toggle('et-btn-secondary', isCalc);
+
+    btnCalc.setAttribute('aria-pressed', isCalc);
+    btnProj.setAttribute('aria-pressed', !isCalc);
+  }
+
+  btnCalc.addEventListener('click', () => show('calc'));
+  btnProj.addEventListener('click', () => show('proj'));
+  btnForecast.addEventListener('click', () => {
+    show('proj');
+    proj.scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
   </body>
 </html>
