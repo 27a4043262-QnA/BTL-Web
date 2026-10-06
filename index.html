@@ -9,15 +9,19 @@
 </head>
 <body>
 <!-- HEADER -->
-    <header>
+    
+<a class="skip-link" href="#main-content">Bỏ qua điều hướng</a>
+ 
+<!-- HEADER -->
+     <header>
         <!-- Logo -->
         <div class="logo">
             <img src="assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
-            <a> EduTrack </a>
+            <a href="index.html">EduTrack</a>
         </div>
         <!-- Navigation Menu -->
             <ul>
-                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="index.html" aria-current="page">Trang chủ</a></li>
                 <li><a href="pages/courses.html">Môn học</a></li>
                 <li><a href="pages/gpa-calculator.html">Tính GPA</a></li>
                 <li><a href="pages/advising-contact.html">Tư vấn</a></li>
@@ -27,112 +31,117 @@
                 </li>
             </ul>
         </header>
+ 
     <!-- MAIN CONTENT -->
-    <main class="home">
+    <main id="main-content">
+ 
         <!-- 1. HERO SECTION -->
-        <section class="hero">
-            <div class="container hero-inner">
+        <section class="hero" aria-labelledby="hero-h1">
+            <div class="et-container grid-2 hero-inner">
                 <!-- Nội dung bên trái -->
                 <div class="hero-text">
-                    <h1> Lập kế hoạch thông minh Bứt phá GPA </h1>
-                    <p> Giúp sinh viên tối ưu hóa lộ trình học tập, tính điểm GPA mục tiêu thông minh và tiếp cận kho tài liệu ôn thi chất lượng cao. </p>
-                    <button type="button" class="btn btn-primary" onclick="window.location.href='pages/about.html'"> Khám phá ngay </button>
+                    <h1 id="hero-h1">Lập kế hoạch thông minh Bứt phá GPA</h1>
+                    <p>Giúp sinh viên tối ưu hóa lộ trình học tập, tính điểm GPA mục tiêu thông minh và tiếp cận kho tài liệu ôn thi chất lượng cao.</p>
+                    <a class="et-btn et-btn-primary" href="pages/about.html">Khám phá ngay</a>
                 </div>
                 <!-- Nội dung bên phải -->
                 <figure class="hero-image">
-                    <img src="assets/images/minh họa trang chủ.jpg" alt="Minh họa quản lý tiến độ học tập" width="350" height="250">
+                    <img src="assets/images/minh họa trang chủ.jpg" alt="Minh họa quản lý tiến độ học tập" width="800" height="600">
                 </figure>
             </div>
         </section>
+ 
         <!-- 2. SECTION SỐ LIỆU -->
-        <section class="stats">
-            <div class="container grid-3">
-                <div class="stat-card">
+        <section class="stats" aria-label="Số liệu nổi bật">
+            <div class="et-container grid-3">
+                <div class="stat-card et-card">
                     <div class="icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM20 17v4H6.5"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM20 17v4H6.5"/></svg>
                     </div>
                     <div>
-                         <strong> 120+ </strong>
-                       <div> Môn học đại cương và chuyên ngành </div>
-                     </div>
+                        <strong>120+</strong>
+                        <div>Môn học đại cương và chuyên ngành</div>
+                    </div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card et-card">
                     <div class="icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
                     <div>
-                         <strong> 1000+ </strong>
-                         <div> Sinh viên tin tưởng và sử dụng</div>
-                     </div>
+                        <strong>1000+</strong>
+                        <div>Sinh viên tin tưởng và sử dụng</div>
+                    </div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card et-card">
                     <div class="icon-box">
-                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
                     </div>
                     <div>
-                        <strong> 800+ </strong>
-                         <div> Tài liệu ôn thi và đề cương chuẩn </div>
-                          </div>
+                        <strong>800+</strong>
+                        <div>Tài liệu ôn thi và đề cương chuẩn</div>
+                    </div>
                 </div>
             </div>
         </section>
+ 
         <!-- 3. SECTION: CÁCH EDUTRACK GIÚP BẠN -->
-        <section class="steps">
-            <div class="container">
+        <section class="steps et-section" aria-labelledby="steps-h2">
+            <div class="et-container">
                 <!-- Tiêu đề -->
                 <div class="section-head center">
-                    <p class="eyebrow"> QUY TRÌNH ĐƠN GIẢN </p>
-                    <h2> Cách EduTrack giúp bạn </h2>
+                    <p class="eyebrow">Quy trình đơn giản</p>
+                    <h2 id="steps-h2">Cách EduTrack giúp bạn</h2>
                 </div>
                 <div class="grid-3">
                     <!-- Bước 1 -->
-                    <div class="step-card">
+                    <div class="step-card et-card">
                         <div class="step-top">
                             <div class="icon-box small">
-                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
                             </div>
-                            <div class="step-num"> 01 </div>
+                            <div class="step-num">01</div>
                         </div>
                         <h3>Chọn môn học</h3>
-                        <p> Tìm kiếm hàng trăm môn học đại cương và chuyên ngành có sẵn trên hệ thống. </p>
+                        <p>Tìm kiếm hàng trăm môn học đại cương và chuyên ngành có sẵn trên hệ thống.</p>
                     </div>
                     <!-- Bước 2 -->
-                    <div class="step-card">
+                    <div class="step-card et-card">
                         <div class="step-top">
                             <div class="icon-box small">
-                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
                             </div>
-                            <div class="step-num"> 02 </div>
+                            <div class="step-num">02</div>
                         </div>
                         <h3>Lên kế hoạch</h3>
-                        <p> Sắp xếp thời gian biểu, đặt mục tiêu điểm số chi tiết theo từng tín chỉ. </p>
+                        <p>Sắp xếp thời gian biểu, đặt mục tiêu điểm số chi tiết theo từng tín chỉ.</p>
                     </div>
                     <!-- Bước 3 -->
-                    <div class="step-card">
+                    <div class="step-card et-card">
                         <div class="step-top">
                             <div class="icon-box small">
-                                <svg viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
                             </div>
-                            <div class="step-num"> 03 </div>
+                            <div class="step-num">03</div>
                         </div>
                         <h3>Theo dõi GPA</h3>
-                        <p> Cập nhật kết quả học tập và theo dõi GPA liên tục để biết tiến độ thực quản. </p>
+                        <p>Cập nhật kết quả học tập và theo dõi GPA liên tục để biết tiến độ thực quản.</p>
                     </div>
                 </div>
             </div>
         </section>
+ 
         <!-- 4. SECTION: CÔNG CỤ TÍNH GPA -->
-         <section class="gpa">
-            <div class="container gpa-grid">
+        <section class="gpa et-section" aria-labelledby="gpa-h2">
+            <div class="et-container grid-2 gpa-grid">
                 <!-- Nội dung bên trái -->
                 <div class="gpa-text">
-                    <p class="badge"> CÔNG CỤ MIỄN PHÍ </p>
-                    <h2>Công cụ tính GPA thông minh</h2>
-                    <p> Không còn phải loay hoay với bảng Excel phức tạp. Chỉ cần nhập điểm thành phần, EduTrack tự động quy đổi điểm hệ 4 và hệ 10 chuẩn xác, giúp bạn theo dõi kết quả học tập dễ dàng. </p>
-                    <button type="button" class="btn btn-primary" onclick="window.location.href='pages/gpa-calculator.html'">Tính GPA ngay</button>
+                    <p class="eyebrow">Công cụ miễn phí</p>
+                    <h2 id="gpa-h2">Công cụ tính GPA thông minh</h2>
+                    <p>Không còn phải loay hoay với bảng Excel phức tạp. Chỉ cần nhập điểm thành phần, EduTrack tự động quy đổi điểm hệ 4 và hệ 10 chuẩn xác, giúp bạn theo dõi kết quả học tập dễ dàng.</p>
+                    <a class="et-btn et-btn-primary" href="pages/gpa-calculator.html">Tính GPA ngay</a>
                 </div>
                 <!-- Nội dung bên phải -->
-                <div class="card gpa-card">
+                <div class="et-card gpa-card">
                     <div class="gpa-card-head">
                         <h3>Bảng điểm học kỳ 1</h3>
                         <ul class="gpa-tags">
@@ -189,36 +198,37 @@
                 </div>
             </div>
         </section>
+ 
         <!-- 5. SECTION: TIN TỨC NỔI BẬT -->
-        <section class="news">
-            <div class="container">
+        <section class="news et-section" aria-labelledby="news-h2">
+            <div class="et-container">
                 <!-- Header -->
                 <div class="section-head row">
                     <div>
-                        <p class="badge"> TIN TỨC & SỰ KIỆN</p>
-                        <h2 class="big">Tin tức nổi bật</h2>
+                        <p class="eyebrow">Tin tức &amp; sự kiện</p>
+                        <h2 id="news-h2">Tin tức nổi bật</h2>
                     </div>
                     <a href="#" class="see-all">Xem tất cả →</a>
                 </div>
                 <!-- Danh sách tin tức -->
                 <div class="grid-3">
                     <!-- Tin 1 -->
-                    <article class="news-card">
-                        <img src="assets/images/index/DangKiTin.png" alt="Hướng dẫn đăng ký học phần">
+                    <article class="news-card et-card">
+                        <img src="assets/images/index/DangKiTin.png" alt="Hướng dẫn đăng ký học phần" width="400" height="170" loading="lazy">
                         <h3>Hướng dẫn đăng ký học phần học kỳ mới năm 2025</h3>
                         <p>Tổng hợp các mốc thời gian, lưu ý quan trọng và hướng dẫn chi tiết cách đăng ký môn học trên hệ thống.</p>
                         <a href="#" class="read-more">Đọc thêm →</a>
                     </article>
                     <!-- Tin 2 -->
-                    <article class="news-card">
-                        <img src="assets/images/index/GPA.jpg" alt="Kỹ năng giúp sinh viên bứt phá GPA">
+                    <article class="news-card et-card">
+                        <img src="assets/images/index/GPA.jpg" alt="Kỹ năng giúp sinh viên bứt phá GPA" width="400" height="170" loading="lazy">
                         <h3>5 kỹ năng giúp sinh viên bứt phá GPA</h3>
                         <p>Những thói quen học tập và kỹ năng quản lý thời gian giúp bạn đạt kết quả học tập trong học kỳ.</p>
                         <a href="#" class="read-more">Đọc thêm →</a>
                     </article>
                     <!-- Tin 3 -->
-                    <article class="news-card">
-                        <img src="assets/images/index/HocBongDuHoc.jpg" alt="Học bổng và cơ hội du học">
+                    <article class="news-card et-card">
+                        <img src="assets/images/index/HocBongDuHoc.jpg" alt="Học bổng và cơ hội du học" width="400" height="170" loading="lazy">
                         <h3>Học bổng và cơ hội du học 2025</h3>
                         <p>Cập nhật danh sách học bổng, chương trình trao đổi sinh viên và cơ hội học tập mới nhất.</p>
                         <a href="#" class="read-more">Đọc thêm →</a>
@@ -226,61 +236,64 @@
                 </div>
             </div>
         </section>
+ 
         <!-- 6. SECTION CẢM NHẬN SINH VIÊN -->
-        <section class="testimonials">
-            <div class="container">
+        <section class="testimonials et-section" aria-labelledby="testi-h2">
+            <div class="et-container">
                 <div class="section-head center">
-                    <p class="eyebrow"> TRẢI NGHIỆM THỰC TẾ </p>
-                    <h2> Cảm nhận từ sinh viên </h2>
+                    <p class="eyebrow">Trải nghiệm thực tế</p>
+                    <h2 id="testi-h2">Cảm nhận từ sinh viên</h2>
                 </div>
                 <div class="grid-3">
-                    <!-- Slide 1 -->
-                    <div class="testi-card">
+                    <!-- Cảm nhận 1 -->
+                    <div class="testi-card et-card">
                         <blockquote>
-                            <p> "EduTrack giúp mình quản lý điểm số và kế hoạch học tập dễ dàng hơn. Mình có thể chủ động theo dõi GPA của mình." </p>
+                            <p>"EduTrack giúp mình quản lý điểm số và kế hoạch học tập dễ dàng hơn. Mình có thể chủ động theo dõi GPA của mình."</p>
                         </blockquote>
                         <div class="author">
-                            <strong> Lê Ngọc Ánh </strong>
-                            <p> Sinh viên năm 1 </p>
+                            <strong>Lê Ngọc Ánh</strong>
+                            <p>Sinh viên năm 1</p>
                         </div>
                     </div>
-                    <!-- Slide 2 -->
-                    <div class="testi-card">
+                    <!-- Cảm nhận 2 -->
+                    <div class="testi-card et-card">
                         <blockquote>
-                            <p> "Kho tài liệu của môn học được phân loại rất rõ ràng. Nhờ vậy mình nhanh chóng tìm được nội dung cần ôn thi." </p>
+                            <p>"Kho tài liệu của môn học được phân loại rất rõ ràng. Nhờ vậy mình nhanh chóng tìm được nội dung cần ôn thi."</p>
                         </blockquote>
                         <div class="author">
-                            <strong> Phan Kim Chi </strong>
-                            <p> Sinh viên năm 3 </p>
+                            <strong>Phan Kim Chi</strong>
+                            <p>Sinh viên năm 3</p>
                         </div>
                     </div>
-                    <!-- Slide 3 -->
-                    <div class="testi-card">
+                    <!-- Cảm nhận 3 -->
+                    <div class="testi-card et-card">
                         <blockquote>
-                            <p> "Được tư vấn về định hướng học tập nên mình biết cách sắp xếp các môn học và mục tiêu GPA phù hợp." </p>
+                            <p>"Được tư vấn về định hướng học tập nên mình biết cách sắp xếp các môn học và mục tiêu GPA phù hợp."</p>
                         </blockquote>
                         <div class="author">
-                            <strong> Nguyễn Hoài Thương </strong>
-                            <p> Sinh viên năm 2 </p>
+                            <strong>Nguyễn Hoài Thương</strong>
+                            <p>Sinh viên năm 2</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+ 
         <!-- 7. SECTION CALL TO ACTION -->
-        <section class="cta">
-            <div class="container">
+        <section class="cta" aria-labelledby="cta-h2">
+            <div class="et-container">
                 <div class="cta-box">
-                    <h2>Sẵn sàng bứt phá GPA?</h2>
+                    <h2 id="cta-h2">Sẵn sàng bứt phá GPA?</h2>
                     <p>Đăng ký tài khoản miễn phí ngay hôm nay và xây dựng lộ trình học tập tối ưu cùng cộng đồng sinh viên và các môn học.</p>
                     <div class="cta-actions">
-                        <button type="button" class="btn btn-primary" onclick="window.location.href='pages/register.html'">Đăng ký ngay</button>
-                        <button type="button" class="btn btn-outline" onclick="window.location.href='pages/about.html'">Tìm hiểu thêm</button>
+                        <a class="et-btn et-btn-primary" href="pages/register.html">Đăng ký ngay</a>
+                        <a class="et-btn et-btn-outline" href="pages/about.html">Tìm hiểu thêm</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+ 
     <footer>
         <!-- Giới thiệu EduTrack -->
         <section class="footer-intro">
