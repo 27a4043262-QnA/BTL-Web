@@ -473,6 +473,131 @@ header ul li a:hover {
   background: var(--white-color);
   color: var(--primary-color);
 }
+ 
+/* Nút sau đăng nhập */
+.button-link {
+    background: var(--white-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 8px 14px;
+    border-radius: var(--radius-medium);
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    list-style: none;
+}
+
+.button-link::-webkit-details-marker {
+    display: none;
+}
+
+.button-link .profile-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #cbdbe4;
+    color: var(--primary-color);
+    border-radius: 6px;
+}
+
+.button-link .profile-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Mũi tên */
+.account-arrow {
+    font-size: 13px;
+}
+
+.account-menu {
+    position: relative;
+}
+
+.account-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 280px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+/* Các mục */
+.account-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 9px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.account-item:hover {
+    background: #6989b3;
+}
+
+.account-item strong {
+    color: var(--primary-color);
+    font-size: 13px;
+}
+
+/* Icon trong dropdown */
+.account-item .icon-box {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf5fb;
+    color: var(--primary-color);
+    border-radius: 9px;
+}
+
+.account-item .icon-box svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Đường kẻ */
+.dropdown-line {
+    height: 1px;
+    background: #eee;
+    margin: 6px 4px;
+}
+
+.account-item.logout:hover {
+    background: #fcd3d3;
+}
+
+.account-item.logout .icon-box {
+    background: #fff0f1;
+    color: #d9534f;
+}
+
+.account-item.logout strong {
+    color: #d9534f;
+}
 
 /* === FOOTER === */
 footer {
