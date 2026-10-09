@@ -1,9 +1,5 @@
 /* ==========================================================================
    EDUTRACK - main.css | PHẦN 1: Design System, Reset, Layout, Accessibility
-   Font: Be Vietnam Pro (Google Fonts, SIL OFL). Thêm vào <head> mọi trang:
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700&display=swap" rel="stylesheet">
    Thứ tự nạp: bootstrap.min.css -> main.css (main.css nạp SAU)
    Quy ước: class tự viết có tiền tố "et-" để không trùng Bootstrap 4
             (.container, .btn, .card). Các phần sau chỉ dùng var(--...).
@@ -36,9 +32,9 @@
     --danger-bg: #FEE2E2;
 
     /* Font & cỡ chữ */
-    --font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif;   /* nạp qua Google Fonts, chỉ độ đậm 400 và 700 */
+    --font-family:'Segoe UI', Arial, sans-serif;   /* nạp qua Google Fonts, chỉ độ đậm 400 và 700 */
     --font-size-base: 16px;
-    --font-size-small: 14px;
+    --font-size-small: 12px;
     --font-size-h1: clamp(28px, 4vw + 12px, 44px);
     --font-size-h2: clamp(24px, 2.5vw + 12px, 32px);
     --font-size-h3: 20px;
@@ -69,88 +65,93 @@
 
 
 /* ===== 2. RESET ===== */
+/* Giúp width và height bao gồm cả padding và border,
+   tránh phần tử bị rộng hơn kích thước đã đặt */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
-
+/* Xóa mặc định lề đệm */
 * {
     margin: 0;
     padding: 0;
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth;     /*Cuộn trang mượt mà hơn*/
     scroll-padding-top: var(--header-height);   /* neo #id không bị navbar che */
-    -webkit-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;  /*Ngăn trình duyệt tự dộng điều chỉnh kích thước chữ*/
 }
-
+/* Thiết lập bố cục và kiểu chữ chung cho toàn bộ trang */
 body {
-    min-height: 100vh;
+    min-height: 100vh;   /* Chiều cao tối thiểu bằng chiều cao màn hình */
     display: flex;                               /* footer luôn nằm đáy trang */
     flex-direction: column;
     font-family: var(--font-family);
     font-size: var(--font-size-base);
-    line-height: 1.6;
+    line-height: 1.6; /* Tạo khoảng cách giữa các dòng chữ */
     color: var(--text-color);
     background-color: var(--background-color);
 }
 
 main {
-    display: block;
-    flex: 1 0 auto;
+    display: block; /* Đảm bảo main hiển thị như một phần tử khối */
+    flex: 1 0 auto;/* Cho phép main mở rộng để đẩy footer xuống đáy trang */
 }
 
 img,
 svg,
 video {
-    max-width: 100%;
-    height: auto;
-    display: block;
+    max-width: 100%; /*ảnh k bh rộng hơn khung của nó*/
+    height: auto; /*giữ chính xác hình ảnh khi thu nhỏ, không bị méo*/
+    display: block;/* Hiển thị dạng khối, tránh khoảng trống dưới ảnh */
 }
-
+/* Đồng bộ kiểu chữ của các thành phần nhập liệu với trang web */
 button,
 input,
 select,
 textarea {
-    font: inherit;
-    color: inherit;
+    font: inherit;/* Kế thừa kiểu chữ và cỡ chữ từ phần tử cha */
+    color: inherit;/* Kế thừa màu chữ từ phần tử cha */
 }
 
+/* Thiết lập con trỏ chuột cho nút bấm */
 button {
-    cursor: pointer;
+    cursor: pointer;  /* Hiển thị bàn tay khi có thể nhấn nút */
 }
 
 button:disabled {
-    cursor: not-allowed;
+    cursor: not-allowed; /* Hiển thị biểu tượng không được phép khi nút bị vô hiệu hóa */
 }
-
+/* Chuẩn hóa cách hiển thị nhóm trường nhập liệu */
 fieldset {
-    min-width: 0;
-    border: 0;
+    min-width: 0; /* Cho phép fieldset thu nhỏ theo khung chứa */
+    border: 0;  /* Loại bỏ đường viền mặc định */
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
+    border-collapse: collapse; /* Gộp đường viền các ô liền kề */
+    width: 100%; /* Bảng chiếm toàn bộ chiều rộng khung chứa */
 }
-
+/* Đảm bảo phần tử có thuộc tính hidden sẽ bị ẩn */
 [hidden] {
     display: none !important;
 }
 
 /* Heading & đoạn văn (reset đã xóa margin nên khai báo lại) */
 h1, h2, h3, h4, h5, h6 {
-    color: var(--text-dark);
-    font-weight: 700;
-    line-height: 1.35;                /* tiếng Việt có dấu cần giãn dòng rộng hơn */
-    margin-bottom: var(--spacing-3);
+    color: var(--primary-color);  /* Sử dụng màu chữ tiêu đề */
+    font-weight: 700;/* In đậm tiêu đề */
+    line-height: 1.35;            /* Điều chỉnh khoảng cách giữa các dòng */
+    margin-bottom: var(--spacing-3);  /* Tạo khoảng cách bên dưới tiêu đề */
 }
+
+/* Thiết lập kích thước cho từng cấp tiêu đề */
 h1 { font-size: var(--font-size-h1); }
 h2 { font-size: var(--font-size-h2); }
 h3 { font-size: var(--font-size-h3); }
-
+/* Thiết lập khoảng cách giữa các đoạn văn */
 p {
     margin-bottom: var(--spacing-3);
 }
@@ -160,10 +161,12 @@ a {
     color: var(--primary-color);
     transition: color 0.2s;
 }
+/* Gạch chân liên kết trong đoạn văn và danh sách */
 main p a,
 main li a {
     text-decoration: underline;
 }
+/* Đổi màu liên kết khi di chuột vào */
 a:hover {
     color: var(--primary-dark);
 }
@@ -334,6 +337,7 @@ footer :focus-visible {
     padding: 10px var(--spacing-3);
     border: 2px solid transparent;
     border-radius: var(--radius-medium);
+    font-size: var(--font-size-small);   /* thêm dòng này: 14px */
     font-weight: 700;
     text-decoration: none;
     cursor: pointer;
