@@ -31,20 +31,28 @@
                 <button type="button" class="button-link" onclick="window.location.href='pages/login.html'">Bắt đầu ngay</button>
             </li>
             <!-- TH2: Sau khi dang nhap-->
-            <div class="button">
+            <li class="button">
+                <!-- Thông báo: giữ nguyên icon -->
+                <div class="notification">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                        <path d="M10 21h4"></path>
+                    </svg>
+                    <span class="notification-dot"></span>
+                </div>
+                <!-- Tài khoản sinh viên -->
                 <details class="account-menu">
-                    <!-- Nút tên sinh viên -->
-                    <summary class="button-link">
-                        <div class="profile-icon icon-box"> 
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <circle cx="12" cy="7" r="4"></circle>
-                                <path d="M5 21v-1a7 7 0 0 1 14 0v1"></path>
-                            </svg>
-                        </div>
-                        <span class="student-name">Nguyễn Văn A</span>
-                        <span class="account-arrow">⌄</span>
+                    <summary class="button-clink">
+                    <!-- Avatar PC -->
+                        <div class="profile-avatar">PC</div>
+                    <!-- Tên sinh viên -->
+                        <span class="student-name">Phan Kim Chi</span>
+                    <!-- Icon mũi tên -->
+                        <svg class="account-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
                     </summary>
-                    <!-- MENU KHI CLICK -->
+                    <!-- Menu tài khoản -->
                     <div class="account-dropdown">
                         <!-- Thông tin cá nhân -->
                         <a href="#" class="account-item">
@@ -91,7 +99,7 @@
                         </a>
                     </div>
                 </details>
-            </div>
+            </li>
         </ul>
     </header>
     
