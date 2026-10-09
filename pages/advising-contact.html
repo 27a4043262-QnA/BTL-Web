@@ -3,421 +3,630 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduTrack - Tư vấn lộ trình học tập</title>
+    <title>EduTrack - Tư vấn học tập</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/advising-contact.css">
 </head>
 <body>
 
-
-   <!-- HEADER -->
+    <!-- HEADER -->
     <header>
         <div class="logo">
             <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
-            <a> EduTrack </a>
+            <a>EduTrack</a>
         </div>
         <ul>
             <li><a href="../index.html">Trang chủ</a></li>
             <li><a href="courses.html">Môn học</a></li>
             <li><a href="gpa-calculator.html">Tính GPA</a></li>
-            <li><a href="advising-contact.html">Tư vấn</a></li>
+            <li><a href="advising-contact.html" class="active">Tư vấn</a></li>
             <li><a href="about.html">Giới thiệu</a></li>
             <li class="button">
                 <button type="button" class="button-link" onclick="window.location.href='login.html'">Bắt đầu ngay</button>
             </li>
-        </ul>  
+        </ul>   
     </header>
-
 
     <main class="advising-dashboard">
 
-
-    <!-- HERO BANNER ĐẦU TRANG -->
-    <section class="hero-banner">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Trang tư vấn</h1>
-                <p>Dựa trên kết quả bài test năng lực và dự phòng, EduTrack sẽ phân tích, đưa ra lộ trình học tập phù hợp nhất với bạn.</p>
-            </div>
-            <div class="hero-features">
-                <div class="feature-item"><span>📝</span> Đánh giá năng lực qua bài test</div>
-                <div class="feature-item"><span>🔔</span> Cảnh báo và gợi ý cải thiện</div>
-                <div class="feature-item"><span>🎯</span> Lộ trình cá nhân hóa</div>
-                <div class="feature-item"><span>📈</span> Theo dõi tiến độ liên tục</div>
-            </div>
-        </div>
-        <div class="badge-container">
-        <span class="section-badge">TƯ VẤN LỘ TRÌNH CÁ NHÂN HÓA</span>
-    </div>
-    </section>
-
-
-    <!-- TRƯỜNG HỢP 1: BLOCK ĐIỀU HƯỚNG SANG DỰ PHÓNG GPA (Sẽ hiện nếu chưa có dữ liệu) -->
-    <section id="gpa-redirect-cta" class="dashboard-card empty-state hidden">
-        <div class="empty-state-content">
-            <span class="empty-icon">📊</span>
-            <h2>Bạn chưa thiết lập danh sách môn học!</h2>
-            <p>Để nhận được lộ trình học tập cá nhân hóa, vui lòng sử dụng tính năng Dự phóng GPA để nhập các môn học bạn dự định đăng ký trong kỳ này.</p>
-            <button class="btn-primary" onclick="window.location.href='gpa-calculator.html'">Dự phóng GPA ngay</button>
-        </div>
-    </section>
-
-
-    <!-- TRƯỜNG HỢP 2: LUỒNG BÌNH THƯỜNG MỤC 1, 2, 3, 4 -->
-
-
-    <!-- MỤC 1: LÀM BÀI TEST ĐẦU VÀO -->
-    <section id="section-1" class="dashboard-card">
-        <div class="card-header">
-            <div class="step-badge">1</div>
-            <div class="header-text">
-                <h2>Làm bài test đầu vào</h2>
-                <p>Đánh giá năng lực hiện tại của bạn ở từng môn học để xác định điểm mạnh, điểm yếu và mức độ sẵn sàng cho lộ trình học tập.</p>
-            </div>
-           
-        </div>
-
-
-        <div class="subjects-grid">
-            <!-- Môn Toán -->
-            <div class="subject-card">
-                <div class="sub-icon icon-blue">🧮</div>
-                <h3>Toán học</h3>
-                <p>Kiến thức, tư duy logic, giải quyết vấn đề.</p>
-               
-                <!-- Nút chưa làm bài -->
-                <button class="btn-start-test" onclick="window.location.href='#'">Bắt đầu làm bài</button>
-               
-                <!-- Các thành phần khi đã làm xong (đang bị ẩn) -->
-                <button class="btn-done hidden">✓ Đã hoàn thành</button>
-                <div class="score-bar hidden"><div class="fill" style="width: 75%;"></div></div>
-                <span class="score-text hidden">7.5/10</span>
-            </div>
-
-
-            <!-- Môn Vật lý -->
-            <div class="subject-card">
-                <div class="sub-icon icon-purple">⚛️</div>
-                <h3>Vật lý</h3>
-                <p>Tư duy phân tích, công thức, ứng dụng thực tế.</p>
-                <button class="btn-start-test" onclick="window.location.href='#'">Bắt đầu làm bài</button>
-                <button class="btn-done hidden">✓ Đã hoàn thành</button>
-                <div class="score-bar hidden"><div class="fill" style="width: 62%;"></div></div>
-                <span class="score-text hidden">6.2/10</span>
-            </div>
-
-
-            <!-- Môn Hóa học -->
-            <div class="subject-card">
-                <div class="sub-icon icon-pink">🧪</div>
-                <h3>Hóa học</h3>
-                <p>Kiến thức cơ bản, phản ứng và bài tập.</p>
-                <button class="btn-start-test" onclick="window.location.href='#'">Bắt đầu làm bài</button>
-                <button class="btn-done hidden">✓ Đã hoàn thành</button>
-                <div class="score-bar hidden"><div class="fill" style="width: 81%;"></div></div>
-                <span class="score-text hidden">8.1/10</span>
-            </div>
-
-
-            <!-- Môn Tiếng Anh -->
-            <div class="subject-card">
-                <div class="sub-icon icon-sky">🔤</div>
-                <h3>Tiếng Anh</h3>
-                <p>Nghe, nói, đọc, viết và ngữ pháp.</p>
-                <button class="btn-start-test" onclick="window.location.href='#'">Bắt đầu làm bài</button>
-                <button class="btn-done hidden">✓ Đã hoàn thành</button>
-                <div class="score-bar hidden"><div class="fill" style="width: 58%;"></div></div>
-                <span class="score-text hidden">5.8/10</span>
-            </div>
-
-
-            <!-- Môn Ngữ văn -->
-            <div class="subject-card">
-                <div class="sub-icon icon-green">📖</div>
-                <h3>Ngữ văn</h3>
-                <p>Đọc hiểu, phân tích, viết luận.</p>
-                <button class="btn-start-test" onclick="window.location.href='#'">Bắt đầu làm bài</button>
-                <button class="btn-done hidden">✓ Đã hoàn thành</button>
-                <div class="score-bar hidden"><div class="fill" style="width: 70%;"></div></div>
-                <span class="score-text hidden">7.0/10</span>
-            </div>
-        </div>
-
-
-        <!-- NÚT NỘP BÀI TEST CHỐT CHẶN -->
-        <div class="submit-test-container">
-            <button id="btn-submit-test" class="btn-primary" disabled>Xem phân tích</button>
-            <p class="submit-note">* Vui lòng hoàn thành tất cả bài test trên để nhận lộ trình</p>
-        </div>
-    </section>
-
-
-    <!-- MỤC 2: KẾT QUẢ PHÂN TÍCH & CẢNH BÁO (Bị ẩn mặc định) -->
-    <section id="section-2" class="dashboard-card ">
-        <div class="card-header">
-            <div class="step-badge">2</div>
-            <div class="header-text">
-                <h2>Kết quả phân tích & cảnh báo</h2>
-                <p>Dựa trên kết quả bài test và so sánh với lộ trình dự phòng, hệ thống sẽ đưa ra cảnh báo chung và gợi ý cải thiện cho bạn.</p>
-            </div>
-        </div>
-
-
-        <div class="two-columns">
-            <div class="sub-panel">
-                <div class="panel-head">
-                    <h3>Tổng quan kết quả học lực</h3>
-                    <span class="badge-level">Mức học lực: Trung bình</span>
-                </div>
-                <div class="chart-box">
-                    <div class="circle-score">
-                        <h2>6.8<span>/10</span></h2>
-                        <p>Điểm trung bình</p>
-                    </div>
-                    <div class="score-list">
-                        <div class="score-item"><span>Toán học</span><div class="bar-bg"><div class="bar" style="width: 75%; background: #238B68;"></div></div><span>7.5</span></div>
-                        <div class="score-item"><span>Vật lý</span><div class="bar-bg"><div class="bar" style="width: 62%; background: #238B68;"></div></div><span>6.2</span></div>
-                        <div class="score-item"><span>Hóa học</span><div class="bar-bg"><div class="bar" style="width: 81%; background: #238B68;"></div></div><span>8.1</span></div>
-                        <div class="score-item"><span>Tiếng Anh</span><div class="bar-bg"><div class="bar" style="width: 58%; background: #f59e0b;"></div></div><span>5.8</span></div>
-                        <div class="score-item"><span>Ngữ văn</span><div class="bar-bg"><div class="bar" style="width: 70%; background: #238B68;"></div></div><span>7.0</span></div>
+        <!-- =================================================================== -->
+        <!-- TRƯỜNG HỢP 1: CHƯA DÙNG DỰ PHÓNG GPA (Hiển thị mặc định nếu chưa có dữ liệu) -->
+        <!-- =================================================================== -->
+        <div id="state-1-no-data" class="advising-state hidden">
+            <!-- HERO BANNER TƯ VẤN HỌC TẬP -->
+            <section class="hero-banner">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Tư vấn học tập</h1>
+                        <p>Đánh giá năng lực, phân tích kết quả và xây dựng lộ trình học tập cá nhân hóa dựa trên mục tiêu từ Dự phóng GPA.</p>
                     </div>
                 </div>
-            </div>
-
-
-            <div class="sub-panel flex-col">
-                <div class="alert-box warning">
-                    <h4>⚠️ Cảnh báo và gợi ý cải thiện</h4>
-                    <p>Kết quả bài test cho thấy học lực hiện tại của bạn chưa thực sự ổn định so với lộ trình dự phòng. Để đạt được mục tiêu mong muốn, bạn cần tập trung cải thiện một số kỹ năng và kiến thức quan trọng, đặc biệt là:</p>
+                <div class="hero-illustration">
+                    <span class="illustration-icon">🎓📄</span>
                 </div>
-                <div class="alert-box danger">
-                    <h4>🎯 Ưu tiên cải thiện: Toán học và Vật lý</h4>
-                    <p>Đây là 2 môn có mức điểm thấp hơn so với yêu cầu của lộ trình, ảnh hưởng lớn đến tổng kết kết quả học tập và cơ hội đạt mục tiêu của bạn.</p>
-                    <button class="btn-detail" onclick="document.getElementById('warning-modal').classList.remove('hidden')">Xem chi tiết ➔</button>
+            </section>
+
+            <!-- CARD CẢNH BÁO / CHƯA CÓ DỮ LIỆU -->
+            <section class="dashboard-card empty-state-card text-center">
+                <div class="empty-state-content">
+                    <div class="empty-icon-wrapper">
+                        <span class="empty-icon">🎓📋</span>
+                    </div>
+                    <h2>Bạn chưa có dữ liệu từ Dự phóng GPA!</h2>
+                    <p>Để nhận được tư vấn học tập cá nhân hóa, hãy thực hiện Dự phóng GPA và chọn các môn bạn muốn cải thiện.</p>
+                    <button class="btn-primary btn-cta" onclick="window.location.href='gpa-calculator.html'">
+                        Dự phóng GPA ngay ➔
+                    </button>
                 </div>
-                <div class="alert-box info">
-                    <p>💡 <strong>Đừng lo!</strong> Chỉ cần bạn học đúng phương pháp và theo đúng lộ trình, EduTrack sẽ luôn đồng hành và giúp bạn tiến bộ từng ngày.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-
-    <!-- MỤC 3: LỘ TRÌNH HỌC TẬP CÁ NHÂN HÓA (Bị ẩn mặc định) -->
-    <section id="section-3" class="dashboard-card">
-        <div class="card-header">
-            <div class="step-badge">3</div>
-            <div class="header-text">
-                <h2>Nhận lộ trình học tập cá nhân hóa</h2>
-                <p>Dựa trên kết quả bài test và cảnh báo, hệ thống đề xuất sử dụng lộ trình học tập chi tiết cho từng môn, bao gồm mục tiêu, các khóa học gợi ý, phương pháp học và thời gian dự kiến hoàn thành.</p>
-            </div>
-        </div>
-
-
-        <div class="tab-menu">
-            <button class="tab-btn active">🌐 Tổng quan</button>
-            <button class="tab-btn">Toán học</button>
-            <button class="tab-btn">Vật lý</button>
-            <button class="tab-btn">Hóa học</button>
-            <button class="tab-btn">Tiếng Anh</button>
-            <button class="tab-btn">Ngữ văn</button>
-        </div>
-
-
-        <div class="two-columns">
-            <div class="sub-panel">
-                <h3 style="margin-bottom: 24px;">🎯 Mục tiêu tổng thể</h3>
-                <div class="target-card">
-                    <div class="target-icon"></div>
-                    <div>
-                        <h4>Tăng điểm trung bình từ 6.8 lên 8.5+</h4>
-                        <p>Trong vòng 6 tháng tới</p>
+            <!-- TÍNH NĂNG TƯ VẤN CÓ THỂ GIÚP BẠN -->
+            <section class="dashboard-card feature-overview-card">
+                <h3>Tư vấn có thể giúp bạn những gì?</h3>
+                <div class="features-4-col">
+                    <div class="feature-box">
+                        <div class="box-icon icon-blue">📊</div>
+                        <h4>Đánh giá năng lực hiện tại</h4>
+                    </div>
+                    <div class="feature-box">
+                        <div class="box-icon icon-green">🎯</div>
+                        <h4>Phân tích điểm mạnh, điểm yếu</h4>
+                    </div>
+                    <div class="feature-box">
+                        <div class="box-icon icon-purple">🛣️</div>
+                        <h4>Đề xuất lộ trình học tập cá nhân hóa</h4>
+                    </div>
+                    <div class="feature-box">
+                        <div class="box-icon icon-orange">📚</div>
+                        <h4>Gợi ý tài liệu và phương pháp học</h4>
                     </div>
                 </div>
-                <ul class="check-list">
-                    <li>Cải thiện kỹ năng nền tảng cho Toán và Vật lý</li>
-                    <li>Nâng cao khả năng làm bài và tư duy</li>
-                    <li>Đạt mức điểm ổn định ở tất cả các môn</li>
-                </ul>
-            </div>
+            </section>
 
-
-            <div class="sub-panel">
-                <h3>🗺️ Lộ trình học tập theo giai đoạn</h3>
-                <div class="phase-list">
-                    <div class="phase-item">
-                        <span class="num">1</span>
-                        <span class="tag">Giai đoạn 1</span>
-                        <div class="info">
-                            <strong>Củng cố nền tảng (Tuần 1 – 2)</strong>
-                            <small>Ôn lại kiến thức cơ bản, nắm vững lý thuyết | 5 môn</small>
-                        </div>
-                        <span class="arrow">➔</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="num">2</span>
-                        <span class="tag">Giai đoạn 2</span>
-                        <div class="info">
-                            <strong>Luyện đề nâng cao (Tuần 3 – 6)</strong>
-                            <small>Làm đề theo chủ đề, cải thiện kỹ năng làm bài | 5 môn</small>
-                        </div>
-                        <span class="arrow">➔</span>
-                    </div>
-                    <div class="phase-item">
-                        <span class="num">3</span>
-                        <span class="tag">Giai đoạn 3</span>
-                        <div class="info">
-                            <strong>Tăng tốc và hoàn thiện (Tuần 7 – 12)</strong>
-                            <small>Luyện đề tổng hợp, mô phỏng thi thực tế | 5 môn</small>
-                        </div>
-                        <span class="arrow">➔</span>
+            <!-- CHATBOT HỖ TRỢ (DÀNH CHO TÍNH NĂNG TRƯỜNG HỢP 1) -->
+            <section class="dashboard-card chatbot-card">
+                <div class="chatbot-header">
+                    <div class="bot-avatar">🤖</div>
+                    <div class="bot-info">
+                        <h3>Trợ lý học tập EduTrack</h3>
+                        <p>Bạn có thể hỏi mình về cách sử dụng Dự phóng GPA, quy chế đào tạo, cách tính điểm hoặc bất kỳ thắc mắc nào về việc học.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- MỤC 4: CHI TIẾT LỘ TRÌNH TỪNG MÔN HỌC (Bị ẩn mặc định) -->
-    <section id="section-4" class="dashboard-card ">
-        <div class="card-header">
-            <div class="step-badge">4</div>
-            <div class="header-text">
-                <h2>Chi tiết lộ trình từng môn học</h2>
-                <p>Nhấn vào từng môn để xem chi tiết lộ trình, khóa học gợi ý, tài liệu và phương pháp học cụ thể.</p>
-            </div>
-            <div class="header-note green">
-                🌱 Lộ trình được cá nhân hóa dựa trên kết quả bài test và mục tiêu học tập của bạn.
-            </div>
-        </div>
-
-
-        <div class="subjects-grid">
-            <div class="subject-card simple">
-                <div class="sub-icon icon-blue">🧮</div>
-                <h3>Toán học</h3>
-                <p>Tư duy logic - Giải quyết vấn đề</p>
-                <a href="#" class="link-detail">Xem chi tiết ➔</a>
-            </div>
-            <div class="subject-card simple">
-                <div class="sub-icon icon-purple">⚛️</div>
-                <h3>Vật lý</h3>
-                <p>Phân tích - Ứng dụng</p>
-                <a href="#" class="link-detail">Xem chi tiết ➔</a>
-            </div>
-            <div class="subject-card simple">
-                <div class="sub-icon icon-pink">🧪</div>
-                <h3>Hóa học</h3>
-                <p>Nền tảng kiến thức - Làm bài tốt</p>
-                <a href="#" class="link-detail">Xem chi tiết ➔</a>
-            </div>
-            <div class="subject-card simple">
-                <div class="sub-icon icon-sky">🔤</div>
-                <h3>Tiếng Anh</h3>
-                <p>Giao tiếp - Học thuật</p>
-                <a href="#" class="link-detail">Xem chi tiết ➔</a>
-            </div>
-            <div class="subject-card simple">
-                <div class="sub-icon icon-green">📖</div>
-                <h3>Ngữ văn</h3>
-                <p>Cảm thụ - Diễn đạt</p>
-                <a href="#" class="link-detail">Xem chi tiết ➔</a>
-            </div>
-        </div>
-    </section>
-
-
-    <div class="badge-container" style="margin-top: 40px; margin-bottom: 20px;">
-        <span class="section-badge">TRỢ LÝ CHATBOT 24/7</span>
-    </div>
-    <!-- MỤC 5: CHATBOT HỎI ĐÁP TỰ ĐỘNG (Luôn hiện) -->
-    <section id="section-chatbot" class="dashboard-card">
-        <div class="card-header">
-            <div class="step-badge icon-bg">🤖</div>
-            <div class="header-text">
-                <h2>Hỏi đáp tự động (Chatbot hỗ trợ)</h2>
-                <p>Đặt câu hỏi liên quan đến tư vấn, lộ trình học tập, cách tính điểm, quy chế đào tạo,...</p>
-            </div>
-            <span class="status-online">Hỗ trợ trực tuyến</span>
-        </div>
-
-
-        <div class="two-columns">
-            <div class="chat-container">
-                <div class="chat-messages">
-                    <div class="msg bot">
-                        <p>Chào bạn! Tôi có thể giúp gì cho bạn hôm nay? Bạn cần tư vấn về lộ trình học tập, cách tính điểm hay quy chế đào tạo?</p>
-                        <small>10:02</small>
-                    </div>
-                    <div class="msg user">
-                        <p>Em đang có GPA 2.8 và muốn lên 3.2 trong học kỳ này. Em cần gợi ý gì ạ?</p>
-                        <small>10:02</small>
-                    </div>
-                    <div class="msg bot">
-                        <p>Để lên 3.2, bạn cần tập trung hoàn thành 3-4 ở các môn còn lại. Nếu bạn có 6 môn trong học kỳ, hãy ưu tiên các môn chuyên ngành và cố gắng đạt B+ trở lên.</p>
-                        <small>10:02</small>
-                    </div>
+                <div class="chat-pills">
+                    <button class="pill-btn">Dự phóng GPA là gì?</button>
+                    <button class="pill-btn">Cách tính GPA?</button>
+                    <button class="pill-btn">Quy chế học tập ở HVNH</button>
+                    <button class="pill-btn">Nên chọn những môn nào?</button>
                 </div>
-                <div class="chat-input-row">
+                <div class="chat-input-wrapper">
                     <input type="text" placeholder="Nhập câu hỏi của bạn...">
-                    <button class="btn-send">Gửi</button>
+                    <button class="btn-send-icon">➔</button>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- =================================================================== -->
+        <!-- TRƯỜNG HỢP 2: ĐÃ DÙNG DỰ PHÓNG GPA (CHƯA LÀM TEST) -->
+        <!-- (Hiện tạm thời dùng class 'hidden') -->
+        <!-- =================================================================== -->
+        <div id="state-2-has-data" class="advising-state hidden">
+            <!-- HERO BANNER TƯ VẤN HỌC TẬP CÓ STEPPER -->
+            <section class="hero-banner">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Tư vấn học tập</h1>
+                        <p>Dựa trên các môn bạn đã chọn từ Dự phóng GPA, hãy hoàn thành bài test năng lực để nhận tư vấn chính xác hơn.</p>
+                    </div>
+                    <!-- Thanh Stepper 4 bước -->
+                    <div class="stepper-bar">
+                        <div class="step-item active">
+                            <div class="step-number">1</div>
+                            <span>Làm bài test</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <span>Phân tích kết quả</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <span>Nhận lộ trình</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <span>Chat với trợ lý</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-illustration">
+                    <span class="illustration-icon">📋🎯</span>
+                </div>
+            </section>
+
+            <!-- MỤC 1: LÀM BÀI TEST NĂNG LỰC -->
+            <section class="dashboard-card">
+                <div class="card-header-step">
+                    <div class="step-badge">1</div>
+                    <h2>Làm bài test năng lực</h2>
+                </div>
+                <p class="section-desc">Hãy hoàn thành bài test cho từng môn dưới đây. Kết quả sẽ giúp hệ thống đánh giá năng lực hiện tại và đưa ra lộ trình phù hợp.</p>
+
+                <div class="subjects-grid-3">
+                    <!-- Môn 1: Cơ sở dữ liệu -->
+                    <div class="subject-card-test">
+                        <div class="subject-icon icon-blue">🗄️</div>
+                        <h3>Cơ sở dữ liệu</h3>
+                        <p>Kiến thức SQL, truy vấn, thiết kế và quản trị CSDL.</p>
+                        <div class="test-progress-bar"><div class="fill" style="width: 0%;"></div></div>
+                        <div class="test-count">0/20 câu hỏi</div>
+                        <button class="btn-primary btn-full" onclick="window.location.href='#'">Bắt đầu làm bài</button>
+                    </div>
+
+                    <!-- Môn 2: Lập trình C# -->
+                    <div class="subject-card-test">
+                        <div class="subject-icon icon-purple">💻</div>
+                        <h3>Lập trình C#</h3>
+                        <p>Lập trình hướng đối tượng, C# cơ bản và nâng cao.</p>
+                        <div class="test-progress-bar"><div class="fill" style="width: 0%;"></div></div>
+                        <div class="test-count">0/20 câu hỏi</div>
+                        <button class="btn-primary btn-full" onclick="window.location.href='#'">Bắt đầu làm bài</button>
+                    </div>
+
+                    <!-- Môn 3: Phân tích hệ thống -->
+                    <div class="subject-card-test">
+                        <div class="subject-icon icon-green">📊</div>
+                        <h3>Phân tích hệ thống</h3>
+                        <p>Phân tích yêu cầu, UML và thiết kế hệ thống.</p>
+                        <div class="test-progress-bar"><div class="fill" style="width: 0%;"></div></div>
+                        <div class="test-count">0/20 câu hỏi</div>
+                        <button class="btn-primary btn-full" onclick="window.location.href='#'">Bắt đầu làm bài</button>
+                    </div>
+                </div>
+
+                <!-- Footer thông báo nộp test -->
+                <div class="test-footer-notice">
+                    <span class="info-icon">ℹ️</span>
+                    <span>Vui lòng hoàn thành tất cả bài test để xem kết quả phân tích và nhận lộ trình học tập.</span>
+                    <button class="btn-disabled" disabled>Xem kết quả phân tích ➔</button>
+                </div>
+            </section>
+
+            <!-- MỤC 2: KẾT QUẢ PHÂN TÍCH (BỊ KHÓA) -->
+            <section class="dashboard-card locked-card">
+                <div class="card-header-step">
+                    <div class="step-badge disabled">2</div>
+                    <h2>Kết quả phân tích & đánh giá năng lực</h2>
+                </div>
+                <div class="locked-message">
+                    🔒 Hoàn thành tất cả bài test ở mục 1 để xem kết quả phân tích.
+                </div>
+            </section>
+
+            <!-- MỤC 3: LỘ TRÌNH HỌC TẬP (BỊ KHÓA) -->
+            <section class="dashboard-card locked-card">
+                <div class="card-header-step">
+                    <div class="step-badge disabled">3</div>
+                    <h2>Lộ trình học tập cá nhân hóa</h2>
+                </div>
+                <div class="locked-message">
+                    🔒 Kết quả phân tích sẽ được hiển thị tại đây sau khi bạn hoàn thành bài test.
+                </div>
+            </section>
+
+            <!-- MỤC 4: CHI TIẾT TỪNG MÔN (BỊ KHÓA) -->
+            <section class="dashboard-card locked-card">
+                <div class="card-header-step">
+                    <div class="step-badge disabled">4</div>
+                    <h2>Chi tiết từng môn</h2>
+                </div>
+                <div class="locked-message">
+                    🔒 Hoàn thành bài test để xem gợi ý tài liệu và phương pháp học.
+                </div>
+            </section>
+
+            <!-- CHATBOT HỖ TRỢ TRƯỜNG HỢP 2 -->
+            <section class="dashboard-card chatbot-card">
+                <div class="chatbot-header">
+                    <div class="bot-avatar">🤖</div>
+                    <div class="bot-info">
+                        <h3>Trợ lý học tập EduTrack</h3>
+                        <p>Bạn đã chọn 3 môn từ Dự phóng GPA. Hãy hoàn thành bài test để mình có thể phân tích kết quả và đề xuất lộ trình học tập phù hợp nhé!</p>
+                    </div>
+                </div>
+                <div class="chat-pills">
+                    <button class="pill-btn">Bài test gồm những gì?</button>
+                    <button class="pill-btn">Mất bao lâu để làm bài?</button>
+                    <button class="pill-btn">Có thể làm lại bài test không?</button>
+                </div>
+                <div class="chat-input-wrapper">
+                    <input type="text" placeholder="Nhập câu hỏi của bạn...">
+                    <button class="btn-send-icon">➔</button>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- =================================================================== -->
+        <!-- TRƯỜNG HỢP 3: ĐÃ LÀM TEST VÀ CÓ KẾT QUẢ HOÀN CHỈNH -->
+        <!-- (Hiện tạm thời dùng class 'hidden') -->
+        <!-- =================================================================== -->
+        <div id="state-3-completed" class="advising-state ">
+            <!-- HERO BANNER TƯ VẤN HỌC TẬP - ĐÃ HOÀN THÀNH -->
+            <section class="hero-banner">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Tư vấn học tập</h1>
+                        <p>Dựa trên kết quả bài test năng lực của bạn và mục tiêu từ Dự phóng GPA, EduTrack đã phân tích và xây dựng lộ trình học tập phù hợp.</p>
+                    </div>
+                    <!-- Thanh Stepper đã hoàn thành -->
+                    <div class="stepper-bar">
+                        <div class="step-item completed">
+                            <div class="step-number">✓</div>
+                            <span>Làm bài test</span>
+                        </div>
+                        <div class="step-line completed"></div>
+                        <div class="step-item completed">
+                            <div class="step-number">✓</div>
+                            <span>Phân tích kết quả</span>
+                        </div>
+                        <div class="step-line completed"></div>
+                        <div class="step-item completed">
+                            <div class="step-number">✓</div>
+                            <span>Nhận lộ trình</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step-item active">
+                            <div class="step-number">4</div>
+                            <span>Chat với trợ lý</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-illustration">
+                    <span class="illustration-icon">🎯📈</span>
+                </div>
+            </section>
+
+            <!-- MỤC 1: KẾT QUẢ BÀI TEST -->
+            <section class="dashboard-card">
+                <div class="card-header-flex">
+                    <div class="card-header-step">
+                        <div class="step-badge">1</div>
+                        <h2>Kết quả bài test</h2>
+                    </div>
+                    <button class="btn-secondary btn-sm" onclick="window.location.href='#'">🔄 Làm lại bài test</button>
+                </div>
+
+                <div class="subjects-grid-3">
+                    <!-- Kết quả Cơ sở dữ liệu -->
+                    <div class="subject-card-result">
+                        <div class="sub-header flex-between">
+                            <div class="sub-title">
+                                <span class="sub-icon icon-blue">🗄️</span>
+                                <h3>Cơ sở dữ liệu</h3>
+                            </div>
+                        </div>
+                        <div class="score-display">
+                            <span class="score-main">5.5</span><span class="score-max">/10</span>
+                        </div>
+                        <div class="score-progress-bar"><div class="fill orange" style="width: 55%;"></div></div>
+                        <div class="score-meta">11/20 câu đúng</div>
+                        <a href="#" class="link-action">Xem lại bài làm</a>
+                    </div>
+
+                    <!-- Kết quả Lập trình C# -->
+                    <div class="subject-card-result">
+                        <div class="sub-header flex-between">
+                            <div class="sub-title">
+                                <span class="sub-icon icon-purple">💻</span>
+                                <h3>Lập trình C#</h3>
+                            </div>
+                        </div>
+                        <div class="score-display">
+                            <span class="score-main green">8.0</span><span class="score-max">/10</span>
+                        </div>
+                        <div class="score-progress-bar"><div class="fill green" style="width: 80%;"></div></div>
+                        <div class="score-meta">16/20 câu đúng</div>
+                        <a href="#" class="link-action">Xem lại bài làm</a>
+                    </div>
+
+                    <!-- Kết quả Phân tích hệ thống -->
+                    <div class="subject-card-result">
+                        <div class="sub-header flex-between">
+                            <div class="sub-title">
+                                <span class="sub-icon icon-green">📊</span>
+                                <h3>Phân tích hệ thống</h3>
+                            </div>
+                        </div>
+                        <div class="score-display">
+                            <span class="score-main">6.8</span><span class="score-max">/10</span>
+                        </div>
+                        <div class="score-progress-bar"><div class="fill yellow" style="width: 68%;"></div></div>
+                        <div class="score-meta">14/20 câu đúng</div>
+                        <a href="#" class="link-action">Xem lại bài làm</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MỤC 2: PHÂN TÍCH KẾT QUẢ & ĐÁNH GIÁ NĂNG LỰC -->
+            <section class="dashboard-card">
+                <div class="card-header-flex">
+                    <div class="card-header-step">
+                        <div class="step-badge">2</div>
+                        <h2>Phân tích kết quả & đánh giá năng lực</h2>
+                    </div>
+                    <span class="timestamp-text">🕒 Ngày làm bài: 12/10/2026</span>
+                </div>
+
+                <div class="analysis-three-columns">
+                    <!-- Column 1: Tổng quan năng lực -->
+                    <div class="analysis-col">
+                        <h4>Tổng quan năng lực</h4>
+                        <div class="circle-chart-wrapper">
+                            <div class="circle-chart">
+                                <h2>68%</h2>
+                            </div>
+                            <div class="chart-label-badge">Khá</div>
+                            <p class="chart-desc">Bạn có nền tảng tốt nhưng vẫn còn một số nội dung cần cải thiện để đạt mục tiêu GPA.</p>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Điểm từng môn -->
+                    <div class="analysis-col">
+                        <h4>Điểm từng môn</h4>
+                        <div class="subject-bars-list">
+                            <div class="bar-item">
+                                <div class="bar-label"><span>Cơ sở dữ liệu</span><span>55%</span></div>
+                                <div class="bar-bg"><div class="bar-fill orange" style="width: 55%;"></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-label"><span>Lập trình C#</span><span>80%</span></div>
+                                <div class="bar-bg"><div class="bar-fill green" style="width: 80%;"></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-label"><span>Phân tích hệ thống</span><span>68%</span></div>
+                                <div class="bar-bg"><div class="bar-fill yellow" style="width: 68%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Môn cần ưu tiên cải thiện -->
+                    <div class="analysis-col warning-col">
+                        <div class="warning-header">
+                            <span class="alert-icon">⚠️</span>
+                            <h4>Môn cần ưu tiên cải thiện</h4>
+                        </div>
+                        <div class="priority-list">
+                            <div class="priority-item">
+                                <span class="p-num">1</span>
+                                <div class="p-text">
+                                    <strong>Cơ sở dữ liệu</strong>
+                                    <p>Cần củng cố kiến thức SQL, JOIN, Subquery.</p>
+                                </div>
+                            </div>
+                            <div class="priority-item">
+                                <span class="p-num">2</span>
+                                <div class="p-text">
+                                    <strong>Phân tích hệ thống</strong>
+                                    <p>Cần cải thiện kỹ năng phân tích yêu cầu và UML.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-link-action" onclick="document.getElementById('warning-modal').classList.remove('hidden')">
+                            Xem gợi ý cải thiện ➔
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MỤC 3: LỘ TRÌNH HỌC TẬP CÁ NHÂN HÓA -->
+            <section class="dashboard-card">
+                <div class="card-header-flex">
+                    <div class="card-header-step">
+                        <div class="step-badge">3</div>
+                        <h2>Lộ trình học tập cá nhân hóa</h2>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-outline-sm">📑 Xem chi tiết lộ trình</button>
+                        <button class="btn-primary-sm">➕ Thêm vào Tiến độ học tập</button>
+                    </div>
+                </div>
+
+                <div class="weekly-roadmap-grid">
+                    <!-- Tuần 1 -->
+                    <div class="week-card">
+                        <div class="week-header">
+                            <span class="week-icon">📅</span>
+                            <div class="week-title">
+                                <strong>Tuần 1</strong>
+                                <small>Củng cố nền tảng</small>
+                            </div>
+                        </div>
+                        <ul class="task-checklist">
+                            <li><input type="checkbox"> Ôn SELECT, WHERE</li>
+                            <li><input type="checkbox"> Làm bài tập cơ bản</li>
+                            <li><input type="checkbox"> Xem video hướng dẫn</li>
+                        </ul>
+                        <div class="week-time">⏱️ 3 - 4 giờ</div>
+                    </div>
+
+                    <!-- Tuần 2 -->
+                    <div class="week-card">
+                        <div class="week-header">
+                            <span class="week-icon">📅</span>
+                            <div class="week-title">
+                                <strong>Tuần 2</strong>
+                                <small>Tập trung điểm yếu</small>
+                            </div>
+                        </div>
+                        <ul class="task-checklist">
+                            <li><input type="checkbox"> Ôn JOIN</li>
+                            <li><input type="checkbox"> Làm bài tập JOIN</li>
+                            <li><input type="checkbox"> Học Subquery</li>
+                        </ul>
+                        <div class="week-time">⏱️ 4 - 5 giờ</div>
+                    </div>
+
+                    <!-- Tuần 3 -->
+                    <div class="week-card">
+                        <div class="week-header">
+                            <span class="week-icon">📅</span>
+                            <div class="week-title">
+                                <strong>Tuần 3</strong>
+                                <small>Nâng cao</small>
+                            </div>
+                        </div>
+                        <ul class="task-checklist">
+                            <li><input type="checkbox"> Trigger, Index</li>
+                            <li><input type="checkbox"> Bài tập tổng hợp</li>
+                            <li><input type="checkbox"> Làm mini project</li>
+                        </ul>
+                        <div class="week-time">⏱️ 4 - 5 giờ</div>
+                    </div>
+
+                    <!-- Tuần 4 -->
+                    <div class="week-card">
+                        <div class="week-header">
+                            <span class="week-icon">📅</span>
+                            <div class="week-title">
+                                <strong>Tuần 4</strong>
+                                <small>Đánh giá lại</small>
+                            </div>
+                        </div>
+                        <ul class="task-checklist">
+                            <li><input type="checkbox"> Làm đề kiểm tra</li>
+                            <li><input type="checkbox"> Ôn tập toàn bộ</li>
+                            <li><input type="checkbox"> Test lại năng lực</li>
+                        </ul>
+                        <div class="week-time">⏱️ 3 - 4 giờ</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MỤC 4: CHI TIẾT TỪNG MÔN -->
+            <section class="dashboard-card">
+                <div class="card-header-step">
+                    <div class="step-badge">4</div>
+                    <h2>Chi tiết từng môn</h2>
+                </div>
+
+                <!-- Tab chọn môn -->
+                <div class="subject-tabs-menu">
+                    <button class="tab-item active">Cơ sở dữ liệu</button>
+                    <button class="tab-item">Lập trình C#</button>
+                    <button class="tab-item">Phân tích hệ thống</button>
+                </div>
+
+                <!-- Nội dung môn đang chọn (Cơ sở dữ liệu) -->
+                <div class="tab-content-grid">
+                    <!-- Cột 1: Kiến thức cần học -->
+                    <div class="tab-panel-card">
+                        <h4>Kiến thức cần học</h4>
+                        <ul class="check-list-green">
+                            <li>✓ JOIN (INNER, LEFT, RIGHT)</li>
+                            <li>✓ Subquery</li>
+                            <li>✓ GROUP BY, HAVING</li>
+                            <li>✓ Trigger và Index</li>
+                        </ul>
+                    </div>
+
+                    <!-- Cột 2: Tài liệu đề xuất -->
+                    <div class="tab-panel-card">
+                        <h4>Tài liệu đề xuất</h4>
+                        <div class="resource-list">
+                            <div class="resource-item">
+                                <span class="res-icon">📄</span>
+                                <div class="res-info">
+                                    <strong>SQL cơ bản đến nâng cao</strong>
+                                    <small>PDF - 120 trang</small>
+                                </div>
+                                <button class="btn-xs">Xem</button>
+                            </div>
+                            <div class="resource-item">
+                                <span class="res-icon">📝</span>
+                                <div class="res-info">
+                                    <strong>Bài tập thực hành SQL</strong>
+                                    <small>PDF - 80 trang</small>
+                                </div>
+                                <button class="btn-xs">Xem</button>
+                            </div>
+                            <div class="resource-item">
+                                <span class="res-icon">🎥</span>
+                                <div class="res-info">
+                                    <strong>Video hướng dẫn JOIN</strong>
+                                    <small>Video - 45 phút</small>
+                                </div>
+                                <button class="btn-xs">Xem</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cột 3: Phương pháp học -->
+                    <div class="tab-panel-card">
+                        <h4>Phương pháp học</h4>
+                        <ol class="method-steps">
+                            <li>Học lý thuyết cơ bản</li>
+                            <li>Làm bài tập theo chủ đề</li>
+                            <li>Thực hành trên hệ quản trị CSDL</li>
+                            <li>Làm bài kiểm tra đánh giá</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHATBOT HỖ TRỢ TRƯỜNG HỢP 3 -->
+            <section class="dashboard-card chatbot-card">
+                <div class="chatbot-header">
+                    <div class="bot-avatar">🤖</div>
+                    <div class="bot-info">
+                        <h3>Trợ lý học tập EduTrack</h3>
+                        <p>Dựa trên kết quả của bạn, mình có thể giúp bạn giải thích kiến thức, gợi ý thêm bài tập hoặc điều chỉnh lộ trình học tập.</p>
+                    </div>
+                </div>
+                <div class="chat-pills">
+                    <button class="pill-btn">Giải thích JOIN để hiểu</button>
+                    <button class="pill-btn">Cho tôi bài tập Subquery</button>
+                    <button class="pill-btn">Điều chỉnh kế hoạch học</button>
+                    <button class="pill-btn">Tài liệu nâng cao về SQL</button>
+                </div>
+                <div class="chat-input-wrapper">
+                    <input type="text" placeholder="Nhập câu hỏi của bạn...">
+                    <button class="btn-send-icon">➔</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- MODAL CHI TIẾT CẢNH BÁO / GỢI Ý CẢI THIỆN -->
+        <!-- =================================================================== -->
+        <div id="warning-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Chi tiết gợi ý cải thiện</h3>
+                    <button class="close-btn" onclick="document.getElementById('warning-modal').classList.add('hidden')">✖</button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Cơ sở dữ liệu (5.5/10):</strong> Cần dành thêm thời gian học thực hành truy vấn SQL. Nên tập trung vào cú pháp JOIN và câu lệnh lồng nhau Subquery.</p>
+                    <p><strong>Phân tích hệ thống (6.8/10):</strong> Hãy ôn tập lại các biểu đồ UML và cách xác định yêu cầu bài toán thực tế.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-primary" onclick="document.getElementById('warning-modal').classList.add('hidden')">Đã hiểu</button>
                 </div>
             </div>
-
-
-            <div class="sub-panel">
-                <h3>Hướng dẫn sử dụng</h3>
-                <ol class="guide-steps">
-                    <li>Nhập câu hỏi ngắn gọn và cụ thể để chatbot trả lời nhanh hơn.</li>
-                    <li>Nhấn câu tư vấn, chatbot sẽ chuyển yêu cầu sang cố vấn học tập để hỗ trợ riêng tư.</li>
-                    <li>Bạn có thể đặt câu hỏi về quy chế xét học bổng, điều kiện tốt nghiệp hoặc các vấn đề liên quan đến học cải thiện.</li>
-                </ol>
-                <div class="info-note">
-                    <p>Nếu bạn cần hỗ trợ nhanh, hãy nhập câu hỏi và gửi ngay. Hệ thống sẽ phản hồi trong vòng vài giây làm việc.</p>
-                </div>
-            </div>
         </div>
-    </section>
-    <!-- ================= MODAL CHI TIẾT CẢNH BÁO ================= -->
-<div id="warning-modal" class="modal hidden">
-    <div class="modal-content">
-        <!-- Phần tiêu đề và nút đóng -->
-        <div class="modal-header">
-            <h3>Chi tiết cảnh báo: Toán & Vật lý</h3>
-            <button class="close-btn" onclick="document.getElementById('warning-modal').classList.add('hidden')">✖</button>
-        </div>
-       
-        <!-- Phần nội dung giải thích -->
-        <div class="modal-body">
-            <p><strong>Nguyên nhân:</strong> Điểm hiện tại của bạn đang ở mức <strong>6.2 (Vật lý)</strong> và <strong>7.5 (Toán học)</strong>. Trong khi đó, mục tiêu tổng kéo GPA lên 3.2 yêu cầu các môn tính toán nền tảng này cần đạt mức điểm an toàn từ 8.0 trở lên.</p>
-            <ul class="modal-list">
-                <li><strong>Toán học:</strong> Cần cải thiện kỹ năng giải quyết vấn đề và tư duy logic qua bài tập vận dụng cao.</li>
-                <li><strong>Vật lý:</strong> Đang hổng một số công thức cơ bản, cần ôn tập lại phần cơ học và ứng dụng thực tế.</li>
-            </ul>
-    <p class="modal-note">💡 <em>Hệ thống đã tự động điều chỉnh kế hoạch học tập. Vui lòng xem hướng dẫn môn học chi tiết tại
-    <span class="link-to-section" onclick="document.getElementById('warning-modal').classList.add('hidden'); document.getElementById('section-4').scrollIntoView({behavior: 'smooth'})">Mục 4</span>.
-    </em>
-    </p>        
-</div>
 
-
-        <!-- Nút xác nhận -->
-        <div class="modal-footer">
-            <button class="btn-primary" onclick="document.getElementById('warning-modal').classList.add('hidden')">Đã hiểu</button>
-        </div>
-    </div>
-</div>
-</main>
-
+    </main>
 
     <!-- FOOTER -->
     <footer>
         <section class="footer-intro">
             <div class="footer-logo">
                 <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
-                <h2> EduTrack</h2>
+                <h2>EduTrack</h2>
             </div>
-            <p> Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông minh. </p>
+            <p>Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông minh.</p>
         </section>
         <section class="footer-column">
             <h2>Về EduTrack</h2>
@@ -452,11 +661,8 @@
             </ul>
         </section>
         <section class="footer-bottom">
-        <span>
-            &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
-        </span>
+            <span>&copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.</span>
         </section>
     </footer>
 </body>
 </html>
-
