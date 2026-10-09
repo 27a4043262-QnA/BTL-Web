@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang chủ</title>
- <link rel="stylesheet" href="assets/css/index.css">
-  <link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
 <!-- HEADER -->
@@ -114,38 +114,7 @@
             </div>
         </section>
  
-        <!-- 2. SECTION SỐ LIỆU -->
-        <section class="stats" aria-label="Số liệu nổi bật">
-            <div class="et-container grid-3">
-                <div class="stat-card et-card">
-                    <div class="icon-box">
-                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM20 17v4H6.5"/></svg>
-                    </div>
-                    <div>
-                        <strong>120+</strong>
-                        <div>Môn học đại cương và chuyên ngành</div>
-                    </div>
-                </div>
-                <div class="stat-card et-card">
-                    <div class="icon-box">
-                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                    <div>
-                        <strong>1000+</strong>
-                        <div>Sinh viên tin tưởng và sử dụng</div>
-                    </div>
-                </div>
-                <div class="stat-card et-card">
-                    <div class="icon-box">
-                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
-                    </div>
-                    <div>
-                        <strong>800+</strong>
-                        <div>Tài liệu ôn thi và đề cương chuẩn</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      
  
         <!-- 3. SECTION: CÁCH EDUTRACK GIÚP BẠN -->
         <section class="steps et-section" aria-labelledby="steps-h2">
@@ -209,7 +178,6 @@
                         <h3>Bảng điểm học kỳ 1</h3>
                         <ul class="gpa-tags">
                             <li>Năm học 2024 - 2025</li>
-                            <li class="active">Đang hoạt động</li>
                         </ul>
                     </div>
                     <ul class="subject-list">
@@ -261,7 +229,135 @@
                 </div>
             </div>
         </section>
+ <!--Sau dang nhap-->
+   <section class="gpa-dashboard et-section" id="gpa-dashboard" aria-labelledby="gpa-dashboard-h2" hidden>
+            <div class="et-container">
+                <span class="section-label">Công cụ tính GPA</span>
+                <h2 id="gpa-dashboard-h2">GPA hiện tại của bạn</h2>
+                <p>Theo dõi và quản lý điểm số các môn học của bạn một cách dễ dàng. Cập nhật thông tin để EduTrack giúp bạn tính toán GPA chính xác nhất.</p>
+                <div class="gpa-dashboard-grid">
  
+                    <!-- Khối biểu đồ GPA -->
+                    <div class="gpa-current-card et-card">
+                        <div class="gpa-current-header">
+                            <h3>GPA hiện tại</h3>
+                            <select class="term-select" aria-label="Chọn học kỳ cho biểu đồ GPA">
+                                <option>Học kỳ hiện tại</option>
+                            </select>
+                        </div>
+ 
+                        <div class="gpa-chart" style="--percent: 87%;">
+                            <!-- Biểu đồ vòng tròn GPA -->
+                            <strong class="gpa-value">3.48</strong>
+                            <span class="gpa-max">/ 4.0</span>
+                        </div>
+ 
+                        <div class="gpa-summary">
+                            <div>
+                                <span>Tổng số tín chỉ</span>
+                                <strong>18</strong>
+                            </div>
+                            <div>
+                                <span>Tổng số môn học</span>
+                                <strong>6</strong>
+                            </div>
+                            <div>
+                                <span>Số môn đạt</span>
+                                <strong>5</strong>
+                            </div>
+                            <div>
+                                <span>Số môn chưa đạt</span>
+                                <strong>1</strong>
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <!-- Khối bảng danh sách môn học -->
+                    <div class="course-list-card et-card">
+                        <div class="course-list-header">
+                            <h3>Danh sách môn học</h3>
+                            <select class="term-select" aria-label="Chọn học kỳ cho danh sách môn học">
+                                <option>Học kỳ hiện tại</option>
+                            </select>
+                        </div>
+ 
+                        <div class="table-wrap">
+                            <table class="course-table">
+                                <caption class="sr-only">Danh sách môn học, điểm tổng kết và điểm dự phóng của học kỳ hiện tại</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Mã môn</th>
+                                        <th scope="col">Tên môn học</th>
+                                        <th scope="col">Tín chỉ</th>
+                                        <th scope="col">Điểm tổng kết</th>
+                                        <th scope="col">Xếp loại</th>
+                                        <th scope="col">Điểm dự phóng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>CS101</td>
+                                        <td>Lập trình cơ bản</td>
+                                        <td>3</td>
+                                        <td>8.5</td>
+                                        <td><span class="grade-tag plus">B+</span></td>
+                                        <td>7.8</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>MA101</td>
+                                        <td>Giải tích 1</td>
+                                        <td>3</td>
+                                        <td>7.5</td>
+                                        <td><span class="grade-tag">B</span></td>
+                                        <td>6.8</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>PH101</td>
+                                        <td>Vật lý đại cương</td>
+                                        <td>3</td>
+                                        <td>8.0</td>
+                                        <td><span class="grade-tag plus">B+</span></td>
+                                        <td>7.2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>EN101</td>
+                                        <td>Tiếng Anh cơ bản</td>
+                                        <td>3</td>
+                                        <td>9.0</td>
+                                        <td><span class="grade-tag">A</span></td>
+                                        <td>8.5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>EC102</td>
+                                        <td>Kinh tế vi mô</td>
+                                        <td>3</td>
+                                        <td>7.0</td>
+                                        <td><span class="grade-tag">B</span></td>
+                                        <td>6.5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>IT101</td>
+                                        <td>Cơ sở dữ liệu</td>
+                                        <td>3</td>
+                                        <td>8.8</td>
+                                        <td><span class="grade-tag">A</span></td>
+                                        <td>8.1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+ 
+                </div>
+            </div>
+        </section>
         <!-- 5. SECTION: TIN TỨC NỔI BẬT -->
         <section class="news et-section" aria-labelledby="news-h2">
             <div class="et-container">

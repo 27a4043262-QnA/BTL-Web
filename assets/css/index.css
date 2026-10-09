@@ -7,15 +7,16 @@
    ========================================================= */
 
 /* ---------- Nhãn nhỏ (eyebrow) + tiêu đề section ---------- */
+/* Nền xanh lá nhạt, chữ xanh lá, không viền (theo Figma) */
 .eyebrow,
 .section-label {
   display: inline-block;
   margin-bottom: var(--spacing-2);
   padding: var(--spacing-1) var(--spacing-3);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 999px;
-  background: var(--white-color);
-  color: var(--primary-color);
+  background: var(--success-bg);
+  color: var(--success-color);
   font-size: var(--font-size-small);
   font-weight: 700;
 }
@@ -72,6 +73,55 @@
 }
 
 /* =========================================================
+   NỀN XEN KẼ: trắng / nền hiện tại của trang
+   Hero (trắng) -> Số liệu + Quy trình (nền hiện tại, liền khối)
+   -> Công cụ GPA (trắng) -> Tin tức (nền hiện tại)
+   -> Cảm nhận (trắng) -> CTA (nền hiện tại)
+   ========================================================= */
+.hero,
+.gpa,
+.gpa-dashboard,
+.testimonials {
+  background-color: var(--white-color);
+}
+
+.stats,
+.steps,
+.news,
+.cta {
+  background-color: var(--background-color);
+}
+
+/* =========================================================
+   NÚT XANH LÁ (Hero + Công cụ tính GPA) — theo Figma
+   Màu khai báo riêng vì main.css chưa có token này.
+   ========================================================= */
+.hero-text,
+.gpa-text {
+  --green-btn: #2ECC71;
+  --green-btn-hover: #27AE60;
+}
+
+.hero-text .et-btn-primary,
+.gpa-text .et-btn-primary {
+  background-color: var(--green-btn);
+  border-color: var(--green-btn);
+  color: var(--white-color);
+}
+
+.hero-text .et-btn-primary:hover,
+.gpa-text .et-btn-primary:hover {
+  background-color: var(--green-btn-hover);
+  border-color: var(--green-btn-hover);
+}
+
+/* Link "Xem tất cả" và "Đọc thêm": xanh lá */
+.see-all,
+.read-more {
+  color: #000;
+}
+
+/* =========================================================
    1. HERO
    ========================================================= */
 .hero {
@@ -87,16 +137,7 @@
   max-width: 460px;
   margin-bottom: var(--spacing-4);
 }
-/* Nút "Khám phá ngay": xanh lá (--success-color của main.css).
-   Màu hover đậm hơn khai báo riêng vì main.css chưa có token này. */
-.hero-text .et-btn-primary {
-  --hero-btn-hover: #459765;
-  background-color: var(--success-color);
-}
 
-.hero-text .et-btn-primary:hover {
-  background-color: var(--hero-btn-hover);
-}
 .hero-image img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -170,7 +211,6 @@
   align-items: center;
   gap: var(--spacing-6);
 }
-
 
 .gpa-text p:not(.eyebrow) {
   max-width: 440px;
@@ -458,15 +498,22 @@
   flex-wrap: wrap;
 }
 
-/* Nút trên nền navy: đảo màu để không bị chìm vào nền */
+/* Nút "Đăng ký ngay": xanh lá như các nút khác, nổi trên nền navy */
+.cta-box {
+  --green-btn: #2ECC71;
+  --green-btn-hover: #27AE60;
+}
+
 .cta-box .et-btn-primary {
-  background-color: var(--white-color);
-  color: var(--primary-color);
+  background-color: var(--green-btn);
+  border-color: var(--green-btn);
+  color: var(--white-color);
 }
 
 .cta-box .et-btn-primary:hover {
-  background-color: var(--background-alt);
-  color: var(--primary-dark);
+  background-color: var(--green-btn-hover);
+  border-color: var(--green-btn-hover);
+  color: var(--white-color);
 }
 
 .cta-box .et-btn-outline {
