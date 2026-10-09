@@ -4,6 +4,7 @@
    Chỉ dùng token var(--...) của main.css, không khai báo màu/cỡ chữ riêng.
    Layout dùng sẵn: .et-section, .et-section-alt, .et-container,
    .grid-2, .grid-3, .et-card (breakpoint 991px / 767px của main.css).
+   Phong cách: phẳng, không đổ bóng, chỉ dùng viền mỏng.
    ========================================================= */
 
 /* ---------- Danh sách: bỏ dấu đầu dòng + padding mặc định của "main ul" ---------- */
@@ -30,15 +31,39 @@ main .doi-ngu-list {
   text-align: center;
 }
 
+/* Bỏ toàn bộ đổ bóng trên trang này */
+main .et-card,
+main img {
+  box-shadow: none;
+}
+
+/* =========================================================
+   NỀN XEN KẼ: trắng / nền hiện tại của trang
+   Hero (trắng) -> Tổng quan (nền hiện tại) -> Vấn đề (trắng)
+   -> Giải pháp (nền hiện tại) -> Đội ngũ (trắng)
+   Dùng #id để đè lên .et-section-alt của main.css.
+   ========================================================= */
+#hero-about,
+#van-de,
+#doi-ngu {
+  background-color: var(--white-color);
+}
+
+#tong-quan,
+#loi-giai-phap {
+  background-color: var(--background-color);
+}
+
 /* ---------- Nhãn nhỏ (eyebrow) + mô tả section ---------- */
+/* Nền xanh lá nhạt, chữ xanh lá, không viền (theo Figma) */
 .eyebrow {
   display: inline-block;
   margin-bottom: var(--spacing-2);
   padding: var(--spacing-1) var(--spacing-3);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 999px;
-  background: var(--white-color);
-  color: var(--primary-color);
+  background: var(--success-bg);
+  color: var(--success-color);
   font-size: var(--font-size-small);
   font-weight: 700;
 }
@@ -102,8 +127,8 @@ main .doi-ngu-list {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--background-alt);
-  color: var(--primary-color);
+  background: var(--success-bg);
+  color: var(--success-color);
   font-size: var(--font-size-small);
   font-weight: 700;
   line-height: 1;
@@ -111,23 +136,6 @@ main .doi-ngu-list {
 
 .tong-quan-text li strong {
   color: var(--text-dark);
-}
-/* --- 3. Vấn đề: khung bao cả phần --- */
-#tong-quan .et-container {
-  width: calc(100% - 2 * var(--spacing-4));
-  max-width: calc(var(--container-max) - 2 * var(--spacing-4));
-  padding: var(--spacing-5);
-  background: var(--white-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-large);
-  box-shadow: var(--shadow-medium);
-}
-
-/* Thẻ bên trong chuyển sang nền xám nhạt để không chìm vào khung trắng */
-.van-de-list article {
-  padding: var(--spacing-4);
-  text-align: left;
-  background: var(--background-color);
 }
 
 /* =========================================================
@@ -137,6 +145,8 @@ main .doi-ngu-list {
 .giai-phap-list article,
 .doi-ngu-list article {
   height: 100%;
+  background: var(--white-color);
+  border: 1px solid var(--border-color);
 }
 
 .van-de-list p,
@@ -147,9 +157,6 @@ main .doi-ngu-list {
 }
 
 /* --- 3. Vấn đề --- */
-#van-de {
-  background-color: var(--background-color);   
-}
 .van-de-list article {
   padding: var(--spacing-4);
   text-align: left;
@@ -162,8 +169,8 @@ main .doi-ngu-list {
   height: 40px;
   margin-bottom: var(--spacing-3);
   border-radius: var(--radius-medium);
-  background: var(--background-alt);
-  color: var(--primary-color);
+  background: var(--success-bg);
+  color: var(--success-color);
   font-weight: 700;
 }
 
@@ -171,10 +178,10 @@ main .doi-ngu-list {
   margin-bottom: var(--spacing-2);
 }
 
-/* --- 4. Giải pháp: icon bên trái, chữ bên phải --- */
+/* --- 4. Giải pháp: ảnh vuông bên trái lấp đầy ô, chữ bên phải --- */
 .giai-phap-list article {
   display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
+  grid-template-columns: 88px minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   column-gap: var(--spacing-3);
   align-items: start;
@@ -184,12 +191,12 @@ main .doi-ngu-list {
 
 .giai-phap-list img {
   grid-row: 1 / 3;
-  width: 72px;
-  height: 72px;
-  padding: var(--spacing-2);
+  width: 88px;
+  height: 88px;
+  padding: 0;
   border-radius: var(--radius-medium);
-  background: var(--background-alt);
-  object-fit: contain;
+  background: var(--success-bg);
+  object-fit: cover;
 }
 
 .giai-phap-list h3 {
@@ -214,10 +221,9 @@ main .doi-ngu-list {
   width: 56px;
   height: 56px;
   margin: 0 auto var(--spacing-3);
-  border: 2px solid var(--primary-color);
   border-radius: 50%;
-  background: var(--background-alt);
-  color: var(--primary-dark);
+  background: var(--success-bg);
+  color: var(--success-color);
   font-size: var(--font-size-h3);
   font-weight: 700;
 }
@@ -250,25 +256,16 @@ main .doi-ngu-list {
     margin-right: auto;
   }
 
+  .giai-phap-list article {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .giai-phap-list img {
+    width: 72px;
+    height: 72px;
+  }
+
   .doi-ngu-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-/* --- 3. Vấn đề: khung bao cả phần --- */
-#van-de .et-container {
-  width: calc(100% - 2 * var(--spacing-4));
-  max-width: calc(var(--container-max) - 2 * var(--spacing-4));
-  padding: var(--spacing-5);
-  background: var(--white-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-large);
-  box-shadow: var(--shadow-medium);
-}
-
-/* Thẻ bên trong chuyển sang nền xám nhạt để không chìm vào khung trắng */
-.van-de-list article {
-  padding: var(--spacing-4);
-  text-align: left;
-  background: var(--background-color);
-}
-
