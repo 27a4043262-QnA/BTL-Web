@@ -263,6 +263,21 @@
   color: var(--success-color);
   font-weight: 700;
 }
+.gpa-year-status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Chấm tròn xanh */
+.status-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
 
 /* Danh sách môn */
 .subject-list {
@@ -397,8 +412,6 @@
 
 /* Icon trích dẫn trang trí (trình đọc màn hình bỏ qua) */
 .testi-card::before {
-  content: "“";
-  content: "“" / "";
   display: grid;
   place-items: center;
   width: 32px;
