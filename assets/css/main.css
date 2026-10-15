@@ -24,18 +24,19 @@
     --border-color: #E5E7EB;
 
     /* Màu trạng thái (Alert GPA: xanh / vàng / đỏ; lỗi form) */
-    --success-color: #15803D;
+    --success-color: #2ECC71;
     --success-bg: #DCFCE7;
-    --warning-color: #B45309;
+    --warning-color: #E47B2B;
     --warning-bg: #FEF3C7;
     --danger-color: #B91C1C;
     --danger-bg: #FEE2E2;
-
+  --green-btn: #2ECC71;
+  --green-btn-hover: #27AE60;
     /* Font & cỡ chữ */
-    --font-family:'Segoe UI', Arial, sans-serif;   /* nạp qua Google Fonts, chỉ độ đậm 400 và 700 */
-    --font-size-base: 16px;
+    --font-family: Arial, sans-serif;  
+    --font-size-base: 14px;
     --font-size-small: 14px;
-    --font-size-h1: clamp(28px, 4vw + 12px, 44px);
+--font-size-h1: clamp(26px, 1vw + 16px, 30px);
     --font-size-h2: clamp(24px, 2.5vw + 12px, 32px);
     --font-size-h3: 20px;
 

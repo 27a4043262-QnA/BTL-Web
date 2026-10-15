@@ -1,25 +1,94 @@
 /* ==========================================================================
-   EDUTRACK - gpa-calculator.css | Trang Tính & Dự phóng GPA
-   Thứ tự nạp: bootstrap.min.css -> main.css -> gpa-calculator.css
-   Chỉ dùng biến trong main.css (:root). Font chỉ có độ đậm 400 và 700.
-   Nút dùng .et-btn của main.css; file này chỉ thêm biến thể
-   .et-btn-secondary / .et-btn-success / .et-btn-sm.
-   Không style header, footer, main (đã có trong main.css).
+   EDUTRACK - GPA CALCULATOR
+   File: gpa-calculator.css
+
+   Thứ tự nạp:
+   1. bootstrap.min.css
+   2. main.css
+   3. gpa-calculator.css
+
+   Quy ước:
+   - Dùng biến thiết kế từ main.css.
+   - Không định dạng header, footer hoặc main.
+   - Phần 01-09: giao diện TÍNH GPA (giữ nguyên).
+   - Phần 10-20: giao diện DỰ PHÓNG GPA (6 mục) (bố cục theo wireframe,
+     tiêu đề / khung / bảng đồng bộ với trang tính GPA).
    ========================================================================== */
 
-/* ===== 1. NÚT (bổ sung cho .et-btn của main.css) ===== */
-.et-btn-secondary { background: var(--white-color); border-color: var(--border-color); color: var(--primary-color); }
-.et-btn-secondary:hover,
-.et-btn-secondary.active { background: var(--background-alt); border-color: var(--primary-color); color: var(--primary-dark); }
-.et-btn-success { background: var(--background-alt); border-color: transparent; color: var(--primary-color); }
-.et-btn-success:hover { border-color: var(--primary-color); color: var(--primary-color); }
-.et-btn-sm { padding: 6px var(--spacing-3); font-size: var(--font-size-small); }
-.et-btn { white-space: nowrap; }
 
-/* ===== 2. KHUNG CHUNG: mỗi section tự giới hạn bề rộng (không đụng <main>) ===== */
-.gpa-calculator, .gpa-result, .gpa-projection,
-.projection-result-section, .quick-analysis-section {
-    width: min(var(--container-max), 100% - 2 * var(--spacing-4));
+/* ==========================================================================
+   01. NÚT BẤM
+   ========================================================================== */
+
+.et-btn {
+    white-space: nowrap;
+}
+
+/* Nút chính: nền xanh lá (biến --green-btn khai báo trong main.css) */
+.et-btn-primary {
+    color: var(--white-color);
+    background-color: var(--green-btn);
+}
+
+.et-btn-primary:hover {
+    color: var(--white-color);
+    background-color: var(--green-btn-hover);
+}
+
+/* Nút viền (ví dụ "Làm mới") */
+.et-btn-outline {
+    color: var(--green-btn-hover);
+    background-color: transparent;
+    border-color: var(--green-btn);
+}
+
+.et-btn-outline:hover {
+    color: var(--white-color);
+    background-color: var(--green-btn);
+    border-color: var(--green-btn);
+}
+
+/* Nút phụ (ví dụ nút chuyển tab chưa chọn, "Thêm môn học" ở dự phóng) */
+.et-btn-secondary {
+    color: var(--green-btn-hover);
+    background: var(--white-color);
+    border-color: var(--green-btn);
+}
+
+.et-btn-secondary:hover,
+.et-btn-secondary.active {
+    color: var(--green-btn-hover);
+    background: var(--success-bg);
+    border-color: var(--green-btn-hover);
+}
+
+.et-btn-sm {
+    padding: 6px var(--spacing-3);
+    font-size: var(--font-size-small);
+}
+
+
+/* ==========================================================================
+   02. KHUNG CHUNG
+   ========================================================================== */
+
+.gpa-calculator,
+.gpa-hero,
+#projection-wrapper,
+#calculator-wrapper {
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.gpa-calculator *,
+.gpa-hero *,
+#projection-wrapper * {
+    box-sizing: border-box;
+}
+
+.gpa-calculator {
+    width: calc(100% - 48px);
+    max-width: var(--container-max);
     margin: var(--spacing-4) auto 0;
     padding: var(--spacing-4);
     background: var(--white-color);
@@ -27,257 +96,1472 @@
     border-radius: var(--radius-large);
     box-shadow: var(--shadow-small);
 }
-.gpa-result, .projection-result-section, .quick-analysis-section { margin-bottom: 0; }
-main > div:last-of-type { padding-bottom: var(--spacing-6); }
 
-/* reset margin của h/p trong các khối của trang này */
-:is(.gpa-hero, .gpa-calculator, .gpa-result, .gpa-projection,
-    .projection-result-section, .quick-analysis-section) :is(h1, h2, h3, h4, p) { margin: 0; }
-:is(.gpa-calculator, .gpa-result, .gpa-projection, .projection-result-section,
-    .quick-analysis-section) :is(h2, h3, h4) { color: var(--primary-color); }
-
-/* tiêu đề section: icon + chữ + nút bên phải */
-.calc-heading, .result-heading, .projection-header,
-.projection-result-header, .quick-analysis-header {
-    display: flex; align-items: center; gap: var(--spacing-3); margin-bottom: var(--spacing-4);
-}
-.calc-heading > img, .result-heading > img, .projection-header-icon,
-.projection-result-icon, .quick-analysis-icon {
-    width: 52px; height: 52px; padding: 12px; flex: none;
-    background: var(--primary-color); border-radius: var(--radius-medium);
-}
-.projection-header-icon img, .projection-result-icon img, .quick-analysis-icon img { width: 100%; height: 100%; }
-.calc-heading p, .result-heading p, .projection-header p,
-.projection-result-header p, .quick-analysis-header p { font-size: var(--font-size-small); color: var(--text-light); }
-.calc-heading .et-btn, .projection-result-header .et-btn, .quick-analysis-header .et-btn { margin-left: auto; }
-
-/* ===== 3. HERO ===== */
-.gpa-hero {
-    padding: var(--spacing-5) var(--spacing-4) var(--spacing-4);
-    text-align: center;
-    background: linear-gradient(
-        180deg,
-        var(--background-alt),
-        var(--background-color)
-    );
-}
-
-.gpa-hero-text {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.gpa-hero-text h1 {
-    max-width: 700px;
-    margin: 0 auto var(--spacing-3);
+.gpa-calculator :is(h2, h3, h4),
+#projection-wrapper :is(h2, h3, h4) {
     color: var(--primary-color);
 }
 
+#calculator-wrapper[hidden],
+#projection-wrapper[hidden] {
+    display: none !important;
+}
+
+
+/* ==========================================================================
+   03. HERO - TÍNH VÀ DỰ PHÓNG GPA
+   ========================================================================== */
+
+.gpa-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: stretch;
+    gap: var(--spacing-4);
+    width: calc(100% - 48px);
+    max-width: var(--container-max);
+    min-height: 214px;
+    margin: var(--spacing-3) auto;
+    padding: 0 var(--spacing-5);
+    overflow: hidden;
+    /* Màu nền lấy theo màu nền của ảnh gpa-banner.png để hình hoà vào hero */
+    background: #F3F8FC;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-large);
+    text-align: left;
+}
+
+.gpa-hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: var(--spacing-3) 0;
+}
+
+.gpa-hero-text h1 {
+    margin: 0 0 var(--spacing-2);
+    color: var(--primary-color);
+    font-size: var(--font-size-h1);
+    line-height: 1.3;
+}
+
 .gpa-hero-text p {
-    max-width: 650px;
-    margin: 0 auto;
+    max-width: 520px;
+    margin: 0 0 var(--spacing-3);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
 .gpa-hero-buttons {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+    margin-top: 0;
+}
+
+/* Hình cao bằng đúng chiều cao hero (kéo sát mép trên và dưới) */
+.gpa-hero-illustration {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.gpa-hero-illustration img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* ==========================================================================
+   04. FORM VÀ INPUT - DÙNG CHUNG CHO TÍNH GPA VÀ DỰ PHÓNG
+   ========================================================================== */
+
+.gpa-calculator :is(
+    input[type="text"],
+    input[type="number"],
+    select
+) {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    padding: 0 12px;
+    color: var(--text-color);
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-small);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.gpa-calculator :is(input, select):hover,
+#projection-wrapper :is(input, select):hover {
+    border-color: var(--text-light);
+}
+
+.gpa-calculator :is(input, select):focus,
+#projection-wrapper :is(input, select):focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--background-alt);
+}
+
+.gpa-calculator input::placeholder,
+#projection-wrapper input::placeholder {
+    color: var(--text-light);
+    opacity: 1;
+}
+
+.gpa-calculator label,
+#projection-wrapper .projection-form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-dark);
+    font-size: var(--font-size-small);
+    font-weight: 700;
+}
+
+
+/* ==========================================================================
+   05. CÁC BƯỚC TÍNH GPA
+   ========================================================================== */
+
+.calc-step {
+    min-width: 0;
+    margin-bottom: var(--spacing-3);
+    padding: var(--spacing-3) var(--spacing-4);
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    box-shadow: none;
+}
+
+.calc-step h3,
+.result-detail h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 var(--spacing-3);
+    color: var(--primary-color);
+    font-family: var(--font-family);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.gpa-calculator,
+.gpa-calculator * {
+    font-family: var(--font-family);
+}
+
+.step-badge {
+    display: grid;
+    place-items: center;
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    color: var(--white-color);
+    background: var(--primary-color);
+    border-radius: 50%;
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.calc-fields-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-4);
+}
+
+
+/* ==========================================================================
+   06. BẢNG NHẬP MÔN HỌC
+   ========================================================================== */
+
+.calc-step--courses {
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.calc-table {
+    width: 100%;
+    min-width: 900px;
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    border-spacing: 0;
+    border-collapse: separate;
+}
+
+.calc-table th {
+    padding: 12px;
+    color: var(--text-dark);
+    background: var(--background-alt);
+    border-bottom: 1px solid var(--border-color);
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.calc-table td {
+    padding: var(--spacing-2) 12px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.calc-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.calc-table tbody tr:hover td {
+    background: var(--background-color);
+}
+
+.calc-table:not(.result-table) th:nth-child(2),
+.calc-table:not(.result-table) td:nth-child(2) {
+    width: 56px;
+    text-align: center;
+}
+
+.drag-handle {
+    width: 28px;
+    color: var(--text-light);
+    text-align: center;
+    cursor: grab;
+}
+
+.btn-icon-delete {
+    display: inline-grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    color: var(--primary-color);
+    background: transparent;
+    border: 0;
+    border-radius: var(--radius-small);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+}
+
+.btn-icon-delete svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-icon-delete:hover {
+    color: var(--danger-color);
+    background: var(--danger-bg);
+}
+
+.btn-add-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: var(--spacing-3);
+    padding: 8px var(--spacing-3);
+    color: var(--green-btn-hover);
+    background: var(--success-bg);
+    border: 1px dashed var(--green-btn);
+    border-radius: var(--radius-small);
+}
+
+.btn-add-row:hover {
+    color: var(--green-btn-hover);
+    background: var(--white-color);
+    border-color: var(--green-btn-hover);
+}
+
+.calc-actions {
+    display: flex;
+    justify-content: flex-end;
     gap: var(--spacing-3);
     margin-top: var(--spacing-4);
 }
 
-/* ===== 4. FORM CONTROLS (chỉ trong các khối của trang) ===== */
-:is(.gpa-calculator, .gpa-projection, .projection-result-section, .quick-analysis-section) :is(select, input[type="text"], input[type="number"]) {
-    width: 100%; height: 42px; padding: 0 12px; background: var(--white-color);
-    border: 1px solid var(--border-color); border-radius: var(--radius-small);
-    transition: border-color .2s, box-shadow .2s;
+
+/* ==========================================================================
+   07. KẾT QUẢ GPA
+   ========================================================================== */
+
+.calc-step--result {
+    padding: var(--spacing-3) var(--spacing-4);
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
 }
-:is(.gpa-calculator, .gpa-projection, .projection-result-section, .quick-analysis-section) :is(select, input):hover { border-color: var(--text-light); }
-:is(.gpa-calculator, .gpa-projection, .projection-result-section, .quick-analysis-section) :is(select, input):focus {
-    outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px var(--background-alt);
+
+.calc-step--result .calc-heading {
+    margin-bottom: var(--spacing-4);
 }
-:is(.gpa-calculator, .gpa-projection) ::placeholder { color: var(--text-light); }
-:is(.gpa-calculator, .gpa-projection) label { display: block; margin-bottom: 6px; font-size: var(--font-size-small); font-weight: 700; color: var(--text-dark); }
-.gpa-projection label span { color: var(--danger-color); }
 
-/* ===== 5. TÍNH GPA – 3 BƯỚC ===== */
-.calc-step { margin-bottom: var(--spacing-3); padding: var(--spacing-3) var(--spacing-4); background: var(--background-color); border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.calc-step h3 { display: flex; align-items: center; gap: 12px; margin-bottom: var(--spacing-3); font-size: 18px; }
-.calc-step > p { margin: calc(-1 * var(--spacing-2)) 0 var(--spacing-3) 44px; font-size: var(--font-size-small); color: var(--text-light); }
-.step-badge { display: grid; place-items: center; width: 32px; height: 32px; flex: none; border-radius: 50%; background: var(--primary-color); color: var(--white-color); font-size: var(--font-size-small); }
+.calc-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-4);
+}
 
-.calc-fields-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-4); }
+.result-summary {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    align-items: stretch;
+    gap: var(--spacing-3);
+}
 
-/* bảng */
-.calc-step--courses, .result-detail { overflow-x: auto; }.calc-table { min-width: 900px; border-collapse: separate; border-spacing: 0; background: var(--white-color); border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.calc-table th { padding: 12px 10px; background: var(--background-alt); color: var(--text-dark); font-size: var(--font-size-small); font-weight: 700; text-align: left; border-bottom: 1px solid var(--border-color); }
-.calc-table td { padding: var(--spacing-2) 10px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
-.calc-table tbody tr:last-child td { border-bottom: 0; }
-.calc-table tbody tr:hover { background: var(--background-color); }
-.calc-table th:nth-child(2), .calc-table td:nth-child(2) { width: 56px; text-align: center; }
-.drag-handle { width: 28px; color: var(--text-light); text-align: center; cursor: grab; }
-.btn-icon-delete, .btn-remove-projection { width: 32px; height: 32px; border: 0; border-radius: var(--radius-small); background: transparent; color: var(--text-light); font-size: 18px; }
-.btn-icon-delete:hover, .btn-remove-projection:hover { background: var(--danger-bg); color: var(--danger-color); }
+.result-gpa-card,
+.result-stat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+    padding: var(--spacing-3);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+}
 
-.btn-add-row { width: 100%; margin-top: var(--spacing-3); padding: 12px var(--spacing-3); justify-content: flex-start; background: var(--background-alt); border: 2px dashed var(--primary-color); color: var(--primary-color); }
-.btn-add-row:hover { background: var(--white-color); color: var(--primary-dark); }
-.calc-actions, .projection-actions { display: flex; justify-content: flex-end; gap: var(--spacing-3); margin-top: var(--spacing-4); }
+.result-gpa-card {
+    background: var(--background-alt);
+}
 
-/* ===== 6. KẾT QUẢ ===== */
-.result-summary { display: grid; grid-template-columns: 1.5fr repeat(4, minmax(0, 1fr)); gap: var(--spacing-3); margin-bottom: var(--spacing-4); }
-.result-gpa-card, .result-stat-card { padding: var(--spacing-3); background: var(--white-color); border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.result-gpa-card { display: flex; align-items: center; gap: var(--spacing-3); background: var(--background-alt); border-color: transparent; }
-.result-gpa-card img { width: 64px; height: 64px; padding: 14px; flex: none; border-radius: 50%; background: var(--white-color); }
-.result-gpa-card span { display: block; font-weight: 700; color: var(--text-dark); }
-.result-gpa-value { display: block; font-size: 48px; line-height: 1.2; color: var(--primary-color); }
-.result-gpa-value small { font-size: 18px; font-weight: 400; color: var(--text-light); }
-.result-gpa-card .result-tag { display: inline-block; margin-top: var(--spacing-2); padding: 2px 14px; border-radius: 999px; background: var(--white-color); color: var(--primary-color); font-size: 13px; }
-.result-stat-card { display: flex; flex-direction: column; gap: 2px; }
-.result-stat-card img { width: 44px; height: 44px; margin-bottom: var(--spacing-2); padding: 10px; border-radius: 50%; background: var(--background-alt); }
-.result-stat-card strong { font-size: 30px; line-height: 1.2; color: var(--primary-color); }
-.result-stat-card span { font-size: var(--font-size-small); color: var(--text-light); }
+.result-stat-card {
+    background: var(--white-color);
+}
 
-.result-detail { padding: var(--spacing-3) var(--spacing-4); background: var(--background-color); border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.result-detail h3 { margin-bottom: var(--spacing-3); font-size: 18px; }
-.result-table th:first-child, .result-table td:first-child { width: 56px; text-align: center; }
-.result-table td:nth-child(n+5) { font-weight: 700; color: var(--primary-color); }
+.result-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-2);
+}
 
-.forecast-banner { display: flex; align-items: center; gap: var(--spacing-3); margin-top: var(--spacing-4); padding: var(--spacing-3) var(--spacing-4); background: var(--background-alt); border-left: 4px solid var(--primary-color); border-radius: var(--radius-medium); }
-.forecast-banner > img { width: 52px; height: 52px; padding: 12px; flex: none; border-radius: var(--radius-medium); background: var(--primary-color); }
-.forecast-banner strong { display: block; color: var(--primary-color); font-size: 18px; }
-.forecast-banner p { margin: 0; font-size: var(--font-size-small); }
-.forecast-banner .et-btn { margin-left: auto; }
+.result-card-top span {
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+    font-weight: 400;
+    line-height: 1.4;
+}
 
-/* ===== 7. DỰ PHÓNG: NHẬP LIỆU (theo mẫu framework) ===== */
-.projection-header-icon { background: var(--primary-color); }
-.projection-header h2 { font-size: var(--font-size-h2); }
-.projection-header-content { flex: 1; max-width: 680px; }
-.projection-header-image { width: 200px; margin-left: auto; flex: none; }
-.projection-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-3); align-items: start; }
-.projection-card { padding: var(--spacing-3); background: var(--white-color); border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.projection-card-title { display: flex; align-items: center; gap: 12px; margin-bottom: var(--spacing-3); }
-.projection-card-title h3 { font-size: 18px; }
-.projection-card-title p { font-size: 13px; color: var(--text-light); }
-.projection-icon { width: 44px; height: 44px; padding: 10px; flex: none; background: var(--background-alt); border: 1px solid var(--primary-color); border-radius: var(--radius-medium); }
+.result-card-top i,
+.result-card-top svg {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    color: var(--primary-color);
+    stroke-width: 2;
+}
 
-/* mỗi ô nhập nằm trong một khung viền nhẹ */
-.projection-field-group { margin-bottom: 12px; padding: 12px; background: var(--white-color); border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.projection-two-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.projection-two-fields .projection-field-group { margin-bottom: 0; }
-.projection-two-fields { margin-bottom: 12px; }
-.projection-field-group small { display: block; margin-top: 4px; font-size: 12px; color: var(--text-light); }
-.gpa-projection :is(select, input[type="number"], input[type="text"]) { border-color: color-mix(in srgb, var(--primary-color) 35%, white); }
+.result-card-value {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: auto;
+}
 
-/* thẻ thống kê tín chỉ: viên thuốc xanh lá */
-.projection-credit-summary { display: flex; flex-wrap: wrap; gap: var(--spacing-2); margin-bottom: 12px; }
-.credit-summary-item { display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--background-alt); border: 1px solid color-mix(in srgb, var(--primary-color) 35%, white); border-radius: var(--radius-small); font-size: 13px; color: var(--primary-color); }
-.credit-summary-item span, .credit-summary-item b, .credit-summary-item strong { color: var(--primary-color); }
-.credit-summary-item strong { font-weight: 400; }
+.result-card-value strong {
+    color: var(--primary-color);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+}
 
-.projection-subsection { padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.projection-subsection h4 { font-size: var(--font-size-base); }
-.projection-subsection > p { margin-bottom: 12px; font-size: 13px; color: var(--text-light); }
-.projection-course-table { overflow: hidden; border: 1px solid var(--border-color); border-radius: var(--radius-small); }
-.projection-course-header, .projection-course-row { display: grid; grid-template-columns: 1fr 80px 80px 32px; gap: 10px; align-items: center; padding: 6px 12px; }
-.projection-course-header { background: var(--background-alt); font-size: var(--font-size-small); font-weight: 700; color: var(--text-dark); }
-.projection-course-row { border-top: 1px solid var(--border-color); }
-.projection-course-name { display: flex; align-items: center; gap: var(--spacing-2); }
-.course-small-icon { color: var(--primary-color); }
-.btn-add-projection-course { margin-top: 10px; padding: 4px; border: 0; background: none; font-weight: 700; color: var(--primary-color); }
-.btn-add-projection-course:hover { color: var(--primary-dark); text-decoration: underline; }
+.result-card-value small {
+    color: var(--text-light);
+    font-size: 13px;
+}
 
-/* ghi chú: nền xanh nhạt, icon xanh dương */
-.projection-note { display: flex; align-items: center; gap: 10px; margin-top: var(--spacing-3); padding: 10px var(--spacing-3); background: var(--background-alt); border: 1px solid color-mix(in srgb, var(--primary-color) 20%, white); border-radius: var(--radius-small); color: var(--text-color); font-size: 13px; }
-.projection-note p { margin: 0; }
-.projection-note-icon { color: var(--primary-color); font-size: 12px; }
+.result-stat-card > strong {
+    margin-top: auto;
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+}
 
-/* nút hành động: màu xanh lá như mẫu */
-.projection-actions .et-btn-outline { border-color: var(--primary-color); color: var(--primary-color); }
-.projection-actions .et-btn-outline:hover { background: var(--background-alt); color: var(--primary-color); }
-.projection-actions .et-btn-primary { background: var(--primary-color); }
-.projection-actions .et-btn-primary:hover { background: color-mix(in srgb, var(--primary-color) 80%, black); }
 
-/* ===== 8. DỰ PHÓNG: KẾT QUẢ ===== */
-.projection-result-icon, .quick-analysis-icon { background: var(--primary-color); }
-.projection-result-toolbar { display: flex; justify-content: flex-start; align-items: center; gap: 12px; margin-bottom: var(--spacing-3); padding: var(--spacing-3); border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.projection-result-toolbar select { width: 170px; }
-#btn-export { background: var(--primary-color); border-color: var(--primary-color); color: var(--white-color); }
-#btn-export:hover { background: color-mix(in srgb, var(--primary-color) 80%, black); }
+/* ==========================================================================
+   08. BẢNG ĐIỂM CHI TIẾT
+   ========================================================================== */
 
-.projection-result-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-3); margin-bottom: var(--spacing-3); }
-.projection-result-card { display: flex; align-items: center; gap: var(--spacing-3); padding: var(--spacing-3); background: var(--white-color); border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.result-card-icon { display: grid; place-items: center; width: 52px; height: 52px; flex: none; border-radius: 50%; background: var(--background-alt); color: var(--primary-color); font-size: 22px; }
-.projection-result-card span { display: block; font-size: var(--font-size-small); color: var(--text-color); }
-.projection-result-card strong { display: block; font-size: 32px; line-height: 1.25; color: var(--text-dark); }
-.projection-result-card small { font-size: 13px; color: var(--primary-color); }
-.projection-result-card:nth-child(n+3) small { color: var(--text-light); }
+.result-detail {
+    width: 100%;
+    min-width: 0;
+    margin-top: var(--spacing-3);
+    padding: 0;
+    overflow-x: auto;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-overflow-scrolling: touch;
+}
 
-/* biểu đồ lộ trình: đường + vùng tô xanh bằng clip-path. Đổi 4 biến --y1..--y4 (% tính từ trên xuống) khi có JS */
-.projection-chart-card { padding: var(--spacing-3); background: var(--white-color); border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.projection-chart-header h3 { margin-bottom: var(--spacing-3); font-size: var(--font-size-base); }
-.projection-chart { display: flex; gap: 12px; }
-.chart-y-axis { display: flex; flex-direction: column; justify-content: space-between; height: 240px; font-size: 13px; color: var(--text-light); }
-.chart-area { flex: 1; min-width: 0; }
-.chart-line { --y1: 43.6%; --y2: 48%; --y3: 35.6%; --y4: 32%;
-    position: relative; height: 240px; border-bottom: 1px solid var(--border-color);
-    background: repeating-linear-gradient(to top, transparent 0 47px, var(--border-color) 47px 48px); }
-.chart-line::before, .chart-line::after { content: ""; position: absolute; inset: 0; }
-.chart-line::before { background: linear-gradient(180deg, color-mix(in srgb, var(--primary-color) 30%, transparent), transparent);
-    clip-path: polygon(12% var(--y1), 37% var(--y2), 62% var(--y3), 87% var(--y4), 87% 100%, 12% 100%); }
-.chart-line::after { background: var(--primary-color);
-    clip-path: polygon(12% calc(var(--y1) - 1px), 37% calc(var(--y2) - 1px), 62% calc(var(--y3) - 1px), 87% calc(var(--y4) - 1px),
-                       87% calc(var(--y4) + 1px), 62% calc(var(--y3) + 1px), 37% calc(var(--y2) + 1px), 12% calc(var(--y1) + 1px)); }
-.chart-point { position: absolute; z-index: 1; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--primary-color); border: 2px solid var(--white-color); box-shadow: 0 0 0 1px var(--primary-color); }
-.chart-point span { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); font-size: var(--font-size-small); font-weight: 700; color: var(--text-dark); }
-.point-1 { left: 12%; top: var(--y1); } .point-2 { left: 37%; top: var(--y2); }
-.point-3 { left: 62%; top: var(--y3); } .point-4 { left: 87%; top: var(--y4); }
-.chart-labels { display: flex; padding-top: var(--spacing-2); }
-.chart-labels span { flex: 1; text-align: center; font-size: 13px; font-weight: 700; color: var(--text-dark); }
+.result-table {
+    width: 100%;
+    min-width: 700px;
+    margin: 0;
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    border-spacing: 0;
+    border-collapse: separate;
+}
 
-/* ===== 9. PHÂN TÍCH NHANH ===== */
-.analysis-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-3); }
-.analysis-card { padding: var(--spacing-3); background: var(--white-color); border: 1px solid var(--border-color); border-radius: var(--radius-medium); }
-.analysis-card-header { display: flex; justify-content: space-between; gap: 12px; margin-bottom: var(--spacing-3); padding-bottom: var(--spacing-3); border-bottom: 1px solid var(--border-color); }
-.analysis-card-header > div { display: flex; gap: 12px; flex: 1; min-width: 0; }
-.quick-analysis-section .analysis-card-header select { width: 110px; flex: none; }
-.analysis-card-icon { display: grid; place-items: center; width: 40px; height: 40px; flex: none; border-radius: var(--radius-medium); background: var(--background-alt); color: var(--primary-color); }
-.analysis-card h3 { font-size: var(--font-size-base); }
-.analysis-card p { font-size: 12px; color: var(--text-light); }
+.result-table thead th {
+    padding: 12px 16px;
+    color: var(--text-dark);
+    background: var(--background-alt);
+    border: 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    text-align: left;
+    white-space: nowrap;
+}
 
-.bar-chart { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; height: 260px; }
-.bar-item { display: flex; flex: 1; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; height: 100%; }
-.bar { width: 100%; max-width: 44px; border-radius: var(--radius-small) var(--radius-small) 0 0; background: color-mix(in srgb, var(--primary-color) 85%, white); }
-.bar-value { font-size: var(--font-size-small); font-weight: 700; color: var(--text-dark); }
-.bar-label { min-height: 34px; font-size: 12px; text-align: center; color: var(--text-color); }
+.result-table tbody td {
+    padding: 12px 16px;
+    color: var(--text-color);
+    background: var(--white-color);
+    border: 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: var(--font-size-small);
+    vertical-align: middle;
+}
 
-/* biểu đồ tròn đặc, ba sắc xanh */
-.pie-chart-wrapper { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: var(--spacing-4); padding: var(--spacing-3) 0; }
-.pie-chart { position: relative; width: 200px; height: 200px; border-radius: 50%;
-    background: conic-gradient(color-mix(in srgb, var(--primary-color) 35%, white) 0 52%, color-mix(in srgb, var(--primary-color) 70%, white) 52% 72%, color-mix(in srgb, var(--primary-color) 100%, black 15%) 72% 92%, color-mix(in srgb, var(--primary-color) 55%, white) 92% 100%); }
-.pie-percent { position: absolute; top: 50%; right: 20%; transform: translateY(-50%); font-size: var(--font-size-small); font-weight: 700; color: var(--text-dark); }
-.pie-legend { display: grid; gap: 14px; min-width: 200px; }
-.pie-legend > div { display: flex; align-items: center; gap: 10px; }
-.pie-legend strong { margin-left: auto; padding-left: var(--spacing-4); font-weight: 400; color: var(--text-color); }
-.legend-dot { width: 14px; height: 14px; border-radius: 50%; }
-.dot-1 { background: color-mix(in srgb, var(--primary-color) 35%, white); }
-.dot-2 { background: color-mix(in srgb, var(--primary-color) 70%, white); }
-.dot-3 { background: color-mix(in srgb, var(--primary-color) 100%, black 15%); }
-.dot-4 { background: color-mix(in srgb, var(--primary-color) 55%, white); }
+.result-table tbody tr:last-child td {
+    border-bottom: 0;
+}
 
-/* ===== 10. RESPONSIVE (desktop ≥992 | tablet 768-991 | mobile <768) ===== */
+.result-table tbody tr:hover td {
+    background: var(--background-color);
+}
+
+.result-table th:first-child,
+.result-table td:first-child {
+    width: 56px;
+    text-align: center;
+}
+
+.result-table td:nth-child(n + 5) {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+
+/* ==========================================================================
+   09. BANNER MỜI DỰ PHÓNG GPA
+   ========================================================================== */
+
+.forecast-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    box-sizing: border-box;
+    width: calc(100% - 48px);
+    max-width: var(--container-max);
+    margin: var(--spacing-3) auto var(--spacing-4);
+    padding: 12px 16px;
+    background: var(--background-alt);
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--radius-medium);
+}
+
+.forecast-banner > img {
+    flex: 0 0 76px;
+    width: 76px;
+    height: 76px;
+    object-fit: contain;
+}
+
+.forecast-banner strong {
+    display: block;
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.forecast-banner p {
+    margin: 0;
+    color: var(--text-color);
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+}
+
+.forecast-banner .et-btn {
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+
+/* ==========================================================================
+   10. DỰ PHÓNG GPA - KHUNG NGOÀI (đồng bộ với .gpa-calculator)
+   --------------------------------------------------------------------------
+   Mặc định: 1 cột. Từ 992px trở lên: lưới 24 cột (xem phần 19).
+   ========================================================================== */
+
+#projection-wrapper {
+    /* Màu trạng thái (dùng biến của main.css nếu có) */
+    --pj-success: var(--success-color, #16a34a);
+    --pj-success-bg: var(--success-bg, #ecfdf3);
+    --pj-success-border: var(--success-border, #bbf7d0);
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-3);
+    align-items: stretch;
+    width: calc(100% - 48px);
+    max-width: var(--container-max);
+    margin: var(--spacing-4) auto;
+    padding: var(--spacing-4);
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-small);
+}
+
+#projection-wrapper,
+#projection-wrapper * {
+    font-family: var(--font-family);
+}
+
+
+/* ==========================================================================
+   11. DỰ PHÓNG GPA - KHUNG MỤC VÀ TIÊU ĐỀ (giống .calc-step)
+   ========================================================================== */
+
+.projection-section {
+    min-width: 0;
+    margin: 0;
+    padding: var(--spacing-3) var(--spacing-4);
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    box-shadow: none;
+}
+
+.projection-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: var(--spacing-3);
+}
+
+.projection-step-number {
+    display: grid;
+    place-items: center;
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    color: var(--white-color);
+    background: var(--primary-color);
+    border-radius: 50%;
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.projection-section-heading > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.projection-section-heading h2 {
+    margin: 0 0 4px;
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.projection-section-heading p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+}
+
+/* Khung nội dung: phẳng, giống cách bảng nằm trực tiếp trong .calc-step */
+.projection-card {
+    min-width: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+/* ==========================================================================
+   12. DỰ PHÓNG GPA - BẢNG (mục 1, 2, 5) - giống .calc-table
+   ========================================================================== */
+
+.projection-table-wrapper {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+}
+
+.projection-table {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    background: var(--white-color);
+    border-spacing: 0;
+    border-collapse: separate;
+}
+
+.projection-table th {
+    padding: 12px;
+    color: var(--text-dark);
+    background: var(--background-alt);
+    border-bottom: 1px solid var(--border-color);
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.projection-table td {
+    padding: var(--spacing-2) 12px;
+    color: var(--text-color);
+    background: var(--white-color);
+    border-bottom: 1px solid var(--border-color);
+    font-size: var(--font-size-small);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.projection-table th:first-child,
+.projection-table td:first-child {
+    text-align: left;
+}
+
+.projection-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.projection-table tbody tr:hover td {
+    background: var(--background-color);
+}
+
+/* Cột thao tác (mục 1) */
+.projection-section:nth-child(1) .projection-table th:last-child,
+.projection-section:nth-child(1) .projection-table td:last-child {
+    width: 90px;
+}
+
+/* Cột tín chỉ (mục 1) */
+.projection-section:nth-child(1) .projection-table th:nth-child(2),
+.projection-section:nth-child(1) .projection-table td:nth-child(2) {
+    width: 110px;
+}
+
+/* Cột điểm đã đạt (mục 2) */
+.projection-section:nth-child(2) .projection-table th:last-child,
+.projection-section:nth-child(2) .projection-table td:last-child {
+    width: 170px;
+}
+
+.projection-section:nth-child(2) .projection-table th:nth-child(2),
+.projection-section:nth-child(2) .projection-table td:nth-child(2) {
+    width: 80px;
+}
+
+/* Cột trạng thái (mục 5) */
+.projection-section:nth-child(5) .projection-table th:last-child,
+.projection-section:nth-child(5) .projection-table td:last-child {
+    width: 110px;
+}
+
+.projection-input {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    padding: 0 12px;
+    color: var(--text-color);
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-small);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.projection-input:hover {
+    border-color: var(--text-light);
+}
+
+.projection-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--background-alt);
+}
+
+.projection-input::placeholder {
+    color: var(--text-light);
+    opacity: 1;
+}
+
+/* Ô tín chỉ căn giữa */
+.projection-credit-input {
+    text-align: center;
+}
+
+.projection-icon-button {
+    display: inline-grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    color: var(--primary-color);
+    background: transparent;
+    border: 0;
+    border-radius: var(--radius-small);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+}
+
+.projection-icon-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.projection-icon-button:hover {
+    color: var(--danger-color);
+    background: var(--danger-bg);
+}
+
+.projection-add-course {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: var(--spacing-3);
+}
+
+.projection-add-course svg,
+.projection-calculate-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Checkbox môn tiên quyết */
+.projection-prerequisite {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: var(--text-color);
+    font-size: var(--font-size-small);
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.projection-prerequisite input[type="checkbox"] {
+    flex: 0 0 17px;
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    accent-color: var(--primary-color);
+}
+
+.projection-prerequisite span {
+    overflow-wrap: anywhere;
+}
+
+.projection-score-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 130px;
+}
+
+.projection-score-field .projection-input {
+    min-width: 80px;
+    text-align: center;
+}
+
+.projection-score-field > span {
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+    white-space: nowrap;
+}
+
+/* Ghi chú có icon thông tin */
+.projection-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: var(--spacing-3) 0 0;
+    padding: 10px var(--spacing-3);
+    color: var(--text-color);
+    background: var(--background-alt);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-small);
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+}
+
+.projection-note svg {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    color: var(--primary-color);
+}
+
+
+/* ==========================================================================
+   13. DỰ PHÓNG GPA - MỤC 3: THÔNG TIN GPA VÀ MỤC TIÊU
+   ========================================================================== */
+
+.projection-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-3);
+}
+
+.projection-form-group {
+    min-width: 0;
+    padding: 12px;
+    background: var(--background-alt);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+}
+
+.projection-form-group label {
+    margin-bottom: 8px;
+}
+
+.projection-form-group small {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+}
+
+.projection-calculate-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: var(--spacing-3);
+}
+
+
+/* ==========================================================================
+   14. DỰ PHÓNG GPA - MỤC 4: KẾT QUẢ TỔNG QUAN
+   --------------------------------------------------------------------------
+   Chỉ có một thẻ xanh lớn "GPA kỳ tới cần đạt": icon bên trái,
+   nội dung bên phải.
+   ========================================================================== */
+
+.projection-result-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.projection-result-highlight {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+    min-width: 0;
+    padding: var(--spacing-4);
+    background: var(--pj-success-bg);
+    border: 1px solid var(--pj-success-border);
+    border-radius: var(--radius-medium);
+    box-shadow: none;
+}
+
+.projection-result-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    color: var(--primary-color);
+}
+
+.projection-result-icon svg {
+    width: 44px;
+    height: 44px;
+}
+
+.projection-result-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+.projection-result-title {
+    color: var(--text-dark);
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.projection-result-value {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 4px 0 var(--spacing-3);
+}
+
+.projection-result-value strong {
+    color: var(--pj-success);
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.projection-result-scale {
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+}
+
+/* Huy hiệu "Đạt mục tiêu GPA ..." */
+.projection-result-message {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 6px 14px;
+    color: var(--pj-success);
+    background: var(--white-color);
+    border: 1px solid var(--pj-success-border);
+    border-radius: 999px;
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.projection-result-message::before {
+    content: "✓";
+}
+
+
+/* ==========================================================================
+   15. DỰ PHÓNG GPA - MỤC 5: DỰ PHÓNG ĐIỂM TỪNG MÔN
+   ========================================================================== */
+
+.projected-course-results td {
+    font-size: var(--font-size-small);
+}
+
+.projection-grade {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    padding: 4px 10px;
+    color: var(--primary-color);
+    background: var(--background-alt);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-small);
+    font-weight: 700;
+}
+
+/* Huy hiệu trạng thái "Đạt" */
+.projection-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    color: var(--pj-success);
+    background: var(--pj-success-bg);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   16. DỰ PHÓNG GPA - MỤC 6: BIỂU ĐỒ VÀ TÓM TẮT LỘ TRÌNH
+   ========================================================================== */
+
+.projection-chart-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+    gap: var(--spacing-3);
+}
+
+.projection-chart-card,
+.projection-chart-summary {
+    min-width: 0;
+}
+
+/* Khung biểu đồ: thẻ trắng có viền */
+.projection-chart-card {
+    padding: var(--spacing-3);
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+}
+
+/* Khung tóm tắt lộ trình: thẻ xanh nhạt */
+.projection-chart-summary {
+    padding: var(--spacing-4);
+    background: var(--background-alt);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+}
+
+.projection-chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+}
+
+.projection-chart-legend > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
+    font-size: var(--font-size-small);
+}
+
+.legend-dot {
+    display: inline-block;
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.legend-current {
+    background: var(--primary-color);
+}
+
+.legend-forecast {
+    background: var(--pj-success);
+}
+
+.legend-line {
+    display: inline-block;
+    width: 20px;
+    height: 0;
+    border-top: 2px dashed var(--pj-success);
+}
+
+.legend-target {
+    border-color: var(--pj-success);
+}
+
+/* Vùng giữ chỗ khi chưa có biểu đồ */
+.projection-chart-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+    padding: var(--spacing-4);
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 63px,
+            var(--border-color) 64px,
+            transparent 65px
+        ),
+        var(--background-color);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-medium);
+    text-align: center;
+}
+
+.projection-chart-placeholder p {
+    max-width: 300px;
+    margin: 0;
+    padding: var(--spacing-3);
+    color: var(--text-light);
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+}
+
+/* Biểu đồ SVG */
+.projection-chart-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.projection-chart-svg .chart-grid line {
+    stroke: var(--border-color);
+    stroke-width: 1;
+}
+
+.projection-chart-svg text {
+    fill: var(--text-light);
+    font-family: var(--font-family);
+    font-size: 13px;
+}
+
+.projection-chart-svg .chart-label {
+    fill: var(--primary-color);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.chart-area {
+    fill: var(--pj-success-bg);
+}
+
+.chart-line {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 2.5;
+}
+
+.chart-target {
+    stroke: var(--pj-success);
+    stroke-width: 2;
+    stroke-dasharray: 6 5;
+}
+
+.chart-dot--current {
+    fill: var(--primary-color);
+}
+
+.chart-dot--forecast {
+    fill: var(--pj-success);
+}
+
+/* Tóm tắt lộ trình: mỗi dòng gồm icon tròn + nhãn + giá trị */
+.projection-chart-summary h3 {
+    margin: 0 0 var(--spacing-2);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.projection-summary-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3) 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.projection-summary-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.projection-summary-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    color: var(--primary-color);
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+}
+
+.projection-summary-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.projection-summary-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-width: 0;
+}
+
+.projection-summary-text > span {
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+    line-height: 1.5;
+}
+
+.projection-summary-text > strong {
+    color: var(--primary-color);
+    font-size: 22px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.projection-summary-text > strong small {
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+    font-weight: 400;
+}
+
+/* Huy hiệu "Đạt" trong tóm tắt: nhỏ hơn thẻ mặc định, dễ nhìn */
+.projection-summary-text > .projection-status {
+    padding: 4px 14px;
+    font-size: var(--font-size-small);
+}
+
+
+/* ==========================================================================
+   17. RESPONSIVE - TABLET (≤ 991px)
+   ========================================================================== */
+
 @media (max-width: 991px) {
-    .result-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .result-gpa-card { grid-column: 1 / -1; }
-    .projection-result-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .analysis-grid, .projection-form-grid { grid-template-columns: minmax(0, 1fr); }
-    .projection-header-image { display: none; }
+    .result-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
+
+
+/* ==========================================================================
+   18. DESKTOP (≥ 992px) - BỐ CỤC DỰ PHÓNG THEO WIREFRAME
+   --------------------------------------------------------------------------
+   Hàng 1: Mục 1 | Mục 2
+   Hàng 2: Mục 3 (4 ô nhập + nút tính toán)
+   Hàng 3: Mục 4 | Mục 5
+   Hàng 4: Mục 6 (biểu đồ + tóm tắt lộ trình)
+   Lưu ý: 6 mục phải là con trực tiếp của #projection-wrapper theo đúng thứ tự.
+   ========================================================================== */
+
+@media (min-width: 992px) {
+
+    #projection-wrapper {
+        grid-template-columns: repeat(24, minmax(0, 1fr));
+        gap: var(--spacing-4);
+    }
+
+    #projection-wrapper > .projection-section {
+        grid-column: 1 / -1;
+    }
+
+    #projection-wrapper > .projection-section:nth-child(1),
+    #projection-wrapper > .projection-section:nth-child(2) {
+        grid-column: span 12;
+    }
+
+    /* Hàng 3: mục 4 hẹp (9/24), mục 5 rộng (15/24) */
+    #projection-wrapper > .projection-section:nth-child(4) {
+        grid-column: span 9;
+    }
+
+    #projection-wrapper > .projection-section:nth-child(5) {
+        grid-column: span 15;
+    }
+
+    /* Mục 4: thu gọn thẻ cho vừa khung hẹp */
+    .projection-section:nth-child(4) .projection-result-highlight {
+        gap: var(--spacing-3);
+        padding: var(--spacing-3);
+    }
+
+    .projection-section:nth-child(4) .projection-result-icon {
+        flex-basis: 48px;
+        width: 48px;
+        height: 48px;
+    }
+
+    /* Mục 5: bảng hiện đủ cột, không cần cuộn ngang */
+    .projection-section:nth-child(5) .projection-table th,
+    .projection-section:nth-child(5) .projection-table td {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .projection-section:nth-child(5) .projection-table th {
+        white-space: normal;
+        line-height: 1.35;
+    }
+
+    .projection-section:nth-child(5) .projection-table th:first-child,
+    .projection-section:nth-child(5) .projection-table td:first-child {
+        min-width: 150px;
+        padding-left: 12px;
+    }
+
+    /* ----- Mục 3: 4 ô nhập + nút trên cùng một hàng ----- */
+    .projection-section:nth-child(3) .projection-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 220px;
+        align-items: center;
+        gap: var(--spacing-3);
+    }
+
+    .projection-section:nth-child(3) .projection-form-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .projection-section:nth-child(3) .projection-form-group small {
+        display: none;
+    }
+
+    .projection-section:nth-child(3) .projection-calculate-button {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    /* ----- Mục 6: biểu đồ (trái) + tóm tắt (phải) ----- */
+    .projection-chart-layout {
+        grid-template-columns: minmax(0, 1.8fr) minmax(260px, 1fr);
+        gap: var(--spacing-4);
+    }
+}
+
+
+/* ==========================================================================
+   19. RESPONSIVE - ĐIỆN THOẠI (≤ 767px)
+   ========================================================================== */
+
 @media (max-width: 767px) {
-    .gpa-hero { padding: var(--spacing-5) var(--spacing-3); }
-    .gpa-hero-buttons, .calc-actions, .projection-actions, .projection-result-toolbar { flex-direction: column; }
-    .calc-heading, .projection-header, .projection-result-header, .quick-analysis-header, .forecast-banner { flex-wrap: wrap; }
-    .calc-fields-row, .projection-two-fields, .projection-result-cards { grid-template-columns: minmax(0, 1fr); }
-    .projection-result-toolbar select { width: 100%; }
-    .gpa-calculator, .gpa-result, .gpa-projection, .projection-result-section, .quick-analysis-section {
-        width: calc(100% - 2 * var(--spacing-3)); padding: var(--spacing-3);
+    .gpa-calculator {
+        width: calc(100% - 24px);
+        padding: var(--spacing-3);
+    }
+
+    .gpa-hero {
+        grid-template-columns: minmax(0, 1fr);
+        width: calc(100% - 24px);
+        min-height: 0;
+        padding: var(--spacing-4);
+        gap: var(--spacing-3);
+    }
+
+    .gpa-hero-text {
+        padding: 0;
+    }
+
+    .gpa-hero-illustration {
+        height: 140px;
+    }
+
+    .gpa-hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .calc-fields-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calc-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .forecast-banner {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        width: calc(100% - 24px);
+    }
+
+    .forecast-banner > img {
+        flex: 0 0 56px;
+        width: 56px;
+        height: 56px;
+    }
+
+    .forecast-banner > div {
+        flex: 1 1 180px;
+        min-width: 0;
+    }
+
+    .forecast-banner .et-btn {
+        width: 100%;
+        margin-left: 0;
+        white-space: normal;
+    }
+
+    .result-card-value strong {
+        font-size: 27px;
+    }
+
+    .result-stat-card > strong {
+        font-size: 24px;
+    }
+
+    /* ----- Dự phóng ----- */
+    #projection-wrapper {
+        width: calc(100% - 24px);
+        padding: var(--spacing-3);
+    }
+
+    .projection-section {
+        padding: var(--spacing-3);
+    }
+
+    .projection-section-heading {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .projection-section-heading h2 {
+        font-size: 17px;
+    }
+
+    .projection-table {
+        min-width: 480px;
+    }
+
+    .projection-form-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .projection-calculate-button {
+        width: 100%;
+        white-space: normal;
+    }
+
+    .projection-chart-placeholder {
+        min-height: 220px;
+    }
+}
+
+
+/* ==========================================================================
+   20. RESPONSIVE - ĐIỆN THOẠI NHỎ (≤ 420px)
+   ========================================================================== */
+
+@media (max-width: 420px) {
+    .gpa-hero-text h1 {
+        font-size: 26px;
+    }
+
+    .result-summary {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .projection-result-highlight {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .projection-chart-legend {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .calc-step {
+        padding: var(--spacing-3);
     }
 }
