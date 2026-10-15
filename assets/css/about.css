@@ -6,7 +6,10 @@
    .grid-2, .grid-3, .et-card (breakpoint 991px / 767px của main.css).
    Phong cách: phẳng, không đổ bóng, chỉ dùng viền mỏng.
    ========================================================= */
-
+/* Màu chữ chung của trang About = màu chính của main */
+main {
+  color: var(--primary-color);
+}
 /* ---------- Danh sách: bỏ dấu đầu dòng + padding mặc định của "main ul" ---------- */
 main .tong-quan-text ul,
 main .van-de-list,
@@ -71,7 +74,7 @@ main img {
 .section-intro {
   max-width: 60ch;
   margin: 0 auto;
-  color: var(--text-color);
+  color: var(--primary-color);
 }
 
 /* ---------- Ảnh: ô xám khi chưa có ảnh ---------- */
@@ -135,7 +138,7 @@ main img {
 }
 
 .tong-quan-text li strong {
-  color: var(--text-dark);
+  color: var(--primary-color);
 }
 
 /* =========================================================
@@ -153,7 +156,7 @@ main img {
 .giai-phap-list p {
   margin-bottom: 0;
   font-size: var(--font-size-small);
-  color: var(--text-light);
+  color: var(--primary-color);
 }
 
 /* --- 3. Vấn đề --- */
