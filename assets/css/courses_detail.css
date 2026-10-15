@@ -7,7 +7,7 @@
    Gắn SAU main.css:
    <link rel="stylesheet" href="../assets/css/main.css">
    <link rel="stylesheet" href="../assets/css/course-detail.css">
-   (nếu file bạn đặt tên khác thì sửa href cho khớp)
+
    ========================================================= */
 
 /* ---------- KHUNG CHÍNH ---------- */
@@ -23,18 +23,17 @@
   align-items: start;
 }
 
-/* Màu chữ heading và link lấy từ main.css (h1-h3, a), ở đây chỉ chỉnh khoảng cách */
 #course-detail h1,
 #course-detail h2,
 #course-detail h3 { margin: 0; }
 
+/* Đồng bộ tiêu đề các phần (H2) vừa vặn, không quá khổ */
 #course-detail h2 {
   font-size: var(--font-size-h3);
   margin-bottom: var(--spacing-3);
 }
 
 /* ---------- HERO ---------- */
-/* .course-hero "biến mất" để phần giới thiệu + aside trở thành ô con của lưới chính */
 #course-detail .course-hero { display: contents; }
 
 #course-detail .course-hero-main {
@@ -43,20 +42,20 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+/* ---------- BREADCRUMB + CHIP ---------- */
 #course-detail .breadcrumb {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 0 0 var(--spacing-3);
-  font-size: 12px;
+  font-size: var(--font-size-small);
   color: var(--text-light);
 }
 
-/* Chip khối kiến thức: màu theo data-category, giống .course-tag ở trang danh mục */
 #course-detail .chip {
   background: #eff6ff;
-  color: #4e3ec6;                /* mặc định = Đại cương */
-  border-radius: 999px;          /* bo tròn kiểu viên thuốc */
+  color: #4e3ec6;            
+  border-radius: 999px;      
   padding: 4px 12px;
   font-weight: 700;
 }
@@ -64,13 +63,14 @@
 #course-detail .chip[data-category="chuyen-nganh"] { color: #407cd1; }
 
 #course-detail h1 {
-  font-size: var(--font-size-h2);
+  font-size: 35px;
   margin-bottom: var(--spacing-3);
 }
 
+/* Mô tả ngắn: dùng cỡ base cho dễ đọc, đồng đều */
 #course-detail .course-hero-main > p:last-child {
   margin: 0;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-base);
   line-height: 1.7;
   color: var(--text-light);
 }
@@ -78,7 +78,7 @@
 /* ---------- ASIDE: Thông tin chi tiết ---------- */
 #course-detail .quickfacts {
   grid-column: 2;
-  grid-row: 1 / span 3;          /* cao ngang hero + nội dung + tài liệu */
+  grid-row: 1 / span 3;         
   padding: var(--spacing-4);
   background: var(--white-color);
   border: 1px solid var(--border-color);
@@ -87,12 +87,12 @@
 }
 
 #course-detail .quickfacts h2 {
-  font-size: var(--font-size-base);
+  font-size: 24px;
   margin-bottom: var(--spacing-3);
 }
 
 #course-detail .quickfacts table {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-base);
 }
 
 #course-detail .quickfacts th,
@@ -110,7 +110,7 @@
   color: var(--text-dark);
 }
 
-/* ---------- NÚT (cùng kiểu với .et-btn-primary của main.css) ---------- */
+/* ---------- NÚT ---------- */
 #course-detail .btn-cta {
   display: inline-block;
   background: var(--primary-color);
@@ -118,7 +118,7 @@
   border: 0;
   border-radius: var(--radius-medium);
   padding: 10px var(--spacing-3);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-base);
   font-weight: 700;
   text-align: center;
   text-decoration: none;
@@ -138,14 +138,13 @@
   margin-top: var(--spacing-4);
 }
 
-/* ---------- NỘI DUNG MÔN HỌC (bảng -> các thanh) ---------- */
+/* ---------- NỘI DUNG MÔN HỌC ---------- */
 #course-content,
 #course-materials {
   grid-column: 1;
   margin-top: var(--spacing-5);
 }
 
-/* Ẩn tiêu đề cột nhưng vẫn giữ cho trình đọc màn hình */
 #course-content thead,
 #course-materials thead {
   position: absolute;
@@ -168,26 +167,26 @@
 
 #course-content tr {
   display: grid;
-  grid-template-columns: 32px 1fr auto;
+  grid-template-columns: 36px 1fr auto;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
+  padding: 12px 14px;
   background: var(--background-alt);
   border-radius: var(--radius-small);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-base);
 }
 
 #course-content td { padding: 0; }
 
-#course-content td:first-child {          /* số thứ tự trong vòng tròn */
-  width: 26px;
-  height: 26px;
+#course-content td:first-child {         
+  width: 28px;
+  height: 28px;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background: var(--white-color);
   color: var(--primary-color);
-  font-size: 11px;
+  font-size: var(--font-size-base);
   font-weight: 700;
 }
 
@@ -197,26 +196,26 @@
 }
 
 #course-content td:last-child {
-  font-size: 12px;
+  font-size: var(--font-size-small);
   color: var(--text-light);
 }
 
-/* ---------- TÀI LIỆU THAM KHẢO (bảng -> thẻ có viền) ---------- */
+/* ---------- TÀI LIỆU THAM KHẢO ---------- */
 #course-materials tr {
   display: grid;
-  grid-template-columns: 1fr 50px 70px 32px;
+  grid-template-columns: 1fr 60px 80px 32px;
   align-items: center;
   gap: 12px;
   padding: 12px var(--spacing-3);
   background: var(--white-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-medium);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-base);
 }
 
 #course-materials td { padding: 0; }
 
-#course-materials td:first-child::before {   /* icon file */
+#course-materials td:first-child::before {   
   content: "▤";
   margin-right: 10px;
   color: var(--text-light);
@@ -224,7 +223,7 @@
 
 #course-materials td:nth-child(2),
 #course-materials td:nth-child(3) {
-  font-size: 12px;
+  font-size: var(--font-size-small);
   color: var(--text-light);
   text-align: right;
 }
@@ -232,16 +231,16 @@
 #course-materials td:last-child { text-align: center; }
 
 #course-materials td:last-child a {
-  font-size: 0;                  /* ẩn chữ, chỉ hiện icon */
+  font-size: 0;                     
   text-decoration: none;
   color: var(--primary-color);
 }
 #course-materials td:last-child a::before {
   content: "⤓";
-  font-size: 18px;
+  font-size: 18px;                   
 }
 
-/* ---------- ĐÁNH GIÁ + FAQ (full-width) ---------- */
+/* ---------- ĐÁNH GIÁ + FAQ ---------- */
 #course-reviews-faq {
   grid-column: 1 / -1;
   margin-top: var(--spacing-6);
@@ -251,27 +250,70 @@
 
 #reviews { margin-bottom: var(--spacing-6); }
 
+#reviews .review-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+}
+
 #reviews article {
-  padding: var(--spacing-3) 20px;
-  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  margin: 0;
   background: var(--white-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-medium);
 }
 
-#reviews article h3 {
-  font-size: var(--font-size-small);
-  margin-bottom: var(--spacing-1);
+#reviews .review-author {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
 }
 
-#reviews article p {
-  margin: 0 0 6px;
+#reviews .avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--background-alt);
+  color: var(--text-dark);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+}
+
+#reviews article h3 {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--text-dark);
+}
+
+#reviews .review-cohort {
+  margin: 0;
   font-size: var(--font-size-small);
+  color: var(--text-light);
+}
+
+#reviews .review-text {
+  margin: 0;
+  flex-grow: 1;                     
+  font-size: var(--font-size-base);
   line-height: 1.6;
   color: var(--text-light);
 }
 
-#reviews > p { font-size: var(--font-size-small); }
+#reviews time {
+  font-size: var(--font-size-small);
+  color: var(--text-light);
+}
+
+#reviews > p { font-size: var(--font-size-base); }
+#reviews > p a::after { content: " →"; }
 
 /* FAQ */
 .faq-item {
@@ -286,7 +328,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 14px var(--spacing-3);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-base);
   font-weight: 700;
   color: var(--text-dark);
   cursor: pointer;
@@ -294,9 +336,9 @@
 }
 .faq-item summary::-webkit-details-marker { display: none; }
 
-.faq-item summary::after {          /* mũi tên: đóng = ›, mở = ⌄ */
+.faq-item summary::after {            
   content: "›";
-  font-size: 20px;
+  font-size: var(--font-size-h3);
   line-height: 1;
   color: var(--text-light);
   transition: transform .2s;
@@ -306,7 +348,7 @@
 .faq-item p {
   margin: 0;
   padding: 0 var(--spacing-3) 14px;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-base);
   color: var(--text-light);
 }
 
@@ -316,7 +358,6 @@
   margin-top: var(--spacing-6);
 }
 
-/* main.css chỉ bỏ chấm đầu dòng trong nav/footer nên ở đây phải tự reset */
 .related-courses ul {
   list-style: none;
   margin: 0;
@@ -336,22 +377,22 @@
 }
 
 .related-courses .course-card h3 {
-  font-size: 12px;
+  font-size: var(--font-size-small);
   font-weight: 400;
   color: var(--text-light);
 }
 
 .related-courses .course-card h3 a {
-  display: block;                 /* tên môn nằm riêng 1 dòng */
+  display: block;                   
   margin-bottom: 6px;
   font-size: var(--font-size-base);
   font-weight: 700;
   color: var(--text-dark);
-  text-decoration: none;          /* main.css gạch chân link trong <li> */
+  text-decoration: none;            
 }
 .related-courses .course-card h3 a:hover { text-decoration: underline; }
 
-/* ---------- RESPONSIVE (cùng mốc với main.css: 991px / 767px) ---------- */
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 991px) {
   #course-detail { grid-template-columns: minmax(0, 1fr); }
   #course-detail .quickfacts {
@@ -360,11 +401,13 @@
     margin-top: var(--spacing-4);
   }
   .related-courses ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #reviews .review-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 767px) {
   #course-detail { padding: var(--spacing-4) var(--spacing-3) var(--spacing-6); }
   .related-courses ul { grid-template-columns: minmax(0, 1fr); }
+  #reviews .review-list { grid-template-columns: minmax(0, 1fr); }
   #course-materials tr { grid-template-columns: 1fr auto; }
   #course-materials td:nth-child(2),
   #course-materials td:nth-child(3) { display: none; }
