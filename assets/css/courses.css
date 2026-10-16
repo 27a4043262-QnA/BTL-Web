@@ -29,7 +29,7 @@ main {
 }
  /*danh mục môn học*/
 .page-intro h1 {
-  color: #31497a;
+  color: var( --primary-color);
   font-size: 35px;
   font-weight: 700;
   margin-bottom: 8px;
@@ -181,7 +181,7 @@ main {
 }
  
 .course-link {
-  color: #111827;
+  color: var(--primary-dark);
   font-weight: 600;
   font-size: var(--font-size-base);
   text-decoration: none;
