@@ -113,7 +113,7 @@
 /* ---------- NÚT ---------- */
 #course-detail .btn-cta {
   display: inline-block;
-  background: var(--primary-color);
+  background: var(--green-btn);
   color: var(--white-color);
   border: 0;
   border-radius: var(--radius-medium);
@@ -124,7 +124,7 @@
   text-decoration: none;
   transition: background-color 0.2s;
 }
-#course-detail .btn-cta:hover { background: var(--primary-dark); }
+#course-detail .btn-cta:hover { background: var( --green-btn-hover); }
 
 #course-detail .btn-block {
   display: block;
