@@ -37,6 +37,7 @@
             <section class="hero-banner">
                 <div class="hero-content">
                     <div class="hero-text">
+                        <span class="hero-eyebrow">TƯ VẤN LỘ TRÌNH</span>
                         <h1>Tư vấn học tập</h1>
                         <p>Đánh giá năng lực, phân tích kết quả và xây dựng lộ trình học tập cá nhân hóa dựa trên mục tiêu từ Dự phóng GPA.</p>
                     </div>
@@ -115,9 +116,11 @@
             <section class="hero-banner">
                 <div class="hero-content">
                     <div class="hero-text">
+                        <span class="hero-eyebrow">TƯ VẤN LỘ TRÌNH</span>
                         <h1>Tư vấn học tập</h1>
                         <p>Dựa trên các môn bạn đã chọn từ Dự phóng GPA, hãy hoàn thành bài test năng lực để nhận tư vấn chính xác hơn.</p>
                     </div>
+                  </div>  
                     <!-- Thanh Stepper 4 bước -->
                     <div class="stepper-bar">
                         <div class="step-item active">
@@ -140,7 +143,7 @@
                             <span>Chat với trợ lý</span>
                         </div>
                     </div>
-                </div>
+                
                 <div class="hero-illustration">
                     <span class="illustration-icon">📋🎯</span>
                 </div>
@@ -154,37 +157,73 @@
                 </div>
                 <p class="section-desc">Hãy hoàn thành bài test cho từng môn dưới đây. Kết quả sẽ giúp hệ thống đánh giá năng lực hiện tại và đưa ra lộ trình phù hợp.</p>
 
-                <div class="subjects-grid-3">
-                    <!-- Môn 1: Cơ sở dữ liệu -->
-                    <div class="subject-card-test">
-                        <div class="subject-icon icon-blue">🗄️</div>
-                        <h3>Cơ sở dữ liệu</h3>
-                        <p>Kiến thức SQL, truy vấn, thiết kế và quản trị CSDL.</p>
-                        <div class="test-progress-bar"><div class="fill" style="width: 0%;"></div></div>
-                        <div class="test-count">0/20 câu hỏi</div>
-                        <button class="btn-primary btn-full" onclick="window.location.href='#'">Bắt đầu làm bài</button>
-                    </div>
+                
+<div class="subject-results-carousel">
 
-                    <!-- Môn 2: Lập trình C# -->
-                    <div class="subject-card-test">
-                        <div class="subject-icon icon-purple">💻</div>
-                        <h3>Lập trình C#</h3>
-                        <p>Lập trình hướng đối tượng, C# cơ bản và nâng cao.</p>
-                        <div class="test-progress-bar"><div class="fill" style="width: 0%;"></div></div>
-                        <div class="test-count">0/20 câu hỏi</div>
-                        <button class="btn-primary btn-full" onclick="window.location.href='#'">Bắt đầu làm bài</button>
-                    </div>
+    <div class="subject-results-viewport">
 
-                    <!-- Môn 3: Phân tích hệ thống -->
-                    <div class="subject-card-test">
-                        <div class="subject-icon icon-green">📊</div>
-                        <h3>Phân tích hệ thống</h3>
-                        <p>Phân tích yêu cầu, UML và thiết kế hệ thống.</p>
-                        <div class="test-progress-bar"><div class="fill" style="width: 0%;"></div></div>
-                        <div class="test-count">0/20 câu hỏi</div>
-                        <button class="btn-primary btn-full" onclick="window.location.href='#'">Bắt đầu làm bài</button>
-                    </div>
+        <div class="subjects-grid-3 subject-results-track">
+
+            <!-- Môn 1: Cơ sở dữ liệu -->
+            <div class="subject-card-test">
+                <div class="subject-icon icon-blue"></div>
+                <h3>Cơ sở dữ liệu</h3>
+                <p>Kiến thức SQL, truy vấn, thiết kế và quản trị CSDL.</p>
+                <div class="test-progress-bar">
+                    <div class="fill" style="width: 0%;"></div>
                 </div>
+                <div class="test-count">0/20 câu hỏi</div>
+                <button class="btn-primary btn-full"
+                    onclick="window.location.href='#'">
+                    Bắt đầu làm bài
+                </button>
+            </div>
+
+            <!-- Môn 2: Lập trình C# -->
+            <div class="subject-card-test">
+                <div class="subject-icon icon-purple"></div>
+                <h3>Lập trình C#</h3>
+                <p>Lập trình hướng đối tượng, C# cơ bản và nâng cao.</p>
+                <div class="test-progress-bar">
+                    <div class="fill" style="width: 0%;"></div>
+                </div>
+                <div class="test-count">0/20 câu hỏi</div>
+                <button class="btn-primary btn-full"
+                    onclick="window.location.href='#'">
+                    Bắt đầu làm bài
+                </button>
+            </div>
+
+            <!-- Môn 3: Phân tích hệ thống -->
+            <div class="subject-card-test">
+                <div class="subject-icon icon-green"></div>
+                <h3>Phân tích hệ thống</h3>
+                <p>Phân tích yêu cầu, UML và thiết kế hệ thống.</p>
+                <div class="test-progress-bar">
+                    <div class="fill" style="width: 0%;"></div>
+                </div>
+                <div class="test-count">0/20 câu hỏi</div>
+                <button class="btn-primary btn-full"
+                    onclick="window.location.href='#'">
+                    Bắt đầu làm bài
+                </button>
+            </div>
+
+            <!-- Sau này thêm môn thứ 4, thứ 5 tại đây -->
+
+        </div>
+    </div>
+
+    <!-- Nút mũi tên phải -->
+    <button
+    type="button"
+    class="subject-carousel-arrow"
+    aria-label="Xem môn tiếp theo">
+</button>
+
+</div>
+
+                
 
                 <!-- Footer thông báo nộp test -->
                 <div class="test-footer-notice">
@@ -258,8 +297,10 @@
             <section class="hero-banner">
                 <div class="hero-content">
                     <div class="hero-text">
+                        <span class="hero-eyebrow">TƯ VẤN LỘ TRÌNH</span>
                         <h1>Tư vấn học tập</h1>
                         <p>Dựa trên kết quả bài test năng lực của bạn và mục tiêu từ Dự phóng GPA, EduTrack đã phân tích và xây dựng lộ trình học tập phù hợp.</p>
+                    </div>
                     </div>
                     <!-- Thanh Stepper đã hoàn thành -->
                     <div class="stepper-bar">
@@ -283,7 +324,7 @@
                             <span>Chat với trợ lý</span>
                         </div>
                     </div>
-                </div>
+               
                 <div class="hero-illustration">
                     <span class="illustration-icon">🎯📈</span>
                 </div>
@@ -299,55 +340,93 @@
                     <button class="btn-secondary btn-sm" onclick="window.location.href='#'">🔄 Làm lại bài test</button>
                 </div>
 
-                <div class="subjects-grid-3">
-                    <!-- Kết quả Cơ sở dữ liệu -->
-                    <div class="subject-card-result">
-                        <div class="sub-header flex-between">
-                            <div class="sub-title">
-                                <span class="sub-icon icon-blue">🗄️</span>
-                                <h3>Cơ sở dữ liệu</h3>
-                            </div>
-                        </div>
-                        <div class="score-display">
-                            <span class="score-main">5.5</span><span class="score-max">/10</span>
-                        </div>
-                        <div class="score-progress-bar"><div class="fill orange" style="width: 55%;"></div></div>
-                        <div class="score-meta">11/20 câu đúng</div>
-                        <a href="#" class="link-action">Xem lại bài làm</a>
-                    </div>
+                
+<div class="subject-results-carousel">
 
-                    <!-- Kết quả Lập trình C# -->
-                    <div class="subject-card-result">
-                        <div class="sub-header flex-between">
-                            <div class="sub-title">
-                                <span class="sub-icon icon-purple">💻</span>
-                                <h3>Lập trình C#</h3>
-                            </div>
-                        </div>
-                        <div class="score-display">
-                            <span class="score-main green">8.0</span><span class="score-max">/10</span>
-                        </div>
-                        <div class="score-progress-bar"><div class="fill green" style="width: 80%;"></div></div>
-                        <div class="score-meta">16/20 câu đúng</div>
-                        <a href="#" class="link-action">Xem lại bài làm</a>
-                    </div>
+    <div class="subject-results-viewport">
 
-                    <!-- Kết quả Phân tích hệ thống -->
-                    <div class="subject-card-result">
-                        <div class="sub-header flex-between">
-                            <div class="sub-title">
-                                <span class="sub-icon icon-green">📊</span>
-                                <h3>Phân tích hệ thống</h3>
-                            </div>
-                        </div>
-                        <div class="score-display">
-                            <span class="score-main">6.8</span><span class="score-max">/10</span>
-                        </div>
-                        <div class="score-progress-bar"><div class="fill yellow" style="width: 68%;"></div></div>
-                        <div class="score-meta">14/20 câu đúng</div>
-                        <a href="#" class="link-action">Xem lại bài làm</a>
+        <div class="subjects-grid-3 subject-results-track">
+
+            <!-- Kết quả Cơ sở dữ liệu -->
+            <div class="subject-card-result">
+                <div class="sub-header flex-between">
+                    <div class="sub-title">
+                        <span class="sub-icon icon-blue"></span>
+                        <h3>Cơ sở dữ liệu</h3>
                     </div>
                 </div>
+
+                <div class="score-display">
+                    <span class="score-main">5.5</span>
+                    <span class="score-max">/10</span>
+                </div>
+
+                <div class="score-progress-bar">
+                    <div class="fill orange" style="width: 55%;"></div>
+                </div>
+
+                <div class="score-meta">11/20 câu đúng</div>
+                <a href="#" class="link-action">Xem lại bài làm</a>
+            </div>
+
+            <!-- Kết quả Lập trình C# -->
+            <div class="subject-card-result">
+                <div class="sub-header flex-between">
+                    <div class="sub-title">
+                        <span class="sub-icon icon-purple"></span>
+                        <h3>Lập trình C#</h3>
+                    </div>
+                </div>
+
+                <div class="score-display">
+                    <span class="score-main green">8.0</span>
+                    <span class="score-max">/10</span>
+                </div>
+
+                <div class="score-progress-bar">
+                    <div class="fill green" style="width: 80%;"></div>
+                </div>
+
+                <div class="score-meta">16/20 câu đúng</div>
+                <a href="#" class="link-action">Xem lại bài làm</a>
+            </div>
+
+            <!-- Kết quả Phân tích hệ thống -->
+            <div class="subject-card-result">
+                <div class="sub-header flex-between">
+                    <div class="sub-title">
+                        <span class="sub-icon icon-green"></span>
+                        <h3>Phân tích hệ thống</h3>
+                    </div>
+                </div>
+
+                <div class="score-display">
+                    <span class="score-main">6.8</span>
+                    <span class="score-max">/10</span>
+                </div>
+
+                <div class="score-progress-bar">
+                    <div class="fill yellow" style="width: 68%;"></div>
+                </div>
+
+                <div class="score-meta">14/20 câu đúng</div>
+                <a href="#" class="link-action">Xem lại bài làm</a>
+            </div>
+
+            <!-- thêm môn thứ 4, thứ 5 tại đây -->
+
+        </div>
+    </div>
+
+    <!-- Nút mũi tên phải -->
+    <button
+    type="button"
+    class="subject-carousel-arrow"
+    aria-label="Xem môn tiếp theo">
+    </button>
+
+</div>
+     
             </section>
 
             <!-- MỤC 2: PHÂN TÍCH KẾT QUẢ & ĐÁNH GIÁ NĂNG LỰC -->
@@ -649,7 +728,7 @@
             <ul>
                 <li><a href="gpa-calculator.html">Tính GPA</a></li>
                 <li><a href="advising-contact.html">Tư vấn lộ trình</a></li>
-                <li><a href="#">Theo dõi tiến độ</a></li>
+                <li><a href="progress.html">Theo dõi tiến độ</a></li>
             </ul>
         </section>
         <section class="footer-column">
