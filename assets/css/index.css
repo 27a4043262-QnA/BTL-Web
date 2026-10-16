@@ -124,8 +124,12 @@ main {
 .see-all,
 .read-more {
   color: #000;
+  text-decoration: none;
 }
-
+.see-all:hover,
+.read-more:hover {
+  color: var(--primary-color);
+}
 /* =========================================================
    1. HERO
    ========================================================= */
