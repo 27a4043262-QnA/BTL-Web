@@ -36,7 +36,7 @@
     --font-family: Arial, sans-serif;  
     --font-size-base: 14px;
     --font-size-small: 14px;
---font-size-h1: clamp(26px, 1vw + 16px, 30px);
+--font-size-h1: clamp(28px, 4vw + 12px, 36px);
     --font-size-h2: clamp(24px, 2.5vw + 12px, 32px);
     --font-size-h3: 20px;
 
