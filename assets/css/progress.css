@@ -1,0 +1,1194 @@
+/* =====================================================================
+   EDUTRACK - progress.css
+   CSS rieng cho progress.html va progress-detail.html
+   Dung chung Design System trong main.css, khong khai bao :root rieng.
+   main.css duoc nap truoc progress.css.
+   ===================================================================== */
+
+/* 1. KHUNG TRANG VA CAC THANH PHAN CHUNG */
+.ep-main {
+    padding: var(--spacing-6) 0 var(--spacing-7);
+}
+
+.ep-container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+}
+
+.ep-page-heading {
+    margin-bottom: var(--spacing-4);
+}
+
+.ep-page-heading h1 {
+    margin-bottom: var(--spacing-2);
+    color: var(--primary-color);
+     font-size: 34px;
+}
+
+.ep-page-heading > p:last-child {
+    max-width: 760px;
+    margin-bottom: 0;
+    color: var(--text-light);
+}
+
+.ep-eyebrow {
+    display: inline-block;
+    margin-bottom: var(--spacing-2);
+    padding: 4px 10px;
+    color: var(--success-color);
+    background-color: var(--success-bg);
+    border: 1px solid var(--success-bg);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.ep-card {
+    min-width: 0;
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-small);
+}
+
+.ep-card h2 {
+    margin: var(--spacing-3) 0 var(--spacing-2);
+    font-size: 20px;
+}
+.ep-card h3 {
+    color: var( --primary-color);
+}
+
+.ep-card p {
+    line-height: 1.65;
+}
+
+.ep-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-3);
+}
+
+.ep-actions-center {
+    justify-content: center;
+}
+
+/* 2. NUT BAM - DUNG CUNG MAU CHU VA GOC BO TRONG main.css */
+.ep-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-2);
+    min-height: 40px;
+    padding: 10px var(--spacing-3);
+    border: 1px solid transparent;
+    border-radius: var(--radius-medium);
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.ep-button:hover {
+    text-decoration: none;
+}
+
+.ep-button:active {
+    transform: translateY(1px);
+}
+
+.ep-button-dark {
+    color: var(--white-color);
+    background-color: #2ECC71;
+    border-color: #2ECC71;
+}
+
+.ep-button-dark:hover {
+    color: var(--white-color);
+    background-color: #27AE60;
+    border-color: #27AE60;
+}
+
+.ep-button-light {
+    color: #27AE60;
+    background-color: var(--white-color);
+    border-color: var(--border-color);
+}
+
+.ep-button-light:hover {
+    color: #27AE60;
+    background-color: #EAF8EF;
+    border-color:  #2ECC71;
+}
+
+/* 3. TRANG THAI VA NHAN */
+.ep-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-1);
+    width: fit-content;
+    max-width: 100%;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.status-gray {
+    color: var(--text-light);
+    background-color: #F1F5F9;
+}
+
+.status-green {
+    color: var(--success-color);
+    background-color: var(--success-bg);
+}
+
+.status-yellow {
+    color: var(--warning-color);
+    background-color: var(--warning-bg);
+}
+
+.status-blue {
+    color: var(--primary-color);
+    background-color: var(--background-alt);
+}
+
+.ep-dot {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background-color: var(--success-color);
+}
+
+/* 4. TRUONG HOP CHUA CO DU LIEU */
+.ep-empty-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-6) var(--spacing-4);
+    text-align: center;
+}
+
+.ep-empty-card h2 {
+    margin: var(--spacing-3) 0 var(--spacing-2);
+    font-size: var(--font-size-h2);
+}
+
+.ep-empty-card > p:not(.ep-status) {
+    max-width: 600px;
+    margin-bottom: var(--spacing-3);
+    color: var(--text-light);
+}
+
+.ep-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin-top: var(--spacing-3);
+    color: var(--primary-color);
+    background-color: var(--background-alt);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-large);
+    font-size: 30px;
+}
+
+.ep-empty-roadmap {
+    margin-top: var(--spacing-4);
+    padding: var(--spacing-4);
+}
+
+.ep-empty-message {
+    margin-top: var(--spacing-3);
+    padding: var(--spacing-4);
+    color: var(--text-light);
+    background-color: var(--background-color);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-medium);
+    text-align: center;
+}
+
+/* hidden duoc dung de an dung truong hop khong can hien thi */
+.ep-view[hidden] {
+    display: none !important;
+}
+
+/* 5. MUC TIEU BAN DAU */
+.ep-goal-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    margin-top: var(--spacing-4);
+    padding: var(--spacing-4);
+}
+
+.ep-goal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    color: var(--primary-color);
+    background-color: var(--background-alt);
+    border-radius: var(--radius-medium);
+    font-size: 25px;
+}
+
+.ep-goal-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.ep-section-label {
+    margin-bottom: var(--spacing-1);
+    color: var(--text-light);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.ep-goal-content h2 {
+    margin-bottom: var(--spacing-2);
+    font-size: 16px;
+    color: var(--success-color);
+}
+
+.ep-goal-content > p:not(.ep-section-label) {
+    margin-bottom: var(--spacing-2);
+    color: var(--text-color);
+}
+
+.ep-goal-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-2);
+}
+
+.ep-goal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2) var(--spacing-4);
+    margin-top: var(--spacing-2);
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+}
+
+.ep-goal-meta strong {
+    color: var(--text-color);
+}
+
+/* 6. TONG QUAN TIEN DO */
+.ep-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    align-items: center;
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
+}
+
+.ep-overview-main {
+    min-width: 0;
+}
+
+.ep-overview-main h2 {
+    margin: var(--spacing-3) 0 var(--spacing-2);
+    font-size: var(--font-size-h2);
+}
+
+.ep-overview-main > p {
+    color: var(--text-light);
+}
+
+.ep-progress-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-2);
+    margin: var(--spacing-3) 0 var(--spacing-2);
+    font-size: var(--font-size-small);
+}
+
+.ep-progress-heading strong {
+    color: var(--text-dark);
+    font-size: 16px;
+}
+
+.ep-progress {
+    width: 100%;
+    height: 9px;
+    overflow: hidden;
+    background-color: var(--border-color);
+    border-radius: 999px;
+}
+
+.ep-progress > span {
+    display: block;
+    height: 100%;
+    background-color: #76e09c;
+    border-radius: inherit;
+    transition: width 0.3s ease;
+}
+
+.ep-overview-stats {
+    padding: var(--spacing-3);
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+}
+
+.ep-overview-stats h3 {
+    margin-bottom: var(--spacing-3);
+    font-size: 18px;
+}
+
+.ep-stat {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-3);
+}
+
+.ep-stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    color: var(--primary-color);
+    background-color: var(--background-alt);
+    border-radius: var(--radius-small);
+    font-size: 17px;
+}
+
+.ep-stat strong,
+.ep-stat div > span {
+    display: block;
+}
+
+.ep-stat strong {
+    color: var(--text-dark);
+    font-size: var(--font-size-small);
+}
+
+.ep-stat div > span {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+/* 7. TIEU DE KHU VUC VA CAC GIAI DOAN */
+.ep-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+}
+
+.ep-section-heading h2 {
+    margin-bottom: var(--spacing-1);
+    font-size: var(--font-size-h2);
+}
+
+.ep-section-heading p {
+    margin-bottom: 0;
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+}
+
+.ep-roadmap {
+    margin-top: var(--spacing-5);
+}
+
+.ep-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--spacing-2) var(--spacing-3);
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.ep-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ep-legend i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.legend-green { background-color: var(--success-color); }
+.legend-yellow { background-color: #EAB308; }
+.legend-gray { background-color: #9CA3AF; }
+
+.ep-phase {
+    margin-bottom: var(--spacing-3);
+    padding: var(--spacing-4);
+}
+
+.ep-phase-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+}
+
+.ep-phase-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.ep-phase-title {
+    flex: 1;
+    min-width: 0;
+}
+
+.ep-phase-title h3 {
+    margin: 0 0 var(--spacing-1);
+    font-size: 18px;
+}
+
+.ep-phase-title h3 span {
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+    font-weight: 500;
+}
+
+.ep-phase-title p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+}
+
+.ep-phase-title p.text-green,
+.text-green {
+    color: var(--success-color);
+    font-weight: 700;
+}
+
+.ep-phase > .ep-progress {
+    margin-bottom: var(--spacing-3);
+}
+
+.ep-phase-locked {
+    background-color: var(--background-color);
+}
+
+.ep-phase-locked .ep-phase-number {
+    color: var(--text-light);
+    background-color: var(--border-color);
+}
+
+.ep-phase-locked > .ep-progress > span {
+    background-color: var(--text-light);
+}
+
+.ep-phase-note {
+    margin: var(--spacing-3) 0;
+    padding: var(--spacing-2) var(--spacing-3);
+    color: var(--text-light);
+    background-color: var(--background-color);
+    border-radius: var(--radius-small);
+    font-size: var(--font-size-small);
+}
+
+.ep-topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+}
+
+.ep-topic-tags span {
+    padding: 5px 10px;
+    color: var(--text-color);
+    background-color: var(--background-alt);
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+/* 8. BANG NHIEM VU */
+.ep-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-small);
+}
+
+.ep-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white-color);
+    font-size: var(--font-size-small);
+    text-align: left;
+}
+
+.ep-table th,
+.ep-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.ep-table th {
+    color: var(--text-dark);
+    background-color: var(--background-alt);
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.ep-table td {
+    color: var(--text-color);
+}
+
+.ep-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.ep-table tbody tr:hover {
+    background-color: var(--background-color);
+}
+
+.ep-task-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.ep-phase .ep-actions .ep-button {
+    min-height: 38px;
+}
+
+/* 9. TRANG CHI TIET LO TRINH */
+.ep-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-2);
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+}
+
+.ep-breadcrumb a,
+.ep-back-link {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.ep-breadcrumb a:hover,
+.ep-back-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.ep-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    margin-bottom: var(--spacing-3);
+    font-size: var(--font-size-small);
+    font-weight: 700;
+}
+
+.ep-detail-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 270px;
+    align-items: center;
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
+}
+
+.ep-detail-title {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    margin: var(--spacing-2) 0 var(--spacing-3);
+}
+
+.ep-detail-title h1 {
+    margin-bottom: var(--spacing-2);
+    color: var(--primary-color);
+    font-size: 32px;
+}
+
+.ep-detail-title p {
+    margin-bottom: 0;
+    color: var(--text-light);
+}
+
+.ep-detail-progress {
+    padding: var(--spacing-3);
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+}
+
+.ep-detail-percent {
+    display: block;
+    margin-bottom: var(--spacing-1);
+    color: var(--primary-color);
+    font-size: 36px;
+    line-height: 1.2;
+}
+
+.ep-detail-progress > p {
+    margin-bottom: var(--spacing-3);
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+}
+
+.ep-detail-progress .ep-progress-heading {
+    margin-bottom: 0;
+}
+
+.ep-detail-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-3);
+    margin: var(--spacing-4) 0;
+}
+
+.ep-detail-stat {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3);
+}
+
+.ep-detail-stat p {
+    margin-bottom: var(--spacing-1);
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+}
+
+.ep-detail-stat strong {
+    display: block;
+    margin-bottom: var(--spacing-1);
+    color: var(--text-dark);
+    font-size: 18px;
+}
+
+.ep-detail-stat div > span {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.ep-detail-stats + .ep-goal-card {
+    margin-top: 0;
+}
+
+.ep-detail-tasks,
+.ep-resources {
+    margin-top: var(--spacing-4);
+    padding: var(--spacing-4);
+}
+
+.ep-detail-table {
+    min-width: 760px;
+}
+
+.ep-detail-table td:first-child {
+    min-width: 210px;
+}
+
+.ep-detail-table td strong,
+.ep-table-subtext {
+    display: block;
+}
+
+.ep-detail-table td strong {
+    color: var(--text-dark);
+}
+
+.ep-table-subtext {
+    margin-top: var(--spacing-1);
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.ep-note {
+    margin: var(--spacing-2) 0 0;
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+/* 10. TAI LIEU HOC TAP */
+.ep-resources > h2 {
+    font-size: var(--font-size-h2);
+}
+
+.ep-resources > p {
+    color: var(--text-light);
+}
+
+.ep-resource-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3) 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.ep-resource-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    color: var(--primary-color);
+    background-color: var(--background-alt);
+    border-radius: var(--radius-medium);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ep-resource-row > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.ep-resource-row h3 {
+    margin-bottom: var(--spacing-1);
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+.ep-resource-row p {
+    margin-bottom: 0;
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+}
+
+.ep-resource-row > a {
+    flex-shrink: 0;
+    font-size: var(--font-size-small);
+    font-weight: 700;
+}
+
+.ep-resource-row > a:hover {
+    text-decoration: underline;
+}
+
+.ep-detail-bottom-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-3);
+    margin-top: var(--spacing-4);
+}
+
+/* 11. RESPONSIVE */
+@media (max-width: 991px) {
+    .ep-overview,
+    .ep-detail-hero {
+        grid-template-columns: minmax(0, 1fr) 250px;
+        gap: var(--spacing-3);
+    }
+
+    .ep-overview-stats {
+        padding: var(--spacing-2);
+    }
+
+    .ep-footer-grid {
+        gap: var(--spacing-3);
+    }
+}
+
+@media (max-width: 767px) {
+    .ep-main {
+        padding: var(--spacing-5) 0 var(--spacing-6);
+    }
+
+    .ep-container {
+        padding: 0 var(--spacing-3);
+    }
+
+    .ep-overview,
+    .ep-detail-hero {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ep-overview-stats {
+        padding: var(--spacing-3);
+    }
+
+    .ep-detail-progress {
+        max-width: none;
+    }
+
+    .ep-detail-stats {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ep-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .ep-legend {
+        justify-content: flex-start;
+    }
+
+    .ep-phase-header {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: var(--spacing-2);
+    }
+
+    .ep-phase-title {
+        flex: 1 1 calc(100% - 60px);
+    }
+
+    .ep-phase-header > .ep-status {
+        margin-left: 50px;
+    }
+
+    .ep-goal-card {
+        gap: var(--spacing-2);
+        padding: var(--spacing-3);
+    }
+
+    .ep-goal-icon {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
+        font-size: 21px;
+    }
+
+    .ep-goal-top {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--spacing-1);
+    }
+
+    .ep-resource-row {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .ep-resource-row > div {
+        flex-basis: calc(100% - 60px);
+    }
+
+    .ep-resource-row > a {
+        margin-left: 59px;
+    }
+
+    .ep-detail-bottom-actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
+
+    .ep-detail-bottom-actions .ep-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .ep-empty-card {
+        padding: var(--spacing-4) var(--spacing-3);
+    }
+
+    .ep-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .ep-actions .ep-button {
+        width: 100%;
+    }
+
+    .ep-phase,
+    .ep-empty-roadmap,
+    .ep-detail-tasks,
+    .ep-resources {
+        padding: var(--spacing-3);
+    }
+
+    .ep-table th,
+    .ep-table td {
+        padding: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ep-button,
+    .ep-progress > span {
+        transition: none;
+    }
+}
+
+/* Van ban chi danh cho cong nghe ho tro */
+.ep-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+
+/* =========================================
+   BỐ CỤC 2 KHỐI TRÊN TRANG TIẾN ĐỘ
+   ========================================= */
+
+.ep-top-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(320px, 0.85fr);
+    align-items: stretch;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+}
+
+.ep-progress-summary {
+    min-width: 0;
+    padding: var(--spacing-4);
+}
+
+.ep-card .ep-progress-summary-title {
+    margin-bottom: var(--spacing-4);
+    color: var(--text-light);
+    font-size: 20px;
+    
+}
+
+.ep-progress-summary-body {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    align-items: center;
+    gap: var(--spacing-4);
+}
+
+.ep-progress-donut-block {
+    min-width: 0;
+    text-align: center;
+}
+
+.ep-progress-donut {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 104px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    border-radius: 50%;
+   background: conic-gradient(
+    var(--success-color) 0 var(--progress),
+    var(--border-color) var(--progress) 100%
+);
+}
+
+.ep-progress-donut::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border-radius: 50%;
+    background-color: var(--white-color);
+}
+
+.ep-progress-donut > span {
+    position: relative;
+    z-index: 1;
+    color: var(--primary-dark);
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.ep-progress-donut-caption {
+    margin: var(--spacing-2) 0 0;
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.ep-progress-donut-caption strong {
+    display: block;
+    color: var(--success-color);
+    font-size: 13px;
+}
+
+/* Ba chỉ số bên cạnh biểu đồ */
+.ep-progress-summary-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--spacing-3);
+    min-width: 0;
+}
+
+.ep-progress-mini-stat {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+    min-width: 0;
+}
+
+.ep-progress-mini-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    border-radius: var(--radius-small);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.ep-progress-mini-stat > div {
+    min-width: 0;
+}
+
+.ep-progress-mini-stat strong,
+.ep-progress-mini-stat div > span,
+.ep-progress-mini-stat small {
+    display: block;
+}
+
+/* Số liệu chính */
+.ep-progress-mini-stat strong {
+    margin-bottom: 4px;
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Mô tả số liệu */
+.ep-progress-mini-stat div > span {
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.ep-progress-mini-stat small {
+    margin-top: 4px;
+    color: var(--success-color);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.ep-progress-icon-time {
+    color: #15966B;
+    background-color: #F1F5F9;
+}
+
+.ep-progress-icon-subjects {
+    color: var(--primary-color);
+    background-color: #F1F5F9;
+}
+
+.ep-progress-icon-days {
+    color: #D97706;
+    background-color: #F1F5F9;
+}
+
+
+/* =========================================
+   KHỐI MỤC TIÊU BAN ĐẦU
+   Chỉ áp dụng khi nằm trong ep-top-layout
+   ========================================= */
+
+.ep-top-layout .ep-goal-summary {
+    min-width: 0;
+    margin-top: 0;
+    padding: var(--spacing-4);
+    box-sizing: border-box;
+}
+
+.ep-top-layout .ep-goal-summary .ep-goal-content {
+    min-width: 0;
+}
+
+.ep-top-layout .ep-goal-summary .ep-goal-top {
+    margin-bottom: var(--spacing-3);
+}
+
+.ep-top-layout .ep-goal-summary .ep-goal-content h2 {
+    margin-bottom: var(--spacing-3);
+    color: var(  --green-btn-hover);
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+.ep-top-layout .ep-goal-summary .ep-goal-content > p:not(.ep-section-label) {
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.ep-top-layout .ep-goal-summary .ep-goal-meta {
+    margin-top: var(--spacing-4);
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1100px) {
+    .ep-top-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .ep-progress-summary-body {
+        grid-template-columns: 1fr;
+    }
+
+    .ep-progress-summary-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ep-top-layout .ep-goal-summary {
+        padding: var(--spacing-3);
+    }
+
+    .ep-top-layout .ep-goal-summary .ep-goal-content h2 {
+        font-size: 19px;
+    }
+}
