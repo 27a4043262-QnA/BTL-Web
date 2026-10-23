@@ -395,118 +395,144 @@ footer :focus-visible {
 
 /* ==== HEADER ==== */
 header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 2px 7px 2px 30px;
-  background: var(--primary-color);
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    padding: 2px 30px;
+    box-sizing: border-box;
+    background: var(--primary-color);
 }
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  flex-shrink: 0;
+
+header > .logo {
+    grid-column: 1;
+    justify-self: start;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    min-width: 0;
 }
+
 .logo img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
+
 .logo a {
-  font-size: 21px;
-  font-weight: 700;
-  color: var(--white-color);
-  text-decoration: none;
-}
-/* Menu */
-header ul {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  list-style: none;
-  gap: 45px;
-  margin: 0;
-  padding: 0 300px 0 0;
+    font-size: clamp(15px, 1.75vw, 20px);
+    font-weight: 700;
+    color: var(--white-color);
+    text-decoration: none;
+    white-space: nowrap;
 }
 
-header ul li a {
-  text-decoration: none;
-  color: var(--white-color);
-  font-size: 16px;
-  font-weight: 700;
-  transition: color 0.2s;
-  white-space: nowrap;
+header > ul {
+    grid-column: 2;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
+    list-style: none;
+    gap: clamp(12px, 1.5vw, 28px);
+    margin: 0;
+    padding: 0;
 }
 
-header ul li a:hover {
-  color: #000000;
+header > ul > li {
+    flex: 0 0 auto;
 }
 
-/* Nút "Bắt đầu ngay" */
-.button{
-  position: absolute;
-  right: 60px;
-  top: 0;
-  bottom: 0;              
-  display: flex;            
-  align-items: center;
-  gap: 28px;
+header > ul > li > a {
+    display: block;
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: clamp(15px, 1.2vw, 20px);
+    font-weight: 700;
+    white-space: nowrap;
+    transition: color 0.2s ease;
 }
 
+header > ul > li > a:hover {
+    color: #000000; 
+}
+
+/* Nút bắt đầu ngay */
 .button-link {
-  background: var(--white-color);
-  color: var(--primary-color);
-  border: none;
-  padding: 8px 14px;
-  border-radius: var(--radius-medium);
-  font-size: var(--font-size-base);
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  white-space: nowrap;
+    background: var(--white-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 8px 14px;
+    border-radius: var(--radius-medium);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
 }
 
 .button-link:hover {
-  background: var(--primary-dark);
-  color: #5f8dca;
+    background: var(--primary-dark);
+    color: #5f8dca;
 }
 
 .button-link:active {
-  background: var(--white-color);
-  color: var(--primary-color);
+    background: var(--white-color);
+    color: var(--primary-color);
 }
- 
-/* Nút sau đăng nhập */
 
-/* Khung tài khoản */
+/* Ẩn phần tử có thuộc tính hidden */
+header > ul > li[hidden] {
+    display: none !important;
+}
+
+/* Tài khoản sinh viên */
+header > ul > li.button:not([hidden]) {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    bottom: auto;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+
 .button-clink {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 8px 16px;
+    gap: 8px;
+    padding: 6px 4px;
     background: var(--primary-color);
     border: 1px solid #2F527F;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s ease;
+    white-space: nowrap;
 }
 
 .button-clink:hover {
     background: #243F63;
 }
 
-/* Avatar */
 .profile-avatar {
     width: 38px;
     height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     background: var(--white-color);
     color: var(--primary-color);
     border-radius: 50%;
@@ -516,24 +542,30 @@ header ul li a:hover {
 
 .student-name {
     color: var(--white-color);
-    font-size: 16px;
+    font-size: clamp(11px, 1.2vw, 16px);
     font-weight: 600;
     white-space: nowrap;
 }
 
-/* Mũi tên */
 .account-arrow {
     width: 18px;
     height: 18px;
+    flex-shrink: 0;
     fill: none;
     stroke: var(--white-color);
     stroke-width: 2;
 }
+
+.account-menu {
+    position: relative;
+}
+
 .account-dropdown {
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
     width: 280px;
+    box-sizing: border-box;
     background: var(--white-color);
     border-radius: 12px;
     padding: 8px;
@@ -541,7 +573,6 @@ header ul li a:hover {
     z-index: 1000;
 }
 
-/* Các mục */
 .account-item {
     display: flex;
     align-items: center;
@@ -560,10 +591,10 @@ header ul li a:hover {
     font-size: 13px;
 }
 
-/* Icon trong dropdown */
 .account-item .icon-box {
     width: 36px;
     height: 36px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -582,10 +613,9 @@ header ul li a:hover {
     stroke-linejoin: round;
 }
 
-/* Đường kẻ */
 .dropdown-line {
     height: 1px;
-    background: #eee;
+    background: #cccbcb;
     margin: 6px 4px;
 }
 
@@ -602,105 +632,155 @@ header ul li a:hover {
     color: #d9534f;
 }
 
-
-/* ===== DESKTOP: 1200px trở lên ===== */
+/* DESKTOP: TỪ 1200px TRỞ LÊN  */
 @media (min-width: 1200px) {
     header {
-        flex-wrap: nowrap;
-        gap: 24px;
         padding: 2px 30px;
     }
 
-    header ul {
-        flex: 1;
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 45px;
-        padding: 0 360px 0 0;
-        margin: 0;
-    }
-
-    .button {
-        position: absolute;
-        right: 30px;
-        top: 0;
-        bottom: 0;
-        gap: 20px;
-    }
-}
-
-/* ===== TABLET: 768px - 1199px ===== */
-@media (min-width: 768px) and (max-width: 1199px) {
-    header {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        gap: 8px;
-        padding: 4px 12px;
-    }
-
-    .logo {
-        flex-shrink: 0;
-        gap: 3px;
-    }
-
-    /* Menu điều hướng */
     header > ul {
-        flex: 1 1 auto;
-        min-width: 0;
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: center;
-        gap: clamp(16px, 2vw, 28px);
-        margin: 0;
-        padding: 0 0 0 100px;
-        list-style: none;
-    }
-
-    header > ul > li {
-        flex-shrink: 0;
+        gap: clamp(32px, 6vw, 46px);
     }
 
     header > ul > li > a {
         font-size: 16px;
-        font-weight: 700;
-        white-space: nowrap;
     }
 
-    /* Phần cá nhân luôn ở bên phải */
     header > ul > li.button:not([hidden]) {
-        position: static;
-        flex: 0 0 auto;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        flex-shrink: 0;
-        margin-left: auto;
+        right: 30px;
     }
 
     .button-clink {
-        display: flex;
-        align-items: center;
         gap: 8px;
         padding: 6px 4px;
-        white-space: nowrap;
     }
 
     .student-name {
-        font-size: 15px;
-        white-space: nowrap;
-    }
-
-    .profile-avatar {
-        flex-shrink: 0;
+        font-size: 16px;
     }
 }
 
-/* ===== MOBILE: 360px - 767px ===== */
-    
+/* TABLET: 768px - 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+    header {
+        padding: 4px 12px;
+    }
+
+    .logo img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .logo a {
+        font-size: 16px;
+    }
+
+    header > ul {
+        gap: clamp(8px, 2.4vw, 18px);
+    }
+
+    header > ul > li > a {
+        font-size: clamp(14px, 1.2vw, 20px);
+    }
+
+    header > ul > li.button:not([hidden]) {
+        right: 12px;
+    }
+
+    .profile-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .button-clink {
+        gap: 5px;
+        padding: 6px 2px;
+    }
+
+    .student-name {
+        font-size: clamp(12px, 1.1vw, 18px);
+    }
+
+    .account-arrow {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* MOBILE: 360px - 767px */
+@media (min-width: 360px) and (max-width: 767px) {
+    header {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 4px;
+        padding: 6px 12px;
+    }
+
+    header > .logo {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .logo a {
+        font-size: 17px;
+    }
+
+    header > ul {
+        grid-column: 1;
+        grid-row: 2;
+
+        justify-self: stretch;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+        max-width: 100%;
+        gap: 8px 14px;
+        padding: 8px 0 4px;
+    }
+
+    header > ul > li > a {
+        font-size: clamp(11px, 2.8vw, 14px);
+    }
+
+    header > ul > li.button:not([hidden]) {
+        right: 8px;
+        top: 8px;
+        bottom: auto;
+        transform: none;
+    }
+
+    .button-clink {
+        gap: 5px;
+        padding: 2px 0;
+    }
+
+    .profile-avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .student-name {
+        font-size: 12px;
+    }
+
+    .account-arrow {
+        width: 12px;
+        height: 12px;
+    }
+
+    .account-dropdown {
+        width: min(280px, calc(100vw - 24px));
+    }
+}
 
 /* === FOOTER === */
 footer {
@@ -708,7 +788,9 @@ footer {
     grid-template-columns: 2.7fr 1.1fr 1fr 1fr 1fr;
     column-gap: 32px;
     row-gap: var(--spacing-5);
-    padding: 48px 60px 0;
+    padding: 48px clamp(12px, 3.8vw, 60px) 0;
+    width: 100%;
+    box-sizing: border-box;
     background: var(--primary-color);
     color: var(--white-color);
 }
