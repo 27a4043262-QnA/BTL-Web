@@ -170,11 +170,13 @@
 
 .gpa-hero-illustration img {
     position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 40%;
+    width: 150%;
+    height: 150%;
+    max-width: none;
     object-fit: contain;
+    transform: translate(-50%, -50%);
 }
 
 
@@ -274,10 +276,53 @@
     line-height: 1;
 }
 
-.calc-fields-row {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--spacing-4);
+
+/* Bố cục thông tin chung sử dụng Bootstrap Grid */
+.gpa-calculator .calc-fields-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+/* Các ô nhập chiếm hết chiều rộng cột */
+.gpa-calculator .calc-fields-row select {
+    width: 100%;
+}
+
+/* Giữ giao diện riêng EDUTRACK khi dùng Bootstrap Card */
+.gpa-calculator .result-gpa-card.card,
+.gpa-calculator .result-stat-card.card {
+    border-radius: var(--radius-medium);
+    font-family: var(--font-family);
+}
+/* ==================================
+   BOOTSTRAP ALERT - EDUTRACK
+================================== */
+
+.gpa-calculator .et-gpa-alert {
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.gpa-calculator .et-gpa-alert.alert-success {
+    background-color: #DCFCE7;
+    border-color: #86EFAC;
+    color: #166534;
+}
+
+.gpa-calculator .et-gpa-alert.alert-warning {
+    background-color: #FEF3C7;
+    border-color: #FCD34D;
+    color: #92400E;
+}
+
+.gpa-calculator .et-gpa-alert.alert-danger {
+    background-color: #FEE2E2;
+    border-color: #FCA5A5;
+    color: #991B1B;
 }
 
 
@@ -287,8 +332,27 @@
 
 .calc-step--courses {
     min-width: 0;
+    overflow-x: visible;
+}
+
+.calc-table-wrapper {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
+    border-radius: var(--radius-medium);
     -webkit-overflow-scrolling: touch;
+}
+
+.calc-table-wrapper:focus-visible,
+.result-detail:focus-visible,
+.projection-table-wrapper:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.calc-table {
+    width: 100%;
+    min-width: 900px;
 }
 
 .calc-table {
@@ -861,35 +925,38 @@
     height: 18px;
 }
 
-/* Checkbox môn tiên quyết */
-.projection-prerequisite {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0;
-    color: var(--text-color);
-    font-size: var(--font-size-small);
-    font-weight: 400;
-    cursor: pointer;
-}
-
-.projection-prerequisite input[type="checkbox"] {
-    flex: 0 0 17px;
-    width: 17px;
-    height: 17px;
-    margin: 0;
-    accent-color: var(--primary-color);
-}
-
-.projection-prerequisite span {
-    overflow-wrap: anywhere;
-}
-
 .projection-score-field {
     display: flex;
     align-items: center;
     gap: 8px;
     min-width: 130px;
+}
+
+
+/* Ô điểm môn tiên quyết */
+#prerequisite-course-list .projection-input {
+    width: 100%;
+    min-width: 80px;
+    text-align: center;
+}
+
+/* Ô nhập điểm có lỗi */
+#prerequisite-course-list .projection-input.is-invalid {
+    border-color: var(--danger-color);
+    background-color: #fff8f8;
+}
+
+/* Thông báo lỗi dưới ô nhập */
+#prerequisite-course-list .field-error {
+    display: block;
+    margin-top: 5px;
+    color: var(--danger-color);
+    font-size: 12px;
+}
+
+/* Dấu hiệu bắt buộc */
+#prerequisite-course-list .projection-input:required {
+    border-left: 2px solid var(--primary-color);
 }
 
 .projection-score-field .projection-input {
@@ -1052,7 +1119,9 @@
     font-size: var(--font-size-small);
     font-weight: 700;
     line-height: 1.4;
-    white-space: nowrap;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 .projection-result-message::before {
@@ -1210,6 +1279,78 @@
     display: block;
     width: 100%;
     height: auto;
+}
+.projection-chart-note {
+    margin-top: var(--spacing-3);
+    margin-bottom: 0;
+    color: var(--text-light);
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+}
+/* ===== TRẠNG THÁI TƯƠNG TÁC GPA ===== */
+
+/* Focus cho các nút thao tác */
+.gpa-calculator button:focus-visible,
+.gpa-hero button:focus-visible,
+#projection-wrapper button:focus-visible,
+.forecast-banner button:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+/* Trạng thái ô nhập bị lỗi */
+.gpa-calculator .is-invalid,
+#projection-wrapper .is-invalid {
+    border-color: var(--danger-color);
+    background-color: #fff8f8;
+}
+
+/* Focus khi ô nhập có lỗi */
+.gpa-calculator .is-invalid:focus,
+#projection-wrapper .is-invalid:focus {
+    border-color: var(--danger-color);
+    box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.15);
+}
+
+/* Thông báo lỗi bên cạnh ô nhập */
+.gpa-field-error {
+    display: block;
+    margin-top: 5px;
+    color: var(--danger-color);
+    font-size: var(--font-size-small);
+    line-height: 1.5;
+}
+
+/* Trạng thái disabled */
+.gpa-calculator button:disabled,
+#projection-wrapper button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Trạng thái active khi nhấn */
+.gpa-calculator button:active,
+#projection-wrapper button:active {
+    transform: translateY(1px);
+}
+
+/* Focus cho vùng bảng cuộn được */
+.calc-table-wrapper:focus-visible,
+.result-detail:focus-visible,
+.projection-table-wrapper:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Hạn chế hiệu ứng khi người dùng yêu cầu */
+@media (prefers-reduced-motion: reduce) {
+    .gpa-calculator *,
+    .gpa-hero *,
+    #projection-wrapper * {
+        scroll-behavior: auto;
+        transition-duration: 0.01ms;
+        animation-duration: 0.01ms;
+    }
 }
 
 .projection-chart-svg .chart-grid line {
@@ -1401,9 +1542,26 @@
     }
 
     /* ----- Mục 3: 4 ô nhập + nút trên cùng một hàng ----- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .projection-section:nth-child(3) .projection-card {
+        display: block;
+    }
+
+    .projection-section:nth-child(3) .projection-form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .projection-section:nth-child(3)
+    .projection-calculate-button {
+        width: auto;
+        margin-top: var(--spacing-3);
+    }
+}
+
+@media (min-width: 1200px) {
     .projection-section:nth-child(3) .projection-card {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 220px;
+        grid-template-columns: minmax(0, 1fr) 180px;
         align-items: center;
         gap: var(--spacing-3);
     }
@@ -1411,6 +1569,7 @@
     .projection-section:nth-child(3) .projection-form-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+}
 
     .projection-section:nth-child(3) .projection-form-group small {
         display: none;
@@ -1451,13 +1610,47 @@
         padding: 0;
     }
 
+   .gpa-hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 24px;
+    }
+
     .gpa-hero-illustration {
-        height: 140px;
+        display: none;
+    }
+
+    .gpa-hero-text {
+        padding: 0;
     }
 
     .gpa-hero-buttons {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .gpa-hero-buttons .et-btn {
+        width: auto;
+        padding: 10px 14px;
+        white-space: nowrap;
+    }
+
+    .gpa-hero-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .gpa-hero-buttons .et-btn {
+        width: auto;
+        min-height: 42px;
+        padding: 10px 14px;
+        white-space: nowrap;
     }
 
     .calc-fields-row {
@@ -1465,8 +1658,19 @@
     }
 
     .calc-actions {
-        flex-direction: column;
-        align-items: stretch;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .calc-actions .et-btn {
+        width: auto;
+        min-height: 42px;
+        padding: 10px 18px;
+        white-space: nowrap;
     }
 
     .forecast-banner {

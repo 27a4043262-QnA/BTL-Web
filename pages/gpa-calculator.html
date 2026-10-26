@@ -1,14 +1,21 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"value="EDUTRACK - Công cụ tính và dự phóng GPA dành cho sinh viên.">
     <title>Công cụ Tính & Dự phóng GPA | EDUTRACK</title>
-    <link rel="stylesheet" href="../assets/css/main.css">
-<link rel="stylesheet" href="../assets/css/gpa-calculator.css">
-<script src="https://unpkg.com/lucide@latest"></script>
-  </head>
+    <!-- Bootstrap 4 -->
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <!-- CSS chung của EDUTRACK -->
+        <link rel="stylesheet" href="../assets/css/main.css">
+    <!-- CSS riêng của trang GPA -->
+        <link rel="stylesheet" href="../assets/css/gpa-calculator.css">
+    <!-- Lucide Icons -->
+    <script defer src="https://unpkg.com/lucide@latest"></script>
+</head>
   <body>
+    <a class="skip-link" href="#main-content">  Bỏ qua điều hướng </a>
     <!-- HEADER -->
     <header>
         <!-- Logo -->
@@ -18,9 +25,9 @@
         </div>
         <!-- Navigation Menu -->
         <ul>
-            <li><a href="../index.html" aria-current="page">Trang chủ</a></li>
+            <li><a href="../index.html" >Trang chủ</a></li>
             <li><a href="courses.html">Môn học</a></li>
-            <li><a href="gpa-calculator.html">Tính GPA</a></li>
+            <li><a href="gpa-calculator.html" aria-current="page">Tính GPA</a></li>
             <li><a href="advising-contact.html">Tư vấn</a></li>
             <li><a href="about.html">Giới thiệu</a></li>
             <!--TH1: Truoc khi dang nhap-->
@@ -99,6 +106,8 @@
             </li>
         </ul>
     </header>
+
+    
     <!-- Main -->
     <main id="main-content">
       <!-- Hero section -->
@@ -150,34 +159,38 @@
         <!-- Bước 1: Thông tin chung -->
         <div class="calc-step">
           <h3><span class="step-badge">1</span> Thông tin chung</h3>
+      <!-- THÔNG TIN CHUNG -->
+    <div class="row calc-fields-row">
 
-          <div class="calc-fields-row">
-            <div class="field">
-              <label for="school-year">Năm học</label>
-              <select id="school-year" name="school-year">
-                <option>2026 - 2027</option>
-                <option>2025 - 2026</option>
-                <option>2024 - 2025</option>
-                <option>2023 - 2024</option>
-               </select>
-            </div>
-            <div class="field">
-              <label for="semester">Học kỳ</label>
-              <select id="semester" name="semester">
-                <option>Học kỳ 1</option>
-                <option>Học kỳ 2</option>
-                <option>Học kỳ 3</option>
-              </select>
-            </div>
-           <div class="field">
-  <label for="student-year">Sinh viên năm</label>
-  <select id="student-year" name="student-year">
-    <option>Năm 1</option>
-    <option>Năm 2</option>
-    <option>Năm 3</option>
-    <option>Năm 4</option>
-  </select>
-</div>
+    <!-- Năm học -->
+    <div class="col-12 col-md-4 mb-3">
+        <label for="academic-year">Năm học</label>
+        <select id="academic-year" class="form-control">
+            <option value="2026-2027">2026 - 2027</option>
+            <option value="2025-2026">2025 - 2026</option>
+        </select>
+    </div>
+
+    <!-- Học kỳ -->
+    <div class="col-12 col-md-4 mb-3">
+        <label for="semester">Học kỳ</label>
+        <select id="semester" class="form-control">
+            <option value="1">Học kỳ 1</option>
+            <option value="2">Học kỳ 2</option>
+            <option value="3">Học kỳ hè</option>
+        </select>
+    </div>
+
+    <!-- Sinh viên năm -->
+    <div class="col-12 col-md-4 mb-3">
+        <label for="student-year">Sinh viên năm</label>
+        <select id="student-year" class="form-control">
+            <option value="1">Năm 1</option>
+            <option value="2">Năm 2</option>
+            <option value="3">Năm 3</option>
+            <option value="4">Năm 4</option>
+        </select>
+    </div>
           </div>
         </div>
 
@@ -186,7 +199,7 @@
           <div class="calc-heading">
             <h3><span class="step-badge">2</span> Danh sách môn học</h3>
           </div>
-
+        <div class="calc-table-wrapper table-responsive"  role="region" aria-label="Bảng nhập điểm các môn học" tabindex="0">
           <table class="calc-table">
             <thead>
               <tr>
@@ -229,7 +242,7 @@
   <td><input type="number" aria-label="Điểm kiểm tra 2"  value="7.0" min="0" max="10" step="0.1" /></td>
   <td><input type="number" aria-label="Điểm cuối kỳ"    value="6.5" min="0" max="10" step="0.1" /></td>
 <td>
-  <button type="button" class="btn-icon-delete" aria-label="Xóa môn Toán cao cấp A1">
+  <button type="button" class="btn-icon-delete" aria-label="Xóa môn Vật lý đại cương">
     <i data-lucide="trash-2" aria-hidden="true"></i>
   </button>
 </td></tr>
@@ -244,13 +257,13 @@
   <td><input type="number" aria-label="Điểm kiểm tra 2"  value="8.0" min="0" max="10" step="0.1" /></td>
   <td><input type="number" aria-label="Điểm cuối kỳ"    value="8.0" min="0" max="10" step="0.1" /></td>
 <td>
-  <button type="button" class="btn-icon-delete" aria-label="Xóa môn Toán cao cấp A1">
+  <button type="button" class="btn-icon-delete" aria-label="Xóa môn Lập trình C">
     <i data-lucide="trash-2" aria-hidden="true"></i>
   </button>
 </td></tr>
             </tbody>
           </table>
-
+</div>
           <button type="button" 	class="et-btn btn-add-row">+ Thêm môn học</button>
 
           <div class="calc-actions">
@@ -258,6 +271,16 @@
             <button type="button" class="et-btn et-btn-primary">▦ Tính điểm</button>
           </div>
         </div>
+
+<!-- Bootstrap 4 Alert: thông báo kết quả nhập liệu -->
+<div
+    id="gpa-alert"
+    class="alert alert-info et-gpa-alert"
+    role="status"
+    hidden
+>
+    <!-- JavaScript sẽ cập nhật nội dung thông báo -->
+</div>
 
         <!-- MỤC 3: KẾT QUẢ GPA -->
         <div class="calc-step calc-step--result">
@@ -272,7 +295,7 @@
           <div class="result-summary">
 
             <!-- GPA hệ 10 -->
-            <div class="result-gpa-card">
+            <div class="card result-gpa-card">
               <div class="result-card-top">
                 <span>GPA hệ 10</span>
                 <i data-lucide="star" aria-hidden="true"></i>
@@ -285,7 +308,7 @@
             </div>
 
             <!-- GPA hệ 4 -->
-            <div class="result-gpa-card">
+            <div class="card result-gpa-card">
               <div class="result-card-top">
                 <span>GPA hệ 4</span>
                 <i data-lucide="graduation-cap" aria-hidden="true"></i>
@@ -298,7 +321,7 @@
             </div>
 
             <!-- Tổng số tín chỉ -->
-            <div class="result-stat-card">
+            <div class="card result-stat-card">
               <div class="result-card-top">
                 <span>Tổng số tín chỉ</span>
                 <i data-lucide="layers" aria-hidden="true"></i>
@@ -307,7 +330,7 @@
             </div>
 
             <!-- Tổng số môn -->
-            <div class="result-stat-card">
+            <div class="card result-stat-card">
               <div class="result-card-top">
                 <span>Tổng số môn</span>
                 <i data-lucide="list" aria-hidden="true"></i>
@@ -316,7 +339,7 @@
             </div>
 
             <!-- Số môn đạt -->
-            <div class="result-stat-card">
+            <div class="card result-stat-card">
               <div class="result-card-top">
                 <span>Số môn đạt</span>
                 <i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>
@@ -325,7 +348,7 @@
             </div>
 
             <!-- Số môn chưa đạt -->
-            <div class="result-stat-card">
+            <div class="card result-stat-card">
               <div class="result-card-top">
                 <span>Số môn chưa đạt</span>
                 <i data-lucide="circle-x" aria-hidden="true"></i>
@@ -346,7 +369,7 @@
         </h3>
     </div>
 
-    <div class="result-detail">
+    <div class="result-detail"  role="region" aria-label="Bảng điểm GPA chi tiết" tabindex="0">
         <table class="calc-table result-table">
             <thead>
                 <tr>
@@ -553,124 +576,107 @@
 
 
         <!-- SECTION 2: MÔN TIÊN QUYẾT -->
-        <section class="projection-section">
-            <div class="projection-section-heading">
-                <span class="projection-step-number">2</span>
+ <section class="projection-section">
 
-                <div>
-                    <h2>Môn tiên quyết cần nhập điểm</h2>
-                </div>
-            </div>
+    <div class="projection-section-heading">
+        <span class="projection-step-number">2</span>
 
-            <div class="projection-card">
-                <div class="projection-table-wrapper">
-                    <table class="projection-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Môn tiên quyết</th>
-                                <th scope="col">Tín chỉ</th>
-                                <th scope="col">Điểm đã đạt</th>
-                            </tr>
-                        </thead>
+        <div>
+            <h2>Môn tiên quyết cần nhập điểm</h2>
+        </div>
+    </div>
 
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label class="projection-prerequisite">
-                                        <input
-                                            type="checkbox"
-                                            name="prerequisites[0][selected]"
-                                            checked>
-                                        <span>Cơ sở dữ liệu</span>
-                                    </label>
-                                </td>
+    <div class="projection-card">
 
-                                <td>3</td>
+        <div class="projection-table-wrapper"
+             role="region"
+             aria-label="Bảng môn tiên quyết"
+             tabindex="0">
 
-                                <td>
-                                    <div class="projection-score-field">
-                                        <input
-                                            class="projection-input"
-                                            type="number"
-                                            name="prerequisites[0][score]"
-                                            value="7.5"
-                                            min="0"
-                                            max="10"
-                                            step="0.1"
-                                            aria-label="Điểm môn Cơ sở dữ liệu">
-                                        <span>/10</span>
-                                    </div>
-                                </td>
-                            </tr>
+            <table class="projection-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Môn tiên quyết</th>
+                        <th scope="col">Tín chỉ</th>
+                        <th scope="col">Điểm đã đạt</th>
+                    </tr>
+                </thead>
 
-                            <tr>
-                                <td>
-                                    <label class="projection-prerequisite">
-                                        <input
-                                            type="checkbox"
-                                            name="prerequisites[1][selected]"
-                                            checked>
-                                        <span>Lập trình C</span>
-                                    </label>
-                                </td>
+                <tbody id="prerequisite-course-list">
 
-                                <td>4</td>
+                    <tr>
+                        <td>Cơ sở dữ liệu</td>
+                        <td>3</td>
+                        <td>
+                            <div class="projection-score-field">
+                                <input
+                                    class="projection-input"
+                                    type="number"
+                                    name="prerequisite_score_1"
+                                    min="0"
+                                    max="10"
+                                    step="0.1"
+                                    required
+                                    aria-label="Điểm môn Cơ sở dữ liệu"
+                                    placeholder="Nhập điểm">
+                                <span>/10</span>
+                            </div>
+                        </td>
+                    </tr>
 
-                                <td>
-                                    <div class="projection-score-field">
-                                        <input
-                                            class="projection-input"
-                                            type="number"
-                                            name="prerequisites[1][score]"
-                                            value="8.0"
-                                            min="0"
-                                            max="10"
-                                            step="0.1"
-                                            aria-label="Điểm môn Lập trình C">
-                                        <span>/10</span>
-                                    </div>
-                                </td>
-                            </tr>
+                    <tr>
+                        <td>Lập trình C</td>
+                        <td>4</td>
+                        <td>
+                            <div class="projection-score-field">
+                                <input
+                                    class="projection-input"
+                                    type="number"
+                                    name="prerequisite_score_2"
+                                    min="0"
+                                    max="10"
+                                    step="0.1"
+                                    required
+                                    aria-label="Điểm môn Lập trình C"
+                                    placeholder="Nhập điểm">
+                                <span>/10</span>
+                            </div>
+                        </td>
+                    </tr>
 
-                            <tr>
-                                <td>
-                                    <label class="projection-prerequisite">
-                                        <input
-                                            type="checkbox"
-                                            name="prerequisites[2][selected]">
-                                        <span>Toán rời rạc</span>
-                                    </label>
-                                </td>
+                    <tr>
+                        <td>Toán rời rạc</td>
+                        <td>3</td>
+                        <td>
+                            <div class="projection-score-field">
+                                <input
+                                    class="projection-input"
+                                    type="number"
+                                    name="prerequisite_score_3"
+                                    min="0"
+                                    max="10"
+                                    step="0.1"
+                                    required
+                                    aria-label="Điểm môn Toán rời rạc"
+                                    placeholder="Nhập điểm">
+                                <span>/10</span>
+                            </div>
+                        </td>
+                    </tr>
 
-                                <td>3</td>
+                </tbody>
+            </table>
+        </div>
 
-                                <td>
-                                    <div class="projection-score-field">
-                                        <input
-                                            class="projection-input"
-                                            type="number"
-                                            name="prerequisites[2][score]"
-                                            min="0"
-                                            max="10"
-                                            step="0.1"
-                                            placeholder="Nhập điểm"
-                                            aria-label="Điểm môn Toán rời rạc">
-                                        <span>/10</span>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <p class="projection-note">
+            <i data-lucide="info" aria-hidden="true"></i>
+            Các môn tiên quyết được xác định tự động
+            từ danh sách môn học kỳ tới.
+            Vui lòng nhập đầy đủ điểm theo thang 10.
+        </p>
 
-                <p class="projection-note">
-                    <i data-lucide="info" aria-hidden="true"></i>
-                    Bạn chỉ cần nhập điểm của những môn liên quan
-                    đến các môn đang dự phóng.
-                </p>
-            </div>
-        </section>
-
+    </div>
+</section>
 
         <!-- SECTION 3: THÔNG TIN GPA -->
         <section class="projection-section">
@@ -894,6 +900,12 @@
                 <text class="chart-label" x="90"  y="114" text-anchor="middle">3.00</text>
                 <text class="chart-label" x="310" y="62"  text-anchor="middle">3.52</text>
                 <text class="chart-label" x="540" y="64"  text-anchor="middle">3.50</text>
+
+                <p class="projection-chart-note">
+    Biểu đồ minh họa dữ liệu GPA giả lập.
+    Kết quả thực tế sẽ phụ thuộc vào quy chế đào tạo
+    và điểm số từng môn học.
+</p>
             </svg>
         </div>
 

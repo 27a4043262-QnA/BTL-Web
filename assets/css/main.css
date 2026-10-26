@@ -449,6 +449,13 @@ header > ul {
 header > ul > li {
     flex: 0 0 auto;
 }
+/* Aura them */
+header a[aria-current="page"] {
+    color: var(--white-color);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 6px;
+}
 
 header > ul > li > a {
     display: block;
