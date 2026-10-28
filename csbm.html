@@ -1,0 +1,860 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chính sách bảo mật | EduTrack</title>
+
+    <!-- CSS dùng chung -->
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- CSS trang chính sách bảo mật -->
+    <link rel="stylesheet" href="assets/css/csbm.css">
+
+    <!-- Thư viện icon Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+        <!-- Logo -->
+        <div class="logo">
+            <img src="assets/images/logo.png"
+                 alt="EduTrack Logo" width="70" height="70">
+            <a href="index.html">EduTrack</a>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="courses.html">Môn học</a></li>
+            <li><a href="gpa-calculator.html">Tính GPA</a></li>
+            <li><a href="advising-contact.html">Tư vấn</a></li>
+            <li><a href="about.html">Giới thiệu</a></li>
+
+            <!-- TH1: Trước khi đăng nhập -->
+            <li class="button" hidden>
+                <button type="button" class="button-link"
+                    onclick="window.location.href='login.html'">
+                    Bắt đầu ngay
+                </button>
+            </li>
+
+            <!-- TH2: Sau khi đăng nhập -->
+            <li class="button">
+                <details class="account-menu">
+                    <summary class="button-clink">
+                        <div class="profile-avatar">PC</div>
+                        <span class="student-name">Phan Kim Chi</span>
+
+                        <svg class="account-arrow"
+                             viewBox="0 0 24 24"
+                             aria-hidden="true">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </summary>
+
+                    <!-- Menu tài khoản -->
+                    <div class="account-dropdown">
+
+                        <!-- Thông tin cá nhân -->
+                        <a href="#" class="account-item">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"
+                                     aria-hidden="true">
+                                    <rect x="5" y="3" width="14"
+                                          height="18" rx="2"></rect>
+                                    <circle cx="12" cy="9" r="2.5"></circle>
+                                    <path d="M8.5 16c.8-2 2.1-3
+                                             3.5-3s2.7 1 3.5 3"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Thông tin cá nhân</strong>
+                            </div>
+                        </a>
+
+                        <!-- Tiến độ học tập -->
+                        <a href="progress.html" class="account-item">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"
+                                     aria-hidden="true">
+                                    <path d="M4 19V9"></path>
+                                    <path d="M10 19V5"></path>
+                                    <path d="M16 19v-7"></path>
+                                    <path d="M22 19V3"></path>
+                                    <path d="M4 7l5-3 6 3 5-4"></path>
+                                    <path d="M17 3h3v3"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Tiến độ học tập</strong>
+                            </div>
+                        </a>
+
+                        <div class="dropdown-line"></div>
+
+                        <!-- Đăng xuất -->
+                        <a href="login.html" class="account-item logout">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"
+                                     aria-hidden="true">
+                                    <path d="M14 4H6a2 2 0 0 0-2
+                                             2v12a2 2 0 0 0 2 2h8"></path>
+                                    <path d="M10 12h10"></path>
+                                    <path d="M17 8l4 4-4 4"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Đăng xuất</strong>
+                            </div>
+                        </a>
+
+                    </div>
+                </details>
+            </li>
+        </ul>
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="privacy-page">
+
+        <!-- PHẦN 1: BANNER -->
+        <section class="privacy-hero">
+            <div class="privacy-container">
+
+                <div class="privacy-hero-content">
+
+                    <div class="privacy-hero-heading">
+                        <i data-lucide="shield-check"
+                           aria-hidden="true"></i>
+                        <span>EDUTRACK • QUYỀN RIÊNG TƯ</span>
+                    </div>
+
+                    <h1>Chính sách bảo mật</h1>
+
+                    <p>
+                        Tìm hiểu cách EduTrack thu thập, sử dụng,
+                        quản lý và bảo vệ dữ liệu cá nhân cũng như
+                        thông tin học tập của người dùng.
+                    </p>
+
+                    <span class="privacy-update">
+                        Bản mẫu cập nhật: 28/10/2026
+                    </span>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PHẦN 2: NỘI DUNG CHÍNH SÁCH -->
+        <section class="privacy-content">
+            <div class="privacy-container">
+
+                <!-- MỤC 01 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">01</span>
+                        <h2>Giới thiệu chung</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            EduTrack là nền tảng hỗ trợ sinh viên
+                            quản lý môn học, theo dõi kết quả học tập,
+                            tính toán điểm trung bình tích lũy (GPA)
+                            và dự phóng kết quả học tập trong những
+                            học kỳ tiếp theo.
+                        </p>
+
+                        <p>
+                            Chính sách bảo mật này được xây dựng nhằm
+                            giúp người dùng hiểu rõ loại thông tin có
+                            thể được xử lý, mục đích sử dụng, nguyên
+                            tắc bảo vệ dữ liệu và các quyền liên quan
+                            đến thông tin cá nhân.
+                        </p>
+
+                        <p>
+                            Nội dung chính sách áp dụng trong phạm vi
+                            các hoạt động xử lý dữ liệu liên quan đến
+                            website EduTrack.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 02 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">02</span>
+                        <h2>Phạm vi áp dụng</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            Chính sách áp dụng đối với mọi người dùng
+                            truy cập và sử dụng EduTrack, bao gồm
+                            những người chưa đăng nhập và những người
+                            đã đăng ký tài khoản.
+                        </p>
+
+                        <h3>2.1. Người dùng chưa đăng nhập</h3>
+
+                        <p>
+                            Người dùng có thể truy cập các nội dung
+                            giới thiệu và những chức năng được
+                            EduTrack cung cấp công khai. Việc xử lý
+                            thông tin phụ thuộc vào chức năng thực tế
+                            mà người dùng truy cập.
+                        </p>
+
+                        <h3>2.2. Người dùng đã đăng nhập</h3>
+
+                        <p>
+                            Người dùng có tài khoản có thể sử dụng
+                            các chức năng quản lý học tập, tính GPA
+                            và các tiện ích liên quan. Những thông
+                            tin gắn với tài khoản sẽ được xử lý
+                            theo mục đích đã thông báo.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 03 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">03</span>
+                        <h2>Thông tin EduTrack thu thập</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            EduTrack có thể thu thập và xử lý những
+                            thông tin cần thiết nhằm cung cấp các
+                            chức năng học tập. Những thông tin này
+                            được chia thành các nhóm sau:
+                        </p>
+
+                        <h3>3.1. Thông tin tài khoản</h3>
+
+                        <p>
+                            Khi người dùng đăng ký hoặc đăng nhập,
+                            EduTrack có thể tiếp nhận họ tên, địa chỉ
+                            email, thông tin định danh tài khoản
+                            và những dữ liệu cần thiết cho việc
+                            xác thực người dùng.
+                        </p>
+
+                        <h3>3.2. Thông tin học tập</h3>
+
+                        <p>
+                            Các thông tin do sinh viên cung cấp trong
+                            quá trình sử dụng công cụ quản lý môn học
+                            và tính GPA có thể bao gồm:
+                        </p>
+
+                        <ul>
+                            <li>
+                                Danh sách môn học, tên môn và mã môn.
+                            </li>
+                            <li>
+                                Số tín chỉ tương ứng với từng môn học.
+                            </li>
+                            <li>
+                                Điểm chuyên cần, điểm kiểm tra
+                                và điểm cuối kỳ.
+                            </li>
+                            <li>
+                                GPA hiện tại theo thang điểm 4
+                                và thang điểm 10.
+                            </li>
+                            <li>
+                                Năm học, học kỳ và kế hoạch học tập.
+                            </li>
+                            <li>
+                                Điểm số dự kiến phục vụ chức năng
+                                dự phóng GPA.
+                            </li>
+                        </ul>
+
+                        <h3>3.3. Thông tin kỹ thuật</h3>
+
+                        <p>
+                            Tùy theo hệ thống được triển khai, EduTrack
+                            có thể ghi nhận dữ liệu về loại trình duyệt,
+                            thiết bị, địa chỉ IP và những thông tin
+                            kỹ thuật cần thiết nhằm vận hành, bảo trì
+                            và cải thiện website.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 04 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">04</span>
+                        <h2>Mục đích sử dụng thông tin</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            Những dữ liệu được cung cấp có thể được
+                            xử lý nhằm hỗ trợ các hoạt động học tập
+                            và vận hành những chức năng của EduTrack.
+                        </p>
+
+                        <h3>4.1. Quản lý tài khoản</h3>
+
+                        <p>
+                            Thông tin đăng ký và đăng nhập được sử
+                            dụng để xác thực người dùng, quản lý tài
+                            khoản và cung cấp các chức năng dành
+                            riêng cho tài khoản.
+                        </p>
+
+                        <h3>4.2. Hỗ trợ học tập</h3>
+
+                        <p>
+                            Dữ liệu môn học, tín chỉ và điểm số được
+                            sử dụng để tính toán GPA, cung cấp kết
+                            quả theo thang điểm phù hợp và hỗ trợ
+                            lập kế hoạch học tập.
+                        </p>
+
+                        <h3>4.3. Cải thiện dịch vụ</h3>
+
+                        <p>
+                            Các thông tin vận hành cần thiết có thể
+                            được sử dụng để phát hiện lỗi kỹ thuật,
+                            cải thiện khả năng truy cập và nâng cao
+                            trải nghiệm người dùng.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 05 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">05</span>
+                        <h2>Lưu trữ và quản lý dữ liệu</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            EduTrack hướng đến việc quản lý dữ liệu
+                            phù hợp với mục đích sử dụng và hạn chế
+                            lưu giữ thông tin không cần thiết.
+                        </p>
+
+                        <h3>5.1. Dữ liệu tài khoản</h3>
+
+                        <p>
+                            Nếu website triển khai hệ thống tài khoản,
+                            dữ liệu cần thiết có thể được lưu giữ
+                            để duy trì dịch vụ và xác thực người dùng.
+                        </p>
+
+                        <h3>5.2. Dữ liệu GPA</h3>
+
+                        <p>
+                            Điểm số và kết quả tính GPA có thể chỉ
+                            được xử lý tạm thời trên trình duyệt
+                            hoặc được lưu trữ nếu website có chức
+                            năng lưu kết quả.
+                        </p>
+
+                        <h3>5.3. Thời gian lưu trữ</h3>
+
+                        <p>
+                            Thời hạn lưu trữ cần được xác định theo
+                            loại dữ liệu, mục đích xử lý và các
+                            nghĩa vụ pháp lý liên quan. Thông tin
+                            cụ thể sẽ được công bố theo hệ thống
+                            thực tế.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 06 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">06</span>
+                        <h2>Cookie và công nghệ liên quan</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            Cookie là những dữ liệu nhỏ được trình
+                            duyệt lưu trữ nhằm hỗ trợ hoạt động
+                            của website.
+                        </p>
+
+                        <h3>6.1. Cookie cần thiết</h3>
+
+                        <p>
+                            Nếu được sử dụng, loại cookie này có
+                            thể hỗ trợ duy trì phiên đăng nhập
+                            và các chức năng cơ bản.
+                        </p>
+
+                        <h3>6.2. Cookie tùy chọn</h3>
+
+                        <p>
+                            Một số công nghệ có thể giúp ghi nhớ
+                            thiết lập giao diện hoặc cung cấp
+                            thông tin phục vụ cải thiện trải nghiệm.
+                        </p>
+
+                        <h3>6.3. Quản lý cookie</h3>
+
+                        <p>
+                            Người dùng có thể điều chỉnh việc lưu trữ
+                            cookie thông qua cài đặt trình duyệt.
+                            Chính sách sử dụng cookie cụ thể của
+                            EduTrack cần phản ánh đúng công nghệ
+                            được triển khai.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 07 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">07</span>
+                        <h2>Biện pháp bảo vệ thông tin</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            EduTrack hướng đến việc áp dụng các biện
+                            pháp kỹ thuật và quản lý phù hợp nhằm
+                            hạn chế nguy cơ truy cập trái phép,
+                            thay đổi hoặc mất mát dữ liệu.
+                        </p>
+
+                        <h3>7.1. Kiểm soát truy cập</h3>
+
+                        <p>
+                            Hệ thống cần giới hạn quyền truy cập
+                            dữ liệu theo vai trò và nhu cầu sử dụng
+                            phù hợp.
+                        </p>
+
+                        <h3>7.2. Bảo vệ thông tin đăng nhập</h3>
+
+                        <p>
+                            Các chức năng xác thực cần được triển
+                            khai bằng phương thức an toàn, phù hợp
+                            với công nghệ được sử dụng.
+                        </p>
+
+                        <h3>7.3. Trách nhiệm của người dùng</h3>
+
+                        <p>
+                            Người dùng nên giữ bí mật thông tin
+                            đăng nhập, thận trọng khi sử dụng
+                            thiết bị dùng chung và thông báo
+                            khi nhận thấy hoạt động bất thường.
+                        </p>
+
+                        <p>
+                            Không có hệ thống trực tuyến nào có
+                            thể bảo đảm an toàn tuyệt đối, do đó
+                            những biện pháp bảo vệ cần được duy trì
+                            và cải thiện thường xuyên.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 08 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">08</span>
+                        <h2>Chia sẻ thông tin với bên thứ ba</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            EduTrack không chủ trương mua bán
+                            dữ liệu cá nhân của người dùng.
+                        </p>
+
+                        <h3>8.1. Đơn vị cung cấp dịch vụ</h3>
+
+                        <p>
+                            Trong trường hợp sử dụng các dịch vụ
+                            hỗ trợ vận hành website, dữ liệu có
+                            thể cần được xử lý bởi bên cung cấp
+                            dịch vụ theo phạm vi đã thông báo
+                            và cơ sở pháp lý phù hợp.
+                        </p>
+
+                        <h3>8.2. Yêu cầu pháp luật</h3>
+
+                        <p>
+                            Thông tin có thể được cung cấp trong
+                            những trường hợp có căn cứ hợp pháp
+                            hoặc theo yêu cầu của cơ quan có
+                            thẩm quyền.
+                        </p>
+
+                        <h3>8.3. Sự đồng ý của người dùng</h3>
+
+                        <p>
+                            Những hoạt động chia sẻ cần sự đồng ý
+                            sẽ chỉ được thực hiện khi có sự đồng ý
+                            hợp lệ theo quy định áp dụng.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 09 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">09</span>
+                        <h2>Đăng nhập bằng Google</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            Nếu EduTrack triển khai chức năng đăng
+                            nhập bằng Google, người dùng có thể
+                            lựa chọn sử dụng tài khoản Google
+                            để xác thực.
+                        </p>
+
+                        <h3>9.1. Thông tin được tiếp nhận</h3>
+
+                        <p>
+                            Tùy theo quyền được yêu cầu và cho phép,
+                            EduTrack có thể nhận thông tin cơ bản
+                            cần thiết để tạo hoặc xác thực tài khoản.
+                        </p>
+
+                        <h3>9.2. Phạm vi truy cập</h3>
+
+                        <p>
+                            EduTrack cần giới hạn yêu cầu quyền truy
+                            cập ở mức cần thiết cho chức năng đăng
+                            nhập và thông báo rõ ràng với người dùng.
+                        </p>
+
+                        <h3>9.3. Dịch vụ của Google</h3>
+
+                        <p>
+                            Hoạt động xác thực thông qua Google
+                            cũng chịu sự điều chỉnh bởi các chính
+                            sách tương ứng của nhà cung cấp dịch vụ.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 10 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">10</span>
+                        <h2>Quyền của người dùng</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            Người dùng có các quyền liên quan đến
+                            dữ liệu cá nhân theo quy định pháp luật
+                            hiện hành, với phạm vi và điều kiện
+                            áp dụng tương ứng.
+                        </p>
+
+                        <h3>10.1. Quyền được biết và truy cập</h3>
+
+                        <p>
+                            Người dùng có quyền được cung cấp
+                            thông tin liên quan đến hoạt động
+                            xử lý dữ liệu cá nhân và yêu cầu
+                            truy cập dữ liệu trong những trường
+                            hợp được pháp luật quy định.
+                        </p>
+
+                        <h3>10.2. Quyền chỉnh sửa và xóa dữ liệu</h3>
+
+                        <p>
+                            Người dùng có thể yêu cầu chỉnh sửa
+                            thông tin không chính xác hoặc xóa
+                            dữ liệu khi đáp ứng những điều kiện
+                            áp dụng.
+                        </p>
+
+                        <h3>10.3. Quyền rút lại sự đồng ý</h3>
+
+                        <p>
+                            Đối với hoạt động xử lý dựa trên sự
+                            đồng ý, người dùng có thể thực hiện
+                            quyền rút lại sự đồng ý theo quy định.
+                        </p>
+
+                        <h3>10.4. Quyền khiếu nại</h3>
+
+                        <p>
+                            Người dùng có thể gửi phản ánh hoặc
+                            khiếu nại liên quan đến việc xử lý
+                            dữ liệu cá nhân thông qua kênh
+                            liên hệ phù hợp.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 11 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">11</span>
+                        <h2>Thay đổi Chính sách bảo mật</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            EduTrack có thể cập nhật Chính sách bảo
+                            mật khi thay đổi chức năng website,
+                            phương thức xử lý dữ liệu hoặc để đáp
+                            ứng các yêu cầu pháp luật.
+                        </p>
+
+                        <h3>11.1. Nội dung cập nhật</h3>
+
+                        <p>
+                            Những thay đổi có thể liên quan đến loại
+                            dữ liệu được xử lý, mục đích sử dụng,
+                            biện pháp bảo vệ và quyền của người dùng.
+                        </p>
+
+                        <h3>11.2. Thông báo thay đổi</h3>
+
+                        <p>
+                            Phiên bản mới sẽ được công bố trên
+                            website cùng ngày cập nhật. Những
+                            thay đổi cần thông báo hoặc xin lại
+                            sự đồng ý sẽ được xử lý theo quy định
+                            áp dụng.
+                        </p>
+
+                    </div>
+                </article>
+
+
+                <!-- MỤC 12 -->
+                <article class="privacy-item">
+
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">12</span>
+                        <h2>Thông tin liên hệ và hỗ trợ</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <p>
+                            Nếu có thắc mắc về Chính sách bảo mật
+                            hoặc yêu cầu liên quan đến dữ liệu cá
+                            nhân, người dùng có thể liên hệ thông
+                            qua trang hỗ trợ chính thức của EduTrack.
+                        </p>
+
+                        <h3>12.1. Nội dung hỗ trợ</h3>
+
+                        <p>
+                            Các yêu cầu có thể liên quan đến thông tin
+                            tài khoản, chỉnh sửa dữ liệu, quyền riêng tư
+                            hoặc vấn đề kỹ thuật khi sử dụng công cụ
+                            học tập.
+                        </p>
+
+                        <h3>12.2. Tiếp nhận yêu cầu</h3>
+
+                        <p>
+                            EduTrack cần xác định kênh hỗ trợ,
+                            quy trình xác minh người yêu cầu
+                            và thời hạn phản hồi phù hợp khi
+                            đưa hệ thống vào vận hành.
+                        </p>
+
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- PHẦN 3: LIÊN HỆ HỖ TRỢ -->
+        <section class="privacy-support">
+            <div class="privacy-container">
+
+                <div class="privacy-support-content">
+
+                    <div class="privacy-support-heading">
+                        <i data-lucide="headset"
+                           aria-hidden="true"></i>
+                        <h2>Bạn cần hỗ trợ thêm?</h2>
+                    </div>
+
+                    <p>
+                        Nếu có câu hỏi liên quan đến tài khoản,
+                        thông tin học tập hoặc quyền riêng tư,
+                        hãy liên hệ với EduTrack qua trang
+                        hỗ trợ khách hàng.
+                    </p>
+
+                    <a href="advising-contact.html"
+                       class="privacy-support-btn">
+                        Liên hệ hỗ trợ
+                        <i data-lucide="arrow-right"
+                           aria-hidden="true"></i>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+
+        <!-- Giới thiệu EduTrack -->
+        <section class="footer-intro">
+            <div class="footer-logo">
+                <img src="assets/images/logo.png"
+                     alt="EduTrack Logo" width="70" height="70">
+                <h2>EduTrack</h2>
+            </div>
+
+            <p>
+                Nền tảng công nghệ cung cấp tài liệu,
+                hỗ trợ sinh viên lập kế hoạch,
+                quản lý điểm số và GPA một cách thông minh.
+            </p>
+        </section>
+
+        <!-- Về EduTrack -->
+        <section class="footer-column">
+            <h2>Về EduTrack</h2>
+            <ul>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="#">Đội ngũ</a></li>
+                <li>
+                    <a href="advising-contact.html">Liên hệ</a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Môn học -->
+        <section class="footer-column">
+            <h2>Môn học</h2>
+            <ul>
+                <li><a href="courses.html">Đại cương</a></li>
+                <li><a href="courses.html">Cơ sở ngành</a></li>
+                <li><a href="courses.html">Chuyên ngành</a></li>
+            </ul>
+        </section>
+
+        <!-- Tính năng -->
+        <section class="footer-column">
+            <h2>Tính năng</h2>
+            <ul>
+                <li>
+                    <a href="gpa-calculator.html">Tính GPA</a>
+                </li>
+                <li>
+                    <a href="advising-contact.html">
+                        Tư vấn lộ trình
+                    </a>
+                </li>
+                <li>
+                    <a href="progress.html">Theo dõi tiến độ</a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Điều khoản -->
+        <section class="footer-column">
+            <h2>Điều khoản</h2>
+            <ul>
+                <li>
+                    <a href="privacy-policy.html"
+                       aria-current="page">
+                        Chính sách bảo mật
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Điều khoản sử dụng</a>
+                </li>
+                <li>
+                    <a href="advising-contact.html">
+                        Hỗ trợ khách hàng
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Copyright -->
+        <section class="footer-bottom">
+            <span>
+                &copy; 2026 EduTrack.
+                Tất cả các quyền được bảo lưu.
+            </span>
+        </section>
+
+    </footer>
+
+    <!-- Khởi tạo Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
