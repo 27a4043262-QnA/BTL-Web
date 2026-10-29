@@ -75,7 +75,11 @@ function clearFieldError(input) {
         error.remove();
     }
 }
+function isValidLength(value, min, max) {
+    const text = String(value ?? "").trim();
 
+    return text.length >= min && text.length <= max;
+}
 // Gom các hàm thành một đối tượng có thể sử dụng lại
 window.EDUValidation = {
     isRequired,
@@ -85,6 +89,7 @@ window.EDUValidation = {
     isValidGPA,
     isValidEmail,
     isValidPhone,
+    isValidLength,
     showFieldError,
     clearFieldError
 };
