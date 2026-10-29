@@ -1,0 +1,512 @@
+
+/* =====================================================
+   EDUTRACK - CHATBOT DÙNG CHUNG TOÀN WEBSITE
+   Nút robot viền xanh, khung chat một màu
+   ===================================================== */
+
+#et-global-chatbot,
+#et-global-chatbot * {
+    box-sizing: border-box;
+}
+
+#et-global-chatbot {
+    --et-chat-bg: #f3f8fc;
+    --et-chat-blue: #315786;
+    --et-chat-blue-hover: #244875;
+    --et-chat-border: #d7e5f4;
+    --et-chat-text: #25364d;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =====================================================
+   1. NÚT ROBOT NỔI
+   ===================================================== */
+
+#et-global-chatbot .et-chat-launcher {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1601;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 60px;
+    padding: 0;
+
+    background: #ffffff;
+    border: 3px solid #3677cf;
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 5px rgba(54, 119, 207, 0.12),
+        0 8px 24px rgba(49, 87, 134, 0.24);
+
+    appearance: none;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#et-global-chatbot .et-chat-launcher:hover {
+    background: #ffffff;
+    border-color: #2455a3;
+    transform: scale(1.06);
+
+    box-shadow:
+        0 0 0 6px rgba(54, 119, 207, 0.20),
+        0 10px 28px rgba(49, 87, 134, 0.30);
+}
+
+#et-global-chatbot .et-chat-launcher svg {
+    display: block;
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+}
+
+#et-global-chatbot .et-chat-launcher:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 7px;
+}
+
+/* =====================================================
+   2. KHUNG CHAT - NỀN ĐỒNG NHẤT
+   ===================================================== */
+
+#et-global-chatbot .et-chat-panel {
+    position: fixed;
+    right: 24px;
+    bottom: 120px;
+    z-index: 1600;
+
+    display: flex;
+    flex-direction: column;
+
+    width: min(380px, calc(100vw - 24px));
+    height: min(500px, calc(100vh - 145px));
+    max-height: calc(100vh - 145px);
+    min-height: 0;
+
+    overflow: hidden;
+
+    color: var(--et-chat-text);
+    background: var(--et-chat-bg);
+
+    border: 1px solid var(--et-chat-border);
+    border-radius: 18px;
+
+    box-shadow: 0 12px 36px rgba(25, 46, 78, 0.19);
+}
+
+@supports (height: 100dvh) {
+    #et-global-chatbot .et-chat-panel {
+        height: min(500px, calc(100dvh - 145px));
+        max-height: calc(100dvh - 145px);
+    }
+}
+
+#et-global-chatbot .et-chat-panel[hidden] {
+    display: none;
+}
+
+/* =====================================================
+   3. PHẦN TIÊU ĐỀ
+   ===================================================== */
+
+#et-global-chatbot .et-chat-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    margin: 0;
+    padding: 16px 16px 8px;
+
+    background: var(--et-chat-bg);
+    border: 0;
+}
+
+#et-global-chatbot .et-chat-heading-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+}
+
+#et-global-chatbot .et-chat-heading-icon svg {
+    display: block;
+    width: 35px;
+    height: 35px;
+}
+
+#et-global-chatbot .et-chat-heading-text {
+    flex: 1;
+    min-width: 0;
+}
+
+#et-global-chatbot .et-chat-heading-text strong {
+    display: block;
+    margin: 0;
+
+    color: var(--et-chat-blue);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+#et-global-chatbot .et-chat-heading-text small {
+    display: block;
+    margin-top: 2px;
+
+    color: #71839a;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+#et-global-chatbot .et-chat-heading-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+#et-global-chatbot .et-chat-clear {
+    min-height: 30px;
+    padding: 5px 8px;
+    margin: 0;
+
+    color: #526c8b;
+    background: transparent;
+
+    border: 0;
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+#et-global-chatbot .et-chat-clear:hover {
+    color: var(--et-chat-blue);
+    background: #e3edf8;
+}
+
+#et-global-chatbot .et-chat-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    margin: 0;
+
+    color: #64748b;
+    background: transparent;
+
+    border: 0;
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+#et-global-chatbot .et-chat-close:hover {
+    color: var(--et-chat-blue);
+    background: #e3edf8;
+}
+
+/* =====================================================
+   4. KHU VỰC TIN NHẮN
+   ===================================================== */
+
+#et-global-chatbot .et-chat-messages {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 12px;
+
+    min-height: 0;
+    margin: 0;
+    padding: 14px 16px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background: var(--et-chat-bg);
+    border: 0;
+
+    scrollbar-width: thin;
+    scrollbar-color: #bac9da transparent;
+}
+
+#et-global-chatbot .et-chat-message {
+    max-width: 88%;
+    margin: 0;
+    padding: 10px 13px;
+
+    border-radius: 15px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.65;
+
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+/* Tin nhắn trợ lý */
+#et-global-chatbot .et-chat-message.bot {
+    align-self: flex-start;
+
+    color: var(--et-chat-text);
+    background: #ffffff;
+
+    border: 1px solid #dce6f1;
+    border-bottom-left-radius: 5px;
+}
+
+/* Tin nhắn sinh viên */
+#et-global-chatbot .et-chat-message.user {
+    align-self: flex-end;
+
+    color: #ffffff;
+    background: var(--et-chat-blue);
+
+    border: 1px solid var(--et-chat-blue);
+    border-bottom-right-radius: 5px;
+}
+
+/* =====================================================
+   5. CÂU HỎI GỢI Ý
+   ===================================================== */
+
+#et-global-chatbot .et-chat-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+
+    margin: 0;
+    padding: 8px 14px 10px;
+
+    background: var(--et-chat-bg);
+    border: 0;
+}
+
+#et-global-chatbot .et-chat-suggestion {
+    min-height: 34px;
+    margin: 0;
+    padding: 6px 11px;
+
+    color: var(--et-chat-blue);
+    background: #ffffff;
+
+    border: 1px solid var(--et-chat-border);
+    border-radius: 20px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+
+    cursor: pointer;
+}
+
+#et-global-chatbot .et-chat-suggestion:hover {
+    color: #244b7b;
+    background: #e5effb;
+}
+
+/* =====================================================
+   6. Ô NHẬP VÀ NÚT GỬI
+   ===================================================== */
+
+#et-global-chatbot .et-chat-form {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+
+    margin: 0;
+    padding: 8px 14px 15px;
+
+    background: var(--et-chat-bg);
+    border: 0;
+}
+
+#et-global-chatbot .et-chat-input {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    height: 43px;
+
+    margin: 0;
+    padding: 10px 14px;
+
+    color: var(--et-chat-text);
+    background: #ffffff;
+
+    border: 1px solid #cbd9e8;
+    border-radius: 23px;
+
+    outline: none;
+    box-shadow: none;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#et-global-chatbot .et-chat-input::placeholder {
+    color: #8794a6;
+}
+
+#et-global-chatbot .et-chat-input:focus {
+    color: var(--et-chat-text);
+    background: #ffffff;
+
+    border-color: #6d9cd1;
+    outline: 2px solid rgba(109, 156, 209, 0.25);
+    outline-offset: 0;
+    box-shadow: none;
+}
+
+#et-global-chatbot .et-chat-send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 43px;
+    height: 43px;
+    flex: 0 0 43px;
+
+    margin: 0;
+    padding: 0;
+
+    color: #ffffff;
+    background: var(--et-chat-blue);
+
+    border: 0;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+#et-global-chatbot .et-chat-send:hover {
+    color: #ffffff;
+    background: var(--et-chat-blue-hover);
+}
+
+#et-global-chatbot .et-chat-send svg {
+    display: block;
+    width: 19px;
+    height: 19px;
+}
+
+#et-global-chatbot button:focus-visible {
+    outline: 2px solid #7faee4;
+    outline-offset: 2px;
+}
+
+/* =====================================================
+   7. RESPONSIVE MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+    #et-global-chatbot .et-chat-launcher {
+        right: 16px;
+        bottom: 16px;
+
+        width: 52px;
+        height: 52px;
+
+        border-width: 3px;
+    }
+
+    #et-global-chatbot .et-chat-launcher svg {
+        width: 53px;
+        height: 53px;
+    }
+
+    #et-global-chatbot .et-chat-panel {
+        right: 12px;
+        bottom: 94px;
+
+        width: calc(100vw - 24px);
+        height: min(470px, calc(100vh - 112px));
+        max-height: calc(100vh - 112px);
+
+        border-radius: 16px;
+    }
+
+    #et-global-chatbot .et-chat-heading {
+        padding: 13px 12px 6px;
+        gap: 7px;
+    }
+
+    #et-global-chatbot .et-chat-heading-text strong {
+        font-size: 15px;
+    }
+
+    #et-global-chatbot .et-chat-clear {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    #et-global-chatbot .et-chat-messages {
+        padding: 12px;
+    }
+
+    #et-global-chatbot .et-chat-suggestions {
+        gap: 6px;
+        padding: 8px 12px;
+    }
+
+    #et-global-chatbot .et-chat-suggestion {
+        padding: 6px 9px;
+        font-size: 11px;
+    }
+
+    #et-global-chatbot .et-chat-form {
+        padding: 8px 12px 12px;
+    }
+}
+
+@supports (height: 100dvh) {
+    @media (max-width: 600px) {
+        #et-global-chatbot .et-chat-panel {
+            height: min(470px, calc(100dvh - 112px));
+            max-height: calc(100dvh - 112px);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #et-global-chatbot .et-chat-launcher {
+        transition: none;
+    }
+}
