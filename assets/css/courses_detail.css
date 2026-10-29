@@ -25,7 +25,9 @@
 
 #course-detail h1,
 #course-detail h2,
-#course-detail h3 { margin: 0; }
+#course-detail h3 {
+  margin: 0;
+}
 
 /* Đồng bộ tiêu đề các phần (H2) vừa vặn, không quá khổ */
 #course-detail h2 {
@@ -34,7 +36,9 @@
 }
 
 /* ---------- HERO ---------- */
-#course-detail .course-hero { display: contents; }
+#course-detail .course-hero {
+  display: contents;
+}
 
 #course-detail .course-hero-main {
   grid-column: 1;
@@ -48,19 +52,34 @@
   align-items: center;
   gap: 10px;
   margin: 0 0 var(--spacing-3);
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   font-size: var(--font-size-small);
   color: var(--text-light);
 }
 
 #course-detail .chip {
+  display: inline-block;
   background: #eff6ff;
-  color: #4e3ec6;            
-  border-radius: 999px;      
+  color: #4e3ec6;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 999px;
   padding: 4px 12px;
   font-weight: 700;
 }
-#course-detail .chip[data-category="co-so-nganh"]  { color: #2898c8; }
-#course-detail .chip[data-category="chuyen-nganh"] { color: #407cd1; }
+
+#course-detail .chip[data-category="co-so-nganh"] {
+  color: #2898c8;
+}
+
+#course-detail .chip[data-category="chuyen-nganh"] {
+  color: #407cd1;
+}
 
 #course-detail h1 {
   font-size: 35px;
@@ -68,7 +87,7 @@
 }
 
 /* Mô tả ngắn: dùng cỡ base cho dễ đọc, đồng đều */
-#course-detail .course-hero-main > p:last-child {
+#course-detail .course-hero-main>p:last-child {
   margin: 0;
   font-size: var(--font-size-base);
   line-height: 1.7;
@@ -78,7 +97,7 @@
 /* ---------- ASIDE: Thông tin chi tiết ---------- */
 #course-detail .quickfacts {
   grid-column: 2;
-  grid-row: 1 / span 3;         
+  grid-row: 1 / span 3;
   padding: var(--spacing-4);
   background: var(--white-color);
   border: 1px solid var(--border-color);
@@ -96,7 +115,9 @@
 }
 
 #course-detail .quickfacts th,
-#course-detail .quickfacts td { padding: var(--spacing-2) 0; }
+#course-detail .quickfacts td {
+  padding: var(--spacing-2) 0;
+}
 
 #course-detail .quickfacts th {
   text-align: left;
@@ -124,7 +145,10 @@
   text-decoration: none;
   transition: background-color 0.2s;
 }
-#course-detail .btn-cta:hover { background: var( --green-btn-hover); }
+
+#course-detail .btn-cta:hover {
+  background: var(--green-btn-hover);
+}
 
 #course-detail .btn-block {
   display: block;
@@ -157,7 +181,9 @@
 #course-content table,
 #course-content tbody,
 #course-materials table,
-#course-materials tbody { display: block; }
+#course-materials tbody {
+  display: block;
+}
 
 #course-content tbody,
 #course-materials tbody {
@@ -176,9 +202,11 @@
   font-size: var(--font-size-base);
 }
 
-#course-content td { padding: 0; }
+#course-content td {
+  padding: 0;
+}
 
-#course-content td:first-child {         
+#course-content td:first-child {
   width: 28px;
   height: 28px;
   display: grid;
@@ -213,9 +241,11 @@
   font-size: var(--font-size-base);
 }
 
-#course-materials td { padding: 0; }
+#course-materials td {
+  padding: 0;
+}
 
-#course-materials td:first-child::before {   
+#course-materials td:first-child::before {
   content: "▤";
   margin-right: 10px;
   color: var(--text-light);
@@ -228,16 +258,19 @@
   text-align: right;
 }
 
-#course-materials td:last-child { text-align: center; }
+#course-materials td:last-child {
+  text-align: center;
+}
 
 #course-materials td:last-child a {
-  font-size: 0;                     
+  font-size: 0;
   text-decoration: none;
   color: var(--primary-color);
 }
+
 #course-materials td:last-child a::before {
   content: "⤓";
-  font-size: 18px;                   
+  font-size: 18px;
 }
 
 /* ---------- ĐÁNH GIÁ + FAQ ---------- */
@@ -248,13 +281,25 @@
   border-top: 1px solid var(--border-color);
 }
 
-#reviews { margin-bottom: var(--spacing-6); }
+#reviews {
+  margin-bottom: var(--spacing-6);
+}
 
 #reviews .review-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--spacing-3);
+  margin-left: calc(var(--spacing-3) / -2);
+  margin-right: calc(var(--spacing-3) / -2);
   margin-bottom: var(--spacing-3);
+  row-gap: var(--spacing-3);
+}
+
+#reviews .review-list>div {
+  display: flex;
+  padding-left: calc(var(--spacing-3) / 2);
+  padding-right: calc(var(--spacing-3) / 2);
+}
+
+#reviews .review-list article {
+  width: 100%;
 }
 
 #reviews article {
@@ -301,7 +346,7 @@
 
 #reviews .review-text {
   margin: 0;
-  flex-grow: 1;                     
+  flex-grow: 1;
   font-size: var(--font-size-base);
   line-height: 1.6;
   color: var(--text-light);
@@ -312,8 +357,13 @@
   color: var(--text-light);
 }
 
-#reviews > p { font-size: var(--font-size-base); }
-#reviews > p a::after { content: " →"; }
+#reviews>p {
+  font-size: var(--font-size-base);
+}
+
+#reviews>p a::after {
+  content: " →";
+}
 
 /* FAQ */
 .faq-item {
@@ -334,16 +384,22 @@
   cursor: pointer;
   list-style: none;
 }
-.faq-item summary::-webkit-details-marker { display: none; }
 
-.faq-item summary::after {            
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
   content: "›";
   font-size: var(--font-size-h3);
   line-height: 1;
   color: var(--text-light);
   transition: transform .2s;
 }
-.faq-item[open] summary::after { transform: rotate(90deg); }
+
+.faq-item[open] summary::after {
+  transform: rotate(90deg);
+}
 
 .faq-item p {
   margin: 0;
@@ -360,14 +416,22 @@
 
 .related-courses ul {
   list-style: none;
-  margin: 0;
+  margin-left: calc(var(--spacing-3) / -2);
+  margin-right: calc(var(--spacing-3) / -2);
+  margin-bottom: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--spacing-3);
+  row-gap: var(--spacing-3);
 }
 
+.related-courses ul>li {
+  display: flex;
+  padding-left: calc(var(--spacing-3) / 2);
+  padding-right: calc(var(--spacing-3) / 2);
+}
+
+
 .related-courses .course-card {
+  width: 100%;
   height: 100%;
   padding: var(--spacing-3);
   background: var(--white-color);
@@ -376,6 +440,8 @@
   box-shadow: var(--shadow-small);
 }
 
+
+
 .related-courses .course-card h3 {
   font-size: var(--font-size-small);
   font-weight: 400;
@@ -383,32 +449,868 @@
 }
 
 .related-courses .course-card h3 a {
-  display: block;                   
+  display: block;
   margin-bottom: 6px;
   font-size: var(--font-size-base);
   font-weight: 700;
   color: var(--text-dark);
-  text-decoration: none;            
+  text-decoration: none;
 }
-.related-courses .course-card h3 a:hover { text-decoration: underline; }
+
+.related-courses .course-card h3 a:hover {
+  text-decoration: underline;
+}
+
+/* Ảnh môn học */
+#course-detail .related-courses .course-card .card-img-top {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    border-radius: var(--radius-small);
+}
+
+/* Nội dung card */
+.related-courses .course-card .card-body {
+  padding: 16px 0 0;
+}
+
+/* Tên môn học */
+.related-courses .course-card .card-body h3 {
+  margin: 0 0 8px;
+  font-size: var(--font-size-base);
+  font-weight: 700;
+}
+
+.related-courses .course-card .card-body h3 a {
+  display: block;
+  margin: 0;
+  color: var(--text-dark);
+  text-decoration: none;
+}
+
+/* Thông tin ngành học và tín chỉ */
+.related-courses .course-card .card-body p {
+  margin: 0;
+  font-size: var(--font-size-small);
+  font-weight: 400;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* Hiệu ứng khi di chuột */
+.related-courses .course-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.related-courses .course-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== BOOTSTRAP FORM - ĐÁNH GIÁ MÔN HỌC ===== */
+
+
+/* ===== FORM ĐÁNH GIÁ MÔN HỌC ===== */
+
+#reviews .review-form {
+  width: 100%;
+  max-width: none;
+  margin: var(--spacing-3) 0 0;
+  padding: var(--spacing-4);
+  background: var(--white-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-small);
+}
+
+/* Tiêu đề */
+#reviews .review-form-heading {
+  margin-bottom: var(--spacing-3);
+}
+
+#reviews .review-form-heading h3 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+#reviews .review-form-heading p {
+  margin: 0;
+  font-size: var(--font-size-small);
+  color: var(--text-light);
+}
+
+/* Các nhóm nhập liệu */
+#reviews .review-form .form-group {
+  margin-bottom: 20px;
+}
+
+#reviews .review-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+#reviews .review-form .form-control {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-small);
+  background: var(--white-color);
+  color: var(--text-dark);
+  font-size: 14px;
+}
+
+#reviews .review-form .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(64, 124, 209, 0.12);
+  outline: none;
+}
+
+/* Nội dung đánh giá */
+#reviews .review-form textarea.form-control {
+  min-height: 85px;
+  resize: vertical;
+}
+
+/* Nút gửi */
+#reviews .review-form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#reviews .review-form .btn-cta {
+  min-height: 44px;
+  padding: 10px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Responsive điện thoại */
+@media (max-width: 767px) {
+  #reviews .review-form {
+    max-width: 100%;
+    padding: 20px 16px;
+  }
+
+  #reviews .review-form-heading h3 {
+    font-size: 18px;
+  }
+
+  #reviews .review-form .form-group {
+    margin-bottom: 16px;
+  }
+
+  #reviews .review-form .btn-cta {
+    width: 100%;
+  }
+}
+
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 991px) {
-  #course-detail { grid-template-columns: minmax(0, 1fr); }
+  #course-detail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   #course-detail .quickfacts {
     grid-column: 1;
     grid-row: auto;
     margin-top: var(--spacing-4);
   }
-  .related-courses ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  #reviews .review-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+
 }
 
 @media (max-width: 767px) {
-  #course-detail { padding: var(--spacing-4) var(--spacing-3) var(--spacing-6); }
-  .related-courses ul { grid-template-columns: minmax(0, 1fr); }
-  #reviews .review-list { grid-template-columns: minmax(0, 1fr); }
-  #course-materials tr { grid-template-columns: 1fr auto; }
+  #course-detail {
+    padding: var(--spacing-4) var(--spacing-3) var(--spacing-6);
+  }
+
+
+  #course-materials tr {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--spacing-2);
+  }
+
+  #course-materials td:first-child {
+    grid-column: 1 / -1;
+    overflow-wrap: anywhere;
+  }
+
   #course-materials td:nth-child(2),
-  #course-materials td:nth-child(3) { display: none; }
+  #course-materials td:nth-child(3) {
+    display: block;
+    text-align: left;
+  }
+
+  /* Nút tải nằm ở hàng riêng, căn phải trên điện thoại */
+  #course-materials td:last-child {
+    grid-column: 1 / -1;
+    text-align: right;
+  }
+
+  /* Cho phép thông tin chi tiết xuống dòng khi cần */
+  #course-detail .quickfacts table {
+    width: 100%;
+  }
+
+  #course-detail .quickfacts th,
+  #course-detail .quickfacts td {
+    overflow-wrap: anywhere;
+  }
+
+  #course-content tr {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+
+  #course-content td:last-child {
+    grid-column: 2;
+  }
+}
+
+/* Hạn chế tràn ngang */
+#course-detail,
+#course-detail>*,
+#course-detail .course-hero-main,
+#course-detail .quickfacts {
+  min-width: 0;
+}
+
+/* Hình ảnh co theo vùng chứa */
+#course-detail img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Khôi phục màu logo theo main.css */
+header .logo a,
+header .logo a:not([href]) {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+/* ===== NAVBAR BOOTSTRAP 4 - TRANG CHI TIẾT MÔN HỌC ===== */
+
+/* Header desktop: giữ bố cục 3 cột */
+header.et-course-header {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+
+/* Giữ logo ở bên trái */
+header.et-course-header>.logo {
+  grid-column: 1;
+}
+
+/* Menu ở giữa */
+header.et-course-header>.et-course-nav {
+  grid-column: 2;
+  justify-self: center;
+}
+
+/* Hiển thị menu ngang trên desktop */
+header.et-course-header .et-course-nav>ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: clamp(12px, 1.5vw, 28px);
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+header.et-course-header .et-course-nav>ul>li {
+  flex: 0 0 auto;
+}
+
+header.et-course-header .et-course-nav>ul>li>a {
+  display: block;
+  color: var(--white-color);
+  font-size: clamp(15px, 1.2vw, 20px);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+header.et-course-header .et-course-nav>ul>li>a:hover {
+  color: #000000;
+}
+
+/* Nút Bắt đầu ngay giữ vị trí bên phải */
+header.et-course-header .et-course-nav li.button {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Desktop không hiển thị nút menu */
+header.et-course-header .et-menu-toggle {
+  display: none;
+}
+
+/* Bootstrap collapse phải luôn hiện trên desktop */
+/* Hiển thị menu ngang trên tablet và desktop */
+@media (min-width: 768px) {
+  header.et-course-header .et-course-nav.collapse {
+    display: block !important;
+  }
+}
+
+/* Tablet: giữ menu ngang, giảm khoảng cách */
+@media (min-width: 768px) and (max-width: 1199px) {
+  header.et-course-header .et-course-nav>ul {
+    gap: clamp(8px, 2.4vw, 18px);
+  }
+
+  header.et-course-header .et-course-nav>ul>li>a {
+    font-size: clamp(14px, 1.2vw, 20px);
+  }
+
+  header.et-course-header .et-course-nav li.button {
+    right: 12px;
+  }
+}
+
+/* Mobile: menu thu gọn */
+@media (max-width: 767px) {
+  header.et-course-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0;
+    padding: 6px 12px;
+  }
+
+  header.et-course-header>.logo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  header.et-course-header .et-menu-toggle {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 6px 10px;
+    color: var(--white-color);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-small);
+    font-size: 24px;
+    background: transparent;
+  }
+
+  header.et-course-header>.et-course-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  header.et-course-header .et-course-nav>ul {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+    padding: 8px 0;
+  }
+
+  header.et-course-header .et-course-nav>ul>li>a {
+    padding: 10px 8px;
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  header.et-course-header .et-course-nav li.button {
+    position: static;
+    transform: none;
+    padding: 8px;
+    justify-content: flex-start;
+  }
+}
+
+/* Giữ khoảng cách menu theo thiết kế gốc ở desktop */
+@media (min-width: 1200px) {
+  header.et-course-header .et-course-nav>ul {
+    gap: clamp(32px, 6vw, 46px);
+  }
+
+  header.et-course-header .et-course-nav>ul>li>a {
+    font-size: 16px;
+  }
+}
+
+/* ===== BOOTSTRAP MODAL - HỎI ĐÁP ===== */
+
+#questionModal .modal-content {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+}
+
+#questionModal .modal-header {
+  align-items: center;
+  padding: 20px 24px;
+}
+
+#questionModal .modal-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+#questionModal .modal-body {
+  padding: 24px;
+}
+
+#questionModal label {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+#questionModal .form-control {
+  min-height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-small);
+}
+
+#questionModal .modal-footer {
+  padding: 16px 0 0;
+  border-top: 0;
+}
+
+#questionModal .btn {
+  min-height: 44px;
+}
+
+@media (max-width: 767px) {
+  #questionModal .modal-dialog {
+    margin: 12px;
+  }
+
+  #questionModal .modal-body {
+    padding: 16px;
+  }
+}
+
+/* ===== REDESIGN NHẬN XÉT & FAQ - chỉ áp dụng trang chi tiết ===== */
+#reviews .reviews-heading-row {display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+#reviews .reviews-heading-row h2, #faq>h2 {margin:0!important;color:var(--primary-color);font-weight:700;letter-spacing:-.3px}
+#reviews .reviews-heading-row h2::before {content:"☏";display:inline-grid;place-items:center;width:42px;height:42px;margin-right:12px;border-radius:12px;background:#e7efff;color:#2563cb;font-size:23px;vertical-align:middle}
+#reviews .reviews-more {color:#2563cb;font-weight:600;text-decoration:none;border-bottom:1px solid #bfdbfe;padding-bottom:4px}
+#reviews .reviews-more:hover {color:var(--primary-color)}
+#reviews .review-list {row-gap:18px;margin-bottom:26px}
+#reviews .review-list article {position:relative;min-height:240px;padding:22px;border-radius:16px;border:1px solid #dce7f5;box-shadow:0 5px 20px rgba(31,65,113,.055);background:#fff;transition:transform .2s,box-shadow .2s}
+#reviews .review-list article:hover {transform:translateY(-3px);box-shadow:0 10px 24px rgba(31,65,113,.10)}
+#reviews .review-list article::after {content:"❞";position:absolute;top:14px;right:18px;color:#dbe7fa;font-size:42px;line-height:1}
+#reviews .review-author {position:relative;z-index:1}
+#reviews .review-list>div:nth-child(3n+1) .avatar {background:#e3edff;color:#2456b3}
+#reviews .review-list>div:nth-child(3n+2) .avatar {background:#e0f6ec;color:#15966a}
+#reviews .review-list>div:nth-child(3n) .avatar {background:#ffeadf;color:#a54c20}
+#reviews .avatar {width:52px;height:52px;font-size:17px}
+#reviews .review-text {color:var(--text-dark);line-height:1.7}
+#reviews time {margin-top:auto;color:var(--text-light)}
+#reviews .review-form {margin-top:30px;padding:24px;background:#f7fdfb;border:1px solid #d4eee4;border-radius:17px;box-shadow:0 6px 22px rgba(25,98,76,.06)}
+#reviews .review-editor {display:flex;align-items:flex-start;gap:18px}
+#reviews .review-editor-icon {flex:0 0 44px;display:grid;place-items:center;width:44px;height:44px;border-radius:13px;background:#e2f6ec;color:#139c64;font-size:25px}
+#reviews .review-editor-main {flex:1;min-width:0}
+#reviews .review-form textarea.form-control {display:block;width:100%;min-height:120px;padding:15px 17px;background:#fff;border:1px solid #cddaf0;border-radius:11px;resize:vertical;line-height:1.65;font-size:var(--font-size-base)}
+#reviews .review-form textarea.form-control:focus {border-color:#6997ee;box-shadow:0 0 0 3px rgba(105,151,238,.13)}
+#reviews .review-form-bottom {display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:13px}
+#reviews .review-count {font-size:13px;color:var(--text-light)}
+#reviews .review-form .btn-cta {width:auto;min-height:44px;margin:0;padding:10px 22px;border-radius:10px;background:#20bd70;color:#fff}
+#reviews .review-form .btn-cta:hover {background:#17a85f}
+#reviews .review-message {margin:8px 0 0;font-size:13px;min-height:0;color:#bd3434}
+#reviews .review-message:empty {display:none}
+#reviews .review-message.success {color:#147d4d}
+#faq {margin-top:44px}
+#faq>h2 {margin-bottom:22px!important}
+#faq>h2::before {content:"?";display:inline-grid;place-items:center;width:42px;height:42px;margin-right:12px;border-radius:12px;background:#e7efff;color:#2563cb;font-weight:800;vertical-align:middle}
+#faq .faq-item {border:1px solid #dce7f5;border-radius:12px;margin-bottom:10px;box-shadow:0 3px 12px rgba(31,65,113,.035);overflow:hidden}
+#faq .faq-item summary {padding:18px 20px;gap:12px}
+#faq .faq-item[open] {border-color:#c8dcf8}
+#faq .faq-item[open] summary {color:var(--primary-color)}
+#faq .faq-item p {padding:0 20px 18px;line-height:1.65}
+@media(max-width:767px) {
+ #reviews .reviews-heading-row {align-items:flex-start;gap:12px}
+ #reviews .review-list article {min-height:0;padding:18px}
+ #reviews .review-form {padding:14px}
+ #reviews .review-editor {gap:0}
+ #reviews .review-editor-icon {display:none}
+ #reviews .review-form-bottom {align-items:stretch;flex-wrap:wrap}
+ #reviews .review-form .btn-cta {width:100%}
+ #faq {margin-top:32px}
+}
+#review-list > [hidden] {
+    display: none !important;
+}
+/* ===== NÚT XEM THÊM ĐÁNH GIÁ ===== */
+
+/* Nút xem thêm đánh giá */
+#toggle-reviews {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#toggle-reviews:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+#toggle-reviews:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 3px;
+}
+
+#toggle-reviews[hidden] {
+    display: none !important;
+}
+
+
+
+#reviews .reviews-heading-row h2::before {
+    display: none !important;
+}
+
+/* Tiêu đề FAQ và nút hỏi đáp cùng một hàng */
+#faq .faq-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+#faq .faq-heading-row h2 {
+    margin: 0;
+}
+
+#faq .faq-heading-row .btn-cta {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Bỏ icon trước tiêu đề Câu hỏi thường gặp */
+#faq-heading::before {
+    content: none !important;
+    display: none !important;
+}
+/* Tiêu đề nhận xét và nút đánh giá cùng hàng */
+#reviews .reviews-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+#reviews .reviews-heading-row h2 {
+    margin: 0;
+}
+
+#go-to-review {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Xem thêm đánh giá nằm dưới danh sách, căn phải */
+#reviews .reviews-more-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+    margin-bottom: 24px;
+}
+
+#reviews #toggle-reviews {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#reviews #toggle-reviews:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+#reviews #toggle-reviews:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 4px;
+}
+
+#reviews #toggle-reviews[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 575px) {
+    #reviews .reviews-heading-row {
+        gap: 10px;
+    }
+
+    #go-to-review {
+        font-size: 13px;
+        padding: 9px 12px;
+    }
+}
+
+/* Tiêu đề nhận xét và nút viết đánh giá */
+#reviews .reviews-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+#reviews .reviews-heading-row h2 {
+    margin: 0;
+}
+
+#reviews .reviews-heading-row .btn-cta {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Nút xem thêm dưới danh sách */
+#reviews .reviews-more-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+    margin-bottom: 20px;
+}
+
+#reviews #toggle-reviews {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#reviews #toggle-reviews:hover {
+    text-decoration: underline;
+}
+
+/* Modal đánh giá */
+#reviewModal .modal-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#reviewModal .form-control {
+    min-height: 130px;
+    resize: vertical;
+}
+
+#reviewModal .review-modal-counter {
+    text-align: right;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+#reviewModal .modal-footer {
+    padding: 16px 0 0;
+    border-top: 0;
+}
+
+#reviewModal .review-message {
+    color: #dc3545;
+    font-size: 13px;
+}
+
+#reviewModal .form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+
+
+/* ===== THÔNG BÁO CẢM ƠN ĐÁNH GIÁ ===== */
+
+#reviewSuccessModal .review-success-content {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+    padding: 30px 20px;
+}
+
+#reviewSuccessModal .review-success-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #dcfce7;
+    color: #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+#reviewSuccessModal h3 {
+    color: #166534;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#reviewSuccessModal p {
+    color: #64748b;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* ===== THÔNG BÁO GỬI CÂU HỎI THÀNH CÔNG ===== */
+
+#questionSuccessModal .question-success-content {
+    border: none;
+    border-radius: 18px;
+    padding: 30px 20px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+}
+
+#questionSuccessModal .question-success-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #dcfce7;
+    color: #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+#questionSuccessModal h3 {
+    color: #166534;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#questionSuccessModal p {
+    color: #64748b;
+    font-size: 15px;
+    margin: 0;
+}
+
+
+/* ===== XEM THÊM CÂU HỎI ===== */
+
+#faq .faq-more-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+    margin-bottom: 20px;
+}
+
+#faq #toggle-faq {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#faq #toggle-faq:hover {
+    text-decoration: underline;
+}
+
+#faq #toggle-faq[hidden],
+#faq .faq-item[hidden] {
+    display: none !important;
+}
+
+
+
+/* ===== RESPONSIVE FOOTER - COURSE DETAIL ===== */
+
+@media (max-width: 767px) {
+
+    body > footer {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 16px;
+        padding: 28px 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    body > footer .footer-intro {
+        grid-column: 1 / -1;
+        min-width: 0;
+    }
+
+    body > footer .footer-column {
+        min-width: 0;
+        width: 100%;
+    }
+
+    body > footer .footer-column h2 {
+        overflow-wrap: break-word;
+    }
+
+    body > footer .footer-column ul {
+        padding-left: 0;
+        margin: 0;
+    }
+
+    body > footer .footer-column li {
+        overflow-wrap: anywhere;
+    }
+
+    body > footer .footer-bottom {
+        grid-column: 1 / -1;
+        min-width: 0;
+        text-align: center;
+    }
 }

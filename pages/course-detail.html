@@ -1,324 +1,618 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chi tiết môn học | Toán cao cấp A1</title>
-<link rel="stylesheet" href="../assets/css/main.css">
-<link rel="stylesheet" href="../assets/css/courses_detail.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi tiết môn học | Toán cao cấp A1</title>
+
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <!-- CSS của EduTrack -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/courses_detail.css">
+  <link rel="stylesheet" href="../assets/css/chatbot.css">
+
 </head>
+
 <body>
 
-<!-- HEADER -->
-    <header>
-        <!-- Logo -->
-        <div class="logo">
-            <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
-            <a> EduTrack </a>
-        </div>
-        <!-- Navigation Menu -->
-            <ul>
-                <li><a href="../index.html">Trang chủ</a></li>
-                <li><a href="courses.html">Môn học</a></li>
-                <li><a href="gpa-calculator.html">Tính GPA</a></li>
-                <li><a href="advising-contact.html">Tư vấn</a></li>
-                <li><a href="about.html">Giới thiệu</a></li>
-                <li class="button">
-                    <button type="button" class="button-link" onclick="window.location.href='login.html'">Bắt đầu ngay</button>
-                </li>
-            </ul>  
-    </header>
+  <!-- HEADER -->
 
-    <!-- MAIN CONTENT: chỉ 1 main duy nhất -->
-     <main>
-  <article id="course-detail" aria-labelledby="course-title">
- 
-    <div class="course-hero">
- 
-      <div class="course-hero-main">
-        <p class="breadcrumb">
-          <span class="chip">Đại cương</span>
-          <span class="course-code">Mã môn: MATH101</span>
-        </p>
-        <h1 id="course-title">Toán cao cấp A1</h1>
-        <p>
-          Môn học bắt buộc đối với khối kỹ thuật và khoa học tự nhiên.
-          Cung cấp kiến thức cốt lõi về giới hạn và hàm liên tục,
-          phép tính đạo hàm, tích phân của hàm một biến và lý thuyết chuỗi.
-          Làm nền cơ bản cho việc tiếp thu các môn kỹ thuật chuyên sâu kế tiếp.
-        </p>
-      </div>
- 
-      <!-- ASIDE: thông tin nhanh, tangential so với nội dung chính -->
-      <aside class="quickfacts" aria-labelledby="quickfacts-heading">
-        <h2 id="quickfacts-heading">Thông tin chi tiết</h2>
-       <table>
-  <tbody>
-    <tr>
-      <th scope="row">Số tín chỉ</th>
-      <td>3 Tín chỉ</td>
-    </tr>
-    <tr>
-      <th scope="row">Thời lượng</th>
-      <td>45 Tiết học</td>
-    </tr>
-    <tr>
-      <th scope="row">Mã môn</th>
-      <td>MIS</td>
-    </tr>
-    <tr>
-      <th scope="row">Năm học đề xuất</th>
-      <td>Năm 2</td>
-    </tr>
-    <tr>
-      <th scope="row">Học phần tiên quyết</th>
-      <td>IT</td>
-    </tr>
-    <tr>
-      <th scope="row">Phân loại</th>
-      <td>Đại cương</td>
-    </tr>
-  </tbody>
-</table>
-        <a href="advising-contact.html" class="btn-cta btn-block">Đăng ký tư vấn lộ trình</a>
-      </aside>
- 
+  <!-- HEADER -->
+  <header>
+    <!-- Logo -->
+    <div class="logo">
+      <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
+      <a href="../index.html">EduTrack</a>
     </div>
- 
-    <!-- SECTION: Nội dung môn học -->
-    <section id="course-content">
-      <h2>Nội dung môn học</h2>
- 
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Chương học</th>
-            <th scope="col">Tài liệu</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>01</td>
-            <td>Giới hạn và sự liên tục</td>
-            <td>3 tài liệu</td>
-          </tr>
-          <tr>
-            <td>02</td>
-            <td>Đạo hàm và vi phân</td>
-            <td>4 tài liệu</td>
-          </tr>
-          <tr>
-            <td>03</td>
-            <td>Các định lý về hàm khả vi</td>
-            <td>2 tài liệu</td>
-          </tr>
-          <tr>
-            <td>04</td>
-            <td>Tích phân bất định và xác định</td>
-            <td>5 tài liệu</td>
-          </tr>
-          <tr>
-            <td>05</td>
-            <td>Chuỗi số và chuỗi hàm</td>
-            <td>3 tài liệu</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
- 
-    <!-- SECTION: Tài liệu tham khảo -->
-    <section id="course-materials">
-      <h2>Tài liệu tham khảo</h2>
- 
-      <table>
-        <thead>
-    <tr>
-      <th scope="col">Tên tài liệu</th>
-      <th scope="col">Định dạng</th>
-      <th scope="col">Dung lượng</th>
-      <th scope="col">Tải về</th>
-    </tr>
-        </thead>
-  <tbody>
-    <tr>
-      <td>Đề thi giữa kỳ môn Toán cao cấp A1 - Năm 2024</td>
-      <td>PDF</td>
-      <td>1.2 MB</td>
-      <td><a href="#">Tải xuống</a></td>
-    </tr>
-    <tr>
-      <td>Tóm tắt công thức giải nhanh Đạo hàm &amp; Tích phân</td>
-      <td>PDF</td>
-      <td>650 KB</td>
-      <td><a href="#">Tải xuống</a></td>
-    </tr>
-    <tr>
-      <td>Bài tập rèn luyện Vi phân có lời giải chi tiết</td>
-      <td>PDF</td>
-      <td>2.4 MB</td>
-      <td><a href="#">Tải xuống</a></td>
-    </tr>
-  </tbody>
-</table>
-    </section>
- 
-    <!-- SECTION: đánh giá & FAQ -->
-    <section id="course-reviews-faq" aria-label="Câu hỏi thường gặp">
- 
- 
-<section id="reviews" aria-labelledby="reviews-heading">
-  <h2 id="reviews-heading">Nhận xét từ sinh viên</h2>
+    <!-- Navigation Menu -->
+    <ul>
+      <li><a href="../index.html">Trang chủ</a></li>
+      <li><a href="../pages/courses.html" aria-current="page">Môn học</a></li>
+      <li><a href="../pages/gpa-calculator.html">Tính GPA</a></li>
+      <li><a href="../pages/advising-contact.html">Tư vấn</a></li>
+      <li><a href="../pages/about.html">Giới thiệu</a></li>
+      <!--TH1: Truoc khi dang nhap-->
+      <li class="button" hidden>
+        <button type="button" class="button-link" onclick="window.location.href='../pages/login.html'">Bắt đầu
+          ngay</button>
+      </li>
+      <!-- TH2: Sau khi dang nhap-->
+      <li class="button">
+        <!-- Tài khoản sinh viên -->
+        <details class="account-menu">
+          <summary class="button-clink">
+            <!-- Avatar PC -->
+            <div class="profile-avatar">PC</div>
+            <!-- Tên sinh viên -->
+            <span class="student-name">Phan Kim Chi</span>
+            <!-- Icon mũi tên -->
+            <svg class="account-arrow" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </summary>
+          <!-- Menu tài khoản -->
+          <div class="account-dropdown">
+            <!-- Thông tin cá nhân -->
+            <a href="#" class="account-item">
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="5" y="3" width="14" height="18" rx="2"></rect>
+                  <circle cx="12" cy="9" r="2.5"></circle>
+                  <path d="M8.5 16c.8-2 2.1-3 3.5-3s2.7 1 3.5 3"></path>
+                </svg>
+              </div>
+              <div>
+                <strong>Thông tin cá nhân</strong>
+              </div>
+            </a>
+            <!-- Tiến độ học tập -->
+            <a href="../pages/progress.html" class="account-item">
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 19V9"></path>
+                  <path d="M10 19V5"></path>
+                  <path d="M16 19v-7"></path>
+                  <path d="M22 19V3"></path>
+                  <path d="M4 7l5-3 6 3 5-4"></path>
+                  <path d="M17 3h3v3"></path>
+                </svg>
+              </div>
+              <div>
+                <strong>Tiến độ học tập</strong>
+              </div>
+            </a>
+            <div class="dropdown-line"></div>
+            <!-- Đăng xuất -->
+            <a href="../pages/login.html" class="account-item logout">
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8"></path>
+                  <path d="M10 12h10"></path>
+                  <path d="M17 8l4 4-4 4"></path>
+                </svg>
+              </div>
+              <div>
+                <strong>Đăng xuất</strong>
+              </div>
+            </a>
+          </div>
+        </details>
+      </li>
+    </ul>
+  </header>
 
-  <div class="review-list">
-    <article>
-      <div class="review-author">
-        <span class="avatar" aria-hidden="true">PH</span>
-        <div>
-          <h3>Phạm Văn Hùng</h3>
-          <p class="review-cohort">Khóa 2026</p>
+
+  <!-- MAIN CONTENT: chỉ 1 main duy nhất -->
+  <main>
+    <article id="course-detail" aria-labelledby="course-title">
+
+      <div class="course-hero">
+
+        <div class="course-hero-main">
+          <p class="breadcrumb">
+            <span class="chip">Đại cương</span>
+            <span class="course-code">Mã môn: MATH101</span>
+          </p>
+          <h1 id="course-title">Toán dành cho kinh tế</h1>
+          <p>
+            Môn học bắt buộc đối với khối kỹ thuật và khoa học tự nhiên.
+            Cung cấp kiến thức cốt lõi về giới hạn và hàm liên tục,
+            phép tính đạo hàm, tích phân của hàm một biến và lý thuyết chuỗi.
+            Làm nền cơ bản cho việc tiếp thu các môn kỹ thuật chuyên sâu kế tiếp.
+          </p>
         </div>
-      </div>
-      <p class="review-text">Môn học khá nặng nhưng kiến thức nền tảng rất tốt. Giảng viên truyền đạt rõ ràng, tài liệu tham khảo đầy đủ.</p>
-      <time datetime="2026-01-12">12/01/2026</time>
-    </article>
 
-    <article>
-      <div class="review-author">
-        <span class="avatar" aria-hidden="true">NM</span>
-        <div>
-          <h3>Nguyễn Thị Mai</h3>
-          <p class="review-cohort">Khóa 2026</p>
-        </div>
-      </div>
-      <p class="review-text">Bài tập nhiều nhưng có hướng dẫn rõ ràng. Đề thi không quá đánh đố, phù hợp với sinh viên chăm chỉ ôn tập.</p>
-      <time datetime="2025-12-28">28/12/2025</time>
-    </article>
+        <!-- ASIDE: thông tin nhanh, tangential so với nội dung chính -->
+        <aside class="quickfacts" aria-labelledby="quickfacts-heading">
+          <h2 id="quickfacts-heading">Thông tin chi tiết</h2>
+          <table>
+            <tbody>
+              <tr>
+                <th scope="row">Số tín chỉ</th>
+                <td>3 Tín chỉ</td>
+              </tr>
+              <tr>
+                <th scope="row">Thời lượng</th>
+                <td>45 Tiết học</td>
+              </tr>
+              <tr>
+                <th scope="row">Mã môn</th>
+                <td>MATH101</td>
+              </tr>
+              <tr>
+                <th scope="row">Năm học đề xuất</th>
+                <td>Năm 2</td>
+              </tr>
+              <tr>
+                <th scope="row">Học phần tiên quyết</th>
+                <td>MATH100</td>
+              </tr>
+              <tr>
+                <th scope="row">Phân loại</th>
+                <td>Đại cương</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="advising-contact.html" class="btn-cta btn-block">Đăng ký tư vấn lộ trình</a>
+        </aside>
 
-    <article>
-      <div class="review-author">
-        <span class="avatar" aria-hidden="true">TA</span>
-        <div>
-          <h3>Trần Đức Anh</h3>
-          <p class="review-cohort">Khóa 2025</p>
-        </div>
       </div>
-      <p class="review-text">Môn cần nền tảng toán tốt. Nếu nắm chắc đại cương thì sẽ dễ tiếp thu hơn, nhưng nếu yếu thì khá vất vả.</p>
-      <time datetime="2025-11-05">05/11/2025</time>
-    </article>
-  </div>
 
-  <p><a href="#">Xem thêm đánh giá</a></p>
-</section>
- 
-      <section id="faq" aria-labelledby="faq-heading">
-        <h2 id="faq-heading">Câu hỏi thường gặp</h2>
-        <details class="faq-item" open>
-          <summary>Môn học này có yêu cầu môn tiên quyết không?</summary>
-          <p>Không, sinh viên có thể đăng ký môn này ngay từ học kỳ đầu tiên.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Thang điểm đánh giá như thế nào?</summary>
-          <p>Điểm số được tính theo thang 10, quy đổi sang thang chữ theo quy chế đào tạo của trường.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Có tài liệu ôn thi miễn phí không?</summary>
-          <p>Có, sinh viên có thể tải miễn phí tại mục Tài liệu tham khảo phía trên.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Lịch thi cuối kỳ thường vào thời gian nào?</summary>
-          <p>Lịch thi cuối kỳ được nhà trường công bố khoảng 2 tuần trước kỳ thi, sinh viên theo dõi tại trang cá nhân.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Làm sao để đăng ký nhận tài liệu ôn thi?</summary>
-          <p>Bấm nút "Hỏi đáp ngay" hoặc liên hệ mục Tư vấn để được hỗ trợ.</p>
-        </details>
+      <!-- SECTION: Nội dung môn học -->
+      <section id="course-content">
+        <h2>Nội dung môn học</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Chương học</th>
+              <th scope="col">Tài liệu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td>Giới hạn và sự liên tục</td>
+              <td>3 tài liệu</td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>Đạo hàm và vi phân</td>
+              <td>4 tài liệu</td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td>Các định lý về hàm khả vi</td>
+              <td>2 tài liệu</td>
+            </tr>
+            <tr>
+              <td>04</td>
+              <td>Tích phân bất định và xác định</td>
+              <td>5 tài liệu</td>
+            </tr>
+            <tr>
+              <td>05</td>
+              <td>Chuỗi số và chuỗi hàm</td>
+              <td>3 tài liệu</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
- 
-      <button type="button" class="btn-cta btn-icon">
-        <span aria-hidden="true">☰</span> Hỏi đáp ngay
-      </button>
-    </section>
- 
-    <!-- ASIDE: môn học liên quan - nội dung tangential, gợi ý thêm -->
-<aside class="related-courses" aria-labelledby="related-heading">
-  <h2 id="related-heading">Môn học liên quan</h2>
-  <ul>
-    <li>
-      <article class="course-card">
-        <h3><a href="course-detail.html">Toán cao cấp A2</a>  Đại cương &middot; 3 Tín chỉ</h3>
-      </article>
-    </li>
-    <li>
-      <article class="course-card">
-        <h3><a href="course-detail.html">Xác suất thống kê</a>  Đại cương &middot; 3 Tín chỉ</h3>
-      </article>
-    </li>
-    <li>
-      <article class="course-card">
-        <h3><a href="course-detail.html">Giải tích số</a>  Cơ sở ngành &middot; 3 Tín chỉ</h3>
-      </article>
-    </li>
-  </ul>
-</aside>
- 
-  </article>
-</main>
 
-  
- <!-- FOOTER -->
-    <footer>
-        <!-- Giới thiệu EduTrack -->
-        <section class="footer-intro">
-            <div class="footer-logo">
-                <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
-                <h2> EduTrack</h2>
+      <!-- SECTION: Tài liệu tham khảo -->
+      <section id="course-materials">
+        <h2>Tài liệu tham khảo</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Tên tài liệu</th>
+              <th scope="col">Định dạng</th>
+              <th scope="col">Dung lượng</th>
+              <th scope="col">Tải về</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Đề thi giữa kỳ môn Toán cao cấp A1 - Năm 2024</td>
+              <td>PDF</td>
+              <td>1.2 MB</td>
+              <td><a href="#">Tải xuống</a></td>
+            </tr>
+            <tr>
+              <td>Tóm tắt công thức giải nhanh Đạo hàm &amp; Tích phân</td>
+              <td>PDF</td>
+              <td>650 KB</td>
+              <td><a href="#">Tải xuống</a></td>
+            </tr>
+            <tr>
+              <td>Bài tập rèn luyện Vi phân có lời giải chi tiết</td>
+              <td>PDF</td>
+              <td>2.4 MB</td>
+              <td><a href="#">Tải xuống</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SECTION: đánh giá & FAQ -->
+      <!-- SECTION: đánh giá & FAQ -->
+      <section id="course-reviews-faq">
+
+        <section id="reviews" aria-labelledby="reviews-heading">
+
+          <div class="reviews-heading-row">
+            <h2 id="reviews-heading">Nhận xét từ sinh viên</h2>
+
+            <button type="button" class="btn btn-cta" data-toggle="modal" data-target="#reviewModal">
+              Gửi đánh giá
+            </button>
+          </div>
+
+          <div class="review-list row" id="review-list">
+            <div class="col-12 col-md-6 col-xl-4">
+              <article>
+                <div class="review-author">
+                  <span class="avatar" aria-hidden="true">PH</span>
+                  <div>
+                    <h3>Phạm Văn Hùng</h3>
+                    <p class="review-cohort">Khóa 2026</p>
+                  </div>
+                </div>
+                <p class="review-text">Môn học khá nặng nhưng kiến thức nền tảng rất tốt. Giảng viên truyền đạt rõ ràng,
+                  tài liệu tham khảo đầy đủ.</p>
+                <time datetime="2026-01-12">12/01/2026</time>
+              </article>
             </div>
-            <p> Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông minh. </p>
-        </section>
-        <!-- Về EduTrack -->
-        <section class="footer-column">
-            <h2>Về EduTrack</h2>
-            <ul>
-                <li><a href="about.html">Giới thiệu</a></li>
-                <li><a href="#">Đội ngũ</a></li>
-                <li><a href="#">Liên hệ</a></li>
-            </ul>
-        </section>
-        <!-- Môn học -->
-        <section class="footer-column">
-            <h2>Môn học</h2>
-            <ul>
-                <li><a href="courses.html">Đại cương</a></li>
-                <li><a href="courses.html">Cơ sở ngành</a></li>
-                <li><a href="courses.html">Chuyên ngành</a></li>
-            </ul>
-        </section>
-        <!-- Tính năng -->
-        <section class="footer-column">
-            <h2>Tính năng</h2>
-            <ul>
-                <li><a href="gpa-calculator.html">Tính GPA</a></li>
-                <li><a href="advising-contact.html">Tư vấn lộ trình</a></li>
-                <li><a href="progress.html">Theo dõi tiến độ</a></li>
-            </ul>
-        </section>
-        <!-- Điều khoản -->
-        <section class="footer-column">
-            <h2>Điều khoản</h2>
-            <ul>
-                <li><a href="#">Chính sách bảo mật</a></li>
-                <li><a href="#">Điều khoản sử dụng</a></li>
-                <li><a href="#">Hỗ trợ khách hàng</a></li>
-            </ul>
-        </section>
-        <!-- Copyright -->
-        <section class="footer-bottom">
-        <span>
-            &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
-        </span>
-        </section>
-    </footer>
+            <div class="col-12 col-md-6 col-xl-4">
+              <article>
+                <div class="review-author">
+                  <span class="avatar" aria-hidden="true">NM</span>
+                  <div>
+                    <h3>Nguyễn Thị Mai</h3>
+                    <p class="review-cohort">Khóa 2026</p>
+                  </div>
+                </div>
+                <p class="review-text">Bài tập nhiều nhưng có hướng dẫn rõ ràng. Đề thi không quá đánh đố, phù hợp với
+                  sinh viên chăm chỉ ôn tập.</p>
+                <time datetime="2025-12-28">28/12/2025</time>
+              </article>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4">
+              <article>
+                <div class="review-author">
+                  <span class="avatar" aria-hidden="true">TA</span>
+                  <div>
+                    <h3>Trần Đức Anh</h3>
+                    <p class="review-cohort">Khóa 2025</p>
+                  </div>
+                </div>
+                <p class="review-text">Môn cần nền tảng toán tốt. Nếu nắm chắc đại cương thì sẽ dễ tiếp thu hơn, nhưng
+                  nếu
+                  yếu thì khá vất vả.</p>
+                <time datetime="2025-11-05">05/11/2025</time>
+              </article>
+            </div>
+          </div>
+          <div class="reviews-more-row">
+            <button type="button" id="toggle-reviews" class="reviews-more">
+              Xem thêm 
 
+            </button>
+          </div>
+
+
+
+
+          <!-- FORM ĐÁNH GIÁ MÔN HỌC - BOOTSTRAP 4 -->
+
+
+          <!-- MODAL ĐÁNH GIÁ MÔN HỌC -->
+          <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel"
+            aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h2 class="modal-title" id="reviewModalLabel">
+                    Đánh giá môn học
+                  </h2>
+
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div class="modal-body">
+                  <form id="course-review-form" novalidate>
+
+                    <div class="form-group">
+                      <textarea class="form-control" id="review-content" name="review-content" rows="5" maxlength="500"
+                        placeholder="Viết đánh giá của bạn..." aria-label="Nội dung đánh giá"
+                        aria-describedby="review-count review-error"></textarea>
+                    </div>
+
+                    <div class="review-modal-counter">
+                      <span id="review-count">0/500 ký tự</span>
+                    </div>
+
+                    <p id="review-error" class="review-message" role="status" aria-live="polite"></p>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Hủy
+                      </button>
+
+                      <button type="submit" class="btn btn-cta">
+                        Gửi đánh giá
+                      </button>
+                    </div>
+
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </section>
+
+        <section id="faq" aria-labelledby="faq-heading">
+
+          <div class="faq-heading-row">
+            <h2 id="faq-heading">Câu hỏi thường gặp</h2>
+
+            <button type="button" class="btn-cta btn-icon" data-toggle="modal" data-target="#questionModal">
+              Hỏi đáp ngay
+            </button>
+          </div>
+          <details class="faq-item">
+            <summary>Môn học này có yêu cầu môn tiên quyết không?</summary>
+            <p>Không, sinh viên có thể đăng ký môn này ngay từ học kỳ đầu tiên.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Thang điểm đánh giá như thế nào?</summary>
+            <p>Điểm số được tính theo thang 10, quy đổi sang thang chữ theo quy chế đào tạo của trường.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Có tài liệu ôn thi miễn phí không?</summary>
+            <p>Có, sinh viên có thể tải miễn phí tại mục Tài liệu tham khảo phía trên.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Lịch thi cuối kỳ thường vào thời gian nào?</summary>
+            <p>Lịch thi cuối kỳ được nhà trường công bố khoảng 2 tuần trước kỳ thi, sinh viên theo dõi tại trang cá
+              nhân.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Làm sao để đăng ký nhận tài liệu ôn thi?</summary>
+            <p>Bấm nút "Hỏi đáp ngay" hoặc liên hệ mục Tư vấn để được hỗ trợ.</p>
+          </details>
+          <div class="faq-more-row">
+            <button type="button" id="toggle-faq" class="faq-more" aria-expanded="false">
+              Xem thêm
+            </button>
+          </div>
+        </section>
+
+
+
+        <!-- BOOTSTRAP MODAL - HỎI ĐÁP -->
+        <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel"
+          aria-hidden="true">
+
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <h2 class="modal-title" id="questionModalLabel">
+                  Đặt câu hỏi về môn học
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                <form id="question-form">
+                  <div class="form-group">
+                    <label for="question-name">Họ và tên</label>
+                    <input type="text" class="form-control" id="question-name" placeholder="Nhập họ và tên" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="question-content">Nội dung câu hỏi</label>
+                    <textarea class="form-control" id="question-content" rows="4" maxlength="500"
+                      placeholder="Nhập câu hỏi của bạn..." required></textarea>
+                    <small id="question-count" class="form-text text-muted text-right">
+                      0/500 ký tự
+                    </small>
+
+                    <p id="question-error" class="text-danger mt-2" role="status" aria-live="polite"></p>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-cta">
+                      Gửi câu hỏi
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ASIDE: môn học liên quan - nội dung tangential, gợi ý thêm -->
+
+
+      <aside class="related-courses" aria-labelledby="related-heading">
+        <h2 id="related-heading">Môn học liên quan</h2>
+
+        <ul class="row">
+          <li class="col-12 col-md-6 col-xl-4">
+            <article class="course-card card">
+              <img src="../assets/images/course/01_nang_luc_so_ung_dung.png" class="card-img-top"
+                alt="Năng lực số ứng dụng">
+
+              <div class="card-body">
+                <h3>
+                  <a href="course-detail.html">Năng lực số ứng dụng</a>
+                </h3>
+                <p>Đại cương &middot; 3 Tín chỉ</p>
+              </div>
+            </article>
+          </li>
+
+          <li class="col-12 col-md-6 col-xl-4">
+            <article class="course-card card">
+              <img src="../assets/images/course/07_cau_truc_du_lieu_va_giai_thuat.png" class="card-img-top" alt="Cấu trúc dữ liệu và giải thuật">
+
+              <div class="card-body">
+                <h3>
+                  <a href="course-detail.html">Cấu trúc dữ liệu và giải thuật</a>
+                </h3>
+                <p>Đại cương &middot; 3 Tín chỉ</p>
+              </div>
+            </article>
+          </li>
+
+          <li class="col-12 col-md-6 col-xl-4">
+            <article class="course-card card">
+              <img src="../assets/images/course/08_toan_roi_rac.png" class="card-img-top" alt="Toán rời rạc">
+
+              <div class="card-body">
+                <h3>
+                  <a href="course-detail.html">Toán rời rạc</a>
+                </h3>
+                <p>Cơ sở ngành &middot; 3 Tín chỉ</p>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </aside>
+
+
+    </article>
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <!-- Giới thiệu EduTrack -->
+    <section class="footer-intro">
+      <div class="footer-logo">
+        <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
+        <h2> EduTrack</h2>
+      </div>
+      <p> Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông
+        minh. </p>
+    </section>
+    <!-- Về EduTrack -->
+    <section class="footer-column">
+      <h2>Về EduTrack</h2>
+      <ul>
+        <li><a href="about.html">Giới thiệu</a></li>
+        <li><a href="#">Đội ngũ</a></li>
+        <li><a href="#">Liên hệ</a></li>
+      </ul>
+    </section>
+    <!-- Môn học -->
+    <section class="footer-column">
+      <h2>Môn học</h2>
+      <ul>
+        <li><a href="courses.html">Đại cương</a></li>
+        <li><a href="courses.html">Cơ sở ngành</a></li>
+        <li><a href="courses.html">Chuyên ngành</a></li>
+      </ul>
+    </section>
+    <!-- Tính năng -->
+    <section class="footer-column">
+      <h2>Tính năng</h2>
+      <ul>
+        <li><a href="gpa-calculator.html">Tính GPA</a></li>
+        <li><a href="advising-contact.html">Tư vấn lộ trình</a></li>
+        <li><a href="progress.html">Theo dõi tiến độ</a></li>
+      </ul>
+    </section>
+    <!-- Điều khoản -->
+    <section class="footer-column">
+      <h2>Điều khoản</h2>
+      <ul>
+        <li><a href="#">Chính sách bảo mật</a></li>
+        <li><a href="#">Điều khoản sử dụng</a></li>
+        <li><a href="#">Hỗ trợ khách hàng</a></li>
+      </ul>
+    </section>
+    <!-- Copyright -->
+    <section class="footer-bottom">
+      <span>
+        &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
+      </span>
+    </section>
+  </footer>
+
+  <!-- JavaScript cho Bootstrap 4 Collapse -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/review-enhancements.js"></script>
+  <script src="../assets/js/faq-enhancements.js"></script>
+  <script src="../assets/js/question-enhancements.js"></script>
+  <script src="../assets/js/chatbot.js" defer></script>
+  
+  <!-- MODAL CẢM ƠN ĐÁNH GIÁ -->
+  <div class="modal fade" id="reviewSuccessModal" tabindex="-1" role="dialog" aria-labelledby="reviewSuccessTitle"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content review-success-content">
+
+        <div class="modal-body text-center">
+          <div class="review-success-icon">✓</div>
+
+          <h3 id="reviewSuccessTitle">
+            Cảm ơn bạn đã đánh giá!
+          </h3>
+
+          <p>
+            Đánh giá của bạn đã được ghi nhận.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- MODAL THÔNG BÁO GỬI CÂU HỎI THÀNH CÔNG -->
+  <div class="modal fade" id="questionSuccessModal" tabindex="-1" role="dialog" aria-labelledby="questionSuccessTitle"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content question-success-content">
+
+        <div class="modal-body text-center">
+          <div class="question-success-icon">✓</div>
+
+          <h3 id="questionSuccessTitle">
+            Câu hỏi của bạn đã được ghi nhận!
+          </h3>
+
+          <p>
+            Cảm ơn bạn đã gửi câu hỏi.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
