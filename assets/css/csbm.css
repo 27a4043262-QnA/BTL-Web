@@ -1,8 +1,8 @@
 
 /* =====================================================
    EDUTRACK - PRIVACY POLICY
-   Trang Chính sách bảo mật
-   Kế thừa Design System từ main.css
+   Bootstrap 4.6.2 + main.css
+   CSS chỉ dành riêng cho trang Chính sách bảo mật
 ===================================================== */
 
 
@@ -10,80 +10,66 @@
 
 .privacy-page {
     width: 100%;
-    background-color: var(--white-color);
+    min-width: 0;
+    background-color: var(--background-color);
     color: var(--text-color);
+    overflow-wrap: break-word;
 }
 
-.privacy-container {
-    width: 100%;
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--spacing-4);
-}
+/* Bootstrap mặc định container chỉ rộng 1140px
+   trên màn hình lớn, giữ nguyên để responsive. */
 
 
-/* ===== 2. BANNER ===== */
-
-
-/* ===== 2. PHẦN GIỚI THIỆU CHÍNH SÁCH ===== */
+/* ===== 2. HERO - CARD BO GÓC ===== */
 
 .privacy-hero {
-    width: 100%;
-    padding: var(--spacing-7) 0;
-    background-color: var(--white-color);
-    color: var(--text-color);
-    border-bottom: 1px solid var(--border-color);
+    padding: var(--spacing-6) 0 var(--spacing-4);
+    background-color: var(--background-color);
 }
 
 .privacy-hero-content {
-    max-width: 850px;
+    max-width: 100%;
     margin: 0 auto;
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-large);
     text-align: center;
 }
 
-/* Dòng EDUTRACK • QUYỀN RIÊNG TƯ */
 .privacy-hero-heading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
     gap: var(--spacing-2);
     margin-bottom: var(--spacing-4);
 }
 
 .privacy-hero-heading svg {
-    width: 32px;
-    height: 32px;
-    color: var(--primary-color);
-    stroke-width: 1.8;
+    width: 30px;
+    height: 30px;
     flex-shrink: 0;
+    color: var(--primary-color);
 }
 
 .privacy-hero-heading span {
     color: var(--primary-color);
     font-size: var(--font-size-small);
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
 }
 
-/* Tiêu đề Chính sách bảo mật */
 .privacy-hero h1 {
-    margin-bottom: var(--spacing-4);
     color: var(--primary-color);
     font-size: var(--font-size-h1);
-    font-weight: 700;
-    line-height: 1.3;
+    margin-bottom: var(--spacing-4);
 }
 
-/* Nội dung giới thiệu */
 .privacy-hero-content > p {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto var(--spacing-4);
     color: var(--text-color);
     font-size: 16px;
     line-height: 1.9;
 }
 
-/* Ngày cập nhật */
 .privacy-update {
     display: inline-block;
     color: var(--text-light);
@@ -91,64 +77,26 @@
 }
 
 
-
-
-/* ===== 3. NỘI DUNG CHÍNH SÁCH - CARD BO GÓC ===== */
+/* ===== 3. NỘI DUNG CHÍNH SÁCH ===== */
 
 .privacy-content {
-    padding: var(--spacing-6) 0 var(--spacing-7);
+    padding: 0 0 var(--spacing-4);
     background-color: var(--background-color);
 }
 
-/* Mỗi mục chính sách là một card riêng */
 .privacy-item {
-    margin-bottom: var(--spacing-4);
-    padding: var(--spacing-5);
-
     background-color: var(--white-color);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-large);
-
-    box-shadow: var(--shadow-small);
 }
 
-/* Card cuối cùng */
-.privacy-item:last-child {
-    margin-bottom: 0;
-    border: 1px solid var(--border-color);
-}
-
-/* Nội dung card căn theo tiêu đề */
-.privacy-item-content {
-    padding-left: 74px;
-}
-
-/* ===== KHUNG LIÊN HỆ ĐỒNG BỘ ===== */
-
-.privacy-support {
-    padding: 0 0 var(--spacing-7);
-    background-color: var(--background-color);
-}
-
-/* Responsive mobile */
-@media (max-width: 767px) {
-    .privacy-item {
-        padding: var(--spacing-4);
-        margin-bottom: var(--spacing-3);
-    }
-
-    .privacy-item-content {
-        padding-left: 0;
-    }
-}
+/* Bootstrap có class card, nhưng mình giữ
+   góc bo riêng của EduTrack. */
 
 
-
-/* ===== 4. SỐ THỨ TỰ VÀ TIÊU ĐỀ ===== */
+/* ===== 4. TIÊU ĐỀ VÀ SỐ THỨ TỰ ===== */
 
 .privacy-item-heading {
-    display: flex;
-    align-items: center;
     gap: var(--spacing-3);
     margin-bottom: var(--spacing-4);
 }
@@ -162,20 +110,20 @@
     height: 58px;
     flex-shrink: 0;
 
+    color: var(--primary-color);
     background-color: var(--background-alt);
     border-radius: var(--radius-medium);
 
-    color: var(--primary-color);
     font-size: 20px;
     font-weight: 700;
 }
 
 .privacy-item-heading h2 {
     margin: 0;
+    min-width: 0;
     color: var(--primary-color);
     font-size: 23px;
-    font-weight: 700;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 
@@ -228,21 +176,16 @@
 
 .privacy-support {
     padding: 0 0 var(--spacing-7);
-    background-color: var(--white-color);
+    background-color: var(--background-color);
 }
 
 .privacy-support-content {
-    padding: var(--spacing-6);
     background-color: var(--background-alt);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-large);
-    text-align: center;
 }
 
 .privacy-support-heading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: var(--spacing-3);
     margin-bottom: var(--spacing-3);
 }
@@ -250,15 +193,14 @@
 .privacy-support-heading svg {
     width: 30px;
     height: 30px;
-    color: var(--primary-color);
     flex-shrink: 0;
+    color: var(--primary-color);
 }
 
 .privacy-support-heading h2 {
     margin: 0;
     color: var(--primary-color);
     font-size: 25px;
-    font-weight: 700;
 }
 
 .privacy-support-content > p {
@@ -276,7 +218,11 @@
     justify-content: center;
     gap: var(--spacing-2);
 
-    padding: 12px var(--spacing-4);
+    width: auto;
+    align-self: center;
+    flex: 0 0 auto;
+
+    padding: 12px 28px;
 
     background-color: var(--green-btn);
     color: var(--white-color);
@@ -289,26 +235,19 @@
     transition: background-color 0.2s ease;
 }
 
-/* Icon mũi tên */
-.privacy-support-btn svg {
-    width: 18px;
-    height: 18px;
-    color: currentColor;
-}
-
-/* Khi di chuột vào nút */
 .privacy-support-btn:hover {
     background-color: var(--green-btn-hover);
     color: var(--white-color);
+    text-decoration: none;
 }
 
 
-/* ===== 7. RESPONSIVE TABLET ===== */
+/* ===== 7. TABLET ===== */
 
-@media (max-width: 991px) {
+@media (max-width: 991.98px) {
 
     .privacy-hero {
-        padding: var(--spacing-6) 0;
+        padding: var(--spacing-5) 0 var(--spacing-4);
     }
 
     .privacy-item-heading h2 {
@@ -318,33 +257,29 @@
     .privacy-item-content {
         padding-left: 70px;
     }
-
-    .privacy-support-content {
-        padding: var(--spacing-5);
-    }
 }
 
 
-/* ===== 8. RESPONSIVE MOBILE ===== */
+/* ===== 8. MOBILE ===== */
 
-@media (max-width: 767px) {
-
-    .privacy-container {
-        padding: 0 var(--spacing-3);
-    }
+@media (max-width: 767.98px) {
 
     .privacy-hero {
-        padding: var(--spacing-6) 0;
+        padding: var(--spacing-4) 0;
+    }
+
+    .privacy-hero-heading {
+        gap: var(--spacing-2);
     }
 
     .privacy-hero-heading svg {
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
     }
 
     .privacy-hero-heading span {
         font-size: 12px;
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
     }
 
     .privacy-hero h1 {
@@ -360,17 +295,9 @@
         font-size: 12px;
     }
 
-    .privacy-content {
-        padding: var(--spacing-4) 0;
-    }
-
-    .privacy-item {
-        padding: var(--spacing-4) 0;
-    }
-
     .privacy-item-heading {
-        gap: var(--spacing-2);
-        align-items: flex-start;
+        align-items: flex-start !important;
+        gap: 12px;
     }
 
     .privacy-number {
@@ -380,8 +307,8 @@
     }
 
     .privacy-item-heading h2 {
+        padding-top: 6px;
         font-size: 19px;
-        padding-top: 7px;
     }
 
     .privacy-item-content {
@@ -401,14 +328,6 @@
         font-size: 14px;
     }
 
-    .privacy-support {
-        padding-bottom: var(--spacing-6);
-    }
-
-    .privacy-support-content {
-        padding: var(--spacing-4);
-    }
-
     .privacy-support-heading {
         flex-direction: column;
         gap: var(--spacing-2);
@@ -420,5 +339,34 @@
 
     .privacy-support-content > p {
         font-size: 14px;
+    }
+}
+
+
+/* ===== 9. MOBILE NHỎ ===== */
+
+@media (max-width: 400px) {
+
+    .privacy-hero-heading span {
+        font-size: 10px;
+        letter-spacing: 0;
+    }
+
+    .privacy-hero h1 {
+        font-size: 25px;
+    }
+
+    .privacy-item-heading h2 {
+        font-size: 17px;
+    }
+
+    .privacy-number {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .privacy-support-heading h2 {
+        font-size: 19px;
     }
 }
