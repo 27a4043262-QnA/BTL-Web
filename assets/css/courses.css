@@ -243,6 +243,22 @@ main {
   color: var(--white-color);
   border-color: var(--primary-dark);
 }
+/* Nút phân trang bị vô hiệu hóa */
+.et-course-pagination .page-item.disabled .page-link,
+.et-course-pagination .page-link:disabled {
+  background-color: #f1f3f5;
+  color: #a0a7b4;
+  border-color: #e5e7eb;
+  opacity: 0.65;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Không đổi màu khi hover lên nút bị vô hiệu hóa */
+.et-course-pagination .page-item.disabled .page-link:hover {
+  background-color: #f1f3f5;
+  color: #a0a7b4;
+}
 @media (max-width: 767.98px) {
   .filter-bar {
     flex-direction: column;
@@ -256,4 +272,19 @@ main {
   .search-form input[type="search"] {
     width: 100%;
   }
+}
+/* Số lượng môn học phù hợp */
+.course-result-count {
+  color: var(--text-light);
+  font-size: var(--font-size-base);
+  margin-bottom: 16px;
+}
+
+/* Thông báo không tìm thấy môn học */
+.course-empty {
+  width: 100%;
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-color);
+  font-size: var(--font-size-base);
 }
