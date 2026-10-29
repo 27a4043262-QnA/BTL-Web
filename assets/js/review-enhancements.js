@@ -1,5 +1,8 @@
 
+"use strict";
+
 document.addEventListener("DOMContentLoaded", function () {
+
     // ===== 1. LẤY CÁC PHẦN TỬ HTML =====
 
     const form = document.getElementById("course-review-form");
@@ -14,15 +17,21 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    // Ngăn khởi tạo trùng khi file JS bị nạp nhiều lần
+    if (form.dataset.reviewInitialized === "true") {
+        return;
+    }
+
+    form.dataset.reviewInitialized = "true";
+
     // ===== 2. LƯU TRỮ ĐÁNH GIÁ =====
 
-    // Mã riêng cho môn học, tránh lẫn với môn khác
     const STORAGE_KEY = "edutrack_reviews_MATH101";
 
     let reviews = [];
     let showAllReviews = false;
 
-    // Đọc các đánh giá đã lưu
+    // Đọc đánh giá đã lưu
     try {
         const saved = JSON.parse(
             localStorage.getItem(STORAGE_KEY) || "[]"
@@ -44,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         reviews = [];
     }
 
-    // Lưu danh sách đánh giá
+    // Lưu đánh giá vào localStorage
     function saveReviews() {
         try {
             localStorage.setItem(
@@ -110,7 +119,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateCounter() {
         counter.textContent = field.value.length + "/500 ký tự";
-
         showMessage("");
         field.classList.remove("is-invalid");
     }
@@ -130,14 +138,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         if (toggleReviews) {
+            // Luôn hiển thị nút
             toggleReviews.hidden = false;
-            toggleReviews.disabled = items.length <= 3;
+            toggleReviews.disabled = false;
 
-            toggleReviews.textContent = items.length <= 3
-                ? "Đã hiển thị tất cả đánh giá"
-                : showAllReviews
-                    ? "Thu gọn "
-                    : "Xem thêm ";
+            // Mặc định: Xem thêm
+            // Sau khi mở rộng: Thu gọn
+            toggleReviews.textContent = showAllReviews
+                ? "Thu gọn"
+                : "Xem thêm";
 
             toggleReviews.setAttribute(
                 "aria-expanded",
@@ -156,9 +165,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // ===== 6. TẠO THẺ ĐÁNH GIÁ =====
 
     function renderReview(review) {
+
+        // Không tạo trùng thẻ có cùng ID
+        const existing = Array.from(
+            list.querySelectorAll("[data-review-id]")
+        ).some(function (item) {
+            return item.dataset.reviewId === review.id;
+        });
+
+        if (existing) {
+            return;
+        }
+
         // Cột Bootstrap
         const col = document.createElement("div");
         col.className = "col-12 col-md-6 col-xl-4";
+        col.dataset.reviewId = review.id;
 
         // Thẻ đánh giá
         const card = document.createElement("article");
@@ -214,15 +236,24 @@ document.addEventListener("DOMContentLoaded", function () {
             "cursor:pointer;" +
             "font-size:13px;";
 
-        // Sự kiện xóa
+        // Xử lý xóa đánh giá
         remove.addEventListener("click", function () {
+
             const index = reviews.findIndex(function (item) {
                 return item.id === review.id;
             });
 
-            if (index !== -1) {
-                reviews.splice(index, 1);
-                saveReviews();
+            if (index === -1) {
+                return;
+            }
+
+            const removedReview = reviews.splice(index, 1)[0];
+
+            // Nếu lưu thất bại, khôi phục dữ liệu
+            if (!saveReviews()) {
+                reviews.splice(index, 0, removedReview);
+                alert("Không thể xóa đánh giá. Vui lòng thử lại.");
+                return;
             }
 
             col.remove();
@@ -233,14 +264,21 @@ document.addEventListener("DOMContentLoaded", function () {
         card.append(author, text, date, remove);
         col.append(card);
 
-        // Đưa đánh giá lên đầu danh sách
+        // Đưa đánh giá mới lên đầu
         list.prepend(col);
     }
 
     // ===== 7. XỬ LÝ GỬI ĐÁNH GIÁ =====
 
+    let isSubmitting = false;
+
     form.addEventListener("submit", function (event) {
         event.preventDefault();
+
+        // Ngăn xử lý gửi đồng thời
+        if (isSubmitting) {
+            return;
+        }
 
         // Kiểm tra tài khoản
         const student = getCurrentStudent();
@@ -271,6 +309,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        isSubmitting = true;
+
         // Tạo đối tượng đánh giá
         const review = {
             id: Date.now().toString() + "-" +
@@ -280,50 +320,47 @@ document.addEventListener("DOMContentLoaded", function () {
             date: new Date().toISOString()
         };
 
-        // Thêm vào mảng
+        // Thêm đánh giá vào danh sách
         reviews.unshift(review);
 
         // Lưu vào localStorage
-        const saved = saveReviews();
-
-        if (!saved) {
+        if (!saveReviews()) {
             reviews.shift();
-            showMessage("Không thể lưu đánh giá. Vui lòng thử lại.");
+            isSubmitting = false;
+
+            showMessage(
+                "Không thể lưu đánh giá. Vui lòng thử lại."
+            );
             return;
         }
 
-        renderReview(review);
-        updateReviewVisibility();
-        // Hiển thị đánh giá mới
+        // Chỉ hiển thị đánh giá mới MỘT LẦN
         renderReview(review);
 
-        // Cập nhật nút Xem thêm
+        // Cập nhật Xem thêm / Thu gọn
         updateReviewVisibility();
 
-        // Xóa nội dung Form
+        // Xóa nội dung biểu mẫu
         form.reset();
         updateCounter();
 
-        // Đóng Modal
+        // Cho phép gửi đánh giá tiếp theo
+        isSubmitting = false;
 
+        // Hiển thị thông báo thành công
+        if (window.jQuery && reviewModal) {
+            $("#reviewModal").one(
+                "hidden.bs.modal",
+                function () {
+                    $("#reviewSuccessModal").modal("show");
 
-        if (saved) {
-            // Đợi Modal nhập đánh giá đóng hoàn toàn
-            $("#reviewModal").one("hidden.bs.modal", function () {
-                // Hiển thị thông báo cảm ơn ở giữa màn hình
-                $("#reviewSuccessModal").modal("show");
+                    setTimeout(function () {
+                        $("#reviewSuccessModal").modal("hide");
+                    }, 2000);
+                }
+            );
 
-                // Tự động đóng sau 2 giây
-                setTimeout(function () {
-                    $("#reviewSuccessModal").modal("hide");
-                }, 2000);
-            });
-
-            // Đóng Modal nhập đánh giá
             $("#reviewModal").modal("hide");
-
-        } else {
-            showMessage("Không thể lưu đánh giá trong trình duyệt.");
         }
     });
 
@@ -341,14 +378,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ===== 9. KHÔI PHỤC ĐÁNH GIÁ ĐÃ LƯU =====
 
-    // Đảo thứ tự để đánh giá mới nhất nằm trên cùng
+    // Hiển thị đánh giá mới nhất lên đầu
     reviews.slice().reverse().forEach(function (review) {
         renderReview(review);
     });
 
-    // Hiển thị 3 đánh giá đầu tiên
+    // Mặc định hiển thị 3 đánh giá
     updateReviewVisibility();
 
-    // Cập nhật bộ đếm ban đầu
+    // Cập nhật bộ đếm ký tự ban đầu
     updateCounter();
+
 });
