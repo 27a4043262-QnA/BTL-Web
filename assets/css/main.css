@@ -396,6 +396,7 @@ footer :focus-visible {
 /* ==== HEADER ==== */
 header {
     position: relative;
+        z-index: 100;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;

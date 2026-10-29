@@ -644,9 +644,9 @@
 }
 
 .forecast-banner > img {
-    flex: 0 0 76px;
-    width: 76px;
-    height: 76px;
+    flex: 0 0 60px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
 }
 
@@ -910,7 +910,11 @@
     color: var(--danger-color);
     background: var(--danger-bg);
 }
-
+.projection-actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
 .projection-add-course {
     display: inline-flex;
     align-items: center;
@@ -1028,7 +1032,11 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+
+    width: fit-content;
+    max-width: 100%;
     margin-top: var(--spacing-3);
+    margin-left: auto;
 }
 
 
@@ -1560,10 +1568,7 @@
 
 @media (min-width: 1200px) {
     .projection-section:nth-child(3) .projection-card {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 180px;
-        align-items: center;
-        gap: var(--spacing-3);
+        display: block;
     }
 
     .projection-section:nth-child(3) .projection-form-grid {
@@ -1576,8 +1581,9 @@
     }
 
     .projection-section:nth-child(3) .projection-calculate-button {
-        width: 100%;
-        margin-top: 0;
+    width: fit-content;
+    justify-self: end;
+margin-top: var(--spacing-3);
     }
 
     /* ----- Mục 6: biểu đồ (trái) + tóm tắt (phải) ----- */
@@ -1691,9 +1697,9 @@
     }
 
     .forecast-banner .et-btn {
-        width: 100%;
-        margin-left: 0;
-        white-space: normal;
+    width: fit-content;
+    margin-left: auto;
+    white-space: nowrap;
     }
 
     .result-card-value strong {
@@ -1732,8 +1738,11 @@
     }
 
     .projection-calculate-button {
-        width: 100%;
-        white-space: normal;
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: 0;
+    white-space: nowrap;
     }
 
     .projection-chart-placeholder {
@@ -1767,5 +1776,42 @@
 
     .calc-step {
         padding: var(--spacing-3);
+    }
+}
+/* Banner tư vấn cuối phần dự phóng */
+.projection-advising .advising-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    color: #2F527F;
+    background: white;
+    border-radius: 12px;
+}
+
+.projection-advising .advising-icon svg {
+    width: 32px;
+    height: 32px;
+}
+@media (max-width: 767px) {
+    .projection-advising .advising-icon {
+        flex: 0 0 56px;
+        width: 56px;
+        height: 56px;
+        padding: 0;
+    }
+
+    .projection-advising > div:nth-child(2) {
+        flex: 1;
+        min-width: 0;
+     align-self: center;
+    }
+
+    .projection-advising .et-btn {
+        width: fit-content;
+        max-width: 100%;
+        margin-left: auto;
+        white-space: nowrap;
     }
 }

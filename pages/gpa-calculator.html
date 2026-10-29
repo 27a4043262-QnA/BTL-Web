@@ -12,12 +12,11 @@
     <!-- CSS riêng của trang GPA -->
         <link rel="stylesheet" href="../assets/css/gpa-calculator.css">
     <!-- Lucide Icons -->
-    <script defer src="https://unpkg.com/lucide@latest"></script>
-</head>
+<script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script></head>
   <body>
     <a class="skip-link" href="#main-content">  Bỏ qua điều hướng </a>
-    <!-- HEADER -->
-    <header>
+<!-- HEADER -->
+     <header>
         <!-- Logo -->
         <div class="logo">
             <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
@@ -25,7 +24,7 @@
         </div>
         <!-- Navigation Menu -->
         <ul>
-            <li><a href="../index.html" >Trang chủ</a></li>
+            <li><a href="../index.html">Trang chủ</a></li>
             <li><a href="courses.html">Môn học</a></li>
             <li><a href="gpa-calculator.html" aria-current="page">Tính GPA</a></li>
             <li><a href="advising-contact.html">Tư vấn</a></li>
@@ -36,14 +35,6 @@
             </li>
             <!-- TH2: Sau khi dang nhap-->
             <li class="button">
-                <!-- Thông báo: giữ nguyên icon -->
-                <div class="notification">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
-                        <path d="M10 21h4"></path>
-                    </svg>
-                    <span class="notification-dot"></span>
-                </div>
                 <!-- Tài khoản sinh viên -->
                 <details class="account-menu">
                     <summary class="button-clink">
@@ -72,7 +63,7 @@
                             </div>
                         </a>
                         <!-- Tiến độ học tập -->
-                        <a href="#" class="account-item">
+                        <a href="pages/progress.html" class="account-item">
                             <div class="icon-box">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M4 19V9"></path>
@@ -89,7 +80,7 @@
                         </a>
                         <div class="dropdown-line"></div>
                         <!-- Đăng xuất -->
-                        <a href="login.html" class="account-item logout">
+                        <a href="pages/login.html" class="account-item logout">
                             <div class="icon-box">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M14 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8"></path>
@@ -429,10 +420,6 @@
             <strong
               >Với GPA hiện tại, bạn có muốn dự phóng điểm cho kỳ tới?</strong
             >
-            <p>
-              Dựa trên kết quả hiện tại và kế hoạch học tập, hệ thống sẽ ước
-              tính điểm trung bình kỳ tới của bạn.
-            </p>
           </div>
 <button type="button" id="btnForecast" class="et-btn et-btn-primary">
     ✦ Tính dự phóng ngay
@@ -565,12 +552,13 @@
                         </tbody>
                     </table>
                 </div>
-
-                <button class="et-btn et-btn-secondary projection-add-course"
-                        type="button">
-                    <i data-lucide="plus" aria-hidden="true"></i>
-                    Thêm môn học
-                </button>
+<div class="projection-actions">
+    <button type="button"
+            class="et-btn et-btn-secondary projection-add-course">
+        <span aria-hidden="true">+</span>
+        Thêm môn học
+    </button>
+</div>
             </div>
         </section>
 
@@ -752,12 +740,13 @@
                     </div>
 
                 </div>
-
-                <button class="et-btn et-btn-primary projection-calculate-button"
-                        type="button">
-                    <i data-lucide="calculator" aria-hidden="true"></i>
-                    Tính toán dự phóng
-                </button>
+<div class = "projection-actions">
+<button type="button"
+        class="et-btn et-btn-primary projection-calculate-button">
+    <span aria-hidden="true">▦</span>
+    Tính toán dự phóng
+</button>
+</div>
             </div>
         </section>
 
@@ -924,7 +913,7 @@
 
             <div class="projection-summary-item">
                 <div class="projection-summary-icon">
-                    <i data-lucide="chart-column" aria-hidden="true"></i>
+<i data-lucide="trending-up" aria-hidden="true"></i>
                 </div>
                 <div class="projection-summary-text">
                     <span>GPA dự kiến kỳ này</span>
@@ -934,7 +923,7 @@
 
 <div class="projection-summary-item">
     <div class="projection-summary-icon">
-        <i data-lucide="star" aria-hidden="true"></i>
+<i data-lucide="book-open" aria-hidden="true"></i>
     </div>
     <div class="projection-summary-text">
         <span>Điểm trung bình hệ 10 cần đạt</span>
@@ -945,7 +934,20 @@
     </div>
 </section>
 </div>
+<!-- BANNER TƯ VẤN-->
+<div class="forecast-banner projection-advising" hidden>
+    <div class="advising-icon">
+        <i data-lucide="messages-square" aria-hidden="true"></i>
+    </div>
 
+    <div>
+        <strong>Bạn muốn cải thiện GPA và xây dựng lộ trình học tập phù hợp?</strong>
+    </div>
+
+    <a href="advising-contact.html" class="et-btn et-btn-primary">
+        ✦ Đến trang tư vấn
+    </a>
+</div>
     <footer>
         <!-- Giới thiệu EduTrack -->
         <section class="footer-intro">
@@ -988,7 +990,7 @@
             <ul>
                 <li><a href="#">Chính sách bảo mật</a></li>
                 <li><a href="#">Điều khoản sử dụng</a></li>
-                <li><a href="#">Hỗ trợ khách hàng</a></li>
+                <li><a href="#">Bản quyền tài liệu</a></li>
             </ul>
         </section>
         <!-- Copyright -->
@@ -1009,7 +1011,7 @@
     const isCalc = mode === 'calc';
     calc.hidden = !isCalc;
     proj.hidden = isCalc;
-
+document.querySelector('.projection-advising').hidden = isCalc;
     btnCalc.classList.toggle('et-btn-primary', isCalc);
     btnCalc.classList.toggle('et-btn-secondary', !isCalc);
     btnProj.classList.toggle('et-btn-primary', !isCalc);
@@ -1030,7 +1032,13 @@
 
 <!-- Khởi tạo icon Lucide -->
 <script>
-    lucide.createIcons();
+    window.addEventListener("load", function () {
+        if (window.lucide) {
+            lucide.createIcons();
+        } else {
+            console.error("Không tải được thư viện Lucide");
+        }
+    });
 </script>
 </body>
 </html>
