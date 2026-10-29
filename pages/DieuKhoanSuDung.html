@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điều khoản sử dụng | EduTrack</title>
+
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/DieuKhoanSuDung.css">
+
+    <!-- Thư viện icon Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- ================= HEADER ================= -->
+    <header>
+        <!-- Logo -->
+        <div class="logo">
+            <img src="../assets/images/logo.png"
+                 alt="EduTrack Logo"
+                 width="70"
+                 height="70">
+            <a href="../index.html">EduTrack</a>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul>
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="courses.html">Môn học</a></li>
+            <li><a href="gpa-calculator.html">Tính GPA</a></li>
+            <li><a href="advising-contact.html">Tư vấn</a></li>
+            <li><a href="about.html">Giới thiệu</a></li>
+
+            <!-- TH1: Trước khi đăng nhập -->
+            <li class="button" hidden>
+                <button type="button"
+                        class="button-link"
+                        onclick="window.location.href='login.html'">
+                    Bắt đầu ngay
+                </button>
+            </li>
+
+            <!-- TH2: Sau khi đăng nhập -->
+            <li class="button">
+                <!-- Tài khoản sinh viên -->
+                <details class="account-menu">
+                    <summary class="button-clink">
+                        <!-- Avatar -->
+                        <div class="profile-avatar">PC</div>
+
+                        <!-- Tên sinh viên -->
+                        <span class="student-name">Phan Kim Chi</span>
+
+                        <!-- Icon mũi tên -->
+                        <svg class="account-arrow"
+                             viewBox="0 0 24 24"
+                             aria-hidden="true">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </summary>
+
+                    <!-- Menu tài khoản -->
+                    <div class="account-dropdown">
+
+                        <!-- Thông tin cá nhân -->
+                        <a href="#" class="account-item">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"
+                                     aria-hidden="true">
+                                    <rect x="5" y="3"
+                                          width="14" height="18"
+                                          rx="2"></rect>
+                                    <circle cx="12" cy="9"
+                                            r="2.5"></circle>
+                                    <path d="M8.5 16c.8-2 2.1-3 3.5-3s2.7 1 3.5 3"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Thông tin cá nhân</strong>
+                            </div>
+                        </a>
+
+                        <!-- Tiến độ học tập -->
+                        <a href="progress.html"
+                           class="account-item">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"
+                                     aria-hidden="true">
+                                    <path d="M4 19V9"></path>
+                                    <path d="M10 19V5"></path>
+                                    <path d="M16 19v-7"></path>
+                                    <path d="M22 19V3"></path>
+                                    <path d="M4 7l5-3 6 3 5-4"></path>
+                                    <path d="M17 3h3v3"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Tiến độ học tập</strong>
+                            </div>
+                        </a>
+
+                        <div class="dropdown-line"></div>
+
+                        <!-- Đăng xuất -->
+                        <a href="login.html"
+                           class="account-item logout">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"
+                                     aria-hidden="true">
+                                    <path d="M14 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8"></path>
+                                    <path d="M10 12h10"></path>
+                                    <path d="M17 8l4 4-4 4"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Đăng xuất</strong>
+                            </div>
+                        </a>
+                    </div>
+                </details>
+            </li>
+        </ul>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main class="privacy-page">
+
+        <!-- PHẦN 1: BANNER -->
+        <section class="privacy-hero">
+            <div class="privacy-container">
+                <div class="privacy-hero-content">
+
+                    <div class="privacy-hero-heading">
+                        <i data-lucide="shield-check"
+                           aria-hidden="true"></i>
+                        <span>EDUTRACK • ĐIỀU KHOẢN SỬ DỤNG</span>
+                    </div>
+
+                    <h1>Điều khoản sử dụng</h1>
+
+                    <p>
+                        Tìm hiểu các quy định về quyền, trách nhiệm
+                        và nguyên tắc sử dụng nền tảng EduTrack,
+                        nhằm xây dựng môi trường học tập an toàn,
+                        minh bạch và hiệu quả cho sinh viên.
+                    </p>
+
+                    <span class="privacy-update">
+                        Bản mẫu cập nhật: 29/10/2026
+                    </span>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 2: NỘI DUNG ĐIỀU KHOẢN -->
+        <section class="privacy-content">
+            <div class="privacy-container">
+
+                <!-- MỤC 01 -->
+                <article class="privacy-item">
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">01</span>
+                        <h2>Giới thiệu và phạm vi sử dụng</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+                        <p>
+                            EduTrack là website hỗ trợ quản lý tiến độ
+                            học tập, được xây dựng nhằm phục vụ nhu cầu
+                            học tập của sinh viên, đặc biệt là sinh viên
+                            ngành Hệ thống thông tin quản lý tại
+                            Học viện Ngân hàng.
+                        </p>
+
+                        <p>
+                            Nền tảng cung cấp các chức năng tra cứu
+                            môn học, quản lý điểm số, tính toán và
+                            dự phóng GPA, theo dõi tiến độ học tập,
+                            cung cấp tài liệu tham khảo và hỗ trợ
+                            định hướng lộ trình học tập.
+                        </p>
+
+                        <p>
+                            EduTrack là công cụ hỗ trợ học tập độc lập,
+                            không thay thế hệ thống quản lý đào tạo
+                            chính thức của Học viện Ngân hàng.
+                            Người dùng cần đối chiếu thông tin với
+                            các thông báo và quy định của nhà trường
+                            trước khi đưa ra quyết định học tập.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- MỤC 02 -->
+                <article class="privacy-item">
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">02</span>
+                        <h2>Tài khoản và thông tin người dùng</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+                        <p>
+                            Đối với các chức năng yêu cầu tài khoản,
+                            người dùng cần đăng ký hoặc đăng nhập
+                            theo phương thức được EduTrack hỗ trợ.
+                        </p>
+
+                        <p>
+                            Người dùng có trách nhiệm cung cấp
+                            thông tin chính xác, bảo mật thông tin
+                            đăng nhập và không sử dụng tài khoản
+                            của người khác khi chưa được cho phép.
+                        </p>
+
+                        <p>
+                            Người dùng có trách nhiệm đối với
+                            các hoạt động được thực hiện thông qua
+                            tài khoản của mình, trừ trường hợp
+                            phát sinh từ lỗi hệ thống hoặc nguyên
+                            nhân khác theo quy định pháp luật.
+                        </p>
+
+                        <p>
+                            EduTrack có quyền tạm thời hạn chế
+                            quyền truy cập đối với tài khoản có
+                            dấu hiệu vi phạm điều khoản sử dụng
+                            hoặc gây ảnh hưởng đến an toàn hệ thống,
+                            phù hợp với quy định pháp luật.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- MỤC 03 -->
+                <article class="privacy-item">
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">03</span>
+                        <h2>Quy định sử dụng các tính năng</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+
+                        <h3>3.1. Tra cứu và quản lý môn học</h3>
+                        <p>
+                            Người dùng có thể tìm kiếm, xem thông tin
+                            và phân loại môn học theo các nhóm kiến
+                            thức như Đại cương, Cơ sở ngành và
+                            Chuyên ngành.
+                        </p>
+                        <p>
+                            Thông tin về môn học, số tín chỉ và
+                            lộ trình đào tạo được cung cấp nhằm
+                            mục đích tham khảo. Người dùng cần
+                            đối chiếu với chương trình đào tạo
+                            chính thức trước khi đăng ký học phần.
+                        </p>
+
+                        <h3>3.2. Tính toán và dự phóng GPA</h3>
+                        <p>
+                            EduTrack hỗ trợ người dùng nhập điểm số,
+                            số tín chỉ, tính toán GPA học kỳ,
+                            GPA tích lũy và dự phóng mức điểm
+                            cần đạt để hướng tới mục tiêu học tập.
+                        </p>
+                        <p>
+                            Kết quả tính toán phụ thuộc vào dữ liệu
+                            người dùng cung cấp và phương pháp tính
+                            được áp dụng trên hệ thống.
+                        </p>
+                        <p>
+                            Kết quả GPA và dự phóng điểm số chỉ
+                            mang tính chất tham khảo, không thay
+                            thế kết quả học tập chính thức hoặc
+                            căn cứ xác nhận điều kiện xét học bổng,
+                            xếp loại tốt nghiệp của nhà trường.
+                        </p>
+
+                        <h3>3.3. Theo dõi tiến độ học tập</h3>
+                        <p>
+                            Người dùng có thể cập nhật kết quả
+                            học tập, theo dõi số tín chỉ và đánh
+                            giá tiến độ hoàn thành chương trình
+                            đào tạo thông qua các chức năng được
+                            cung cấp.
+                        </p>
+                        <p>
+                            Người dùng có trách nhiệm kiểm tra
+                            tính chính xác của dữ liệu đã nhập
+                            và chủ động cập nhật khi có thay đổi.
+                        </p>
+
+                        <h3>3.4. Sử dụng tài liệu học tập</h3>
+                        <p>
+                            EduTrack cung cấp tài liệu ôn tập,
+                            bài tập, đề kiểm tra và các tài liệu
+                            tham khảo theo từng môn học.
+                        </p>
+                        <p>
+                            Người dùng được sử dụng tài liệu phục vụ
+                            mục đích học tập, nghiên cứu cá nhân
+                            trong phạm vi được cho phép.
+                            Việc sao chép, phân phối hoặc khai thác
+                            thương mại phải tuân thủ quyền sở hữu
+                            trí tuệ và quy định pháp luật liên quan.
+                        </p>
+
+                        <h3>3.5. Đăng ký tư vấn học tập</h3>
+                        <p>
+                            Người dùng có thể gửi yêu cầu tư vấn
+                            thông qua biểu mẫu liên hệ bằng cách
+                            cung cấp các thông tin cần thiết như
+                            họ tên, mã sinh viên, thông tin liên
+                            hệ và nội dung cần tư vấn.
+                        </p>
+                        <p>
+                            Nội dung tư vấn mang tính chất định hướng
+                            và tham khảo, không thay thế hướng dẫn
+                            hoặc quyết định chính thức của cơ sở
+                            giáo dục.
+                        </p>
+
+                    </div>
+                </article>
+
+                <!-- MỤC 04 -->
+                <article class="privacy-item">
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">04</span>
+                        <h2>Quyền và nghĩa vụ của người dùng</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+                        <p>
+                            Người dùng có quyền truy cập và sử dụng
+                            các tính năng được EduTrack cung cấp
+                            theo phạm vi cho phép, đồng thời có
+                            thể gửi ý kiến đóng góp hoặc yêu cầu
+                            hỗ trợ trong quá trình sử dụng.
+                        </p>
+
+                        <p>Người dùng có trách nhiệm:</p>
+
+                        <ul>
+                            <li>
+                                Sử dụng website đúng mục đích học tập
+                                và tuân thủ quy định pháp luật.
+                            </li>
+                            <li>
+                                Cung cấp thông tin chính xác khi
+                                đăng ký tài khoản, nhập điểm hoặc
+                                gửi yêu cầu tư vấn.
+                            </li>
+                            <li>
+                                Không đăng tải nội dung sai lệch,
+                                xúc phạm, vi phạm bản quyền hoặc
+                                ảnh hưởng đến quyền lợi của người khác.
+                            </li>
+                            <li>
+                                Không truy cập trái phép, khai thác
+                                lỗ hổng bảo mật hoặc gây gián đoạn
+                                hoạt động của website.
+                            </li>
+                            <li>
+                                Tôn trọng quyền sở hữu trí tuệ
+                                đối với nội dung và tài liệu
+                                được cung cấp trên hệ thống.
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- MỤC 05 -->
+                <article class="privacy-item">
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">05</span>
+                        <h2>Quyền và trách nhiệm của EduTrack</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+                        <p>
+                            EduTrack nỗ lực duy trì hoạt động
+                            ổn định của website, cung cấp các
+                            chức năng hỗ trợ học tập và tiếp
+                            nhận phản hồi từ người dùng.
+                        </p>
+
+                        <p>
+                            EduTrack có quyền cập nhật nội dung,
+                            cải tiến tính năng, bảo trì hệ thống
+                            và xử lý các hành vi vi phạm điều khoản
+                            sử dụng theo quy định pháp luật.
+                        </p>
+
+                        <p>
+                            Trong trường hợp bảo trì hoặc xảy ra
+                            sự cố kỹ thuật, một số chức năng
+                            có thể tạm thời gián đoạn.
+                        </p>
+
+                        <p>
+                            EduTrack không cam kết website luôn
+                            hoạt động liên tục, không phát sinh
+                            lỗi hoặc đáp ứng mọi nhu cầu học tập
+                            riêng biệt của từng người dùng.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- MỤC 06 -->
+                <article class="privacy-item">
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">06</span>
+                        <h2>Bảo mật và sử dụng dữ liệu</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+                        <p>
+                            EduTrack tôn trọng quyền riêng tư
+                            và hướng tới việc bảo vệ thông tin
+                            cá nhân của người dùng.
+                        </p>
+
+                        <p>
+                            Các thông tin được người dùng cung cấp,
+                            bao gồm thông tin tài khoản, dữ liệu
+                            học tập, điểm số và nội dung đăng ký
+                            tư vấn, chỉ được thu thập và xử lý
+                            khi có cơ sở phù hợp với quy định
+                            pháp luật và theo mục đích đã thông báo.
+                        </p>
+
+                        <p>
+                            Người dùng không nên cung cấp mật khẩu,
+                            thông tin tài chính hoặc dữ liệu cá nhân
+                            không cần thiết thông qua biểu mẫu
+                            tư vấn trên website.
+                        </p>
+
+                        <p>
+                            Các quy định chi tiết về thu thập,
+                            sử dụng, lưu trữ và bảo vệ dữ liệu
+                            cá nhân được trình bày trong
+                            Chính sách bảo mật của EduTrack.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- MỤC 07 -->
+                <article class="privacy-item">
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">07</span>
+                        <h2>Quyền sở hữu trí tuệ</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+                        <p>
+                            Logo, giao diện, thiết kế, mã nguồn
+                            và các nội dung do đội ngũ EduTrack
+                            trực tiếp xây dựng thuộc quyền sở hữu
+                            của chủ thể có quyền tương ứng và
+                            được bảo vệ theo quy định pháp luật.
+                        </p>
+
+                        <p>
+                            Các tài liệu, hình ảnh và nội dung
+                            được sử dụng từ nguồn bên ngoài vẫn
+                            thuộc quyền sở hữu của tác giả hoặc
+                            đơn vị cung cấp tương ứng.
+                        </p>
+
+                        <p>
+                            Người dùng không được tự ý sao chép,
+                            chỉnh sửa, phân phối hoặc khai thác
+                            thương mại những nội dung được bảo hộ
+                            khi chưa có sự cho phép hợp pháp.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- MỤC 08 -->
+                <article class="privacy-item">
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">08</span>
+                        <h2>Giới hạn trách nhiệm</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+                        <p>
+                            EduTrack nỗ lực đảm bảo tính chính xác
+                            và hữu ích của thông tin, công cụ
+                            được cung cấp trên website.
+                        </p>
+
+                        <p>
+                            Tuy nhiên, kết quả tính toán và nội dung
+                            tham khảo có thể chịu ảnh hưởng bởi
+                            dữ liệu đầu vào, phương pháp tính
+                            hoặc sự thay đổi trong quy định đào tạo.
+                        </p>
+
+                        <p>
+                            EduTrack không chịu trách nhiệm đối với
+                            các quyết định học tập được đưa ra chỉ
+                            dựa trên thông tin tham khảo mà không
+                            đối chiếu với nguồn chính thức, trong
+                            phạm vi pháp luật cho phép.
+                        </p>
+
+                        <p>
+                            Các giới hạn trách nhiệm không loại trừ
+                            những nghĩa vụ mà EduTrack bắt buộc
+                            phải thực hiện theo quy định pháp luật.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- MỤC 09 -->
+                <article class="privacy-item">
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">09</span>
+                        <h2>Thay đổi điều khoản sử dụng</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+                        <p>
+                            EduTrack có thể điều chỉnh, bổ sung
+                            các điều khoản sử dụng nhằm phù hợp
+                            với quá trình phát triển website
+                            và quy định pháp luật có liên quan.
+                        </p>
+
+                        <p>
+                            Các thay đổi sẽ được công bố trên
+                            website và thông báo đến người dùng
+                            khi cần thiết.
+                        </p>
+
+                        <p>
+                            Người dùng được khuyến khích kiểm tra
+                            định kỳ để cập nhật những quy định
+                            mới nhất trong quá trình sử dụng.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- MỤC 10 -->
+                <article class="privacy-item">
+                    <div class="privacy-item-heading">
+                        <span class="privacy-number">10</span>
+                        <h2>Liên hệ và hỗ trợ</h2>
+                    </div>
+
+                    <div class="privacy-item-content">
+                        <p>
+                            Nếu có câu hỏi, phản hồi hoặc yêu cầu
+                            hỗ trợ liên quan đến việc sử dụng
+                            website, người dùng có thể liên hệ
+                            với đội ngũ EduTrack thông qua mục
+                            Tư vấn hoặc Liên hệ trên website.
+                        </p>
+
+                        <p>
+                            EduTrack luôn hướng tới việc cải thiện
+                            chất lượng nền tảng, mang đến trải
+                            nghiệm quản lý và định hướng học tập
+                            thuận tiện, hiệu quả cho sinh viên.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- PHẦN 3: LIÊN HỆ HỖ TRỢ -->
+        <section class="privacy-support">
+            <div class="privacy-container">
+                <div class="privacy-support-content">
+
+                    <div class="privacy-support-heading">
+                        <i data-lucide="headset"
+                           aria-hidden="true"></i>
+                        <h2>Bạn cần hỗ trợ thêm?</h2>
+                    </div>
+
+                    <p>
+                        Nếu có thắc mắc về điều khoản sử dụng,
+                        quyền và trách nhiệm của người dùng
+                        hoặc gặp khó khăn khi sử dụng EduTrack,
+                        vui lòng liên hệ với chúng tôi
+                        để được hỗ trợ.
+                    </p>
+
+                    <a href="advising-contact.html"
+                       class="privacy-support-btn">
+                        Liên hệ hỗ trợ
+                        <i data-lucide="arrow-right"
+                           aria-hidden="true"></i>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+
+        <!-- Giới thiệu EduTrack -->
+        <section class="footer-intro">
+            <div class="footer-logo">
+                <img src="../assets/images/logo.png"
+                     alt="EduTrack Logo"
+                     width="70"
+                     height="70">
+                <h2>EduTrack</h2>
+            </div>
+
+            <p>
+                Nền tảng công nghệ cung cấp tài liệu,
+                hỗ trợ sinh viên lập kế hoạch, quản lý
+                điểm số và GPA một cách thông minh.
+            </p>
+        </section>
+
+        <!-- Về EduTrack -->
+        <section class="footer-column">
+            <h2>Về EduTrack</h2>
+            <ul>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="about.html">Đội ngũ</a></li>
+                <li><a href="advising-contact.html">Liên hệ</a></li>
+            </ul>
+        </section>
+
+        <!-- Môn học -->
+        <section class="footer-column">
+            <h2>Môn học</h2>
+            <ul>
+                <li><a href="courses.html">Đại cương</a></li>
+                <li><a href="courses.html">Cơ sở ngành</a></li>
+                <li><a href="courses.html">Chuyên ngành</a></li>
+            </ul>
+        </section>
+
+        <!-- Tính năng -->
+        <section class="footer-column">
+            <h2>Tính năng</h2>
+            <ul>
+                <li><a href="gpa-calculator.html">Tính GPA</a></li>
+                <li><a href="advising-contact.html">Tư vấn lộ trình</a></li>
+                <li><a href="progress.html">Tiến độ học tập</a></li>
+            </ul>
+        </section>
+
+        <!-- Điều khoản -->
+        <section class="footer-column">
+            <h2>Điều khoản</h2>
+            <ul>
+                <li><a href="csbm.html">Chính sách bảo mật</a></li>
+                <li><a href="DieuKhoanSuDung.html">Điều khoản sử dụng</a></li>
+                <li><a href="bqtl.html">Bản quyền tài liệu</a></li>
+            </ul>
+        </section>
+
+        <!-- Copyright -->
+        <section class="footer-bottom">
+            <span>
+                &copy; 2026 EduTrack.
+                Tất cả các quyền được bảo lưu.
+            </span>
+        </section>
+    </footer>
+
+    <!-- Khởi tạo Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
