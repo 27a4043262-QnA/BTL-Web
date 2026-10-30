@@ -182,86 +182,6 @@
     margin-bottom: 0;
 }
 
-
-/* ===== 6. LIÊN HỆ HỖ TRỢ ===== */
-
-.privacy-support {
-    padding: 0 0 var(--spacing-7);
-    background-color: var(--white-color);
-}
-
-.privacy-support-content {
-    padding: var(--spacing-6);
-    background-color: var(--background-alt);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-large);
-    text-align: center;
-}
-
-.privacy-support-heading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-3);
-    margin-bottom: var(--spacing-3);
-}
-
-.privacy-support-heading svg {
-    width: 30px;
-    height: 30px;
-    color: var(--primary-color);
-    flex-shrink: 0;
-}
-
-.privacy-support-heading h2 {
-    margin: 0;
-    color: var(--primary-color);
-    font-size: 25px;
-    font-weight: 700;
-}
-
-.privacy-support-content > p {
-    max-width: 680px;
-    margin: 0 auto var(--spacing-4);
-    color: var(--text-color);
-    font-size: 15px;
-    line-height: 1.8;
-}
-
-/* Nút Liên hệ hỗ trợ */
-.privacy-support-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-2);
-
-    padding: 12px var(--spacing-4);
-
-    background-color: var(--green-btn);
-    color: var(--white-color);
-
-    border-radius: var(--radius-medium);
-    font-size: var(--font-size-small);
-    font-weight: 700;
-    text-decoration: none;
-
-    transition: background-color 0.2s ease;
-}
-
-/* Icon mũi tên */
-.privacy-support-btn svg {
-    width: 18px;
-    height: 18px;
-    color: currentColor;
-}
-
-/* Khi di chuột vào nút */
-.privacy-support-btn:hover {
-    background-color: var(--green-btn-hover);
-    color: var(--white-color);
-}
-
-
 /* ===== 7. RESPONSIVE TABLET ===== */
 
 @media (max-width: 991px) {
@@ -276,10 +196,6 @@
 
     .privacy-item-content {
         padding-left: 70px;
-    }
-
-    .privacy-support-content {
-        padding: var(--spacing-5);
     }
 }
 
@@ -357,27 +273,6 @@
     }
 
     .privacy-item-content li {
-        font-size: 14px;
-    }
-
-    .privacy-support {
-        padding-bottom: var(--spacing-6);
-    }
-
-    .privacy-support-content {
-        padding: var(--spacing-4);
-    }
-
-    .privacy-support-heading {
-        flex-direction: column;
-        gap: var(--spacing-2);
-    }
-
-    .privacy-support-heading h2 {
-        font-size: 21px;
-    }
-
-    .privacy-support-content > p {
         font-size: 14px;
     }
 }

@@ -239,3 +239,422 @@
     color: var(--primary-dark);
     text-decoration: underline;
 }
+
+
+/* ========================================
+   1. DESKTOP: TỪ 1024PX TRỞ LÊN
+======================================== */
+@media (min-width: 1024px) {
+/* Bố cục chung */
+.register-page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    background-color: var(--background-color);
+}
+
+/* Phần giới thiệu bên trái */
+.register-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px clamp(25px, 4vw, 50px);
+    background-color: var(--background-color);
+}
+
+.register-intro-content {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.register-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 6px 12px;
+    margin-bottom: 16px;
+    border-radius: 20px;
+    background-color: #D5F1E6;
+    color: #18A875;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Tiêu đề giới thiệu */
+.register-intro h1 {
+    margin: 0 0 12px;
+    color: var(--primary-color);
+    font-size: 36px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.register-intro-description {
+    max-width: 500px;
+    margin: 0 0 18px;
+    color: var(--text-dark);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* Hình minh họa */
+.register-illustration {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 22px;
+}
+
+.register-illustration img {
+    width: 350px;
+    max-width: 100%;
+    height: 200px;
+    object-fit: contain;
+}
+
+/* Ba lợi ích */
+.register-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 5px;
+}
+
+.benefit-content {
+    min-width: 0;
+}
+
+.benefit-content h3 {
+    margin: 0 0 5px;
+    color: var(--primary-color);
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.benefit-content p {
+    margin: 0;
+    color: var(--text-dark);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Phần form bên phải */
+.register-form-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px clamp(20px, 4vw, 50px);
+    background-color: var(--background-color);
+}
+
+.register-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 24px;
+    background-color: var(--white-color);
+    border: 1px solid #D1D5DB;
+    border-radius: var(--radius-medium);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Tiêu đề form */
+.register-header h2 {
+    margin: 0 0 5px;
+    color: var(--primary-color);
+    font-size: 24px;
+    line-height: 1.3;
+}
+
+.register-header p {
+    margin: 0 0 20px;
+    color: var(--text-dark);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Các trường nhập */
+.register-form-group {
+    margin-bottom: 12px;
+}
+
+.register-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.register-form-group input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 0 13px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-small);
+    outline: none;
+    background-color: var(--white-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-size: 13px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.register-form-group input::placeholder {
+    color: #85878A;
+}
+
+.register-form-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(47, 82, 127, 0.08);
+}
+
+/* Nút đăng ký */
+.register-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 40px;
+    margin-top: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: var(--radius-small);
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-family: var(--font-family);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.register-submit:hover {
+    background-color: var(--primary-dark);
+}
+
+.register-submit:focus-visible,
+.google-register:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+/* Đường phân cách */
+.register-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    color: var(--text-dark);
+    font-size: 13px;
+    text-align: center;
+}
+
+.register-divider::before,
+.register-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+/* Nút Google */
+.google-register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #D1D5DB;
+    border-radius: var(--radius-small);
+    background-color: #E0E2E6;
+    color: var(--primary-color);
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.google-register:hover {
+    background-color: #CED0D3;
+}
+
+/* Liên kết đăng nhập */
+.login-link {
+    margin: 16px 0 0;
+    color: var(--text-dark);
+    font-size: 13px;
+    text-align: center;
+}
+
+.login-link a {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Thông báo */
+.register-message {
+    margin: 10px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.register-message.is-success {
+    color: #15803D;
+}
+
+.register-message.is-info {
+    color: var(--primary-color);
+}
+
+/* Lỗi nhập liệu */
+.register-form-group input.is-invalid {
+    border-color: #DC2626;
+}
+
+.gpa-field-error {
+    display: block;
+    margin-top: 5px;
+    color: #DC2626;
+    font-size: 12px;
+}
+}
+
+/* ========================================
+   2. TABLET: 768PX - 1023PX
+======================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .register-page {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    }
+
+    /* Phần giới thiệu */
+    .register-intro {
+        padding: 30px 18px;
+    }
+
+    .register-intro h1 {
+        font-size: 27px;
+    }
+
+    .register-intro-description {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .register-illustration {
+        margin-bottom: 12px;
+    }
+
+    .register-illustration img {
+        width: 250px;
+        height: 150px;
+    }
+
+    /* Ẩn 3 lợi ích trên tablet */
+    .register-benefits {
+        display: none;
+    }
+
+    /* Phần form */
+    .register-form-section {
+        padding: 28px 18px;
+    }
+
+    .register-card {
+        padding: 20px 18px;
+    }
+
+    .register-header h2 {
+        font-size: 23px;
+    }
+
+    .register-header p {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+
+    .register-form-group {
+        margin-bottom: 10px;
+    }
+
+    .register-form-group input {
+        height: 38px;
+    }
+}
+
+
+/* ========= 3. MOBILE: DƯỚI 768PX =============== */
+@media (max-width: 767px) {
+    .register-page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    /* Ẩn phần giới thiệu */
+    .register-intro {
+        display: none;
+    }
+
+    /* Chỉ hiển thị form đăng ký */
+    .register-form-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        padding: 24px 16px;
+    }
+
+    .register-card {
+        width: 100%;
+        max-width: 440px;
+        padding: 22px 18px;
+    }
+
+    .register-header h2 {
+        font-size: 23px;
+    }
+
+    .register-header p {
+        margin-bottom: 18px;
+        font-size: 13px;
+    }
+
+    .register-form-group {
+        margin-bottom: 11px;
+    }
+
+    .register-form-group label {
+        font-size: 13px;
+    }
+
+    .register-form-group input {
+        height: 40px;
+        font-size: 13px;
+    }
+
+    .register-submit,
+    .google-register {
+        min-height: 40px;
+        font-size: 14px;
+    }
+
+    .register-divider {
+        margin: 14px 0;
+    }
+
+    .login-link {
+        margin-top: 14px;
+    }
+}

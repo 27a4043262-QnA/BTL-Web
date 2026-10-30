@@ -431,6 +431,11 @@ header > .logo {
     white-space: nowrap;
 }
 
+/* ẩn nút Hamburger */
+.et-nav-toggle {
+    display: none;
+}
+
 header > ul {
     grid-column: 2;
     justify-self: center;
@@ -717,16 +722,24 @@ header > ul > li.button:not([hidden]) {
 }
 
 /* MOBILE: 360px - 767px */
-@media (min-width: 360px) and (max-width: 767px) {
+@media (max-width: 767px) {
+
+    /* Header */
     header {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 4px;
-        padding: 6px 12px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0;
+        padding: 8px 16px;
     }
 
+    /* Logo bên trái */
     header > .logo {
-        grid-column: 1;
-        grid-row: 1;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
     }
 
     .logo img {
@@ -738,57 +751,143 @@ header > ul > li.button:not([hidden]) {
         font-size: 17px;
     }
 
-    header > ul {
-        grid-column: 1;
-        grid-row: 2;
-
-        justify-self: stretch;
+    /* Hamburger bên phải */
+    .et-nav-toggle {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        padding: 8px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .et-nav-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--white-color);
+    }
+
+    /* Menu đóng mặc định */
+    header > ul {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
 
         width: 100%;
         max-width: 100%;
-        gap: 8px 14px;
-        padding: 8px 0 4px;
+        min-width: 0;
+
+        gap: 0;
+        margin: 8px 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    /* Menu khi nhấn Hamburger */
+    header > ul.is-open {
+        display: flex;
+    }
+
+    /* Mỗi mục menu */
+    header > ul > li:not(.button) {
+        width: 100%;
     }
 
     header > ul > li > a {
-        font-size: clamp(11px, 2.8vw, 14px);
+        display: block;
+        width: 100%;
+        padding: 12px 10px;
+        font-size: 14px;
+        color: var(--white-color);
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        text-align: left;
     }
 
+    header > ul > li > a:hover {
+        color: var(--white-color);
+        background: var(--primary-dark);
+    }
+
+    /* tài khoản cá nhân */
     header > ul > li.button:not([hidden]) {
-        right: 8px;
-        top: 8px;
-        bottom: auto;
+        position: static;
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 10px 0;
         transform: none;
+        border-top: 1px solid rgba(255,255,255,0.2);
     }
 
+    /* Nút tài khoản */
     .button-clink {
-        gap: 5px;
-        padding: 2px 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
+        padding: 8px 10px;
+        background: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
     }
 
+    /* Avatar */
     .profile-avatar {
-        width: 30px;
-        height: 30px;
-        font-size: 12px;
+        width: 36px;
+        height: 36px;
+        font-size: 13px;
     }
 
+    /* Tên sinh viên */
     .student-name {
-        font-size: 12px;
+        font-size: 14px;
+        color: white;
     }
 
+    /* Mũi tên */
     .account-arrow {
-        width: 12px;
-        height: 12px;
+        margin-left: auto;
     }
 
+    /* Menu tài khoản bên trong Hamburger */
     .account-dropdown {
-        width: min(280px, calc(100vw - 24px));
+        position: static;
+        width: 100%;
+        margin-top: 8px;
+        padding: 8px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: none;
+    }
+
+    /* Các mục cá nhân */
+    .account-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .account-item:hover {
+        background: #EAF1FB;
+    }
+
+    /* Xoay mũi tên khi mở */
+    .account-menu[open] .account-arrow {
+        transform: rotate(180deg);
     }
 }
+
 
 /* === FOOTER === */
 footer {
@@ -882,4 +981,228 @@ footer .footer-bottom span {
     color: var(--white-color);
     font-size: 14px;
     white-space: nowrap;
+}
+
+
+/* ===== FOOTER DESKTOP: TỪ 1200px TRỞ LÊN ===== */
+@media (min-width: 1200px) {
+    footer {
+        display: grid;
+        grid-template-columns: 2.7fr 1.1fr 1fr 1fr 1fr;
+        column-gap: 32px;
+        row-gap: var(--spacing-5);
+        padding: 48px 60px 0;
+        width: 100%;
+    }
+
+    /* Logo và giới thiệu */
+    .footer-intro {
+        grid-column: 1;
+        transform: none;
+        min-width: 0;
+    }
+
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: var(--spacing-2);
+    }
+
+    .footer-logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .footer-logo h2 {
+        margin: 0;
+        font-size: 25px;
+    }
+
+    .footer-intro p {
+        max-width: 300px;
+        font-size: 15px;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    /* Các cột liên kết */
+    .footer-column {
+        min-width: 0;
+    }
+
+    .footer-column h2 {
+        font-size: 17px;
+        margin-bottom: var(--spacing-3);
+    }
+
+    .footer-column a {
+        font-size: 15px;
+    }
+
+    /* Copyright */
+    footer .footer-bottom {
+        grid-column: 1 / -1;
+    }
+
+    footer .footer-bottom span {
+        white-space: nowrap;
+    }
+}
+
+
+/* ===== FOOTER TABLET: 768px - 1199px ===== */
+@media (min-width: 768px) and (max-width: 1199px) {
+    footer {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: 20px;
+        row-gap: 28px;
+        padding: 36px 24px 0;
+        width: 100%;
+    }
+
+    /* Logo và giới thiệu nằm hàng đầu */
+    .footer-intro {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        transform: none;
+        min-width: 0;
+    }
+
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .footer-logo img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .footer-logo h2 {
+        margin: 0;
+        font-size: 23px;
+    }
+
+    /* Nội dung giới thiệu */
+    .footer-intro p {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.7;
+        text-align: left;
+    }
+
+    /* Bốn mục nằm trên cùng một hàng */
+    .footer-column {
+        grid-row: 2;
+        min-width: 0;
+    }
+
+    .footer-column h2 {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+
+    .footer-column li {
+        margin-bottom: 10px;
+    }
+
+    .footer-column a {
+        font-size: 15px;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+
+    /* Copyright */
+    footer .footer-bottom {
+        grid-column: 1 / -1;
+        grid-row: 3;
+    }
+
+    footer .footer-bottom span {
+        font-size: 14px;
+        white-space: normal;
+    }
+}
+
+/* ===== FOOTER MOBILE ===== */
+@media (max-width: 767px) {
+
+    /* Khung Footer */
+    footer {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 20px;
+        row-gap: 24px;
+        padding: 28px 20px 0;
+    }
+
+    /* Logo và giới thiệu nằm trên cùng */
+    .footer-intro {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        transform: none;
+    }
+
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .footer-logo img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .footer-logo h2 {
+        margin: 0;
+        font-size: 22px;
+    }
+
+    .footer-intro p {
+        max-width: 100%;
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.7;
+        text-align: left;
+    }
+
+    /* Bốn cột liên kết */
+    .footer-column {
+        min-width: 0;
+    }
+
+    .footer-column h2 {
+        margin-bottom: 12px;
+        font-size: 15px;
+    }
+
+    .footer-column li {
+        margin-bottom: 10px;
+    }
+
+    .footer-column a {
+        font-size: 15px;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+
+    /* Copyright cuối Footer */
+    footer .footer-bottom {
+        grid-column: 1 / -1;
+        padding: 16px 0;
+    }
+
+    footer .footer-bottom span {
+        font-size: 14px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
 }
