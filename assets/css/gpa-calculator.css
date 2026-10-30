@@ -338,7 +338,9 @@
 .calc-table-wrapper {
     width: 100%;
     max-width: 100%;
+    max-height: 350px;
     overflow-x: auto;
+    overflow-y: auto;
     border-radius: var(--radius-medium);
     -webkit-overflow-scrolling: touch;
 }
@@ -353,18 +355,16 @@
 .calc-table {
     width: 100%;
     min-width: 900px;
-}
-
-.calc-table {
-    width: 100%;
-    min-width: 900px;
     background: var(--white-color);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-medium);
     border-spacing: 0;
     border-collapse: separate;
 }
-
+.calc-table-wrapper .calc-table {
+    width: 1100px;
+    min-width: 1100px;
+}
 .calc-table th {
     padding: 12px;
     color: var(--text-dark);
@@ -374,6 +374,9 @@
     font-weight: 700;
     text-align: left;
     white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .calc-table td {
@@ -564,7 +567,9 @@
     min-width: 0;
     margin-top: var(--spacing-3);
     padding: 0;
+    max-height: 350px;
     overflow-x: auto;
+    overflow-y: auto;
     background: transparent;
     border: 0;
     border-radius: 0;
@@ -593,6 +598,9 @@
     font-weight: 700;
     text-align: left;
     white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .result-table tbody td {
@@ -779,8 +787,20 @@
     background: var(--white-color);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-medium);
-}
+    max-height: 350px;
+    overflow-y: auto;
 
+}
+#projection-wrapper > .projection-section:nth-child(-n+2) .projection-table-wrapper {
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+#projection-wrapper > .projection-section:nth-child(-n+2) .projection-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
 .projection-table {
     width: 100%;
     min-width: 0;
@@ -1548,7 +1568,7 @@
         min-width: 150px;
         padding-left: 12px;
     }
-
+}
     /* ----- Mục 3: 4 ô nhập + nút trên cùng một hàng ----- */
 @media (min-width: 992px) and (max-width: 1199px) {
     .projection-section:nth-child(3) .projection-card {
@@ -1591,7 +1611,7 @@ margin-top: var(--spacing-3);
         grid-template-columns: minmax(0, 1.8fr) minmax(260px, 1fr);
         gap: var(--spacing-4);
     }
-}
+
 
 
 /* ==========================================================================
