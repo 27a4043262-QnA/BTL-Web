@@ -272,3 +272,9 @@ main img {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+/* Đội ngũ trên màn hình điện thoại rất nhỏ */
+@media (max-width: 359px) {
+    .doi-ngu-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

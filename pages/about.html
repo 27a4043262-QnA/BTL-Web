@@ -4,8 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Về Dự án | EduTrack</title>
-<link rel="stylesheet" href="../assets/css/main.css">
-<link rel="stylesheet" href="../assets/css/about.css">
+    <!-- Bootstrap 4 -->
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <!-- CSS chung của EDUTRACK -->
+        <link rel="stylesheet" href="../assets/css/main.css">
+    <!-- CSS riêng của trang giới thiệu -->
+        <link rel="stylesheet" href="../assets/css/about.css">
+    <link rel="stylesheet" href="../assets/css/chatbot.css">
+    <script src="../assets/js/chatbot.js" defer></script>
 </head>
 <body>
 
@@ -22,7 +28,7 @@
                 <li><a href="courses.html">Môn học</a></li>
                 <li><a href="gpa-calculator.html">Tính GPA</a></li>
                 <li><a href="advising-contact.html">Tư vấn</a></li>
-                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="about.html" aria-current="page">Giới thiệu</a></li>
                 <li class="button">
                     <button type="button" class="button-link" onclick="window.location.href='login.html'">Bắt đầu ngay</button>
                 </li>
@@ -41,8 +47,13 @@
         <p>Nền tảng hỗ trợ sinh viên lập kế hoạch học tập thông minh, tính điểm GPA định hướng, bứt phá kết quả học tập vượt trội thông qua tư vấn lộ trình 1-1 và hệ thống tài liệu chuẩn hóa.</p>
       </div>
       <figure class="hero-image">
-        <img src="../assets/images/about/KienTao.jpg" alt="Sinh viên sử dụng nền tảng EduTrack để lập kế hoạch học tập" width="800" height="550">
-      </figure>
+<img
+    class="img-fluid"
+    src="../assets/images/about/KienTao.jpg"
+    alt="Sinh viên sử dụng nền tảng EduTrack để lập kế hoạch học tập"
+    width="800"
+    height="550">
+        </figure>
     </div>
   </section>
  
@@ -62,8 +73,13 @@
           </ul>
         </div>
         <figure class="tong-quan-image">
-          <img src="../assets/images/about/TongQuanEduTrack.jpg" alt="Giao diện tổng quan nền tảng EduTrack" width="800" height="550" loading="lazy">
-        </figure>
+<img
+    class="img-fluid"
+    src="../assets/images/about/TongQuanEduTrack.jpg"
+    alt="Giao diện tổng quan nền tảng EduTrack"
+    width="800"
+    height="550"
+    loading="lazy">        </figure>
       </div>
     </div>
   </section>
