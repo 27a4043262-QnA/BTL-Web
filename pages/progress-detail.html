@@ -4,444 +4,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Chi tiết lộ trình và nhiệm vụ học tập trên EduTrack.">
+    <meta name="description"
+          content="Chi tiết lộ trình và nhiệm vụ học tập trên EduTrack.">
     <title>EduTrack - Chi tiết lộ trình học tập</title>
 
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/progress.css">
+
+    <script src="../assets/js/progress.js" defer></script>
+    <link rel="stylesheet" href="../assets/css/chatbot.css">
+    <script src="../assets/js/chatbot.js" defer></script>
 </head>
-<body>
+
+<body class="ep-page">
+
+    <a class="ep-skip-link" href="#main-content">
+        Bỏ qua điều hướng
+    </a>
 
     <!-- HEADER -->
     <header>
+        <!-- Logo -->
         <div class="logo">
-            <img src="../assets/images/logo.png"
-                 alt="EduTrack Logo"
-                 width="70"
-                 height="70">
+            <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
             <a href="../index.html">EduTrack</a>
         </div>
-
+        <!-- Navigation Menu -->
         <ul>
             <li><a href="../index.html">Trang chủ</a></li>
             <li><a href="courses.html">Môn học</a></li>
-            <li><a href="gpa-calculator.html">Tính GPA</a></li>
+            <li><a href="gpa-calculator.html" >Tính GPA</a></li>
             <li><a href="advising-contact.html">Tư vấn</a></li>
             <li><a href="about.html">Giới thiệu</a></li>
-
+            <!--TH1: Truoc khi dang nhap-->
+            <li class="button" hidden>
+                <button type="button" class="button-link" onclick="window.location.href='pages/login.html'">Bắt đầu ngay</button>
+            </li>
+            <!-- TH2: Sau khi dang nhap-->
             <li class="button">
-                <button type="button"
-                        class="button-link"
-                        onclick="window.location.href='login.html'">
-                    Bắt đầu ngay
-                </button>
+                <!-- Tài khoản sinh viên -->
+                <details class="account-menu">
+                    <summary class="button-clink">
+                    <!-- Avatar PC -->
+                        <div class="profile-avatar">PC</div>
+                    <!-- Tên sinh viên -->
+                        <span class="student-name">Phan Kim Chi</span>
+                    <!-- Icon mũi tên -->
+                        <svg class="account-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </summary>
+                    <!-- Menu tài khoản -->
+                    <div class="account-dropdown">
+                        <!-- Thông tin cá nhân -->
+                        <a href="#" class="account-item">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <rect x="5" y="3" width="14" height="18" rx="2"></rect>
+                                    <circle cx="12" cy="9" r="2.5"></circle>
+                                    <path d="M8.5 16c.8-2 2.1-3 3.5-3s2.7 1 3.5 3"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Thông tin cá nhân</strong>
+                            </div>
+                        </a>
+                        <!-- Tiến độ học tập -->
+                        <a href="../pages/progress.html" class="account-item">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 19V9"></path>
+                                    <path d="M10 19V5"></path>
+                                    <path d="M16 19v-7"></path>
+                                    <path d="M22 19V3"></path>
+                                    <path d="M4 7l5-3 6 3 5-4"></path>
+                                    <path d="M17 3h3v3"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Tiến độ học tập</strong>
+                            </div>
+                        </a>
+                        <div class="dropdown-line"></div>
+                        <!-- Đăng xuất -->
+                        <a href="pages/login.html" class="account-item logout">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M14 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8"></path>
+                                    <path d="M10 12h10"></path>
+                                    <path d="M17 8l4 4-4 4"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Đăng xuất</strong>
+                            </div>
+                        </a>
+                    </div>
+                </details>
             </li>
         </ul>
     </header>
 
 
-    <!-- MAIN -->
-    <main id="main-content" class="ep-main">
-        <div class="ep-container">
+    
+<main id="main-content"
+      class="ep-main"
+      data-progress-page="detail">
 
-            <!-- ĐƯỜNG DẪN ĐIỀU HƯỚNG -->
-            <nav class="ep-breadcrumb" aria-label="Đường dẫn điều hướng">
-                <a href="progress.html">Tiến độ học tập</a>
-                <span aria-hidden="true">/</span>
-                <span aria-current="page">Chi tiết lộ trình</span>
-            </nav>
+    <div class="ep-container">
 
-            <!-- NÚT QUAY LẠI -->
-            <a href="progress.html" class="ep-back-link">
-                ← Quay lại tiến độ học tập
+        <!-- ĐIỀU HƯỚNG -->
+        <nav class="ep-breadcrumb"
+             aria-label="Đường dẫn điều hướng">
+
+            <a href="progress.html">
+                Tiến độ học tập
             </a>
 
+            <span aria-hidden="true">/</span>
 
-            <!-- THÔNG TIN CHÍNH CỦA GIAI ĐOẠN -->
-            <section class="ep-card ep-detail-hero">
+            <span aria-current="page">
+                Chi tiết giai đoạn
+            </span>
+        </nav>
 
-                <div class="ep-detail-intro">
-                    <p class="ep-eyebrow">CHI TIẾT LỘ TRÌNH</p>
+        <a href="progress.html"
+           class="ep-back-link">
+            ← Quay lại Tiến độ học tập
+        </a>
 
-                    <div class="ep-detail-title">
-                        <span class="ep-phase-number">2</span>
+        <!-- NỘI DUNG CHI TIẾT TỰ ĐỘNG -->
+        <div id="ep-detail-content">
+            <div class="ep-panel ep-loading">
+                Đang tải thông tin giai đoạn...
+            </div>
+        </div>
 
-                        <div>
-                            <h1>Giai đoạn 2: Luyện tập nâng cao</h1>
-                            <p>
-                                Tuần 3–6 · Củng cố kiến thức và luyện tập
-                            </p>
-                        </div>
-                    </div>
-
-                    <span class="ep-status status-yellow">
-                        Đang thực hiện
-                    </span>
-                </div>
-
-                <aside class="ep-detail-progress">
-                    <strong class="ep-detail-percent">35%</strong>
-                    <p>Tiến độ giai đoạn</p>
-
-                    <div class="ep-progress"
-                         role="progressbar"
-                         aria-label="Tiến độ giai đoạn 2"
-                         aria-valuemin="0"
-                         aria-valuemax="100"
-                         aria-valuenow="35">
-                        <span style="width: 35%"></span>
-                    </div>
-
-                    <div class="ep-progress-heading">
-                        <span>Nhiệm vụ hoàn thành</span>
-                        <strong>4/12</strong>
-                    </div>
-                </aside>
-
-            </section>
-
-
-            <!-- THỐNG KÊ GIAI ĐOẠN -->
-            <section class="ep-detail-stats"
-                     aria-label="Tổng quan giai đoạn">
-
-                <article class="ep-card ep-detail-stat">
-                    <span class="ep-stat-icon" aria-hidden="true">✓</span>
-
-                    <div>
-                        <p>Nhiệm vụ đã hoàn thành</p>
-                        <strong>4/12</strong>
-                        <span>Còn 8 nhiệm vụ</span>
-                    </div>
-                </article>
-
-                <article class="ep-card ep-detail-stat">
-                    <span class="ep-stat-icon" aria-hidden="true">◷</span>
-
-                    <div>
-                        <p>Thời hạn giai đoạn</p>
-                        <strong>29/10/2026</strong>
-                        <span>Ngày hoàn thành dự kiến</span>
-                    </div>
-                </article>
-
-                <article class="ep-card ep-detail-stat">
-                    <span class="ep-stat-icon" aria-hidden="true">◎</span>
-
-                    <div>
-                        <p>Mục tiêu giai đoạn</p>
-                        <strong>Vững kiến thức</strong>
-                        <span>Hoàn thành bài tập và luyện đề</span>
-                    </div>
-                </article>
-
-            </section>
-
-
-            <!-- GIỮ LẠI MỤC TIÊU GPA BAN ĐẦU -->
-            <article class="ep-card ep-goal-card">
-                <div class="ep-goal-icon" aria-hidden="true">◎</div>
-
-                <div class="ep-goal-content">
-                    <p class="ep-section-label">MỤC TIÊU BAN ĐẦU</p>
-
-                    <h2>Đạt GPA tích lũy từ 3,2/4,0 trở lên</h2>
-
-                    
-
-                    <div class="ep-goal-meta">
-                        <span>
-                            <strong>Mốc mục tiêu:</strong>
-                            Cuối năm học
-                        </span>
-
-                        <span>
-                            <strong>Năm học:</strong>
-                            2026-2027
-                        </span>
-                    </div>
-                </div>
-            </article>
-
-
-            <!-- DANH SÁCH NHIỆM VỤ -->
-            <section class="ep-card ep-detail-tasks">
-
-                <div class="ep-section-heading">
-                    <div>
-                        <h2>Danh sách nhiệm vụ</h2>
-                        <p>
-                            Theo dõi nội dung, thời hạn và trạng thái
-                            của các nhiệm vụ trong giai đoạn hiện tại.
-                        </p>
-                    </div>
-
-                    <span class="ep-status status-gray">
-                        12 nhiệm vụ
-                    </span>
-                </div>
-
-                <div class="ep-table-wrap">
-                    <table class="ep-table ep-detail-table">
-                        <caption class="ep-visually-hidden">
-                            Danh sách nhiệm vụ học tập của giai đoạn 2
-                        </caption>
-
-                        <thead>
-                            <tr>
-                                <th scope="col">Nhiệm vụ</th>
-                                <th scope="col">Môn học</th>
-                                <th scope="col">Thời hạn</th>
-                                <th scope="col">Trạng thái</th>
-                                <th scope="col">Tài liệu</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <strong>Ôn tập truy vấn nâng cao</strong>
-                                    <span class="ep-table-subtext">
-                                        Ôn lý thuyết và thực hành truy vấn
-                                    </span>
-                                </td>
-
-                                <td>Cơ sở dữ liệu</td>
-                                <td>
-                                    <time datetime="2026-10-18">
-                                        18/10/2026
-                                    </time>
-                                </td>
-
-                                <td>
-                                    <span class="ep-task-status status-blue">
-                                        Đang học
-                                    </span>
-                                </td>
-
-                                <td>
-                                    <a href="#resources">Xem tài liệu</a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <strong>Thực hành bài tập tổng hợp</strong>
-                                    <span class="ep-table-subtext">
-                                        Vận dụng kiến thức đã học
-                                    </span>
-                                </td>
-
-                                <td>Lập trình</td>
-                                <td>
-                                    <time datetime="2026-10-20">
-                                        20/10/2026
-                                    </time>
-                                </td>
-
-                                <td>
-                                    <span class="ep-task-status status-yellow">
-                                        Cần chú ý
-                                    </span>
-                                </td>
-
-                                <td>
-                                    <a href="#resources">Xem tài liệu</a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <strong>Làm bài kiểm tra thử</strong>
-                                    <span class="ep-table-subtext">
-                                        Đánh giá mức độ nắm vững kiến thức
-                                    </span>
-                                </td>
-
-                                <td>Toán học</td>
-                                <td>
-                                    <time datetime="2026-10-23">
-                                        23/10/2026
-                                    </time>
-                                </td>
-
-                                <td>
-                                    <span class="ep-task-status status-gray">
-                                        Chưa bắt đầu
-                                    </span>
-                                </td>
-
-                                <td>
-                                    <a href="#resources">Xem tài liệu</a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <strong>Ôn tập kiến thức trọng tâm</strong>
-                                    <span class="ep-table-subtext">
-                                        Hệ thống hóa các nội dung cần nhớ
-                                    </span>
-                                </td>
-
-                                <td>Cơ sở dữ liệu</td>
-                                <td>
-                                    <time datetime="2026-10-24">
-                                        24/10/2026
-                                    </time>
-                                </td>
-
-                                <td>
-                                    <span class="ep-task-status status-gray">
-                                        Chưa bắt đầu
-                                    </span>
-                                </td>
-
-                                <td>
-                                    <a href="#resources">Xem tài liệu</a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <strong>Luyện bài tập phân tích dữ liệu</strong>
-                                    <span class="ep-table-subtext">
-                                        Thực hành các dạng bài nâng cao
-                                    </span>
-                                </td>
-
-                                <td>Toán học</td>
-                                <td>
-                                    <time datetime="2026-10-26">
-                                        26/10/2026
-                                    </time>
-                                </td>
-
-                                <td>
-                                    <span class="ep-task-status status-blue">
-                                        Đang học
-                                    </span>
-                                </td>
-
-                                <td>
-                                    <a href="#resources">Xem tài liệu</a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <strong>Tổng kết kiến thức giai đoạn</strong>
-                                    <span class="ep-table-subtext">
-                                        Rà soát nội dung trước giai đoạn tiếp theo
-                                    </span>
-                                </td>
-
-                                <td>Lập trình</td>
-                                <td>
-                                    <time datetime="2026-10-29">
-                                        29/10/2026
-                                    </time>
-                                </td>
-
-                                <td>
-                                    <span class="ep-task-status status-gray">
-                                        Chưa bắt đầu
-                                    </span>
-                                </td>
-
-                                <td>
-                                    <a href="#resources">Xem tài liệu</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                
-
-            </section>
-
-
-            <!-- TÀI LIỆU HỌC TẬP -->
-            <section class="ep-card ep-resources" id="resources">
-                <h2>Tài liệu học tập</h2>
+        <!-- ĐƯỜNG DẪN HỖ TRỢ -->
+        <section class="ep-detail-help">
+            <div>
+                <h2>Cần hỗ trợ trong quá trình học?</h2>
 
                 <p>
-                    Các nguồn tham khảo hỗ trợ hoàn thành nhiệm vụ
-                    trong giai đoạn này.
+                    Bạn có thể xem lại gợi ý học tập,
+                    tài liệu hoặc điều chỉnh kế hoạch.
                 </p>
-
-                <article class="ep-resource-row">
-                    <span class="ep-resource-badge">PDF</span>
-
-                    <div>
-                        <h3>Tài liệu ôn tập truy vấn nâng cao</h3>
-                        <p>
-                            Nội dung ôn tập và các dạng bài thực hành.
-                        </p>
-                    </div>
-
-                    <a href="courses.html">Xem môn học</a>
-                </article>
-
-                <article class="ep-resource-row">
-                    <span class="ep-resource-badge">NOTE</span>
-
-                    <div>
-                        <h3>Danh sách nội dung cần ôn</h3>
-                        <p>
-                            Gợi ý các chủ đề cần xem lại trước khi luyện đề.
-                        </p>
-                    </div>
-
-                    <a href="advising-contact.html">Mở trang tư vấn</a>
-                </article>
-            </section>
-
-
-            <!-- ĐIỀU HƯỚNG CUỐI TRANG -->
-            <div class="ep-detail-bottom-actions">
-                <a href="progress.html"
-                   class="ep-button ep-button-light">
-                    ← Quay lại tiến độ học tập
-                </a>
-
-                <a href="advising-contact.html"
-                   class="ep-button ep-button-dark">
-                    Điều chỉnh kế hoạch
-                </a>
             </div>
 
-        </div>
-    </main>
+            <div class="ep-detail-help-actions">
+                <a href="courses.html"
+                   class="ep-button ep-button-secondary">
+                    Xem môn học
+                </a>
+
+                <a href="advising-contact.html?state=3"
+                   class="ep-button ep-button-primary">
+                    Mở trang Tư vấn
+                </a>
+            </div>
+        </section>
+
+        <p id="ep-live-status"
+           class="ep-live-status"
+           role="status"
+           aria-live="polite">
+        </p>
+    </div>
+</main>
 
 
     <!-- FOOTER -->
     <footer>
+        <!-- Giới thiệu EduTrack -->
         <section class="footer-intro">
             <div class="footer-logo">
-                <img src="../assets/images/logo.png"
-                     alt="EduTrack Logo"
-                     width="70"
-                     height="70">
-                <h2>EduTrack</h2>
+                <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
+                <h2> EduTrack</h2>
             </div>
-
-            <p>
-                Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên
-                lập kế hoạch, quản lý điểm số và GPA một cách thông minh.
-            </p>
+            <p> Nền tảng công nghệ cung cấp tài liệu, hỗ trợ sinh viên lập kế hoạch, quản lý điểm số và GPA một cách thông minh. </p>
         </section>
-
+        <!-- Về EduTrack -->
         <section class="footer-column">
             <h2>Về EduTrack</h2>
             <ul>
                 <li><a href="about.html">Giới thiệu</a></li>
-                <li><a href="about.html#team">Đội ngũ</a></li>
-                <li><a href="about.html#contact">Liên hệ</a></li>
+                <li><a href="#">Đội ngũ</a></li>
+                <li><a href="#">Liên hệ</a></li>
             </ul>
         </section>
-
+        <!-- Môn học -->
         <section class="footer-column">
             <h2>Môn học</h2>
             <ul>
@@ -450,7 +202,7 @@
                 <li><a href="courses.html">Chuyên ngành</a></li>
             </ul>
         </section>
-
+        <!-- Tính năng -->
         <section class="footer-column">
             <h2>Tính năng</h2>
             <ul>
@@ -459,22 +211,21 @@
                 <li><a href="progress.html">Theo dõi tiến độ</a></li>
             </ul>
         </section>
-
+        <!-- Điều khoản -->
         <section class="footer-column">
             <h2>Điều khoản</h2>
             <ul>
-                <li><a href="#">Chính sách bảo mật</a></li>
+                <li><a href="csbm.html">Chính sách bảo mật</a></li>
                 <li><a href="#">Điều khoản sử dụng</a></li>
-                <li><a href="#">Hỗ trợ khách hàng</a></li>
+                <li><a href="bqtl.html">Bản quyền tài liệu</a></li>
             </ul>
         </section>
-
+        <!-- Copyright -->
         <section class="footer-bottom">
-            <span>
-                &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
-            </span>
+        <span>
+            &copy; 2026 EduTrack. Tất cả các quyền được bảo lưu.
+        </span>
         </section>
     </footer>
-
 </body>
 </html>

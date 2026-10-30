@@ -1,614 +1,1007 @@
-/* =====================================================================
-   EDUTRACK - progress.css
-   CSS rieng cho progress.html va progress-detail.html
-   Dung chung Design System trong main.css, khong khai bao :root rieng.
-   main.css duoc nap truoc progress.css.
-   ===================================================================== */
 
-/* 1. KHUNG TRANG VA CAC THANH PHAN CHUNG */
+/* =====================================================
+   EDUTRACK - PROGRESS DASHBOARD
+   Dùng chung cho:
+   - pages/progress.html
+   - pages/progress-detail.html
+   ===================================================== */
+
+
+/* =====================================================
+   1. THIẾT LẬP CHUNG
+   ===================================================== */
+
 .ep-main {
-    padding: var(--spacing-6) 0 var(--spacing-7);
+    min-height: 75vh;
+    padding: 40px 24px 80px;
+
+    color: var(--text-color);
+    background: var(--background-color);
+
+    font-family: var(--font-family);
+    line-height: 1.6;
 }
 
-.ep-container {
-    width: 100%;
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--spacing-4);
+.ep-main *,
+.ep-main *::before,
+.ep-main *::after {
+    box-sizing: border-box;
 }
+
+.ep-main [hidden] {
+    display: none;
+}
+
+.ep-main .ep-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ep-main a {
+    text-decoration: none;
+}
+
+.ep-main button,
+.ep-main input {
+    font-family: inherit;
+}
+
+.ep-main button:focus-visible,
+.ep-main a:focus-visible,
+.ep-main summary:focus-visible,
+.ep-main input:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+
+/* =====================================================
+   2. TIÊU ĐỀ TRANG
+   ===================================================== */
 
 .ep-page-heading {
-    margin-bottom: var(--spacing-4);
-}
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
 
-.ep-page-heading h1 {
-    margin-bottom: var(--spacing-2);
-    color: var(--primary-color);
-     font-size: 34px;
-}
-
-.ep-page-heading > p:last-child {
-    max-width: 760px;
-    margin-bottom: 0;
-    color: var(--text-light);
+    margin-bottom: 30px;
 }
 
 .ep-eyebrow {
     display: inline-block;
-    margin-bottom: var(--spacing-2);
-    padding: 4px 10px;
+
+    margin: 0 0 15px;
+    padding: 7px 14px;
+
     color: var(--success-color);
-    background-color: var(--success-bg);
-    border: 1px solid var(--success-bg);
-    border-radius: 999px;
+    background: var(--success-bg);
+    border-radius: 50px;
+
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.035em;
 }
 
-.ep-card {
-    min-width: 0;
-    background-color: var(--white-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-large);
-    box-shadow: var(--shadow-small);
-}
+.ep-page-heading h1 {
+    margin: 0 0 10px;
 
-.ep-card h2 {
-    margin: var(--spacing-3) 0 var(--spacing-2);
-    font-size: 20px;
-}
-.ep-card h3 {
-    color: var( --primary-color);
-}
-
-.ep-card p {
-    line-height: 1.65;
-}
-
-.ep-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--spacing-2);
-    margin-top: var(--spacing-3);
-}
-
-.ep-actions-center {
-    justify-content: center;
-}
-
-/* 2. NUT BAM - DUNG CUNG MAU CHU VA GOC BO TRONG main.css */
-.ep-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-2);
-    min-height: 40px;
-    padding: 10px var(--spacing-3);
-    border: 1px solid transparent;
-    border-radius: var(--radius-medium);
-    font-family: var(--font-family);
-    font-size: var(--font-size-small);
-    font-weight: 700;
-    line-height: 1.4;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
-}
-
-.ep-button:hover {
-    text-decoration: none;
-}
-
-.ep-button:active {
-    transform: translateY(1px);
-}
-
-.ep-button-dark {
-    color: var(--white-color);
-    background-color: #2ECC71;
-    border-color: #2ECC71;
-}
-
-.ep-button-dark:hover {
-    color: var(--white-color);
-    background-color: #27AE60;
-    border-color: #27AE60;
-}
-
-.ep-button-light {
-    color: #27AE60;
-    background-color: var(--white-color);
-    border-color: var(--border-color);
-}
-
-.ep-button-light:hover {
-    color: #27AE60;
-    background-color: #EAF8EF;
-    border-color:  #2ECC71;
-}
-
-/* 3. TRANG THAI VA NHAN */
-.ep-status {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-1);
-    width: fit-content;
-    max-width: 100%;
-    padding: 5px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.4;
-}
-
-.status-gray {
-    color: var(--text-light);
-    background-color: #F1F5F9;
-}
-
-.status-green {
-    color: var(--success-color);
-    background-color: var(--success-bg);
-}
-
-.status-yellow {
-    color: var(--warning-color);
-    background-color: var(--warning-bg);
-}
-
-.status-blue {
     color: var(--primary-color);
-    background-color: var(--background-alt);
+    font-size: 34px;
+    font-weight: 750;
+    line-height: 1.3;
 }
 
-.ep-dot {
-    width: 7px;
-    height: 7px;
-    flex: 0 0 7px;
-    border-radius: 50%;
-    background-color: var(--success-color);
+.ep-page-description {
+    margin: 0;
+
+    color: var(--text-light);
+    font-size: 15px;
 }
 
-/* 4. TRUONG HOP CHUA CO DU LIEU */
-.ep-empty-card {
+.ep-source-badge,
+.ep-section-count {
+    display: inline-block;
+    flex-shrink: 0;
+
+    padding: 7px 12px;
+
+    color: var(--primary-color);
+    background: var(--background-alt);
+
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   3. CARD CƠ BẢN
+   ===================================================== */
+
+.ep-main .ep-panel {
+    min-width: 0;
+    padding: 22px;
+
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 17px;
+
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.045);
+}
+
+
+/* =====================================================
+   4. THỐNG KÊ NHANH
+   ===================================================== */
+
+.ep-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+    margin-bottom: 32px;
+}
+
+.ep-main .ep-stat-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: var(--spacing-6) var(--spacing-4);
-    text-align: center;
+
+    min-height: 175px;
+    padding: 22px 24px;
 }
 
-.ep-empty-card h2 {
-    margin: var(--spacing-3) 0 var(--spacing-2);
-    font-size: var(--font-size-h2);
-}
-
-.ep-empty-card > p:not(.ep-status) {
-    max-width: 600px;
-    margin-bottom: var(--spacing-3);
-    color: var(--text-light);
-}
-
-.ep-empty-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    margin-top: var(--spacing-3);
-    color: var(--primary-color);
-    background-color: var(--background-alt);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-large);
-    font-size: 30px;
-}
-
-.ep-empty-roadmap {
-    margin-top: var(--spacing-4);
-    padding: var(--spacing-4);
-}
-
-.ep-empty-message {
-    margin-top: var(--spacing-3);
-    padding: var(--spacing-4);
-    color: var(--text-light);
-    background-color: var(--background-color);
-    border: 1px dashed var(--border-color);
-    border-radius: var(--radius-medium);
-    text-align: center;
-}
-
-/* hidden duoc dung de an dung truong hop khong can hien thi */
-.ep-view[hidden] {
-    display: none !important;
-}
-
-/* 5. MUC TIEU BAN DAU */
-.ep-goal-card {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-3);
-    margin-top: var(--spacing-4);
-    padding: var(--spacing-4);
-}
-
-.ep-goal-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    flex: 0 0 44px;
-    color: var(--primary-color);
-    background-color: var(--background-alt);
-    border-radius: var(--radius-medium);
-    font-size: 25px;
-}
-
-.ep-goal-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.ep-section-label {
-    margin-bottom: var(--spacing-1);
-    color: var(--text-light);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-}
-
-.ep-goal-content h2 {
-    margin-bottom: var(--spacing-2);
-    font-size: 16px;
-    color: var(--success-color);
-}
-
-.ep-goal-content > p:not(.ep-section-label) {
-    margin-bottom: var(--spacing-2);
-    color: var(--text-color);
-}
-
-.ep-goal-top {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--spacing-2);
-}
-
-.ep-goal-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-2) var(--spacing-4);
-    margin-top: var(--spacing-2);
-    color: var(--text-light);
-    font-size: var(--font-size-small);
-}
-
-.ep-goal-meta strong {
-    color: var(--text-color);
-}
-
-/* 6. TONG QUAN TIEN DO */
-.ep-overview {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 280px;
-    align-items: center;
-    gap: var(--spacing-4);
-    padding: var(--spacing-4);
-}
-
-.ep-overview-main {
-    min-width: 0;
-}
-
-.ep-overview-main h2 {
-    margin: var(--spacing-3) 0 var(--spacing-2);
-    font-size: var(--font-size-h2);
-}
-
-.ep-overview-main > p {
-    color: var(--text-light);
-}
-
-.ep-progress-heading {
+.ep-stat-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-2);
-    margin: var(--spacing-3) 0 var(--spacing-2);
-    font-size: var(--font-size-small);
-}
+    gap: 10px;
 
-.ep-progress-heading strong {
-    color: var(--text-dark);
-    font-size: 16px;
-}
+    margin-bottom: 12px;
 
-.ep-progress {
-    width: 100%;
-    height: 9px;
-    overflow: hidden;
-    background-color: var(--border-color);
-    border-radius: 999px;
-}
-
-.ep-progress > span {
-    display: block;
-    height: 100%;
-    background-color: #76e09c;
-    border-radius: inherit;
-    transition: width 0.3s ease;
-}
-
-.ep-overview-stats {
-    padding: var(--spacing-3);
-    background-color: var(--background-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-medium);
-}
-
-.ep-overview-stats h3 {
-    margin-bottom: var(--spacing-3);
-    font-size: 18px;
-}
-
-.ep-stat {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-2);
-    margin-top: var(--spacing-3);
+    color: var(--text-light);
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .ep-stat-icon {
     display: flex;
     align-items: center;
     justify-content: center;
+
     width: 36px;
     height: 36px;
-    flex: 0 0 36px;
+    flex-shrink: 0;
+
     color: var(--primary-color);
-    background-color: var(--background-alt);
-    border-radius: var(--radius-small);
-    font-size: 17px;
+    background: var(--background-alt);
+    border-radius: 10px;
+
+    font-size: 20px;
+    font-weight: 700;
 }
 
-.ep-stat strong,
-.ep-stat div > span {
+.ep-stat-number {
     display: block;
+
+    color: var(--primary-color);
+
+    font-size: 35px;
+    font-weight: 800;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
 }
 
-.ep-stat strong {
-    color: var(--text-dark);
-    font-size: var(--font-size-small);
+.ep-stat-note {
+    margin: 7px 0 0;
+
+    color: var(--text-light);
+    font-size: 13px;
 }
 
-.ep-stat div > span {
+.ep-stat-footer {
+    margin-top: auto;
+    padding-top: 12px;
+
     color: var(--text-light);
     font-size: 12px;
 }
 
-/* 7. TIEU DE KHU VUC VA CAC GIAI DOAN */
+
+/* =====================================================
+   5. THANH TIẾN ĐỘ
+   ===================================================== */
+
+.ep-progress-track {
+    height: 8px;
+    margin-top: 17px;
+
+    overflow: hidden;
+
+    background: var(--border-color);
+    border-radius: 20px;
+}
+
+.ep-progress-track > span {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    background: var(--success-color);
+    border-radius: inherit;
+
+    transition: width 0.25s ease;
+}
+
+
+/* =====================================================
+   6. BỐ CỤC HAI CỘT
+   ===================================================== */
+
+.ep-workspace {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.85fr)
+        minmax(270px, 0.9fr);
+
+    align-items: start;
+    gap: 24px;
+}
+
+.ep-roadmap-column,
+.ep-sidebar {
+    min-width: 0;
+}
+
 .ep-section-heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-3);
-    margin-bottom: var(--spacing-3);
+    gap: 14px;
+
+    margin-bottom: 18px;
 }
 
 .ep-section-heading h2 {
-    margin-bottom: var(--spacing-1);
-    font-size: var(--font-size-h2);
+    margin: 0 0 5px;
+
+    color: var(--primary-color);
+    font-size: 23px;
+    font-weight: 750;
 }
 
 .ep-section-heading p {
-    margin-bottom: 0;
+    margin: 0;
+
     color: var(--text-light);
-    font-size: var(--font-size-small);
+    font-size: 13px;
 }
 
-.ep-roadmap {
-    margin-top: var(--spacing-5);
-}
 
-.ep-legend {
+/* =====================================================
+   7. DANH SÁCH GIAI ĐOẠN
+   ===================================================== */
+
+.ep-stage-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: var(--spacing-2) var(--spacing-3);
-    color: var(--text-light);
-    font-size: 12px;
+    flex-direction: column;
+    gap: 13px;
 }
 
-.ep-legend span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+.ep-stage {
+    min-width: 0;
+    overflow: hidden;
+
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.035);
 }
 
-.ep-legend i {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+.ep-stage[open] {
+    border-color: var(--primary-color);
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
 }
 
-.legend-green { background-color: var(--success-color); }
-.legend-yellow { background-color: #EAB308; }
-.legend-gray { background-color: #9CA3AF; }
 
-.ep-phase {
-    margin-bottom: var(--spacing-3);
-    padding: var(--spacing-4);
-}
+/* =====================================================
+   8. HEADER GIAI ĐOẠN
+   ===================================================== */
 
-.ep-phase-header {
+.ep-stage-summary {
     display: flex;
     align-items: center;
-    gap: var(--spacing-3);
-    margin-bottom: var(--spacing-3);
+    gap: 14px;
+
+    min-height: 105px;
+    padding: 19px 20px;
+
+    list-style: none;
+    cursor: pointer;
 }
 
-.ep-phase-number {
+.ep-stage-summary::-webkit-details-marker {
+    display: none;
+}
+
+.ep-stage-summary::marker {
+    content: "";
+}
+
+.ep-stage-number {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
-    flex: 0 0 34px;
-    color: var(--white-color);
-    background-color: var(--primary-color);
-    border-radius: 50%;
+
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+
+    color: var(--primary-color);
+    background: var(--background-alt);
+
+    border-radius: 13px;
+
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 800;
 }
 
-.ep-phase-title {
+.ep-stage.is-complete .ep-stage-number {
+    color: var(--success-color);
+    background: var(--success-bg);
+}
+
+.ep-stage-info {
     flex: 1;
     min-width: 0;
 }
 
-.ep-phase-title h3 {
-    margin: 0 0 var(--spacing-1);
+.ep-stage-title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 5px;
+}
+
+.ep-stage-title {
+    margin: 0;
+
+    color: var(--text-dark);
+    font-size: 16px;
+    font-weight: 750;
+    line-height: 1.45;
+}
+
+.ep-stage-subtitle {
+    margin: 0;
+
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.ep-stage-counter {
+    margin: 5px 0 0;
+
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ep-stage-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 9px;
+
+    flex-shrink: 0;
+}
+
+.ep-stage-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 26px;
+    height: 26px;
+
+    color: var(--text-light);
+    font-size: 23px;
+    line-height: 1;
+
+    transition: transform 0.2s ease;
+}
+
+.ep-stage[open] .ep-stage-chevron {
+    transform: rotate(180deg);
+}
+
+
+/* =====================================================
+   9. TRẠNG THÁI GIAI ĐOẠN
+   ===================================================== */
+
+.ep-status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+
+    color: var(--text-light);
+    background: var(--background-alt);
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Đã hoàn thành */
+.ep-status-badge.is-complete {
+    color: var(--success-color);
+    background: var(--success-bg);
+}
+
+/* Đang thực hiện */
+.ep-status-badge.is-active {
+    color: var(--warning-color);
+    background: var(--warning-bg);
+}
+
+
+/* =====================================================
+   10. NỘI DUNG GIAI ĐOẠN KHI MỞ
+   ===================================================== */
+
+.ep-stage-bottom {
+    padding: 0 20px 20px;
+}
+
+.ep-stage-bottom .ep-progress-track {
+    margin: 0 0 17px;
+}
+
+.ep-stage-body {
+    padding: 15px 0 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.ep-stage-description {
+    margin: 0 0 14px;
+
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+.ep-stage-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 17px;
+}
+
+
+
+/* =====================================================
+   11. NHIỆM VỤ VÀ TÀI LIỆU HỌC TẬP
+   Chỉ checkbox có quyền thay đổi trạng thái.
+   ===================================================== */
+
+.ep-main .ep-task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.ep-main .ep-task-item {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+.ep-main .ep-task-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-height: 57px;
+    padding: 10px 13px;
+
+    background: var(--background-color);
+}
+
+.ep-main .ep-task-check {
+    display: block;
+    flex: 0 0 19px;
+
+    width: 19px;
+    height: 19px;
+    margin: 0;
+
+    accent-color: var(--success-color);
+    cursor: pointer;
+}
+
+.ep-main .ep-task-open,
+.ep-main .ep-task-link {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    min-width: 0;
+    padding: 3px 0;
+    margin: 0;
+
+    color: var(--text-color);
+    background: transparent;
+    border: 0;
+    border-radius: 5px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    text-align: left;
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.ep-main .ep-task-open:hover,
+.ep-main .ep-task-link:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.ep-main .ep-task-name {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.ep-main .ep-task-action {
+    flex-shrink: 0;
+
+    color: var(--primary-color);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.ep-main .ep-task-item.is-done .ep-task-name {
+    color: var(--text-light);
+    text-decoration: line-through;
+}
+
+.ep-main .ep-task-item.is-open {
+    border-color: var(--primary-color);
+}
+
+.ep-main .ep-task-open[aria-expanded="true"] {
+    color: var(--primary-color);
+}
+
+/* KHU VỰC TÀI LIỆU MỞ DƯỚI NHIỆM VỤ */
+
+.ep-main .ep-learning-panel {
+    padding: 20px;
+
+    background: var(--white-color);
+    border-top: 1px solid var(--border-color);
+}
+
+.ep-main .ep-learning-heading {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    margin-bottom: 13px;
+}
+
+.ep-main .ep-learning-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+
+    color: var(--primary-color);
+    background: var(--background-alt);
+    border-radius: 9px;
+
     font-size: 18px;
 }
 
-.ep-phase-title h3 span {
-    color: var(--text-light);
-    font-size: var(--font-size-small);
-    font-weight: 500;
-}
-
-.ep-phase-title p {
+.ep-main .ep-learning-heading h3 {
     margin: 0;
-    color: var(--text-light);
-    font-size: var(--font-size-small);
-}
 
-.ep-phase-title p.text-green,
-.text-green {
-    color: var(--success-color);
+    color: var(--primary-color);
+    font-size: 16px;
     font-weight: 700;
 }
 
-.ep-phase > .ep-progress {
-    margin-bottom: var(--spacing-3);
-}
+.ep-main .ep-learning-intro,
+.ep-main .ep-learning-practice {
+    margin: 0 0 15px;
 
-.ep-phase-locked {
-    background-color: var(--background-color);
-}
-
-.ep-phase-locked .ep-phase-number {
-    color: var(--text-light);
-    background-color: var(--border-color);
-}
-
-.ep-phase-locked > .ep-progress > span {
-    background-color: var(--text-light);
-}
-
-.ep-phase-note {
-    margin: var(--spacing-3) 0;
-    padding: var(--spacing-2) var(--spacing-3);
-    color: var(--text-light);
-    background-color: var(--background-color);
-    border-radius: var(--radius-small);
-    font-size: var(--font-size-small);
-}
-
-.ep-topic-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-2);
-}
-
-.ep-topic-tags span {
-    padding: 5px 10px;
     color: var(--text-color);
-    background-color: var(--background-alt);
-    border-radius: 999px;
-    font-size: 12px;
-}
-
-/* 8. BANG NHIEM VU */
-.ep-table-wrap {
-    width: 100%;
-    overflow-x: auto;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-small);
-}
-
-.ep-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: var(--white-color);
-    font-size: var(--font-size-small);
-    text-align: left;
-}
-
-.ep-table th,
-.ep-table td {
-    padding: 12px;
-    border-bottom: 1px solid var(--border-color);
-    vertical-align: middle;
-}
-
-.ep-table th {
-    color: var(--text-dark);
-    background-color: var(--background-alt);
     font-size: 13px;
+    line-height: 1.75;
+}
+
+.ep-main .ep-learning-section-title {
+    margin: 18px 0 9px;
+
+    color: var(--text-dark);
+    font-size: 14px;
     font-weight: 700;
-    white-space: nowrap;
 }
 
-.ep-table td {
+.ep-main .ep-learning-points {
+    margin: 0 0 15px;
+    padding-left: 20px;
+
     color: var(--text-color);
+    font-size: 13px;
+    line-height: 1.8;
 }
 
-.ep-table tbody tr:last-child td {
-    border-bottom: 0;
+.ep-main .ep-learning-points li {
+    margin-bottom: 6px;
 }
 
-.ep-table tbody tr:hover {
-    background-color: var(--background-color);
+.ep-main .ep-learning-example {
+    max-width: 100%;
+    margin: 0 0 16px;
+    padding: 15px;
+
+    overflow-x: auto;
+
+    color: var(--text-dark);
+    background: var(--background-alt);
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre;
 }
 
-.ep-task-status {
+.ep-main .ep-learning-practice-box {
+    padding: 16px;
+
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.ep-main .ep-learning-practice-box
+.ep-learning-section-title {
+    margin-top: 0;
+}
+
+.ep-main .ep-answer-toggle {
     display: inline-flex;
     align-items: center;
-    padding: 4px 9px;
-    border-radius: 999px;
+    gap: 7px;
+
+    min-height: 35px;
+    padding: 7px 11px;
+
+    color: var(--primary-color);
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    font-family: inherit;
     font-size: 12px;
     font-weight: 700;
-    white-space: nowrap;
+
+    cursor: pointer;
 }
 
-.ep-phase .ep-actions .ep-button {
-    min-height: 38px;
+.ep-main .ep-answer-toggle:hover {
+    background: var(--background-alt);
 }
 
-/* 9. TRANG CHI TIET LO TRINH */
+.ep-main .ep-answer-content {
+    margin-top: 12px;
+    padding: 12px 14px;
+
+    color: var(--text-color);
+    background: var(--white-color);
+    border-left: 3px solid var(--success-color);
+    border-radius: 6px;
+
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.ep-main .ep-learning-note {
+    margin: 14px 0 0;
+
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+    .ep-main .ep-task-row {
+        gap: 9px;
+        padding: 10px;
+    }
+
+    .ep-main .ep-task-action {
+        font-size: 10px;
+    }
+
+    .ep-main .ep-learning-panel {
+        padding: 14px;
+    }
+
+    .ep-main .ep-learning-heading h3 {
+        font-size: 14px;
+    }
+}
+
+
+
+/* =====================================================
+   12. SIDEBAR BÊN PHẢI
+   ===================================================== */
+
+.ep-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ep-side-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 17px;
+}
+
+.ep-side-heading h2,
+.ep-tip-box h2 {
+    margin: 0;
+
+    color: var(--text-dark);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.ep-side-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+
+    color: var(--primary-color);
+    background: var(--background-alt);
+
+    border-radius: 10px;
+    font-size: 21px;
+}
+
+
+/* =====================================================
+   13. THẺ MỤC TIÊU HỌC TẬP
+   ===================================================== */
+
+
+.ep-goal-value {
+    display: block;
+    margin-bottom: 12px;
+
+    color: var(--success-color);
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: normal;
+}
+
+
+.ep-side-description {
+    margin: 0 0 14px;
+
+    color: var(--text-light);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   14. THẺ VIỆC CẦN LÀM TIẾP
+   ===================================================== */
+
+.ep-next-task {
+    margin: 0 0 8px;
+
+    color: var(--text-dark);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   15. THẺ GỢI Ý HỌC TẬP
+   ===================================================== */
+
+.ep-main .ep-tip-box {
+    background: var(--background-alt);
+}
+
+.ep-tip-box p {
+    margin: 12px 0;
+
+    color: var(--text-light);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   16. CÁC NÚT BẤM
+   ===================================================== */
+
+.ep-main .ep-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 40px;
+    padding: 9px 15px;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.45;
+    text-align: center;
+
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+/* Nút chính */
+.ep-main .ep-button-primary {
+    color: var(--white-color);
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.ep-main .ep-button-primary:hover {
+    color: var(--white-color);
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* Nút phụ */
+.ep-main .ep-button-secondary {
+    color: var(--primary-color);
+    background: var(--white-color);
+    border-color: var(--border-color);
+}
+
+.ep-main .ep-button-secondary:hover {
+    color: var(--primary-dark);
+    background: var(--background-alt);
+    border-color: var(--primary-color);
+}
+
+.ep-full-button {
+    width: 100%;
+}
+
+.ep-text-link {
+    color: var(--primary-color);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ep-text-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+
+/* =====================================================
+   17. TRẠNG THÁI CHƯA CÓ LỘ TRÌNH
+   ===================================================== */
+
+.ep-main .ep-empty-content {
+    max-width: 690px;
+    margin: 30px auto;
+    padding: 50px 26px;
+
+    text-align: center;
+}
+
+.ep-empty-icon {
+    display: block;
+
+    margin-bottom: 14px;
+    font-size: 52px;
+}
+
+.ep-empty-content h2 {
+    margin: 0 0 12px;
+
+    color: var(--primary-color);
+    font-size: 24px;
+}
+
+.ep-empty-content p {
+    max-width: 450px;
+    margin: 0 auto 22px;
+
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.ep-empty-content .ep-button {
+    margin: 5px;
+}
+
+
+/* =====================================================
+   18. TRANG CHI TIẾT - BREADCRUMB
+   ===================================================== */
+
 .ep-breadcrumb {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--spacing-2);
-    margin-bottom: var(--spacing-2);
+    gap: 9px;
+
+    margin-bottom: 24px;
+
     color: var(--text-light);
-    font-size: var(--font-size-small);
+    font-size: 13px;
 }
 
 .ep-breadcrumb a,
 .ep-back-link {
     color: var(--primary-color);
-    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .ep-breadcrumb a:hover,
@@ -619,576 +1012,338 @@
 
 .ep-back-link {
     display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-1);
-    margin-bottom: var(--spacing-3);
-    font-size: var(--font-size-small);
-    font-weight: 700;
+    margin-bottom: 22px;
 }
 
-.ep-detail-hero {
+
+/* =====================================================
+   19. TRANG CHI TIẾT - BỐ CỤC
+   ===================================================== */
+
+.ep-detail-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 270px;
-    align-items: center;
-    gap: var(--spacing-4);
-    padding: var(--spacing-4);
+    grid-template-columns:
+        minmax(0, 1.8fr)
+        minmax(255px, 0.8fr);
+
+    align-items: start;
+    gap: 22px;
 }
 
-.ep-detail-title {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-3);
-    margin: var(--spacing-2) 0 var(--spacing-3);
-}
-
-.ep-detail-title h1 {
-    margin-bottom: var(--spacing-2);
-    color: var(--primary-color);
-    font-size: 32px;
-}
-
-.ep-detail-title p {
-    margin-bottom: 0;
-    color: var(--text-light);
-}
-
-.ep-detail-progress {
-    padding: var(--spacing-3);
-    background-color: var(--background-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-medium);
-}
-
-.ep-detail-percent {
-    display: block;
-    margin-bottom: var(--spacing-1);
-    color: var(--primary-color);
-    font-size: 36px;
-    line-height: 1.2;
-}
-
-.ep-detail-progress > p {
-    margin-bottom: var(--spacing-3);
-    color: var(--text-light);
-    font-size: var(--font-size-small);
-}
-
-.ep-detail-progress .ep-progress-heading {
-    margin-bottom: 0;
-}
-
-.ep-detail-stats {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--spacing-3);
-    margin: var(--spacing-4) 0;
-}
-
-.ep-detail-stat {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-3);
-    padding: var(--spacing-3);
-}
-
-.ep-detail-stat p {
-    margin-bottom: var(--spacing-1);
-    color: var(--text-light);
-    font-size: var(--font-size-small);
-}
-
-.ep-detail-stat strong {
-    display: block;
-    margin-bottom: var(--spacing-1);
-    color: var(--text-dark);
-    font-size: 18px;
-}
-
-.ep-detail-stat div > span {
-    color: var(--text-light);
-    font-size: 12px;
-}
-
-.ep-detail-stats + .ep-goal-card {
-    margin-top: 0;
-}
-
-.ep-detail-tasks,
-.ep-resources {
-    margin-top: var(--spacing-4);
-    padding: var(--spacing-4);
-}
-
-.ep-detail-table {
-    min-width: 760px;
-}
-
-.ep-detail-table td:first-child {
-    min-width: 210px;
-}
-
-.ep-detail-table td strong,
-.ep-table-subtext {
-    display: block;
-}
-
-.ep-detail-table td strong {
-    color: var(--text-dark);
-}
-
-.ep-table-subtext {
-    margin-top: var(--spacing-1);
-    color: var(--text-light);
-    font-size: 12px;
-}
-
-.ep-note {
-    margin: var(--spacing-2) 0 0;
-    color: var(--text-light);
-    font-size: 12px;
-}
-
-/* 10. TAI LIEU HOC TAP */
-.ep-resources > h2 {
-    font-size: var(--font-size-h2);
-}
-
-.ep-resources > p {
-    color: var(--text-light);
-}
-
-.ep-resource-row {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-3);
-    padding: var(--spacing-3) 0;
-    border-top: 1px solid var(--border-color);
-}
-
-.ep-resource-badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 46px;
-    height: 46px;
-    flex: 0 0 46px;
-    color: var(--primary-color);
-    background-color: var(--background-alt);
-    border-radius: var(--radius-medium);
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.ep-resource-row > div {
-    flex: 1;
+.ep-detail-main {
     min-width: 0;
 }
 
-.ep-resource-row h3 {
-    margin-bottom: var(--spacing-1);
-    font-size: 16px;
-    color: var(--text-dark);
-}
-
-.ep-resource-row p {
-    margin-bottom: 0;
-    color: var(--text-light);
-    font-size: var(--font-size-small);
-}
-
-.ep-resource-row > a {
-    flex-shrink: 0;
-    font-size: var(--font-size-small);
-    font-weight: 700;
-}
-
-.ep-resource-row > a:hover {
-    text-decoration: underline;
-}
-
-.ep-detail-bottom-actions {
+.ep-detail-heading {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--spacing-3);
-    margin-top: var(--spacing-4);
+    gap: 14px;
+
+    margin-bottom: 17px;
 }
 
-/* 11. RESPONSIVE */
-@media (max-width: 991px) {
-    .ep-overview,
-    .ep-detail-hero {
-        grid-template-columns: minmax(0, 1fr) 250px;
-        gap: var(--spacing-3);
-    }
+.ep-detail-heading h1 {
+    margin: 0;
 
-    .ep-overview-stats {
-        padding: var(--spacing-2);
-    }
-
-    .ep-footer-grid {
-        gap: var(--spacing-3);
-    }
+    color: var(--primary-color);
+    font-size: 25px;
+    font-weight: 750;
+    line-height: 1.35;
 }
 
-@media (max-width: 767px) {
-    .ep-main {
-        padding: var(--spacing-5) 0 var(--spacing-6);
-    }
+.ep-detail-subtitle {
+    margin: 8px 0 0;
 
-    .ep-container {
-        padding: 0 var(--spacing-3);
-    }
-
-    .ep-overview,
-    .ep-detail-hero {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .ep-overview-stats {
-        padding: var(--spacing-3);
-    }
-
-    .ep-detail-progress {
-        max-width: none;
-    }
-
-    .ep-detail-stats {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .ep-section-heading {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .ep-legend {
-        justify-content: flex-start;
-    }
-
-    .ep-phase-header {
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: var(--spacing-2);
-    }
-
-    .ep-phase-title {
-        flex: 1 1 calc(100% - 60px);
-    }
-
-    .ep-phase-header > .ep-status {
-        margin-left: 50px;
-    }
-
-    .ep-goal-card {
-        gap: var(--spacing-2);
-        padding: var(--spacing-3);
-    }
-
-    .ep-goal-icon {
-        width: 36px;
-        height: 36px;
-        flex-basis: 36px;
-        font-size: 21px;
-    }
-
-    .ep-goal-top {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: var(--spacing-1);
-    }
-
-    .ep-resource-row {
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-
-    .ep-resource-row > div {
-        flex-basis: calc(100% - 60px);
-    }
-
-    .ep-resource-row > a {
-        margin-left: 59px;
-    }
-
-    .ep-detail-bottom-actions {
-        align-items: stretch;
-        flex-direction: column-reverse;
-    }
-
-    .ep-detail-bottom-actions .ep-button {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .ep-empty-card {
-        padding: var(--spacing-4) var(--spacing-3);
-    }
-
-    .ep-actions {
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    .ep-actions .ep-button {
-        width: 100%;
-    }
-
-    .ep-phase,
-    .ep-empty-roadmap,
-    .ep-detail-tasks,
-    .ep-resources {
-        padding: var(--spacing-3);
-    }
-
-    .ep-table th,
-    .ep-table td {
-        padding: 10px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .ep-button,
-    .ep-progress > span {
-        transition: none;
-    }
-}
-
-/* Van ban chi danh cho cong nghe ho tro */
-.ep-visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-
-
-/* =========================================
-   BỐ CỤC 2 KHỐI TRÊN TRANG TIẾN ĐỘ
-   ========================================= */
-
-.ep-top-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(320px, 0.85fr);
-    align-items: stretch;
-    gap: var(--spacing-4);
-    margin-bottom: var(--spacing-4);
-}
-
-.ep-progress-summary {
-    min-width: 0;
-    padding: var(--spacing-4);
-}
-
-.ep-card .ep-progress-summary-title {
-    margin-bottom: var(--spacing-4);
     color: var(--text-light);
-    font-size: 20px;
-    
-}
-
-.ep-progress-summary-body {
-    display: grid;
-    grid-template-columns: 112px minmax(0, 1fr);
-    align-items: center;
-    gap: var(--spacing-4);
-}
-
-.ep-progress-donut-block {
-    min-width: 0;
-    text-align: center;
-}
-
-.ep-progress-donut {
-    position: relative;
-    display: grid;
-    place-items: center;
-    width: 104px;
-    aspect-ratio: 1;
-    margin: 0 auto;
-    border-radius: 50%;
-   background: conic-gradient(
-    var(--success-color) 0 var(--progress),
-    var(--border-color) var(--progress) 100%
-);
-}
-
-.ep-progress-donut::before {
-    content: "";
-    position: absolute;
-    inset: 9px;
-    border-radius: 50%;
-    background-color: var(--white-color);
-}
-
-.ep-progress-donut > span {
-    position: relative;
-    z-index: 1;
-    color: var(--primary-dark);
-    font-size: 23px;
-    font-weight: 800;
-}
-
-.ep-progress-donut-caption {
-    margin: var(--spacing-2) 0 0;
-    color: var(--text-light);
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.ep-progress-donut-caption strong {
-    display: block;
-    color: var(--success-color);
     font-size: 13px;
 }
 
-/* Ba chỉ số bên cạnh biểu đồ */
-.ep-progress-summary-metrics {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: start;
-    gap: var(--spacing-3);
-    min-width: 0;
+.ep-detail-description {
+    margin: 0 0 19px;
+
+    color: var(--text-light);
+    font-size: 14px;
 }
 
-.ep-progress-mini-stat {
+
+/* =====================================================
+   20. TRANG CHI TIẾT - TIẾN ĐỘ
+   ===================================================== */
+
+.ep-detail-progress-info {
     display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-2);
-    min-width: 0;
+    justify-content: space-between;
+    gap: 10px;
+
+    margin-bottom: 9px;
+
+    color: var(--text-color);
+    font-size: 13px;
 }
 
-.ep-progress-mini-icon {
+.ep-detail-progress-info strong {
+    color: var(--primary-color);
+}
+
+.ep-detail-task-heading {
+    margin: 24px 0 13px;
+
+    color: var(--primary-color);
+    font-size: 19px;
+}
+
+.ep-detail-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ep-detail-big-number {
+    display: block;
+
+    margin: 8px 0;
+
+    color: var(--primary-color);
+    font-size: 36px;
+    font-weight: 800;
+}
+
+.ep-detail-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+
+/* =====================================================
+   21. TRANG CHI TIẾT - HỘP HỖ TRỢ
+   ===================================================== */
+
+.ep-detail-help {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    flex: 0 0 36px;
-    border-radius: var(--radius-small);
-    font-size: 18px;
-    font-weight: 700;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-top: 25px;
+    padding: 24px;
+
+    background: var(--background-alt);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
 }
 
-.ep-progress-mini-stat > div {
-    min-width: 0;
-}
+.ep-detail-help h2 {
+    margin: 0 0 6px;
 
-.ep-progress-mini-stat strong,
-.ep-progress-mini-stat div > span,
-.ep-progress-mini-stat small {
-    display: block;
-}
-
-/* Số liệu chính */
-.ep-progress-mini-stat strong {
-    margin-bottom: 4px;
-    color: var(--text-dark);
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.5;
-}
-
-/* Mô tả số liệu */
-.ep-progress-mini-stat div > span {
-    color: var(--text-light);
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.ep-progress-mini-stat small {
-    margin-top: 4px;
-    color: var(--success-color);
-    font-size: 11px;
-    font-weight: 700;
-}
-
-.ep-progress-icon-time {
-    color: #15966B;
-    background-color: #F1F5F9;
-}
-
-.ep-progress-icon-subjects {
     color: var(--primary-color);
-    background-color: #F1F5F9;
+    font-size: 18px;
 }
 
-.ep-progress-icon-days {
-    color: #D97706;
-    background-color: #F1F5F9;
+.ep-detail-help p {
+    margin: 0;
+
+    color: var(--text-light);
+    font-size: 13px;
 }
 
+.ep-detail-help-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 
-/* =========================================
-   KHỐI MỤC TIÊU BAN ĐẦU
-   Chỉ áp dụng khi nằm trong ep-top-layout
-   ========================================= */
-
-.ep-top-layout .ep-goal-summary {
-    min-width: 0;
-    margin-top: 0;
-    padding: var(--spacing-4);
-    box-sizing: border-box;
+    flex-shrink: 0;
 }
 
-.ep-top-layout .ep-goal-summary .ep-goal-content {
-    min-width: 0;
+.ep-loading {
+    color: var(--text-light);
+    text-align: center;
 }
 
-.ep-top-layout .ep-goal-summary .ep-goal-top {
-    margin-bottom: var(--spacing-3);
-}
+.ep-live-status {
+    margin: 12px 0 0;
 
-.ep-top-layout .ep-goal-summary .ep-goal-content h2 {
-    margin-bottom: var(--spacing-3);
-    color: var(  --green-btn-hover);
-    font-size: 22px;
-    line-height: 1.4;
-}
-
-.ep-top-layout .ep-goal-summary .ep-goal-content > p:not(.ep-section-label) {
-    color: var(--text-color);
-    font-size: 16px;
-    line-height: 1.7;
-}
-
-.ep-top-layout .ep-goal-summary .ep-goal-meta {
-    margin-top: var(--spacing-4);
+    color: var(--warning-color);
+    font-size: 13px;
 }
 
 
-/* =========================================
-   RESPONSIVE
-   ========================================= */
 
-@media (max-width: 1100px) {
-    .ep-top-layout {
+/* =====================================================
+   22. RESPONSIVE - TABLET
+   Giữ bố cục 2 cột cho trang Tiến độ
+   ===================================================== */
+
+@media (max-width: 991.98px) {
+
+    .ep-workspace {
+        grid-template-columns:
+            minmax(0, 1.35fr)
+            minmax(280px, 1fr);
+
+        gap: 16px;
+    }
+
+    .ep-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    /* Trang Chi tiết vẫn chuyển thành 1 cột */
+    .ep-detail-layout {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ep-detail-aside {
+        display: grid;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 767px) {
-    .ep-progress-summary-body {
+
+
+/* =====================================================
+   23. RESPONSIVE - MOBILE
+   ===================================================== */
+
+@media (max-width: 767.98px) {
+    .ep-workspace {
+    grid-template-columns: minmax(0, 1fr);
+        }
+
+    .ep-sidebar {
+        order: -1;
+    }
+
+    .ep-main {
+        padding: 25px 16px 60px;
+    }
+
+    .ep-page-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 13px;
+    }
+
+    .ep-page-heading h1 {
+        font-size: 28px;
+    }
+
+    .ep-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+    .ep-stat-card:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .ep-main .ep-stat-card {
+        min-height: 150px;
+        padding: 18px;
+    }
+
+    .ep-stat-number {
+        font-size: 30px;
+    }
+
+    .ep-section-heading h2 {
+        font-size: 21px;
+    }
+
+    .ep-detail-aside {
+    grid-template-columns: 1fr;
+}
+
+    .ep-stage-summary {
+        gap: 10px;
+        padding: 15px 14px;
+    }
+
+    .ep-stage-number {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
+    }
+
+    .ep-stage-title {
+        font-size: 14px;
+    }
+
+    .ep-stage-right .ep-status-badge {
+        display: none;
+    }
+
+    .ep-stage-bottom {
+        padding: 0 14px 16px;
+    }
+
+    .ep-main .ep-panel {
+        padding: 18px;
+    }
+
+    .ep-detail-heading h1 {
+        font-size: 21px;
+    }
+
+    .ep-detail-help {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+    }
+}
+
+
+/* =====================================================
+   24. RESPONSIVE - ĐIỆN THOẠI NHỎ
+   ===================================================== */
+
+@media (max-width: 400px) {
+
+    .ep-stats {
         grid-template-columns: 1fr;
     }
 
-    .ep-progress-summary-metrics {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .ep-stat-card:first-child {
+        grid-column: auto;
     }
 
-    .ep-top-layout .ep-goal-summary {
-        padding: var(--spacing-3);
+    .ep-stage-summary {
+        align-items: flex-start;
     }
 
-    .ep-top-layout .ep-goal-summary .ep-goal-content h2 {
-        font-size: 19px;
+    .ep-stage-chevron {
+        margin-top: 5px;
+    }
+
+    .ep-detail-navigation,
+    .ep-detail-help-actions {
+        flex-direction: column;
+    }
+
+    .ep-detail-navigation .ep-button,
+    .ep-detail-help-actions .ep-button {
+        width: 100%;
+    }
+}
+
+
+/* =====================================================
+   25. HẠN CHẾ CHUYỂN ĐỘNG
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .ep-main .ep-progress-track > span,
+    .ep-main .ep-stage-chevron,
+    .ep-main .ep-button {
+        transition: none;
     }
 }
