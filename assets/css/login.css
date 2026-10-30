@@ -274,3 +274,211 @@
     color: var(--primary-dark);
     text-decoration: underline;
 }
+
+/* ===== DESKTOP ===== */
+@media (min-width: 1024px) {
+    .login-page {
+        min-height: 100vh;
+        grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.95fr);
+    }
+
+    .login-intro,
+    .login-form-section {
+        min-width: 0;
+    }
+
+    .login-intro {
+        padding: 48px 40px;
+    }
+
+    .login-form-section {
+        justify-content: center;
+        padding: 48px 40px;
+    }
+
+    .login-intro-content {
+        max-width: 550px;
+    }
+
+    .login-card {
+        max-width: 440px;
+    }
+
+    .login-illustration img {
+        max-width: 100%;
+        height: 200px;
+    }
+}
+
+/* ===== TABLET: 768PX - 1023PX ===== */
+
+/* ===== TABLET: 768PX - 1023PX ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    /* Giữ hai cột cạnh nhau */
+    .login-page {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+        min-height: 100vh;
+    }
+
+    /* Phần giới thiệu bên trái */
+    .login-intro {
+        justify-content: center;
+        padding: 32px 20px;
+    }
+
+    .login-intro-content {
+        max-width: 100%;
+    }
+
+    .login-intro h1 {
+        font-size: clamp(24px, 3vw, 30px);
+        line-height: 1.3;
+    }
+
+    .login-intro-description {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    /* Hình minh họa */
+    .login-illustration {
+        margin-bottom: 16px;
+    }
+
+    .login-illustration img {
+        width: min(100%, 260px);
+        height: 155px;
+        object-fit: contain;
+    }
+
+    /* Ẩn 3 lợi ích trên Tablet */
+    .login-benefits {
+        display: none;
+    }
+
+    /* Form bên phải */
+    .login-form-section {
+        justify-content: center;
+        padding: 24px 18px;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 440px;
+        padding: 20px;
+    }
+
+    .login-header h2 {
+        font-size: 24px;
+    }
+
+    .login-header p {
+        font-size: 13px;
+    }
+
+    .login-options {
+        gap: 8px;
+        font-size: 12px;
+    }
+
+    .login-options a {
+        font-size: 12px;
+    }
+}
+
+/* ===== MOBILE: DƯỚI 768PX ===== */
+@media (max-width: 767px) {
+    /* Bố cục một cột */
+    .login-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    /* Ẩn hoàn toàn phần giới thiệu */
+    .login-intro {
+        display: none;
+    }
+
+    /* Chỉ hiển thị form đăng nhập */
+    .login-form-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        padding: 24px 16px;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 460px;
+        padding: 24px 18px;
+    }
+
+    .login-header h2 {
+        font-size: 24px;
+    }
+
+    .login-header p {
+        font-size: 13px;
+    }
+
+    .login-form-group input[type="text"],
+    .login-form-group input[type="password"] {
+        width: 100%;
+        height: 44px;
+        font-size: 14px;
+    }
+
+    .login-options {
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 12px;
+    }
+
+    .login-options a {
+        font-size: 12px;
+    }
+
+    .login-submit,
+    .google-login {
+        height: 44px;
+        font-size: 14px;
+    }
+
+    .register-link {
+        font-size: 12px;
+    }
+}
+
+
+/* ===== FOCUS BÀN PHÍM ===== */
+.login-form-group input:focus-visible,
+.login-submit:focus-visible,
+.google-login:focus-visible,
+.login-options a:focus-visible,
+.register-link a:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+/* ===== THÔNG BÁO FORM ===== */
+.login-message {
+    margin: 12px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.login-message:empty {
+    display: none;
+}
+
+.login-message.is-info {
+    color: var(--primary-color);
+}
