@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
 
     <!-- Thư viện icon Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../assets/css/chatbot.css">
 </head>
 
 <body>
@@ -17,10 +19,7 @@
     <header>
         <!-- Logo -->
         <div class="logo">
-            <img src="../assets/images/logo.png"
-                 alt="EduTrack Logo"
-                 width="70"
-                 height="70">
+            <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
             <a href="../index.html">EduTrack</a>
         </div>
 
@@ -34,9 +33,7 @@
 
             <!-- TH1: Trước khi đăng nhập -->
             <li class="button" hidden>
-                <button type="button"
-                        class="button-link"
-                        onclick="window.location.href='login.html'">
+                <button type="button" class="button-link" onclick="window.location.href='login.html'">
                     Bắt đầu ngay
                 </button>
             </li>
@@ -53,9 +50,7 @@
                         <span class="student-name">Phan Kim Chi</span>
 
                         <!-- Icon mũi tên -->
-                        <svg class="account-arrow"
-                             viewBox="0 0 24 24"
-                             aria-hidden="true">
+                        <svg class="account-arrow" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="m6 9 6 6 6-6"></path>
                         </svg>
                     </summary>
@@ -66,13 +61,9 @@
                         <!-- Thông tin cá nhân -->
                         <a href="#" class="account-item">
                             <div class="icon-box">
-                                <svg viewBox="0 0 24 24"
-                                     aria-hidden="true">
-                                    <rect x="5" y="3"
-                                          width="14" height="18"
-                                          rx="2"></rect>
-                                    <circle cx="12" cy="9"
-                                            r="2.5"></circle>
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <rect x="5" y="3" width="14" height="18" rx="2"></rect>
+                                    <circle cx="12" cy="9" r="2.5"></circle>
                                     <path d="M8.5 16c.8-2 2.1-3 3.5-3s2.7 1 3.5 3"></path>
                                 </svg>
                             </div>
@@ -82,11 +73,9 @@
                         </a>
 
                         <!-- Tiến độ học tập -->
-                        <a href="progress.html"
-                           class="account-item">
+                        <a href="progress.html" class="account-item">
                             <div class="icon-box">
-                                <svg viewBox="0 0 24 24"
-                                     aria-hidden="true">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M4 19V9"></path>
                                     <path d="M10 19V5"></path>
                                     <path d="M16 19v-7"></path>
@@ -103,11 +92,9 @@
                         <div class="dropdown-line"></div>
 
                         <!-- Đăng xuất -->
-                        <a href="login.html"
-                           class="account-item logout">
+                        <a href="login.html" class="account-item logout">
                             <div class="icon-box">
-                                <svg viewBox="0 0 24 24"
-                                     aria-hidden="true">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M14 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8"></path>
                                     <path d="M10 12h10"></path>
                                     <path d="M17 8l4 4-4 4"></path>
@@ -132,8 +119,7 @@
                 <div class="privacy-hero-content">
 
                     <div class="privacy-hero-heading">
-                        <i data-lucide="shield-check"
-                           aria-hidden="true"></i>
+                        <i data-lucide="shield-check" aria-hidden="true"></i>
                         <span>EDUTRACK • ĐIỀU KHOẢN SỬ DỤNG</span>
                     </div>
 
@@ -572,35 +558,7 @@
             </div>
         </section>
 
-        <!-- PHẦN 3: LIÊN HỆ HỖ TRỢ -->
-        <section class="privacy-support">
-            <div class="privacy-container">
-                <div class="privacy-support-content">
 
-                    <div class="privacy-support-heading">
-                        <i data-lucide="headset"
-                           aria-hidden="true"></i>
-                        <h2>Bạn cần hỗ trợ thêm?</h2>
-                    </div>
-
-                    <p>
-                        Nếu có thắc mắc về điều khoản sử dụng,
-                        quyền và trách nhiệm của người dùng
-                        hoặc gặp khó khăn khi sử dụng EduTrack,
-                        vui lòng liên hệ với chúng tôi
-                        để được hỗ trợ.
-                    </p>
-
-                    <a href="advising-contact.html"
-                       class="privacy-support-btn">
-                        Liên hệ hỗ trợ
-                        <i data-lucide="arrow-right"
-                           aria-hidden="true"></i>
-                    </a>
-
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- ================= FOOTER ================= -->
@@ -609,10 +567,7 @@
         <!-- Giới thiệu EduTrack -->
         <section class="footer-intro">
             <div class="footer-logo">
-                <img src="../assets/images/logo.png"
-                     alt="EduTrack Logo"
-                     width="70"
-                     height="70">
+                <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
                 <h2>EduTrack</h2>
             </div>
 
@@ -671,10 +626,11 @@
             </span>
         </section>
     </footer>
-
+    <script src="../assets/js/chatbot.js" defer></script>
     <!-- Khởi tạo Lucide Icons -->
     <script>
         lucide.createIcons();
     </script>
 </body>
+
 </html>
