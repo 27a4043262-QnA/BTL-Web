@@ -18,23 +18,32 @@
 
 </head>
 <body>
- <!-- HEADER -->
+<!-- HEADER -->
      <header>
         <!-- Logo -->
         <div class="logo">
             <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
             <a href="../index.html">EduTrack</a>
         </div>
+        <!-- Nút Hamburger -->
+        <button class="et-nav-toggle" type="button"
+                aria-label="Mở menu điều hướng"
+                aria-controls="et-primary-nav"
+                aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <!-- Navigation Menu -->
-        <ul>
-            <li><a href="../index.html" >Trang chủ</a></li>
-            <li><a href="../pages/courses.html" aria-current="page">Môn học</a></li>
-            <li><a href="../pages/gpa-calculator.html">Tính GPA</a></li>
-            <li><a href="../pages/advising-contact.html">Tư vấn</a></li>
-            <li><a href="../pages/about.html">Giới thiệu</a></li>
+        <ul id="et-primary-nav">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="courses.html" aria-current="page">Môn học</a></li>
+            <li><a href="gpa-calculator.html">Tính GPA</a></li>
+            <li><a href="advising-contact.html">Tư vấn</a></li>
+            <li><a href="about.html">Giới thiệu</a></li>
             <!--TH1: Truoc khi dang nhap-->
             <li class="button" hidden>
-                <button type="button" class="button-link" onclick="window.location.href='../pages/login.html'">Bắt đầu ngay</button>
+                <button type="button" class="button-link" onclick="window.location.href='pages/login.html'">Bắt đầu ngay</button>
             </li>
             <!-- TH2: Sau khi dang nhap-->
             <li class="button">
@@ -66,7 +75,7 @@
                             </div>
                         </a>
                         <!-- Tiến độ học tập -->
-                        <a href="../pages/progress.html" class="account-item">
+                        <a href="progress.html" class="account-item">
                             <div class="icon-box">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M4 19V9"></path>
@@ -83,7 +92,7 @@
                         </a>
                         <div class="dropdown-line"></div>
                         <!-- Đăng xuất -->
-                        <a href="../pages/login.html" class="account-item logout">
+                        <a href="login.html" class="account-item logout">
                             <div class="icon-box">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M14 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8"></path>
@@ -100,6 +109,7 @@
             </li>
         </ul>
     </header>
+
   <main>
  
 <!-- KHỐI 1: Tieu de trang -->
@@ -492,9 +502,9 @@
         <section class="footer-column">
             <h2>Điều khoản</h2>
             <ul>
-                <li><a href="#">Chính sách bảo mật</a></li>
-                <li><a href="#">Điều khoản sử dụng</a></li>
-                <li><a href="#">Hỗ trợ khách hàng</a></li>
+                <li><a href="csbm.html">Chính sách bảo mật</a></li>
+                <li><a href="DieuKhoanSuDung.html">Điều khoản sử dụng</a></li>
+                <li><a href="bqtl.html">Bản quyền tài liệu</a></li>
             </ul>
         </section>
         <!-- Copyright -->
@@ -506,5 +516,6 @@
     </footer>
       <script src="../assets/js/courses.js" defer></script>
           <script src="../assets/js/chatbot.js" defer></script>
+          <script src="../assets/js/main.js" defer></script>
  </body>
 </html>

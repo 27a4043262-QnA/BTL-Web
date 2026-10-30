@@ -12,27 +12,100 @@
         <link rel="stylesheet" href="../assets/css/about.css">
     <link rel="stylesheet" href="../assets/css/chatbot.css">
     <script src="../assets/js/chatbot.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
 </head>
 <body>
 
- <!-- HEADER -->
-    <header>
+<!-- HEADER -->
+     <header>
         <!-- Logo -->
         <div class="logo">
             <img src="../assets/images/logo.png" alt="EduTrack Logo" width="70" height="70">
-            <a> EduTrack </a>
+            <a href="../index.html">EduTrack</a>
         </div>
+        <!-- Nút Hamburger -->
+        <button class="et-nav-toggle" type="button"
+                aria-label="Mở menu điều hướng"
+                aria-controls="et-primary-nav"
+                aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <!-- Navigation Menu -->
-            <ul>
-                <li><a href="../index.html">Trang chủ</a></li>
-                <li><a href="courses.html">Môn học</a></li>
-                <li><a href="gpa-calculator.html">Tính GPA</a></li>
-                <li><a href="advising-contact.html">Tư vấn</a></li>
-                <li><a href="about.html" aria-current="page">Giới thiệu</a></li>
-                <li class="button">
-                    <button type="button" class="button-link" onclick="window.location.href='login.html'">Bắt đầu ngay</button>
-                </li>
-            </ul>  
+        <ul id="et-primary-nav">
+            <li><a href="../index.html">Trang chủ</a></li>
+            <li><a href="courses.html" >Môn học</a></li>
+            <li><a href="gpa-calculator.html" >Tính GPA</a></li>
+            <li><a href="advising-contact.html">Tư vấn</a></li>
+            <li><a href="about.html" aria-current="page">Giới thiệu</a></li>
+            <!--TH1: Truoc khi dang nhap-->
+            <li class="button" hidden>
+                <button type="button" class="button-link" onclick="window.location.href='pages/login.html'">Bắt đầu ngay</button>
+            </li>
+            <!-- TH2: Sau khi dang nhap-->
+            <li class="button">
+                <!-- Tài khoản sinh viên -->
+                <details class="account-menu">
+                    <summary class="button-clink">
+                    <!-- Avatar PC -->
+                        <div class="profile-avatar">PC</div>
+                    <!-- Tên sinh viên -->
+                        <span class="student-name">Phan Kim Chi</span>
+                    <!-- Icon mũi tên -->
+                        <svg class="account-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </summary>
+                    <!-- Menu tài khoản -->
+                    <div class="account-dropdown">
+                        <!-- Thông tin cá nhân -->
+                        <a href="#" class="account-item">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <rect x="5" y="3" width="14" height="18" rx="2"></rect>
+                                    <circle cx="12" cy="9" r="2.5"></circle>
+                                    <path d="M8.5 16c.8-2 2.1-3 3.5-3s2.7 1 3.5 3"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Thông tin cá nhân</strong>
+                            </div>
+                        </a>
+                        <!-- Tiến độ học tập -->
+                        <a href="progress.html" class="account-item">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 19V9"></path>
+                                    <path d="M10 19V5"></path>
+                                    <path d="M16 19v-7"></path>
+                                    <path d="M22 19V3"></path>
+                                    <path d="M4 7l5-3 6 3 5-4"></path>
+                                    <path d="M17 3h3v3"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Tiến độ học tập</strong>
+                            </div>
+                        </a>
+                        <div class="dropdown-line"></div>
+                        <!-- Đăng xuất -->
+                        <a href="login.html" class="account-item logout">
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M14 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8"></path>
+                                    <path d="M10 12h10"></path>
+                                    <path d="M17 8l4 4-4 4"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Đăng xuất</strong>
+                            </div>
+                        </a>
+                    </div>
+                </details>
+            </li>
+        </ul>
     </header>
 
 <!-- ================= MAIN (chỉ 1 thẻ main / trang) ================= -->
@@ -238,9 +311,9 @@
         <section class="footer-column">
             <h2>Điều khoản</h2>
             <ul>
-                <li><a href="#">Chính sách bảo mật</a></li>
-                <li><a href="#">Điều khoản sử dụng</a></li>
-                <li><a href="#">Hỗ trợ khách hàng</a></li>
+                <li><a href="csbm.html">Chính sách bảo mật</a></li>
+                <li><a href="DieuKhoanSuDung.html">Điều khoản sử dụng</a></li>
+                <li><a href="bqtl.html">Bản quyền tài liệu</a></li>
             </ul>
         </section>
         <!-- Copyright -->
