@@ -60,8 +60,8 @@ const etPages = {
     "profile.html": "Thông tin cá nhân",
     "progress.html": "Tiến độ học tập",
     "csbm.html": "Chính sách bảo mật",
-    "terms.html": "Điều khoản sử dụng",
-    "copyright.html": "Bản quyền tài liệu",
+    "DieuKhoanSuDung.html": "Điều khoản sử dụng",
+    "bqtl.html": "Bản quyền tài liệu",
     "login.html": "Đăng nhập"
 };
 
@@ -305,8 +305,8 @@ function etSetActivePage(root) {
         "profile.html": "profile",
         "progress.html": "progress",
         "csbm.html": "privacy",
-        "terms.html": "terms",
-        "copyright.html": "copyright"
+        "DieuKhoanSuDung.html": "terms",
+        "bqtl.html": "copyright"
     };
 
     const key = pageKeys[page.fileName];
