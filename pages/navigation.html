@@ -1,0 +1,241 @@
+<!-- =======================================
+     EDUTRACK - HEADER
+======================================= -->
+<header class="et-topbar">
+
+    <!-- Logo EduTrack -->
+    <a class="et-topbar-brand"
+       data-et-href="index.html"
+       href="#">
+        <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+        <span>EduTrack</span>
+    </a>
+
+    <!-- Lịch sử các trang đã truy cập -->
+    <nav class="et-topbar-history"
+         aria-label="Lịch sử điều hướng">
+    </nav>
+
+    <!-- Thông báo -->
+    <button class="et-notification-btn"
+            type="button"
+            aria-label="Thông báo"
+            title="Thông báo">
+        <i class="far fa-bell" aria-hidden="true"></i>
+    </button>
+
+</header>
+
+<!-- =======================================
+     EDUTRACK - SIDEBAR
+======================================= -->
+<aside class="et-sidebar" aria-label="Thanh điều hướng">
+
+    <!-- Hamburger mở/thu gọn -->
+    <button class="et-sidebar-btn et-menu-toggle"
+            type="button"
+            aria-label="Mở rộng menu"
+            aria-expanded="false">
+
+        <i class="fas fa-bars" aria-hidden="true"></i>
+    </button>
+
+    <!-- Các mục chính -->
+    <nav class="et-sidebar-nav" aria-label="Điều hướng chính">
+
+        <div class="et-sidebar-group">
+
+            <span class="et-sidebar-heading">HỌC TẬP</span>
+
+            <!-- Trang chủ -->
+            <a class="et-sidebar-btn"
+               data-et-href="index.html"
+               data-et-page="home"
+               href="#"
+               title="Trang chủ">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Trang chủ</span>
+            </a>
+
+            <!-- Môn học -->
+            <button class="et-sidebar-btn et-submenu-toggle"
+                    type="button"
+                    data-et-submenu="courses"
+                    aria-expanded="false"
+                    title="Môn học">
+
+                <i class="fas fa-book-open" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Môn học</span>
+                <i class="fas fa-chevron-down et-sidebar-arrow"
+                   aria-hidden="true"></i>
+            </button>
+
+            <div class="et-sidebar-submenu"
+                 data-et-submenu-content="courses">
+
+                <a data-et-href="pages/courses.html"
+                   data-et-category="dai-cuong" href="#">
+                    Đại cương
+                </a>
+
+                <a data-et-href="pages/courses.html"
+                   data-et-category="co-so-nganh" href="#">
+                    Cơ sở ngành
+                </a>
+
+                <a data-et-href="pages/courses.html"
+                   data-et-category="chuyen-nganh" href="#">
+                    Chuyên ngành
+                </a>
+            </div>
+
+            <!-- Tính GPA -->
+            <a class="et-sidebar-btn"
+               data-et-href="pages/gpa-calculator.html"
+               data-et-page="gpa"
+               href="#"
+               title="Tính GPA">
+
+                <i class="fas fa-calculator" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Tính GPA</span>
+            </a>
+
+            <!-- Dự phóng GPA -->
+            <a class="et-sidebar-btn"
+               data-et-href="pages/gpa-projection.html"
+               data-et-page="projection"
+               href="#"
+               title="Dự phóng GPA">
+
+                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Dự phóng GPA</span>
+            </a>
+
+            <!-- Tư vấn -->
+            <a class="et-sidebar-btn"
+               data-et-href="pages/advising-contact.html"
+               data-et-page="advising"
+               href="#"
+               title="Tư vấn">
+
+                <i class="fas fa-comment-dots" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Tư vấn</span>
+            </a>
+
+            <!-- Giới thiệu -->
+            <a class="et-sidebar-btn"
+               data-et-href="pages/about.html"
+               data-et-page="about"
+               href="#"
+               title="Giới thiệu">
+
+                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Giới thiệu</span>
+            </a>
+        </div>
+
+        <!-- Quản lý cá nhân -->
+        <div class="et-sidebar-group">
+
+            <span class="et-sidebar-heading">QUẢN LÝ CÁ NHÂN</span>
+
+            <a class="et-sidebar-btn"
+               data-et-href="pages/profile.html"
+               data-et-page="profile"
+               href="#"
+               title="Thông tin cá nhân">
+
+                <i class="fas fa-user" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Thông tin cá nhân</span>
+            </a>
+
+            <a class="et-sidebar-btn"
+               data-et-href="pages/progress.html"
+               data-et-page="progress"
+               href="#"
+               title="Tiến độ học tập">
+
+                <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Tiến độ học tập</span>
+            </a>
+        </div>
+
+        <!-- Pháp lý -->
+        <div class="et-sidebar-group">
+
+            <span class="et-sidebar-heading">HỖ TRỢ & PHÁP LÝ</span>
+
+            <a class="et-sidebar-btn"
+               data-et-href="pages/csbm.html"
+               data-et-page="privacy"
+               href="#"
+               title="Chính sách bảo mật">
+
+                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Chính sách bảo mật</span>
+            </a>
+
+            <a class="et-sidebar-btn"
+               data-et-href="pages/terms.html"
+               data-et-page="terms"
+               href="#"
+               title="Điều khoản sử dụng">
+
+                <i class="fas fa-file-alt" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Điều khoản sử dụng</span>
+            </a>
+
+            <a class="et-sidebar-btn"
+                data-et-href="pages/copyright.html"
+                data-et-page="copyright"
+                href="bqtl.html"
+                title="Bản quyền tài liệu">
+
+                <i class="fas fa-copyright" aria-hidden="true"></i>
+                <span class="et-sidebar-text">Bản quyền tài liệu</span>
+            </a>
+        </div>
+
+    </nav>
+
+    <!-- Tài khoản dưới cùng -->
+    <div class="et-sidebar-footer">
+
+        <button class="et-sidebar-btn et-submenu-toggle"
+                type="button"
+                data-et-submenu="account"
+                aria-expanded="false"
+                title="Tài khoản cá nhân">
+
+            <i class="fas fa-user-circle" aria-hidden="true"></i>
+            <span class="et-sidebar-text">Tài khoản cá nhân</span>
+            <i class="fas fa-chevron-down et-sidebar-arrow"
+               aria-hidden="true"></i>
+        </button>
+
+        <div class="et-sidebar-submenu"
+             data-et-submenu-content="account">
+
+            <!-- Chưa đăng nhập -->
+            <div class="et-account-guest">
+                <a data-et-href="pages/login.html" href="#">
+                    Đăng nhập
+                </a>
+            </div>
+
+            <!-- Đã đăng nhập -->
+            <div class="et-account-user" hidden>
+                <a data-et-href="pages/profile.html" href="#">
+                    Thông tin cá nhân
+                </a>
+
+                <button class="et-logout-btn" type="button">
+                    Đăng xuất
+                </button>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Overlay khi mở Sidebar trên mobile -->
+<div class="et-sidebar-overlay"></div>
