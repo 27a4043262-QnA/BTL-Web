@@ -184,7 +184,31 @@ main {
    3. QUY TRÌNH
    ========================================================= */
 .step-card {
-  padding: var(--spacing-4);
+    display: block;
+    padding: var(--spacing-4);
+
+    /* Giữ nguyên giao diện khi đổi div thành a */
+    color: inherit;
+    text-decoration: none;
+
+    /* Cho biết ô có thể nhấn */
+    cursor: pointer;
+
+    /* Hiệu ứng chuyển động nhẹ */
+    transition: transform 0.2s ease;
+}
+
+/* Di chuột vào ô */
+.step-card:hover {
+    color: inherit;
+    text-decoration: none;
+    transform: translateY(-3px);
+}
+
+/* Nhấn Tab để chọn ô bằng bàn phím */
+.step-card:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
 }
 
 .step-top {

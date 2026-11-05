@@ -456,12 +456,20 @@
 
 
 /* ===== FOCUS BÀN PHÍM ===== */
-.login-form-group input:focus-visible,
+
+/* Ô nhập liệu: giống trang Đăng ký */
+.login-form-group input:focus-visible {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(47, 82, 127, 0.08);
+}
+
+/* Giữ focus rõ ràng cho nút và liên kết */
 .login-submit:focus-visible,
 .google-login:focus-visible,
 .login-options a:focus-visible,
 .register-link a:focus-visible {
-    outline: 3px solid var(--primary-color);
+    outline: 2px solid var(--primary-color);
     outline-offset: 3px;
 }
 
@@ -479,4 +487,31 @@
 
 .login-message.is-info {
     color: var(--primary-color);
+}
+
+/* ==========================================
+   THÔNG BÁO LỖI ĐĂNG NHẬP
+========================================== */
+
+/* Viền đỏ khi nhập không hợp lệ */
+.login-form-group input.is-invalid {
+    border-color: #DC2626;
+}
+
+/* Thông báo lỗi giống trang Đăng ký */
+.login-form-group .gpa-field-error {
+    display: block;
+    margin-top: 5px;
+    color: #DC2626;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Giữ viền đỏ khi focus vào ô lỗi */
+.login-form-group input.is-invalid:focus,
+.login-form-group input.is-invalid:focus-visible {
+    border-color: #DC2626;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08);
 }

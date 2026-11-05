@@ -448,7 +448,7 @@ footer :focus-visible {
 
     height: 60px;
 
-    padding: 0 20px;
+    padding: 0 10px;
 
     display: flex;
 
@@ -472,6 +472,15 @@ footer :focus-visible {
 
 }
 
+/* Logo EduTrack trên Header */
+.et-topbar-logo {
+    display: block;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
 .et-topbar-brand {
 
     display: flex;
@@ -480,7 +489,7 @@ footer :focus-visible {
 
     flex-shrink: 0;
 
-    gap: 10px;
+    gap: 6px;
 
     color: white;
 
@@ -523,7 +532,7 @@ footer :focus-visible {
 
     white-space: nowrap;
 
-    font-size: 14px;
+    font-size: 17px;
 
 }
 
@@ -729,7 +738,7 @@ footer :focus-visible {
 
     white-space: nowrap;
 
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
 
 }
 .et-sidebar-btn > i:first-child {
@@ -811,6 +820,75 @@ footer :focus-visible {
 
     transform: rotate(180deg);
 
+}
+
+
+/* ==========================================
+   MÔN HỌC: LINK CHÍNH + NÚT MỞ MENU CON
+========================================== */
+
+.et-course-navigation {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Link Môn học */
+.et-course-navigation .et-courses-link {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+}
+
+/* Nút mũi tên */
+.et-courses-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    width: 30px;
+    height: 42px;
+    margin: 4px 7px 4px 0;
+    padding: 0;
+
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #24548f;
+
+    cursor: pointer;
+}
+
+.et-courses-toggle:hover {
+    background: #e0edfc;
+    color: #1260b7;
+}
+
+/* Hiện mũi tên khi Sidebar mở */
+.et-sidebar.et-expanded .et-courses-toggle {
+    display: flex;
+}
+
+.et-courses-toggle .et-sidebar-arrow {
+    margin: 0;
+    opacity: 1;
+    visibility: visible;
+    font-size: 11px;
+    transition: transform 0.2s ease;
+}
+
+/* Xoay mũi tên khi submenu mở */
+.et-courses-toggle[aria-expanded="true"]
+.et-sidebar-arrow {
+    transform: rotate(180deg);
+}
+
+/* Sidebar thu gọn: icon Môn học căn giữa */
+.et-sidebar:not(.et-expanded)
+.et-course-navigation .et-courses-link {
+    width: calc(100% - 14px);
+    flex: none;
 }
 
 /* ==========================================
@@ -1029,7 +1107,7 @@ body.et-has-navigation.et-nav-expanded {
 
     .et-topbar-history {
 
-        font-size: 11px;
+        font-size: 14px;
 
     }
 
@@ -1074,7 +1152,7 @@ body.et-has-navigation.et-nav-expanded {
 
     .et-topbar-history {
 
-        font-size: 10px;
+        font-size: 13px;
 
     }
 

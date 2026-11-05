@@ -74,6 +74,8 @@ const etCategories = {
 // Bắt đầu sau khi DOM được tải
 document.addEventListener("DOMContentLoaded", function () {
     etLoadNavigation();
+    // Tự động lọc môn học theo Navigation
+    etSyncCourseFilter();
 });
 
 /* ==========================================
@@ -146,6 +148,13 @@ function etFixLinks(root) {
 
         link.href = url.href;
     });
+    // Chuẩn hóa đường dẫn ảnh cho tất cả các trang
+    root.querySelectorAll("[data-et-src]").forEach(function (img) {
+        img.src = new URL(
+            img.dataset.etSrc,
+            etRootURL
+        ).href;
+    });
 }
 
 /* ==========================================
@@ -181,86 +190,82 @@ function etGetCurrentPage() {
 }
 
 /* ==========================================
-   4. LỊCH SỬ ĐIỀU HƯỚNG TRÊN HEADER
+   4. LỊCH SỬ ĐIỀU HƯỚNG THEO CẤU TRÚC TRANG
 ========================================== */
 
 function etUpdateHistory(root) {
-    const historyNav = root.querySelector(
-        ".et-topbar-history"
-    );
-
+    const historyNav = root.querySelector(".et-topbar-history");
     if (!historyNav) return;
 
     const currentPage = etGetCurrentPage();
+    const currentURL = new URL(window.location.href);
 
-    const currentURL =
-        window.location.pathname +
-        window.location.search;
+    const homeURL = new URL("index.html", etRootURL);
+    const coursesURL = new URL("pages/courses.html", etRootURL);
 
-    let history = [];
+    // Xây dựng đường dẫn phân cấp
+    const history = [];
 
-    try {
-        const saved = JSON.parse(
-            sessionStorage.getItem("etNavigationHistory") || "[]"
-        );
+    // Trang chủ
+    history.push({
+        title: "Trang chủ",
+        path: homeURL.href
+    });
 
-        if (Array.isArray(saved)) {
-            history = saved.filter(function (item) {
-                return item &&
-                    typeof item.path === "string" &&
-                    typeof item.title === "string" &&
-                    item.path.startsWith("/") &&
-                    !item.path.startsWith("//");
+    // Nếu đang ở Trang chủ thì không thêm gì
+    if (currentPage.fileName !== "index.html") {
+
+        // Trang Môn học hoặc danh mục con
+        if (currentPage.fileName === "courses.html") {
+
+            history.push({
+                title: "Môn học",
+                path: coursesURL.href
+            });
+
+            // Chỉ thêm danh mục đang xem
+            const category = currentURL.searchParams.get("category");
+
+            if (category && etCategories[category]) {
+                history.push({
+                    title: etCategories[category],
+                    path: currentURL.href
+                });
+            }
+
+        } else if (currentPage.fileName === "course-detail.html") {
+
+            // Chi tiết môn học thuộc trang Môn học
+            history.push({
+                title: "Môn học",
+                path: coursesURL.href
+            });
+
+            history.push({
+                title: "Chi tiết môn học",
+                path: currentURL.href
+            });
+
+        } else {
+
+            // Các trang độc lập khác
+            history.push({
+                title: currentPage.title,
+                path: currentURL.href
             });
         }
-    } catch (error) {
-        history = [];
     }
 
-    // Trang đầu tiên trong lịch sử
-    if (history.length === 0) {
-        const home = new URL("index.html", etRootURL);
-
-        history.push({
-            title: "Trang chủ",
-            path: home.pathname
-        });
-    }
-
-    // Không thêm trùng nếu tải lại trang
-    const lastPage = history[history.length - 1];
-
-    if (lastPage.path !== currentURL) {
-        history.push({
-            title: currentPage.title,
-            path: currentURL
-        });
-    } else {
-        lastPage.title = currentPage.title;
-    }
-
-    // Hiển thị 5 trang gần nhất
-    history = history.slice(-5);
-
-    try {
-        sessionStorage.setItem(
-            "etNavigationHistory",
-            JSON.stringify(history)
-        );
-    } catch (error) {
-        // Trình duyệt có thể chặn sessionStorage
-    }
-
+    // Xóa nội dung cũ
     historyNav.replaceChildren();
 
+    // Hiển thị lịch sử
     history.forEach(function (item, index) {
 
         if (index > 0) {
             const separator = document.createElement("span");
-
             separator.className = "et-history-separator";
             separator.textContent = "›";
-
             historyNav.appendChild(separator);
         }
 
@@ -268,7 +273,6 @@ function etUpdateHistory(root) {
 
         if (isCurrent) {
             const span = document.createElement("span");
-
             span.className = "et-history-current";
             span.textContent = item.title;
             span.setAttribute("aria-current", "page");
@@ -277,7 +281,6 @@ function etUpdateHistory(root) {
 
         } else {
             const link = document.createElement("a");
-
             link.href = item.path;
             link.textContent = item.title;
 
@@ -285,9 +288,9 @@ function etUpdateHistory(root) {
         }
     });
 
-    // Cuộn tới mục mới nhất
     historyNav.scrollLeft = historyNav.scrollWidth;
 }
+
 
 /* ==========================================
    5. ĐÁNH DẤU TRANG ĐANG XEM
@@ -326,12 +329,12 @@ function etSetActivePage(root) {
         page.fileName === "courses.html" ||
         page.fileName === "course-detail.html"
     ) {
-        const coursesButton = root.querySelector(
-            '[data-et-submenu="courses"]'
+        const coursesLink = root.querySelector(
+            ".et-courses-link"
         );
 
-        if (coursesButton) {
-            coursesButton.classList.add("et-active");
+        if (coursesLink) {
+            coursesLink.classList.add("et-active");
         }
     }
 
@@ -369,11 +372,32 @@ function etInitSidebar(root) {
 
     if (!sidebar || !menuButton) return;
 
-    // Sidebar mặc định thu gọn
+    // Khôi phục trạng thái Sidebar trong tab hiện tại
     let expanded = false;
 
+    try {
+        expanded =
+            window.innerWidth > 767 &&
+            sessionStorage.getItem("etSidebarExpanded") === "true";
+    } catch (error) {
+        expanded = false;
+    }
+
+    
     function setExpanded(value) {
         expanded = value;
+
+        // Lưu trạng thái trên Desktop và Tablet
+        if (window.innerWidth > 767) {
+            try {
+                sessionStorage.setItem(
+                    "etSidebarExpanded",
+                    String(expanded)
+                );
+            } catch (error) {
+                console.warn("Không thể lưu Sidebar:", error);
+            }
+        }
 
         sidebar.classList.toggle(
             "et-expanded",
@@ -395,6 +419,7 @@ function etInitSidebar(root) {
             expanded ? "Thu gọn menu" : "Mở rộng menu"
         );
 
+        // Overlay trên mobile
         if (overlay) {
             overlay.classList.toggle(
                 "et-show",
@@ -402,7 +427,7 @@ function etInitSidebar(root) {
             );
         }
 
-        // Khi thu gọn, ẩn các submenu
+        // Thu gọn Sidebar thì đóng submenu
         if (!expanded) {
             submenuButtons.forEach(function (button) {
                 button.setAttribute("aria-expanded", "false");
@@ -415,6 +440,7 @@ function etInitSidebar(root) {
             });
         }
     }
+
 
     // Nhấn hamburger
     menuButton.addEventListener("click", function () {
@@ -497,6 +523,8 @@ function etInitSidebar(root) {
             });
         }
     );
+    // Áp dụng trạng thái Sidebar đã lưu
+    setExpanded(expanded);
 }
 
 /* ==========================================
@@ -557,5 +585,39 @@ function etUpdateAccount(root) {
                 }
             }
         );
+    }
+}
+
+
+/* ==========================================
+   10. ĐỒNG BỘ NAVIGATION VỚI BỘ LỌC MÔN HỌC
+========================================== */
+
+function etSyncCourseFilter() {
+
+    // Chỉ xử lý tại trang Danh mục môn học
+    const currentPage = etGetCurrentPage();
+
+    if (currentPage.fileName !== "courses.html") {
+        return;
+    }
+
+    // Lấy danh mục từ URL
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+
+    // Nếu không có danh mục thì không xử lý
+    if (!category) return;
+
+    // Tìm nút lọc phù hợp trong trang Môn học
+    const filterButton = Array.from(
+        document.querySelectorAll(".filter-btn")
+    ).find(function (button) {
+        return button.dataset.filter === category;
+    });
+
+    // Kích hoạt chức năng lọc đã có trong courses.js
+    if (filterButton) {
+        filterButton.click();
     }
 }

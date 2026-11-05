@@ -1,14 +1,13 @@
-<!-- =======================================
-     EDUTRACK - HEADER
-======================================= -->
 <header class="et-topbar">
 
     <!-- Logo EduTrack -->
     <a class="et-topbar-brand"
-       data-et-href="index.html"
-       href="#">
-        <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-        <span>EduTrack</span>
+        data-et-href="index.html"
+        href="#">
+            <img data-et-src="assets/images/logo.png"
+                alt="Logo EduTrack"
+                class="et-topbar-logo">
+            <span>EduTrack</span>
     </a>
 
     <!-- Lịch sử các trang đã truy cập -->
@@ -45,7 +44,7 @@
 
         <div class="et-sidebar-group">
 
-            <span class="et-sidebar-heading">HỌC TẬP</span>
+            <span class="et-sidebar-heading">DANH MỤC</span>
 
             <!-- Trang chủ -->
             <a class="et-sidebar-btn"
@@ -56,19 +55,33 @@
                 <i class="fas fa-home" aria-hidden="true"></i>
                 <span class="et-sidebar-text">Trang chủ</span>
             </a>
+            
+            <!-- Môn học: Link chính + nút mở submenu -->
+            <div class="et-course-navigation">
 
-            <!-- Môn học -->
-            <button class="et-sidebar-btn et-submenu-toggle"
-                    type="button"
-                    data-et-submenu="courses"
-                    aria-expanded="false"
-                    title="Môn học">
+                <!-- Nhấn tên Môn học để chuyển trang -->
+                <a class="et-sidebar-btn et-courses-link"
+                data-et-href="pages/courses.html"
+                data-et-page="courses"
+                href="#"
+                title="Môn học">
 
-                <i class="fas fa-book-open" aria-hidden="true"></i>
-                <span class="et-sidebar-text">Môn học</span>
-                <i class="fas fa-chevron-down et-sidebar-arrow"
-                   aria-hidden="true"></i>
-            </button>
+                    <i class="fas fa-book-open" aria-hidden="true"></i>
+                    <span class="et-sidebar-text">Môn học</span>
+                </a>
+
+                <!-- Nhấn mũi tên để mở danh mục -->
+                <button class="et-courses-toggle et-submenu-toggle"
+                        type="button"
+                        data-et-submenu="courses"
+                        aria-label="Mở danh mục môn học"
+                        aria-expanded="false"
+                        title="Mở danh mục môn học">
+
+                    <i class="fas fa-chevron-down et-sidebar-arrow"
+                    aria-hidden="true"></i>
+                </button>
+            </div>
 
             <div class="et-sidebar-submenu"
                  data-et-submenu-content="courses">

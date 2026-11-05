@@ -51,18 +51,18 @@
                 <p>Vui lòng đăng nhập vào tài khoản của bạn để tiếp tục sử dụng.</p>
             </div>
             <!-- Form-->
-            <form class="login-form">
+            <form class="login-form" novalidate>
                 <!-- Email / Số điện thoại -->
                 <div class="login-form-group">
-                    <label for="email">Email hoặc số điện thoại
-                    <input type="text" name="email" placeholder="Nhập email hoặc số điện thoại" autocomplete="username" required>
-                    </label>
+                    <label for="email">Email hoặc số điện thoại</label>
+                    <input type="text" name="email" placeholder="Nhập email hoặc số điện thoại" autocomplete="username" aria-describedby="email-error" required>
+                    <small class="login-field-error"></small>
                 </div>
                 <!-- Mật khẩu -->
                 <div class="login-form-group">
-                    <label for="password">Mật khẩu
-                    <input type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="current-password" required>
-                    </label>
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="current-password" aria-describedby="password-error" required>
+                    <small class="login-field-error"></small>
                 </div>
                 <!-- Ghi nhớ + Quên mật khẩu -->
                 <div class="login-options">
