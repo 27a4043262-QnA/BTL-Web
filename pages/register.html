@@ -51,76 +51,42 @@
                 <p>Tạo tài khoản để bắt đầu hành trình học tập hiệu quả hơn.</p>
             </div>
             <form class="register-form" novalidate>
-    <!-- Họ tên -->
-    <div class="register-form-group">
-        <label>
-            Họ và tên
-            <input
-                type="text"
-                name="fullname"
-                placeholder="Nhập họ và tên của bạn"
-                autocomplete="name"
-                required
-            >
-        </label>
-    </div>
+                <!-- Họ và tên -->
+                <div class="register-form-group">
+                    <label for="register-fullname">Họ và tên</label>
+                    <input type="text" id="register-fullname" name="fullname" placeholder="Nhập họ và tên của bạn" autocomplete="name" required>
+                </div>
+                <!-- Email hoặc số điện thoại -->
+                <div class="register-form-group">
+                    <label for="register-email">Email hoặc số điện thoại</label>
+                    <input
+                        type="text" id="register-email" name="emailOrPhone" placeholder="Nhập email hoặc số điện thoại của bạn" autocomplete="username" required>
+                </div>
+                <!-- Mật khẩu -->
+                <div class="register-form-group">
+                    <label for="register-password">Mật khẩu</label>
+                    <input type="password" id="register-password" name="password" placeholder="Nhập mật khẩu" autocomplete="new-password" required>
+                </div>
+                <!-- Xác nhận mật khẩu -->
+                <div class="register-form-group">
+                    <label for="register-confirm-password">Xác nhận mật khẩu</label>
+                    <input type="password" id="register-confirm-password" name="confirmPassword" placeholder="Nhập lại mật khẩu" autocomplete="new-password" required>
+                </div>
+                <!-- Nút đăng ký -->
+                <button type="submit" class="register-submit">Đăng ký tài khoản →</button>
 
-    <!-- Email hoặc số điện thoại -->
-    <div class="register-form-group">
-        <label>
-            Email hoặc số điện thoại
-            <input
-                type="text"
-                name="emailOrPhone"
-                placeholder="Nhập email hoặc số điện thoại của bạn"
-                autocomplete="username"
-                required
-            >
-        </label>
-    </div>
+                <!-- Đường phân cách -->
+                <div class="register-divider">
+                    <span>Hoặc đăng ký với</span>
+                </div>
 
-    <!-- Mật khẩu -->
-    <div class="register-form-group">
-        <label>
-            Mật khẩu
-            <input
-                type="password"
-                name="password"
-                placeholder="Nhập mật khẩu"
-                autocomplete="new-password"
-                required
-            >
-        </label>
-    </div>
-
-    <!-- Xác nhận mật khẩu -->
-    <div class="register-form-group">
-        <label>
-            Xác nhận mật khẩu
-            <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Nhập lại mật khẩu"
-                autocomplete="new-password"
-                required
-            >
-        </label>
-    </div>
-
-    <!-- Button đăng ký -->
-    <button type="submit" class="register-submit">
-        Đăng ký tài khoản →
-    </button>
-
-    <div class="register-divider">
-        <span>Hoặc đăng ký với</span>
-    </div>  
+                <!-- Đăng ký Google -->
                 <button type="button" class="google-register">Đăng ký với Google</button>
-                
-                <!-- Thông báo -->
+
+                <!-- Thông báo chung -->
                 <p class="register-message" role="status" aria-live="polite"></p>
-                
-                <!-- Đăng nhập -->
+
+                <!-- Chuyển sang đăng nhập -->
                 <p class="login-link">Đã có tài khoản?
                     <a href="login.html">Đăng nhập ngay</a>
                 </p>
