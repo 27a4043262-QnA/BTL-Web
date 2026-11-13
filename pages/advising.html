@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tư vấn học tập cùng trợ lý EduTrack: môn học, kế hoạch, GPA và phương pháp học.">
+    <title>Tư vấn học tập | EduTrack</title>
+
+    <!-- Giữ CSS dùng chung của nhóm; không chỉnh sửa header/sidebar. -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/advising.css">
+
+    <script src="../assets/js/advising.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+</head>
+<body>
+    <!-- main.js tự nạp Header + Sidebar từ navigation.html. -->
+    <main id="main-content" class="et-advising-page">
+        <section class="et-advising" data-advising-root aria-label="Trợ lý tư vấn học tập EduTrack">
+            <header class="et-advising-toolbar">
+                <div class="et-advising-brand">
+                    <span class="et-advising-brand-mark" aria-hidden="true">✦</span>
+                    <div>
+                        <p class="et-advising-overline">EDUTRACK</p>
+                        <h1>Trợ lý học tập</h1>
+                    </div>
+                </div>
+                <button class="et-advising-new" data-action="new-chat" type="button" aria-label="Bắt đầu cuộc trò chuyện mới">
+                    <span aria-hidden="true">＋</span>
+                    <span>Trò chuyện mới</span>
+                </button>
+            </header>
+
+            <section class="et-advising-chat" aria-label="Không gian trò chuyện">
+                <!-- Màn hình chào: chỉ xuất hiện trước khi có tin nhắn. -->
+                <div class="et-advising-welcome" data-chat-welcome>
+                    <span class="et-advising-hero-icon" aria-hidden="true">✦</span>
+                    <p class="et-advising-kicker">ĐỒNG HÀNH CÙNG BẠN MỖI NGÀY</p>
+                    <h2>Hôm nay bạn muốn được<br class="et-advising-desktop-break"> tư vấn điều gì?</h2>
+                    <p class="et-advising-intro">Chia sẻ điều bạn đang băn khoăn, hoặc chọn một chủ đề để bắt đầu.</p>
+
+                    <div class="et-advising-topics" aria-label="Các chủ đề tư vấn">
+                        <button class="et-advising-topic" type="button" data-topic="subject">
+                            <span class="et-advising-topic-icon et-advising-topic-blue" aria-hidden="true">📚</span>
+                            <span class="et-advising-topic-body">
+                                <strong>Tư vấn môn học</strong>
+                                <small>Gỡ rối kiến thức khó</small>
+                            </span>
+                            <span class="et-advising-topic-arrow" aria-hidden="true">↗</span>
+                        </button>
+                        <button class="et-advising-topic" type="button" data-topic="plan">
+                            <span class="et-advising-topic-icon et-advising-topic-purple" aria-hidden="true">🗓️</span>
+                            <span class="et-advising-topic-body">
+                                <strong>Lập kế hoạch học</strong>
+                                <small>Sắp xếp lịch học hợp lý</small>
+                            </span>
+                            <span class="et-advising-topic-arrow" aria-hidden="true">↗</span>
+                        </button>
+                        <button class="et-advising-topic" type="button" data-topic="gpa">
+                            <span class="et-advising-topic-icon et-advising-topic-green" aria-hidden="true">📈</span>
+                            <span class="et-advising-topic-body">
+                                <strong>Cải thiện GPA</strong>
+                                <small>Tiến gần mục tiêu điểm số</small>
+                            </span>
+                            <span class="et-advising-topic-arrow" aria-hidden="true">↗</span>
+                        </button>
+                        <button class="et-advising-topic" type="button" data-topic="method">
+                            <span class="et-advising-topic-icon et-advising-topic-orange" aria-hidden="true">💡</span>
+                            <span class="et-advising-topic-body">
+                                <strong>Phương pháp học</strong>
+                                <small>Học tập trung, nhớ lâu hơn</small>
+                            </span>
+                            <span class="et-advising-topic-arrow" aria-hidden="true">↗</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat do JavaScript render bằng createElement / textContent. -->
+                <div class="et-advising-messages" data-chat-messages role="log"
+                     aria-live="polite" aria-relevant="additions" aria-label="Lịch sử trò chuyện" hidden></div>
+
+                <div class="et-advising-composer">
+                    <form class="et-advising-form" data-chat-form novalidate>
+                        <label class="et-advising-label" for="et-advising-question">Câu hỏi của bạn</label>
+                        <textarea id="et-advising-question" class="et-advising-textarea" name="question"
+                                  rows="1" maxlength="500" required
+                                  placeholder="Hỏi EduTrack bất cứ điều gì về học tập..."></textarea>
+                        <div class="et-advising-form-bottom">
+                            <div class="et-advising-form-actions">
+                                <span class="et-advising-count" data-char-count>0/500</span>
+                                <button class="et-advising-send" type="submit" aria-label="Gửi câu hỏi">
+                                     <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M12 19V5" />
+                                        <path d="M5 12l7-7 7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="et-advising-error" data-chat-error role="alert" hidden></p>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+</html>
