@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"value="EDUTRACK - Công cụ tính và dự phóng GPA dành cho sinh viên.">    <title>Dự phóng GPA | EDUTRACK</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/gpa-calculator.css">
+    <script src="../assets/js/validation.js"></script>
+    <script src="../assets/js/projection.js"></script>
+    <link rel="stylesheet" href="../assets/css/chatbot.css">
+    <script src="../assets/js/chatbot.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+</head>
+  <body>
+    <a class="skip-link" href="#main-content">  Bỏ qua điều hướng </a>
+    <!-- Main -->
+    <main id="main-content">
+
+<!-- KHU VỰC DỰ PHÓNG GPA -->
+<div id="projection-wrapper"> 
+
+   <!-- SECTION 1: MÔN HỌC KỲ TỚI -->
+        <section class="projection-section">
+            <div class="projection-section-heading">
+                <span class="projection-step-number">1</span>
+
+                <div>
+                    <h2>Môn học kỳ tới cần dự phóng</h2>
+                </div>
+            </div>
+
+            <div class="projection-card">
+                <div class="projection-table-wrapper">
+                    <table class="projection-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Môn học</th>
+                                <th scope="col">Số tín chỉ</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="projection-course-list">
+                            <tr class="projection-course-row">
+                                <td>
+                                    <input
+                                        class="projection-input"
+                                        type="text"
+                                        name="semester_courses[0][name]"
+                                        value="Cơ sở dữ liệu nâng cao"
+                                        aria-label="Tên môn học thứ nhất"
+                                        placeholder="Nhập tên môn học">
+                                </td>
+
+                                <td>
+                                    <input
+                                        class="projection-input projection-credit-input"
+                                        type="number"
+                                        name="semester_courses[0][credits]"
+                                        value="3"
+                                        min="1"
+                                        max="10"
+                                        aria-label="Số tín chỉ môn thứ nhất">
+                                </td>
+
+<td>
+    <button
+        type="button"
+        class="btn-icon-delete projection-icon-button"
+        aria-label="Xóa môn học">
+
+        <i data-lucide="trash-2" aria-hidden="true"></i>
+    </button>
+</td>
+                            </tr>
+
+                            <tr class="projection-course-row">
+                                <td>
+                                    <input
+                                        class="projection-input"
+                                        type="text"
+                                        name="semester_courses[1][name]"
+                                        value="Thiết kế giao diện"
+                                        aria-label="Tên môn học thứ hai"
+                                        placeholder="Nhập tên môn học">
+                                </td>
+
+                                <td>
+                                    <input
+                                        class="projection-input projection-credit-input"
+                                        type="number"
+                                        name="semester_courses[1][credits]"
+                                        value="3"
+                                        min="1"
+                                        max="10"
+                                        aria-label="Số tín chỉ môn thứ hai">
+                                </td>
+
+<td>
+    <button
+        type="button"
+        class="btn-icon-delete projection-icon-button"
+        aria-label="Xóa môn học">
+
+        <i data-lucide="trash-2" aria-hidden="true"></i>
+    </button>
+</td>
+                            </tr>
+
+                            <tr class="projection-course-row">
+                                <td>
+                                    <input
+                                        class="projection-input"
+                                        type="text"
+                                        name="semester_courses[2][name]"
+                                        value="Lập trình web"
+                                        aria-label="Tên môn học thứ ba"
+                                        placeholder="Nhập tên môn học">
+                                </td>
+
+                                <td>
+                                    <input
+                                        class="projection-input projection-credit-input"
+                                        type="number"
+                                        name="semester_courses[2][credits]"
+                                        value="3"
+                                        min="1"
+                                        max="10"
+                                        aria-label="Số tín chỉ môn thứ ba">
+                                </td>
+
+<td>
+    <button
+        type="button"
+        class="btn-icon-delete projection-icon-button"
+        aria-label="Xóa môn học">
+
+        <i data-lucide="trash-2" aria-hidden="true"></i>
+    </button>
+</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+<div class="projection-actions">
+    <button type="button"
+            class="et-btn et-btn-secondary projection-add-course">
+        <span aria-hidden="true">+</span>
+        Thêm môn học
+    </button>
+</div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 2: MÔN TIÊN QUYẾT -->
+ <section class="projection-section">
+
+    <div class="projection-section-heading">
+        <span class="projection-step-number">2</span>
+
+        <div>
+            <h2>Môn tiên quyết cần nhập điểm</h2>
+        </div>
+    </div>
+
+    <div class="projection-card">
+
+        <div class="projection-table-wrapper"
+             role="region"
+             aria-label="Bảng môn tiên quyết"
+             tabindex="0">
+
+            <table class="projection-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Môn tiên quyết</th>
+                        <th scope="col">Tín chỉ</th>
+                        <th scope="col">Điểm đã đạt</th>
+                    </tr>
+                </thead>
+
+                <tbody id="prerequisite-course-list">
+
+                    <tr>
+                        <td>Cơ sở dữ liệu</td>
+                        <td>3</td>
+                        <td>
+                            <div class="projection-score-field">
+                                <input
+                                    class="projection-input"
+                                    type="number"
+                                    name="prerequisite_score_1"
+                                    min="0"
+                                    max="10"
+                                    step="0.1"
+                                    required
+                                    aria-label="Điểm môn Cơ sở dữ liệu"
+                                    placeholder="Nhập điểm">
+                                <span>/10</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Lập trình C</td>
+                        <td>4</td>
+                        <td>
+                            <div class="projection-score-field">
+                                <input
+                                    class="projection-input"
+                                    type="number"
+                                    name="prerequisite_score_2"
+                                    min="0"
+                                    max="10"
+                                    step="0.1"
+                                    required
+                                    aria-label="Điểm môn Lập trình C"
+                                    placeholder="Nhập điểm">
+                                <span>/10</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Toán rời rạc</td>
+                        <td>3</td>
+                        <td>
+                            <div class="projection-score-field">
+                                <input
+                                    class="projection-input"
+                                    type="number"
+                                    name="prerequisite_score_3"
+                                    min="0"
+                                    max="10"
+                                    step="0.1"
+                                    required
+                                    aria-label="Điểm môn Toán rời rạc"
+                                    placeholder="Nhập điểm">
+                                <span>/10</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <p class="projection-note">
+            <i data-lucide="info" aria-hidden="true"></i>
+            Các môn tiên quyết được xác định tự động
+            từ danh sách môn học kỳ tới.
+            Vui lòng nhập đầy đủ điểm theo thang 10.
+        </p>
+
+    </div>
+</section>
+
+        <!-- SECTION 3: THÔNG TIN GPA -->
+        <section class="projection-section">
+            <div class="projection-section-heading">
+                <span class="projection-step-number">3</span>
+
+                <div>
+                    <h2>Thông tin GPA hiện tại và mục tiêu</h2>
+                </div>
+            </div>
+
+            <div class="projection-card">
+                <div class="projection-form-grid">
+
+                    <div class="projection-form-group">
+                        <label for="current-gpa">
+                            GPA tích lũy hiện tại (Hệ 4)
+                        </label>
+                        <input
+                            class="projection-input"
+                            id="current-gpa"
+                            name="current_gpa"
+                            type="number"
+                            value="3.00"
+                            min="0"
+                            max="4"
+                            step="0.01">
+                    </div>
+
+                    <div class="projection-form-group">
+                        <label for="earned-credits">
+                            Tín chỉ đã tích lũy
+                        </label>
+                        <input
+                            class="projection-input"
+                            id="earned-credits"
+                            name="earned_credits"
+                            type="number"
+                            value="40"
+                            min="0">
+                    </div>
+
+<div class="projection-form-group">
+    <label for="target-gpa">GPA mục tiêu (Hệ 4)</label>
+
+    <input
+        class="projection-input"
+        id="target-gpa"
+        name="target_gpa"
+        type="number"
+        value="3.50"
+        min="0"
+        max="4"
+        step="0.01">
+</div>
+
+                    <div class="projection-form-group">
+                        <label for="semester-credits">
+                            Số tín chỉ kỳ tới
+                        </label>
+                        <input
+                            class="projection-input"
+                            id="semester-credits"
+                            name="semester_credits"
+                            type="number"
+                            value="9"
+                            min="1">
+                    </div>
+
+                </div>
+<div class = "projection-actions">
+<button type="button"
+        class="et-btn et-btn-primary projection-calculate-button">
+    <span aria-hidden="true">▦</span>
+    Tính toán dự phóng
+</button>
+</div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 4: KẾT QUẢ GPA CẦN ĐẠT -->
+        <section class="projection-section">
+            <div class="projection-section-heading">
+                <span class="projection-step-number">4</span>
+
+                <div>
+                    <h2>Kết quả tổng quan</h2>
+                </div>
+            </div>
+
+<div class="projection-result-grid">
+    <article class="projection-result-highlight">
+        <div class="projection-result-icon">
+            <i data-lucide="graduation-cap" aria-hidden="true"></i>
+        </div>
+
+        <div class="projection-result-body">
+            <span class="projection-result-title">GPA kỳ tới tối thiểu cần đạt</span>
+
+            <div class="projection-result-value">
+                <strong class="required-semester-gpa">3.20</strong>
+                <span class="projection-result-scale">/ 4.00</span>
+            </div>
+
+            <p class="projection-result-message">Đạt mục tiêu GPA 3.50</p>
+        </div>
+    </article>
+</div>
+        </section>
+
+
+        <!-- SECTION 5: DỰ PHÓNG ĐIỂM TỪNG MÔN -->
+        <section class="projection-section">
+            <div class="projection-section-heading">
+                <span class="projection-step-number">5</span>
+
+                <div>
+                    <h2>Dự phóng điểm cho các môn</h2>
+                </div>
+            </div>
+
+            <div class="projection-card">
+                <div class="projection-table-wrapper">
+                    <table class="projection-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Môn học</th>
+                                <th scope="col">Tín chỉ</th>
+                                <th scope="col">Điểm mục tiêu hệ 10</th>
+                                <th scope="col">Điểm mục tiêu hệ 4</th>
+                                <th scope="col">Điểm chữ đề xuất</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="projected-course-results">
+                            <tr>
+                                <td>Cơ sở dữ liệu nâng cao</td>
+                                <td>3</td>
+                                <td>9.0</td>
+                                <td>4.0</td>
+                                <td><span class="projection-grade">A</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Thiết kế giao diện</td>
+                                <td>3</td>
+                                <td>8.5</td>
+                                <td>3.5</td>
+                                <td><span class="projection-grade">B+</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Lập trình web</td>
+                                <td>3</td>
+                                <td>8.5</td>
+                                <td>3.5</td>
+                                <td><span class="projection-grade">B+</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+<!-- SECTION 6: BIỂU ĐỒ DỰ PHÓNG -->
+<section class="projection-section">
+    <div class="projection-section-heading">
+        <span class="projection-step-number">6</span>
+        <div>
+            <h2>Biểu đồ dự phóng GPA</h2>
+            <p>Theo dõi lộ trình GPA của bạn qua các kỳ học và mức độ đạt mục tiêu.</p>
+        </div>
+    </div>
+
+    <div class="projection-chart-layout">
+        <div class="projection-card projection-chart-card">
+            <div class="projection-chart-legend">
+                <span><i class="legend-dot legend-current"></i> GPA hiện tại</span>
+                <span><i class="legend-dot legend-forecast"></i> GPA dự kiến</span>
+                <span><i class="legend-line legend-target"></i> GPA mục tiêu</span>
+            </div>
+
+            <svg class="projection-chart-svg" viewBox="0 0 600 270" role="img"
+                 aria-label="Biểu đồ GPA: học kỳ trước 3.00, học kỳ này 3.52, mục tiêu 3.50">
+                <!-- Đường lưới -->
+                <g class="chart-grid">
+                    <line x1="50" x2="580" y1="30"  y2="30"/>
+                    <line x1="50" x2="580" y1="80"  y2="80"/>
+                    <line x1="50" x2="580" y1="130" y2="130"/>
+                    <line x1="50" x2="580" y1="180" y2="180"/>
+                    <line x1="50" x2="580" y1="230" y2="230"/>
+                </g>
+
+                <!-- Nhãn trục -->
+                <g class="chart-axis">
+                    <text x="40" y="34"  text-anchor="end">4.0</text>
+                    <text x="40" y="84"  text-anchor="end">3.5</text>
+                    <text x="40" y="134" text-anchor="end">3.0</text>
+                    <text x="40" y="184" text-anchor="end">2.5</text>
+                    <text x="40" y="234" text-anchor="end">2.0</text>
+                    <text x="90"  y="258" text-anchor="middle">HK trước</text>
+                    <text x="310" y="258" text-anchor="middle">HK này</text>
+                    <text x="540" y="258" text-anchor="middle">Mục tiêu</text>
+                </g>
+
+                <!-- Vùng tô, đường GPA và đường mục tiêu -->
+                <polygon class="chart-area" points="90,130 310,78 540,80 540,230 90,230"/>
+                <polyline class="chart-line" points="90,130 310,78"/>
+                <line class="chart-target" x1="310" y1="80" x2="540" y2="80"/>
+
+                <!-- Điểm dữ liệu -->
+                <circle class="chart-dot chart-dot--current"  cx="90"  cy="130" r="6"/>
+                <circle class="chart-dot chart-dot--forecast" cx="310" cy="78"  r="6"/>
+
+                <!-- Nhãn giá trị -->
+                <text class="chart-label" x="90"  y="114" text-anchor="middle">3.00</text>
+                <text class="chart-label" x="310" y="62"  text-anchor="middle">3.52</text>
+                <text class="chart-label" x="540" y="64"  text-anchor="middle">3.50</text>
+            </svg>
+<p class="projection-chart-note">
+    Biểu đồ minh họa tham khảo
+</p>
+        </div>
+
+        <aside class="projection-card projection-chart-summary">
+            <h3>Tóm tắt lộ trình</h3>
+
+            <div class="projection-summary-item">
+                <div class="projection-summary-icon">
+                    <i data-lucide="target" aria-hidden="true"></i>
+                </div>
+                <div class="projection-summary-text">
+                    <span>GPA mục tiêu</span>
+                    <strong class="summary-target-gpa">3.50 <small>/ 4.00</small></strong>
+                </div>
+            </div>
+
+            <div class="projection-summary-item">
+                <div class="projection-summary-icon">
+<i data-lucide="trending-up" aria-hidden="true"></i>
+                </div>
+                <div class="projection-summary-text">
+                    <span>GPA học kỳ tới theo điểm đề xuất</span>
+                    <strong class="summary-forecast-gpa">3.52 <small>/ 4.00</small></strong>
+                </div>
+            </div>
+
+<div class="projection-summary-item">
+    <div class="projection-summary-icon">
+<i data-lucide="book-open" aria-hidden="true"></i>
+    </div>
+    <div class="projection-summary-text">
+        <span>Điểm trung bình hệ 10 đề xuất</span>
+        <strong class="summary-average-10">8.1 – 8.5 <small>/ 10</small></strong>
+    </div>
+</div>
+        </aside>
+    </div>
+</section>
+</div>
+<!-- BANNER TƯ VẤN-->
+<div class="forecast-banner projection-advising">
+    <div class="advising-icon">
+        <i data-lucide="messages-square" aria-hidden="true"></i>
+    </div>
+
+    <div>
+        <strong>Bạn muốn cải thiện GPA và xây dựng lộ trình học tập phù hợp?</strong>
+    </div>
+
+<a
+    href="advising-contact.html"
+    class="et-btn et-btn-primary">
+    ✦ Đến trang tư vấn
+</a>
+</div>
+    </main>
+
+<!-- Thư viện Lucide -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<!-- Khởi tạo icon -->
+<script>
+    if (window.lucide) {
+        window.lucide.createIcons();
+    } else {
+        console.error("Không thể tải thư viện Lucide.");
+    }
+</script>
+</body>
+</html>
+

@@ -316,6 +316,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    
     /* ==========================================
        5. TẢI JAVASCRIPT RIÊNG TỪNG TRANG
     ========================================== */
@@ -450,7 +451,9 @@ document.addEventListener("DOMContentLoaded", function () {
             await loadPageScripts(doc, target.href, id);
 
             if (id !== requestId) return;
-
+if (window.lucide) {
+    window.lucide.createIcons();
+}
             // Thông báo cho JS riêng của từng trang
             document.dispatchEvent(
                 new CustomEvent("edutrack:page-loaded", {

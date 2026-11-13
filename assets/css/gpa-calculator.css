@@ -1,22 +1,4 @@
 /* ==========================================================================
-   EDUTRACK - GPA CALCULATOR
-   File: gpa-calculator.css
-
-   Thứ tự nạp:
-   1. bootstrap.min.css
-   2. main.css
-   3. gpa-calculator.css
-
-   Quy ước:
-   - Dùng biến thiết kế từ main.css.
-   - Không định dạng header, footer hoặc main.
-   - Phần 01-09: giao diện TÍNH GPA (giữ nguyên).
-   - Phần 10-20: giao diện DỰ PHÓNG GPA (6 mục) (bố cục theo wireframe,
-     tiêu đề / khung / bảng đồng bộ với trang tính GPA).
-   ========================================================================== */
-
-
-/* ==========================================================================
    01. NÚT BẤM
    ========================================================================== */
 
@@ -67,13 +49,11 @@
     font-size: var(--font-size-small);
 }
 
-
 /* ==========================================================================
    02. KHUNG CHUNG
    ========================================================================== */
 
 .gpa-calculator,
-.gpa-hero,
 #projection-wrapper,
 #calculator-wrapper {
     box-sizing: border-box;
@@ -81,20 +61,19 @@
 }
 
 .gpa-calculator *,
-.gpa-hero *,
 #projection-wrapper * {
     box-sizing: border-box;
 }
 
 .gpa-calculator {
-    width: calc(100% - 48px);
+    width: calc(100% - 24px);
     max-width: var(--container-max);
-    margin: var(--spacing-4) auto 0;
-    padding: var(--spacing-4);
-    background: var(--white-color);
-    border: 1px solid var(--border-color);
+    margin: var(--spacing-3) auto 0;
+    padding: var(--spacing-3);
+    background: transparent;
+    border: none;
     border-radius: var(--radius-large);
-    box-shadow: var(--shadow-small);
+    box-shadow: none;
 }
 
 .gpa-calculator :is(h2, h3, h4),
@@ -107,81 +86,8 @@
     display: none !important;
 }
 
-
 /* ==========================================================================
-   03. HERO - TÍNH VÀ DỰ PHÓNG GPA
-   ========================================================================== */
-
-.gpa-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-    align-items: stretch;
-    gap: var(--spacing-4);
-    width: calc(100% - 48px);
-    max-width: var(--container-max);
-    min-height: 214px;
-    margin: var(--spacing-3) auto;
-    padding: 0 var(--spacing-5);
-    overflow: hidden;
-    /* Màu nền lấy theo màu nền của ảnh gpa-banner.png để hình hoà vào hero */
-    background: #F3F8FC;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-large);
-    text-align: left;
-}
-
-.gpa-hero-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 0;
-    max-width: 100%;
-    margin: 0;
-    padding: var(--spacing-3) 0;
-}
-
-.gpa-hero-text h1 {
-    margin: 0 0 var(--spacing-2);
-    color: var(--primary-color);
-    font-size: var(--font-size-h1);
-    line-height: 1.3;
-}
-
-.gpa-hero-text p {
-    max-width: 520px;
-    margin: 0 0 var(--spacing-3);
-    color: var(--text-color);
-    line-height: 1.6;
-}
-
-.gpa-hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-3);
-    margin-top: 0;
-}
-
-/* Hình cao bằng đúng chiều cao hero (kéo sát mép trên và dưới) */
-.gpa-hero-illustration {
-    position: relative;
-    min-width: 0;
-    overflow: hidden;
-}
-
-.gpa-hero-illustration img {
-    position: absolute;
-    top: 50%;
-    left: 40%;
-    width: 150%;
-    height: 150%;
-    max-width: none;
-    object-fit: contain;
-    transform: translate(-50%, -50%);
-}
-
-
-/* ==========================================================================
-   04. FORM VÀ INPUT - DÙNG CHUNG CHO TÍNH GPA VÀ DỰ PHÓNG
+   03. FORM VÀ INPUT - DÙNG CHUNG CHO TÍNH GPA VÀ DỰ PHÓNG
    ========================================================================== */
 
 .gpa-calculator :is(
@@ -231,21 +137,20 @@
 
 
 /* ==========================================================================
-   05. CÁC BƯỚC TÍNH GPA
+   04. CÁC BƯỚC TÍNH GPA
    ========================================================================== */
 
 .calc-step {
     min-width: 0;
     margin-bottom: var(--spacing-3);
     padding: var(--spacing-3) var(--spacing-4);
-    background: var(--background-color);
+    background: var(--white-color);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-medium);
     box-shadow: none;
 }
 
-.calc-step h3,
-.result-detail h3 {
+.calc-step h3{
     display: flex;
     align-items: center;
     gap: 12px;
@@ -257,8 +162,7 @@
     line-height: 1.35;
 }
 
-.gpa-calculator,
-.gpa-calculator * {
+.gpa-calculator{
     font-family: var(--font-family);
 }
 
@@ -300,7 +204,7 @@
 ================================== */
 
 .gpa-calculator .et-gpa-alert {
-    margin-top: 16px;
+    margin-top: 0 0 var(--spacing-3);
     padding: 14px 18px;
     border-radius: 10px;
     font-size: 14px;
@@ -325,9 +229,8 @@
     color: #991B1B;
 }
 
-
 /* ==========================================================================
-   06. BẢNG NHẬP MÔN HỌC
+   05. BẢNG NHẬP MÔN HỌC
    ========================================================================== */
 
 .calc-step--courses {
@@ -362,7 +265,7 @@
     border-collapse: separate;
 }
 .calc-table-wrapper .calc-table {
-    width: 1100px;
+    width: 100%;
     min-width: 1100px;
 }
 .calc-table th {
@@ -417,7 +320,7 @@
     border: 0;
     border-radius: var(--radius-small);
     cursor: pointer;
-    transition: color 0.2s, background 0.2s;
+    transition: color 0.2s, background-color 0.2s;
 }
 
 .btn-icon-delete svg {
@@ -458,25 +361,14 @@
 
 
 /* ==========================================================================
-   07. KẾT QUẢ GPA
+   06. KẾT QUẢ GPA
    ========================================================================== */
-
-.calc-step--result {
-    padding: var(--spacing-3) var(--spacing-4);
-    background: var(--background-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-medium);
-}
-
-.calc-step--result .calc-heading {
-    margin-bottom: var(--spacing-4);
-}
 
 .calc-heading {
     display: flex;
     align-items: center;
     gap: var(--spacing-3);
-    margin-bottom: var(--spacing-4);
+    margin-bottom: var(--spacing-3);
 }
 
 .result-summary {
@@ -557,15 +449,14 @@
     line-height: 1.2;
 }
 
-
 /* ==========================================================================
-   08. BẢNG ĐIỂM CHI TIẾT
+   07. BẢNG ĐIỂM CHI TIẾT
    ========================================================================== */
 
 .result-detail {
     width: 100%;
     min-width: 0;
-    margin-top: var(--spacing-3);
+    margin-top: 0;
     padding: 0;
     max-height: 350px;
     overflow-x: auto;
@@ -598,9 +489,6 @@
     font-weight: 700;
     text-align: left;
     white-space: nowrap;
-    position: sticky;
-    top: 0;
-    z-index: 1;
 }
 
 .result-table tbody td {
@@ -632,9 +520,8 @@
     font-weight: 700;
 }
 
-
 /* ==========================================================================
-   09. BANNER MỜI DỰ PHÓNG GPA
+   08. BANNER MỜI DỰ PHÓNG GPA
    ========================================================================== */
 
 .forecast-banner {
@@ -642,9 +529,10 @@
     align-items: center;
     gap: var(--spacing-3);
     box-sizing: border-box;
-    width: calc(100% - 48px);
-    max-width: var(--container-max);
-    margin: var(--spacing-3) auto var(--spacing-4);
+
+    width: calc(100% - 56px);
+    max-width: calc(var(--container-max) - 32px);
+    margin: 0 auto var(--spacing-4);
     padding: 12px 16px;
     background: var(--background-alt);
     border-left: 4px solid var(--primary-color);
@@ -676,15 +564,12 @@
     margin-left: auto;
 }
 
-
 /* ==========================================================================
-   10. DỰ PHÓNG GPA - KHUNG NGOÀI (đồng bộ với .gpa-calculator)
-   --------------------------------------------------------------------------
-   Mặc định: 1 cột. Từ 992px trở lên: lưới 24 cột (xem phần 19).
+   09. DỰ PHÓNG GPA - KHUNG NGOÀI (đồng bộ với .gpa-calculator)
    ========================================================================== */
 
 #projection-wrapper {
-    /* Màu trạng thái (dùng biến của main.css nếu có) */
+    /* Biến trạng thái của Dự phóng GPA */
     --pj-success: var(--success-color, #16a34a);
     --pj-success-bg: var(--success-bg, #ecfdf3);
     --pj-success-border: var(--success-border, #bbf7d0);
@@ -693,31 +578,32 @@
     grid-template-columns: minmax(0, 1fr);
     gap: var(--spacing-3);
     align-items: stretch;
-    width: calc(100% - 48px);
+
+    width: calc(100% - 24px);
     max-width: var(--container-max);
-    margin: var(--spacing-4) auto;
-    padding: var(--spacing-4);
-    background: var(--white-color);
-    border: 1px solid var(--border-color);
+    margin: var(--spacing-3) auto 0;
+    padding: var(--spacing-3);
+
+    background: transparent;
+    border: none;
     border-radius: var(--radius-large);
-    box-shadow: var(--shadow-small);
+    box-shadow: none;
 }
 
-#projection-wrapper,
-#projection-wrapper * {
+#projection-wrapper{
     font-family: var(--font-family);
 }
 
-
 /* ==========================================================================
-   11. DỰ PHÓNG GPA - KHUNG MỤC VÀ TIÊU ĐỀ (giống .calc-step)
+   10. DỰ PHÓNG GPA - KHUNG MỤC VÀ TIÊU ĐỀ (giống .calc-step)
    ========================================================================== */
 
 .projection-section {
     min-width: 0;
     margin: 0;
     padding: var(--spacing-3) var(--spacing-4);
-    background: var(--background-color);
+
+    background: var(--white-color);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-medium);
     box-shadow: none;
@@ -750,7 +636,7 @@
 }
 
 .projection-section-heading h2 {
-    margin: 0 0 4px;
+    margin: 0;
     color: var(--primary-color);
     font-size: 18px;
     font-weight: 700;
@@ -774,9 +660,8 @@
     box-shadow: none;
 }
 
-
 /* ==========================================================================
-   12. DỰ PHÓNG GPA - BẢNG (mục 1, 2, 5) - giống .calc-table
+   11. DỰ PHÓNG GPA - BẢNG (mục 1, 2, 5) - giống .calc-table
    ========================================================================== */
 
 .projection-table-wrapper {
@@ -791,11 +676,7 @@
     overflow-y: auto;
 
 }
-#projection-wrapper > .projection-section:nth-child(-n+2) .projection-table-wrapper {
-    max-height: 350px;
-    overflow-y: auto;
-    overflow-x: auto;
-}
+
 #projection-wrapper > .projection-section:nth-child(-n+2) .projection-table thead th {
     position: sticky;
     top: 0;
@@ -887,21 +768,6 @@
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.projection-input:hover {
-    border-color: var(--text-light);
-}
-
-.projection-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px var(--background-alt);
-}
-
-.projection-input::placeholder {
-    color: var(--text-light);
-    opacity: 1;
-}
-
 /* Ô tín chỉ căn giữa */
 .projection-credit-input {
     text-align: center;
@@ -918,7 +784,7 @@
     border: 0;
     border-radius: var(--radius-small);
     cursor: pointer;
-    transition: color 0.2s, background 0.2s;
+    transition: color 0.2s, background-color 0.2s;
 }
 
 .projection-icon-button svg {
@@ -1017,9 +883,8 @@
     color: var(--primary-color);
 }
 
-
 /* ==========================================================================
-   13. DỰ PHÓNG GPA - MỤC 3: THÔNG TIN GPA VÀ MỤC TIÊU
+   12. DỰ PHÓNG GPA - MỤC 3: THÔNG TIN GPA VÀ MỤC TIÊU
    ========================================================================== */
 
 .projection-form-grid {
@@ -1034,10 +899,6 @@
     background: var(--background-alt);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-medium);
-}
-
-.projection-form-group label {
-    margin-bottom: 8px;
 }
 
 .projection-form-group small {
@@ -1056,15 +917,10 @@
     width: fit-content;
     max-width: 100%;
     margin-top: var(--spacing-3);
-    margin-left: auto;
 }
 
-
 /* ==========================================================================
-   14. DỰ PHÓNG GPA - MỤC 4: KẾT QUẢ TỔNG QUAN
-   --------------------------------------------------------------------------
-   Chỉ có một thẻ xanh lớn "GPA kỳ tới cần đạt": icon bên trái,
-   nội dung bên phải.
+   13. DỰ PHÓNG GPA - MỤC 4: KẾT QUẢ TỔNG QUAN
    ========================================================================== */
 
 .projection-result-grid {
@@ -1156,9 +1012,8 @@
     content: "✓";
 }
 
-
 /* ==========================================================================
-   15. DỰ PHÓNG GPA - MỤC 5: DỰ PHÓNG ĐIỂM TỪNG MÔN
+   14. DỰ PHÓNG GPA - MỤC 5: DỰ PHÓNG ĐIỂM TỪNG MÔN
    ========================================================================== */
 
 .projected-course-results td {
@@ -1194,7 +1049,7 @@
 
 
 /* ==========================================================================
-   16. DỰ PHÓNG GPA - MỤC 6: BIỂU ĐỒ VÀ TÓM TẮT LỘ TRÌNH
+   15. DỰ PHÓNG GPA - MỤC 6: BIỂU ĐỒ VÀ TÓM TẮT LỘ TRÌNH
    ========================================================================== */
 
 .projection-chart-layout {
@@ -1319,9 +1174,8 @@
 
 /* Focus cho các nút thao tác */
 .gpa-calculator button:focus-visible,
-.gpa-hero button:focus-visible,
 #projection-wrapper button:focus-visible,
-.forecast-banner button:focus-visible {
+.forecast-banner .et-btn:focus-visible {
     outline: 3px solid var(--primary-color);
     outline-offset: 3px;
 }
@@ -1362,18 +1216,9 @@
     transform: translateY(1px);
 }
 
-/* Focus cho vùng bảng cuộn được */
-.calc-table-wrapper:focus-visible,
-.result-detail:focus-visible,
-.projection-table-wrapper:focus-visible {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
 /* Hạn chế hiệu ứng khi người dùng yêu cầu */
 @media (prefers-reduced-motion: reduce) {
     .gpa-calculator *,
-    .gpa-hero *,
     #projection-wrapper * {
         scroll-behavior: auto;
         transition-duration: 0.01ms;
@@ -1494,7 +1339,7 @@
 
 
 /* ==========================================================================
-   17. RESPONSIVE - TABLET (≤ 991px)
+   16. RESPONSIVE - TABLET (≤ 991px)
    ========================================================================== */
 
 @media (max-width: 991px) {
@@ -1503,15 +1348,8 @@
     }
 }
 
-
 /* ==========================================================================
-   18. DESKTOP (≥ 992px) - BỐ CỤC DỰ PHÓNG THEO WIREFRAME
-   --------------------------------------------------------------------------
-   Hàng 1: Mục 1 | Mục 2
-   Hàng 2: Mục 3 (4 ô nhập + nút tính toán)
-   Hàng 3: Mục 4 | Mục 5
-   Hàng 4: Mục 6 (biểu đồ + tóm tắt lộ trình)
-   Lưu ý: 6 mục phải là con trực tiếp của #projection-wrapper theo đúng thứ tự.
+   17. DESKTOP (≥ 992px) - BỐ CỤC DỰ PHÓNG THEO WIREFRAME
    ========================================================================== */
 
 @media (min-width: 992px) {
@@ -1568,120 +1406,30 @@
         min-width: 150px;
         padding-left: 12px;
     }
+
+    .projection-chart-layout {
+    grid-template-columns: minmax(0, 1.8fr) minmax(260px, 1fr);
+    gap: var(--spacing-4);
 }
-    /* ----- Mục 3: 4 ô nhập + nút trên cùng một hàng ----- */
-@media (min-width: 992px) and (max-width: 1199px) {
-    .projection-section:nth-child(3) .projection-card {
-        display: block;
-    }
-
-    .projection-section:nth-child(3) .projection-form-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .projection-section:nth-child(3)
-    .projection-calculate-button {
-        width: auto;
-        margin-top: var(--spacing-3);
-    }
 }
 
 @media (min-width: 1200px) {
-    .projection-section:nth-child(3) .projection-card {
-        display: block;
-    }
-
     .projection-section:nth-child(3) .projection-form-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
+@media (min-width: 992px) {
     .projection-section:nth-child(3) .projection-form-group small {
         display: none;
     }
-
-    .projection-section:nth-child(3) .projection-calculate-button {
-    width: fit-content;
-    justify-self: end;
-margin-top: var(--spacing-3);
-    }
-
-    /* ----- Mục 6: biểu đồ (trái) + tóm tắt (phải) ----- */
-    .projection-chart-layout {
-        grid-template-columns: minmax(0, 1.8fr) minmax(260px, 1fr);
-        gap: var(--spacing-4);
-    }
-
-
+}
 
 /* ==========================================================================
-   19. RESPONSIVE - ĐIỆN THOẠI (≤ 767px)
+   18. RESPONSIVE - ĐIỆN THOẠI (≤ 767px)
    ========================================================================== */
 
 @media (max-width: 767px) {
-    .gpa-calculator {
-        width: calc(100% - 24px);
-        padding: var(--spacing-3);
-    }
-
-    .gpa-hero {
-        grid-template-columns: minmax(0, 1fr);
-        width: calc(100% - 24px);
-        min-height: 0;
-        padding: var(--spacing-4);
-        gap: var(--spacing-3);
-    }
-
-    .gpa-hero-text {
-        padding: 0;
-    }
-
-   .gpa-hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding: 24px;
-    }
-
-    .gpa-hero-illustration {
-        display: none;
-    }
-
-    .gpa-hero-text {
-        padding: 0;
-    }
-
-    .gpa-hero-buttons {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 10px;
-    }
-
-    .gpa-hero-buttons .et-btn {
-        width: auto;
-        padding: 10px 14px;
-        white-space: nowrap;
-    }
-
-    .gpa-hero-buttons {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 10px;
-    }
-
-    .gpa-hero-buttons .et-btn {
-        width: auto;
-        min-height: 42px;
-        padding: 10px 14px;
-        white-space: nowrap;
-    }
-
-    .calc-fields-row {
-        grid-template-columns: minmax(0, 1fr);
-    }
 
     .calc-actions {
         display: flex;
@@ -1699,28 +1447,37 @@ margin-top: var(--spacing-3);
         white-space: nowrap;
     }
 
-    .forecast-banner {
-        flex-wrap: wrap;
-        align-items: flex-start;
-        width: calc(100% - 24px);
-    }
+.forecast-banner {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 12px 16px;
+    align-items: center;
+    width: calc(100% - 24px);
+}
 
-    .forecast-banner > img {
-        flex: 0 0 56px;
-        width: 56px;
-        height: 56px;
-    }
+.forecast-banner > img {
+    grid-column: 1;
+    grid-row: 1;
+    width: 56px;
+    height: 56px;
+}
 
-    .forecast-banner > div {
-        flex: 1 1 180px;
-        min-width: 0;
-    }
+.forecast-banner > div {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+}
 
-    .forecast-banner .et-btn {
+.forecast-banner > .et-btn {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
     width: fit-content;
-    margin-left: auto;
-    white-space: nowrap;
-    }
+    max-width: 100%;
+    margin-left: 0;
+    white-space: normal;
+    text-align: center;
+}
 
     .result-card-value strong {
         font-size: 27px;
@@ -1728,12 +1485,6 @@ margin-top: var(--spacing-3);
 
     .result-stat-card > strong {
         font-size: 24px;
-    }
-
-    /* ----- Dự phóng ----- */
-    #projection-wrapper {
-        width: calc(100% - 24px);
-        padding: var(--spacing-3);
     }
 
     .projection-section {
@@ -1770,15 +1521,11 @@ margin-top: var(--spacing-3);
     }
 }
 
-
 /* ==========================================================================
-   20. RESPONSIVE - ĐIỆN THOẠI NHỎ (≤ 420px)
+   19. RESPONSIVE - ĐIỆN THOẠI NHỎ (≤ 420px)
    ========================================================================== */
 
 @media (max-width: 420px) {
-    .gpa-hero-text h1 {
-        font-size: 26px;
-    }
 
     .result-summary {
         grid-template-columns: minmax(0, 1fr);
@@ -1815,51 +1562,20 @@ margin-top: var(--spacing-3);
     height: 32px;
 }
 @media (max-width: 767px) {
-    .projection-advising .advising-icon {
-        flex: 0 0 56px;
-        width: 56px;
-        height: 56px;
-        padding: 0;
-    }
-
-    .projection-advising > div:nth-child(2) {
-        flex: 1;
-        min-width: 0;
-     align-self: center;
-    }
-
-    .projection-advising .et-btn {
-        width: fit-content;
-        max-width: 100%;
-        margin-left: auto;
-        white-space: nowrap;
-    }
-    .projection-chart-layout {
-    grid-template-columns: minmax(0, 1fr);
+.projection-advising .advising-icon {
+    grid-column: 1;
+    grid-row: 1;
+    width: 56px;
+    height: 56px;
+    padding: 0;
 }
 
-.projection-chart-card,
-.projection-chart-summary {
-    min-width: 0;
-    width: 100%;
-}
-
-.projection-chart-svg {
-    display: block;
-    width: 100%;
-    height: auto;
-}
 /* Banner tư vấn giống banner Tính dự phóng trên mobile */
 .projection-advising {
     display: grid;
     grid-template-columns: 56px minmax(0, 1fr);
     gap: 12px 16px;
     align-items: start;
-}
-
-.projection-advising .advising-icon {
-    grid-column: 1;
-    grid-row: 1;
 }
 
 .projection-advising > div:nth-child(2) {
