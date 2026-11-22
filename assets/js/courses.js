@@ -1,259 +1,683 @@
 
 "use strict";
 
-// =============================================
-// EDUTRACK - JAVASCRIPT DANH MỤC MÔN HỌC
-// =============================================
+// ==========================================================
+// EDUTRACK - BÀI 7: JSON, FETCH, TÌM KIẾM, LỌC, SẮP XẾP
+// ==========================================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
   // 1. LẤY CÁC PHẦN TỬ HTML
   const courseList = document.querySelector("#course-list");
   const filterButtons = document.querySelectorAll(".filter-btn");
+
   const searchInput = document.querySelector("#course-search");
   const searchForm = document.querySelector(".search-form");
-  const pagination = document.querySelector(".et-course-pagination");
-  const paginationList = pagination?.querySelector(".pagination");
-  const resultCount = document.querySelector(".course-result-count");
 
-  // Kiểm tra các phần tử cần thiết
-  if (!courseList || !searchInput || !searchForm ||
-      !pagination || !paginationList || !resultCount) {
-    console.error("Thiếu phần tử HTML cần thiết cho courses.js");
+  const creditsSelect =
+    document.querySelector("#course-credits-filter");
+
+  const sortSelect = document.querySelector("#course-sort");
+
+  const resultCount =
+    document.querySelector(".course-result-count");
+
+  const loadStatus =
+    document.querySelector("#course-load-status");
+
+  const pagination =
+    document.querySelector(".et-course-pagination");
+
+  const paginationList =
+    pagination?.querySelector(".pagination");
+
+  // Kiểm tra các phần tử HTML cần thiết
+  if (
+    !courseList ||
+    !filterButtons.length ||
+    !searchInput ||
+    !searchForm ||
+    !creditsSelect ||
+    !sortSelect ||
+    !resultCount ||
+    !loadStatus ||
+    !pagination ||
+    !paginationList
+  ) {
+    console.error(
+      "EduTrack: Thiếu thành phần HTML của trang Danh mục môn học."
+    );
     return;
   }
 
-  // 2. CHUYỂN 13 CARD THÀNH MẢNG OBJECT
-  const courses = Array.from(
-    courseList.querySelectorAll(".course-card")
-  ).map(function (card) {
-    return {
-      name: card.querySelector(".course-title").textContent.trim(),
-      category: card.dataset.category,
-      element: card.closest(".col-12")
-    };
-  });
+  // ==========================================================
+  // 2. DỮ LIỆU VÀ BIẾN TRẠNG THÁI
+  // ==========================================================
 
-  // 3. BIẾN TRẠNG THÁI
-  const coursesPerPage = 9;
+  const DATA_URL = "../assets/data/courses.json";
+  const COURSES_PER_PAGE = 9;
 
-  let currentFilter = "all";
+  const CATEGORY_NAMES = {
+    "dai-cuong": "Đại cương",
+    "co-so-nganh": "Cơ sở ngành",
+    "chuyen-nganh": "Chuyên ngành"
+  };
+
+  let courses = [];
+
+  let currentCategory = "all";
+  let currentCredits = "all";
   let currentKeyword = "";
+  let currentSort = "name-asc";
   let currentPage = 1;
 
-  // 4. CHUẨN HÓA TỪ KHÓA TIẾNG VIỆT
-  function normalizeText(text) {
-    return text
+  let isReady = false;
+
+  // Đồng bộ sắp xếp mặc định với HTML
+  sortSelect.value = currentSort;
+
+  // ==========================================================
+  // 3. CHUẨN HÓA CHỮ TIẾNG VIỆT
+  // ==========================================================
+
+  function normalizeText(value) {
+    return String(value ?? "")
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/đ/g, "d")
+      .replace(/\s+/g, " ")
       .trim();
   }
 
-  // 5. LỌC DANH SÁCH MÔN HỌC
-  function getFilteredCourses() {
-    return courses.filter(function (course) {
+  // Vô hiệu hóa điều khiển khi đang tải JSON
+  function setControlsDisabled(disabled) {
 
-      const matchCategory =
-        currentFilter === "all" ||
-        course.category === currentFilter;
+    searchInput.disabled = disabled;
+    creditsSelect.disabled = disabled;
+    sortSelect.disabled = disabled;
 
-      const matchKeyword =
+    filterButtons.forEach(function (button) {
+      button.disabled = disabled;
+    });
+  }
+
+  // ==========================================================
+  // 4. THÔNG BÁO TRẠNG THÁI TẢI DỮ LIỆU
+  // ==========================================================
+
+  function setStatus(message, type = "info", retry = false) {
+
+    loadStatus.replaceChildren();
+    loadStatus.className = "course-load-status";
+
+    if (!message) {
+      loadStatus.hidden = true;
+      return;
+    }
+
+    loadStatus.hidden = false;
+    loadStatus.classList.add("course-status-" + type);
+
+    const text = document.createElement("span");
+    text.textContent = message;
+    loadStatus.appendChild(text);
+
+    // Tạo nút thử lại khi tải dữ liệu thất bại
+    if (retry) {
+
+      const retryButton = document.createElement("button");
+
+      retryButton.type = "button";
+      retryButton.className = "course-retry-btn";
+      retryButton.textContent = "Thử tải lại";
+
+      retryButton.addEventListener("click", loadCourses);
+
+      loadStatus.appendChild(retryButton);
+    }
+  }
+
+  // ==========================================================
+  // 5. KIỂM TRA DỮ LIỆU JSON
+  // ==========================================================
+
+  function validateCourses(data) {
+
+    if (!Array.isArray(data)) {
+      throw new Error(
+        "File JSON phải chứa một mảng môn học."
+      );
+    }
+
+    const ids = new Set();
+
+    for (const [index, course] of data.entries()) {
+
+      const valid =
+        course &&
+        typeof course === "object" &&
+        Number.isSafeInteger(course.id) &&
+        course.id > 0 &&
+        typeof course.name === "string" &&
+        course.name.trim() !== "" &&
+        Object.hasOwn(CATEGORY_NAMES, course.category) &&
+        Number.isInteger(course.credits) &&
+        course.credits > 0 &&
+        typeof course.description === "string" &&
+        typeof course.image === "string" &&
+        Array.isArray(course.keywords) &&
+        course.keywords.every(function (word) {
+          return typeof word === "string";
+        });
+
+      if (!valid) {
+        throw new Error(
+          "Bản ghi môn học thứ " +
+          (index + 1) +
+          " không hợp lệ."
+        );
+      }
+
+      if (ids.has(course.id)) {
+        throw new Error(
+          "ID môn học bị trùng: " + course.id
+        );
+      }
+
+      ids.add(course.id);
+    }
+
+    return data;
+  }
+
+  // ==========================================================
+  // 6. TẢI DỮ LIỆU JSON BẰNG FETCH (AJAX)
+  // ==========================================================
+
+  async function loadCourses() {
+
+    isReady = false;
+    setControlsDisabled(true);
+
+    courseList.replaceChildren();
+    pagination.hidden = true;
+    resultCount.textContent = "";
+
+    setStatus(
+      "Đang tải danh sách môn học...",
+      "loading"
+    );
+
+    try {
+
+      const response = await fetch(DATA_URL, {
+        cache: "no-cache"
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          "HTTP " +
+          response.status +
+          " khi tải " +
+          DATA_URL
+        );
+      }
+
+      const data = validateCourses(
+        await response.json()
+      );
+
+      courses = data;
+      isReady = true;
+
+      setControlsDisabled(false);
+
+      // Trường hợp JSON không có bản ghi
+      if (courses.length === 0) {
+
+        setStatus(
+          "Chưa có môn học nào trong dữ liệu JSON.",
+          "empty"
+        );
+
+        resultCount.textContent =
+          "Tìm thấy 0 môn học.";
+
+        return;
+      }
+
+      // Tải thành công: Ẩn thông báo màu xanh
+      setStatus("");
+
+      // Hiển thị danh sách môn học
+      renderCourses();
+
+    } catch (error) {
+
+      courses = [];
+      isReady = false;
+
+      console.error(
+        "EduTrack: Lỗi tải danh sách môn học:",
+        error
+      );
+
+      setStatus(
+        "Không thể tải dữ liệu môn học. Hãy kiểm tra file JSON và chạy bằng Live Server.",
+        "error",
+        true
+      );
+    }
+  }
+
+  // ==========================================================
+  // 7. LỌC + TÌM KIẾM THEO TÊN + SẮP XẾP
+  // ==========================================================
+
+  function getVisibleCourses() {
+
+    const selected = courses.filter(function (course) {
+
+      // Bộ lọc thứ nhất: nhóm môn học
+      const matchesCategory =
+        currentCategory === "all" ||
+        course.category === currentCategory;
+
+      // Bộ lọc thứ hai: số tín chỉ
+      const matchesCredits =
+        currentCredits === "all" ||
+        course.credits === Number(currentCredits);
+
+      // Tìm kiếm CHỈ THEO TÊN MÔN như ban đầu
+      const matchesName =
         normalizeText(course.name).includes(currentKeyword);
 
-      return matchCategory && matchKeyword;
-    });
-  }
-
-  // 6. CẬP NHẬT TRẠNG THÁI NÚT LỌC
-  function updateFilterButtons() {
-    filterButtons.forEach(function (button) {
-      const isActive = button.dataset.filter === currentFilter;
-
-      button.setAttribute("aria-pressed", String(isActive));
-    });
-  }
-
-  // 7. HIỂN THỊ DANH SÁCH MÔN HỌC
-  function displayCourses(filteredCourses) {
-
-    // Ẩn tất cả Card trước
-    courses.forEach(function (course) {
-      course.element.hidden = true;
+      // Kết hợp các điều kiện lọc
+      return matchesCategory &&
+             matchesCredits &&
+             matchesName;
     });
 
-    // Tính danh sách của trang hiện tại
-    const startIndex = (currentPage - 1) * coursesPerPage;
-    const endIndex = startIndex + coursesPerPage;
+    // Sắp xếp theo tên A - Z
+    if (currentSort === "name-asc") {
 
-    const pageCourses = filteredCourses.slice(startIndex, endIndex);
+      selected.sort(function (a, b) {
+        return a.name.localeCompare(b.name, "vi");
+      });
 
-    // Hiển thị những Card thuộc trang hiện tại
-    pageCourses.forEach(function (course) {
-      course.element.hidden = false;
-    });
-
-    // Xóa thông báo rỗng cũ, nếu có
-    const oldEmptyMessage = courseList.querySelector(".course-empty");
-    if (oldEmptyMessage) {
-      oldEmptyMessage.remove();
     }
 
-    // Thêm thông báo nếu không có kết quả
-    if (filteredCourses.length === 0) {
-      const emptyMessage = document.createElement("p");
+    // Sắp xếp theo tên Z - A
+    else if (currentSort === "name-desc") {
 
-      emptyMessage.className = "course-empty";
-      emptyMessage.textContent =
-        "Không tìm thấy môn học phù hợp. Hãy thử từ khóa khác.";
+      selected.sort(function (a, b) {
+        return b.name.localeCompare(a.name, "vi");
+      });
 
-      courseList.appendChild(emptyMessage);
     }
+
+    return selected;
   }
 
-  // 8. TẠO MỘT NÚT PHÂN TRANG
-  function createPageButton(label, pageNumber, disabled, active, ariaLabel) {
+  // ==========================================================
+  // 8. TẠO CARD TỪ DỮ LIỆU JSON
+  // ==========================================================
 
-    const li = document.createElement("li");
-    li.className = "page-item";
+  function createCourseCard(course) {
+
+    // Cột Bootstrap
+    const column = document.createElement("div");
+
+    column.className =
+      "col-12 col-md-6 col-xl-4 mb-4";
+
+    // Khung Card
+    const card = document.createElement("article");
+
+    card.className = "card course-card h-100";
+    card.dataset.category = course.category;
+
+    // Ảnh môn học
+    const image = document.createElement("img");
+
+    image.className =
+      "card-img-top course-image img-fluid";
+
+    image.src = course.image;
+    image.alt = "Minh họa môn " + course.name;
+    image.loading = "lazy";
+
+    // Nội dung Card
+    const body = document.createElement("div");
+
+    body.className = "card-body course-card-body";
+
+    // Nhóm môn và tín chỉ
+    const meta = document.createElement("div");
+    meta.className = "course-meta";
+
+    const tag = document.createElement("span");
+
+    tag.className = "course-tag";
+    tag.textContent = CATEGORY_NAMES[course.category];
+
+    const credits = document.createElement("span");
+
+    credits.className = "course-credits";
+    credits.textContent =
+      course.credits + " Tín chỉ";
+
+    meta.append(tag, credits);
+
+    // Tên môn học
+    const title = document.createElement("h2");
+
+    title.className = "course-title";
+    title.textContent = course.name;
+
+    // Mô tả môn học
+    const description = document.createElement("p");
+
+    description.className = "course-description";
+    description.textContent = course.description;
+
+    // Liên kết xem chi tiết theo ID
+    const detailLink = document.createElement("a");
+
+    detailLink.className = "course-link";
+    detailLink.textContent = "Xem chi tiết →";
+
+    detailLink.href =
+      "course-detail.html?id=" +
+      encodeURIComponent(String(course.id));
+
+    detailLink.setAttribute(
+      "aria-label",
+      "Xem chi tiết môn " + course.name
+    );
+
+    // Ghép Card
+    body.append(
+      meta,
+      title,
+      description,
+      detailLink
+    );
+
+    card.append(image, body);
+    column.appendChild(card);
+
+    return column;
+  }
+
+  // ==========================================================
+  // 9. TẠO NÚT PHÂN TRANG
+  // ==========================================================
+
+  function createPageButton(
+    label,
+    page,
+    disabled = false,
+    active = false,
+    ariaLabel = ""
+  ) {
+
+    const item = document.createElement("li");
+
+    item.className = "page-item";
+
+    if (active) {
+      item.classList.add("active");
+    }
+
+    if (disabled) {
+      item.classList.add("disabled");
+    }
 
     const button = document.createElement("button");
+
     button.type = "button";
     button.className = "page-link";
     button.textContent = label;
+    button.disabled = disabled;
 
     if (ariaLabel) {
       button.setAttribute("aria-label", ariaLabel);
     }
 
     if (active) {
-      li.classList.add("active");
       button.setAttribute("aria-current", "page");
     }
 
-    if (disabled) {
-      li.classList.add("disabled");
-      button.disabled = true;
-    }
-
-    // Bấm nút sẽ chuyển trang
     button.addEventListener("click", function () {
-      currentPage = pageNumber;
+
+      currentPage = page;
       renderCourses();
+
     });
 
-    li.appendChild(button);
-    paginationList.appendChild(li);
+    item.appendChild(button);
+    paginationList.appendChild(item);
   }
 
-  // 9. CẬP NHẬT PHÂN TRANG
+  // ==========================================================
+  // 10. HIỂN THỊ PHÂN TRANG
+  // ==========================================================
+
   function displayPagination(totalPages) {
 
-    // Xóa các nút phân trang cũ
     paginationList.replaceChildren();
 
-    // Không cần phân trang nếu chỉ có 1 trang
+    pagination.hidden = totalPages <= 1;
+
     if (totalPages <= 1) {
-      pagination.hidden = true;
       return;
     }
 
-    pagination.hidden = false;
-
     // Nút trang trước
     createPageButton(
-      "<", currentPage - 1,
-      currentPage === 1, false, "Trang trước"
+      "<",
+      currentPage - 1,
+      currentPage === 1,
+      false,
+      "Trang trước"
     );
 
     // Các nút số trang
     for (let page = 1; page <= totalPages; page++) {
+
       createPageButton(
-        String(page), page,
-        false, page === currentPage,
+        String(page),
+        page,
+        false,
+        page === currentPage,
         "Trang " + page
       );
+
     }
 
     // Nút trang sau
     createPageButton(
-      ">", currentPage + 1,
-      currentPage === totalPages, false, "Trang sau"
+      ">",
+      currentPage + 1,
+      currentPage === totalPages,
+      false,
+      "Trang sau"
     );
   }
 
-  // 10. HÀM HIỂN THỊ TỔNG HỢP
+  // ==========================================================
+  // 11. HIỂN THỊ DANH SÁCH MÔN HỌC
+  // ==========================================================
+
   function renderCourses() {
 
-    const filteredCourses = getFilteredCourses();
+    if (!isReady) {
+      return;
+    }
+
+    const visibleCourses = getVisibleCourses();
 
     const totalPages = Math.ceil(
-      filteredCourses.length / coursesPerPage
+      visibleCourses.length / COURSES_PER_PAGE
     );
 
-    // Đảm bảo trang hiện tại không vượt số trang
+    // Giữ số trang hợp lệ
     currentPage = Math.max(
-      1, Math.min(currentPage, totalPages || 1)
+      1,
+      Math.min(currentPage, totalPages || 1)
     );
 
-    displayCourses(filteredCourses);
-    displayPagination(totalPages);
-    updateFilterButtons();
+    const from =
+      (currentPage - 1) * COURSES_PER_PAGE;
 
-    // Thông báo số lượng môn tìm được
-    if (filteredCourses.length === 0) {
-      resultCount.textContent = "Tìm thấy 0 môn học.";
+    const onPage = visibleCourses.slice(
+      from,
+      from + COURSES_PER_PAGE
+    );
+
+    // Render các Card từ JSON
+    courseList.replaceChildren(
+      ...onPage.map(createCourseCard)
+    );
+
+    // Không tìm thấy kết quả
+    if (visibleCourses.length === 0) {
+
+      const emptyMessage =
+        document.createElement("p");
+
+      emptyMessage.className = "course-empty";
+
+      emptyMessage.textContent =
+        "Không tìm thấy môn học phù hợp. Hãy đổi từ khóa hoặc bộ lọc.";
+
+      courseList.appendChild(emptyMessage);
+
+      resultCount.textContent =
+        "Tìm thấy 0 môn học.";
+
     } else {
-      const displayed = Math.min(
-        currentPage * coursesPerPage,
-        filteredCourses.length
+
+      const first = from + 1;
+
+      const last = Math.min(
+        from + COURSES_PER_PAGE,
+        visibleCourses.length
       );
 
       resultCount.textContent =
-        "Tìm thấy " + filteredCourses.length +
+        "Tìm thấy " +
+        visibleCourses.length +
         " môn học. Đang hiển thị " +
-        ((currentPage - 1) * coursesPerPage + 1) +
-        "–" + displayed + ".";
+        first +
+        "–" +
+        last +
+        ".";
+
     }
+
+    displayPagination(totalPages);
+
+    // Cập nhật trạng thái nút lọc
+    filterButtons.forEach(function (button) {
+
+      const isActive =
+        button.dataset.filter === currentCategory;
+
+      button.setAttribute(
+        "aria-pressed",
+        String(isActive)
+      );
+
+    });
   }
 
-  // 11. SỰ KIỆN CLICK - LỌC MÔN HỌC
+  // ==========================================================
+  // 12. SỰ KIỆN LỌC THEO NHÓM MÔN
+  // ==========================================================
+
   filterButtons.forEach(function (button) {
+
     button.addEventListener("click", function () {
-      currentFilter = button.dataset.filter;
+
+      currentCategory = button.dataset.filter;
       currentPage = 1;
+
       renderCourses();
+
     });
   });
 
-  // 12. SỰ KIỆN INPUT - TÌM KIẾM MÔN HỌC
+  // ==========================================================
+  // 13. SỰ KIỆN TÌM KIẾM THEO TÊN MÔN
+  // ==========================================================
+
   searchInput.addEventListener("input", function () {
-    currentKeyword = normalizeText(searchInput.value);
+
+    currentKeyword =
+      normalizeText(searchInput.value);
+
     currentPage = 1;
+
     renderCourses();
   });
 
-  // 13. SỰ KIỆN SUBMIT - KHÔNG TẢI LẠI TRANG
+  // Ngăn Enter tải lại trang
   searchForm.addEventListener("submit", function (event) {
+
     event.preventDefault();
 
-    currentKeyword = normalizeText(searchInput.value);
+    currentKeyword =
+      normalizeText(searchInput.value);
+
     currentPage = 1;
+
     renderCourses();
   });
 
-  // 14. SỰ KIỆN KEYDOWN - NHẤN ESC ĐỂ XÓA TÌM KIẾM
+  // Nhấn Escape để xóa từ khóa tìm kiếm
   searchInput.addEventListener("keydown", function (event) {
+
     if (event.key === "Escape") {
+
       searchInput.value = "";
       currentKeyword = "";
       currentPage = 1;
+
       renderCourses();
     }
   });
 
-  // 15. HIỂN THỊ TRANG KHI MỚI MỞ
-  renderCourses();
+  // ==========================================================
+  // 14. SỰ KIỆN LỌC THEO SỐ TÍN CHỈ
+  // ==========================================================
+
+  creditsSelect.addEventListener("change", function () {
+
+    currentCredits = creditsSelect.value;
+    currentPage = 1;
+
+    renderCourses();
+  });
+
+  // ==========================================================
+  // 15. SỰ KIỆN SẮP XẾP A-Z / Z-A
+  // ==========================================================
+
+  sortSelect.addEventListener("change", function () {
+
+    currentSort = sortSelect.value;
+    currentPage = 1;
+
+    renderCourses();
+  });
+
+  // ==========================================================
+  // 16. TẢI DỮ LIỆU LẦN ĐẦU
+  // ==========================================================
+
+  loadCourses();
 
 });

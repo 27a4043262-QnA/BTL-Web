@@ -1,290 +1,675 @@
 
+/* ==========================================================
+   EDUTRACK - DANH MỤC MÔN HỌC (BÀI 7)
+   Nạp sau bootstrap.min.css và main.css
+   ========================================================== */
+
+/* ==========================================
+   KHỐI 1: NỘI DUNG CHÍNH
+   ========================================== */
+
 main {
     width: 100%;
-    max-width: 1200px; 
+    max-width: 1200px;
     margin: 0 auto;
     padding: 24px 16px;
 }
-/*Breadcrumb Styles*/
-.breadcrumb ol{
+
+/* Breadcrumb */
+.breadcrumb ol {
     display: flex;
     list-style: none;
     gap: 8px;
     font-size: var(--font-size-small);
     color: rgb(58, 58, 136);
 }
+
 .breadcrumb a {
-  color: #6b7280;
-  text-decoration: none;
+    color: #6b7280;
+    text-decoration: none;
 }
- 
+
 .breadcrumb a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
- 
-/* Tieudetrang */
+
+/* ==========================================
+   KHỐI 2: TIÊU ĐỀ TRANG
+   ========================================== */
+
 .page-intro {
-  
-  margin: 16px 0 24px;
+    margin: 16px 0 24px;
 }
- /*danh mục môn học*/
+
 .page-intro h1 {
-  color: var( --primary-color);
-  font-size: 35px;
-  font-weight: 700;
-  margin-bottom: 8px;
+    color: var(--primary-color);
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
- 
+
 .page-intro p {
-  color: #6b7280;
-  font-size: var(--font-size-base);
+    color: var(--text-light);
+    font-size: var(--font-size-base);
 }
-/* Bộ lọc và ô tìm kiếm */
+
+/* ==========================================
+   KHỐI 3: BỘ LỌC VÀ TÌM KIẾM
+   ========================================== */
+
+/*
+   Grid gồm 2 cột và 2 hàng:
+
+   Hàng 1: Lọc nhóm môn | Tìm kiếm
+   Hàng 2:               | Tín chỉ + Sắp xếp
+*/
+
 .filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) 400px;
+
+    grid-template-areas:
+        "filters search"
+        ".       extra";
+
+    column-gap: 20px;
+    row-gap: 8px;
+
+    align-items: start;
+    margin-bottom: 24px;
 }
- 
+
+/* ==========================================
+   3.1. BỘ LỌC NHÓM MÔN - BÊN TRÁI
+   ========================================== */
+
 .filter-buttons {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+    grid-area: filters;
+
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    gap: 8px;
+    margin: 0;
+    padding: 0;
 }
- /* Các nút filter */
+
+/* Các nút lọc nhóm môn */
 .filter-btn {
-  padding: 8px 18px;
-  min-height: 44px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background: var(--white-color);
-  color: var(--text-color);
-  font-size: var(--font-size-base);
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 44px;
+    min-height: 44px;
+    padding: 0 18px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    background: var(--white-color);
+    color: var(--text-color);
+
+    font-size: var(--font-size-base);
+    line-height: 1.2;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition: background-color 0.15s ease,
+                color 0.15s ease;
 }
- /* Khi hover vào filter */
+
+/* Khi di chuột vào nút */
 .filter-btn:hover {
-  background: #f3f4f6;
+    background: #f3f4f6;
 }
- /* Khi filter đang được chọn */
+
+/* Nút đang được chọn */
 .filter-btn[aria-pressed="true"] {
-  background: #273e71;
-  color: #ffffff;
-  border-color: #2f4574;
+    background: #273e71;
+    color: #ffffff;
+    border-color: #2f4574;
 }
- /* Ô tìm kiếm */
+
+/* Nút bị vô hiệu hóa */
+.filter-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* ==========================================
+   3.2. Ô TÌM KIẾM - HÀNG 1 BÊN PHẢI
+   ========================================== */
+
 .search-form {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
+    grid-area: search;
+
+    display: flex;
+    align-items: stretch;
+
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+
+    margin: 0;
+    padding: 0;
 }
- /* Label của ô tìm kiếm */
+
+/* Label của ô tìm kiếm */
 .search-form label {
-  font-size: var(--font-size-base);
-  color: #374151;
-  white-space: nowrap;
+    font-size: var(--font-size-base);
+    color: var(--text-color);
+    white-space: nowrap;
 }
- /* Input tìm kiếm */
+
+/* Input tìm kiếm */
 .search-form input[type="search"] {
-  padding: 8px 14px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  min-width: 0;
-  width: 100%;
-  font-size: var(--font-size-base);
+    display: block;
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 44px;
+    min-height: 44px;
+
+    margin: 0;
+    padding: 8px 14px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    background: var(--white-color);
+    color: var(--text-color);
+
+    font-size: var(--font-size-base);
 }
- /* Khi focus vào ô tìm kiếm */
+
+/* Khi focus vào ô tìm kiếm */
 .search-form input[type="search"]:focus {
-  outline: none;
-  border-color: #2f4574;
+    outline: 2px solid var(--primary-color);
+    outline-offset: 1px;
+    border-color: #2f4574;
 }
-/* Danh sách môn học */
-/* Danh sách môn học dùng Bootstrap 4 Grid */
+
+/* ==========================================
+   3.3. LỌC TÍN CHỈ VÀ SẮP XẾP
+   HÀNG 2 - GÓC PHẢI
+   ========================================== */
+
+.course-extra-filters {
+    grid-area: extra;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    gap: 8px;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Khung chứa mỗi dropdown */
+.course-select-group {
+    display: flex;
+    flex-direction: column;
+
+    width: 145px;
+    min-width: 0;
+    flex: 0 1 145px;
+
+    margin: 0;
+    padding: 0;
+}
+
+/* Label được ẩn bằng sr-only */
+.course-select-group label {
+    color: var(--text-color);
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Dropdown tín chỉ và sắp xếp */
+.course-select-group .form-control {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 34px;
+    min-height: 34px;
+
+    padding: 4px 8px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
+    background-color: var(--white-color);
+    color: var(--text-color);
+
+    font-size: 12px;
+}
+
+/* Khi focus vào dropdown */
+.course-select-group .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(47, 82, 127, 0.12);
+}
+
+/* ==========================================
+   KHỐI 4: TRẠNG THÁI TẢI JSON
+   ========================================== */
+
+.course-load-status {
+    margin: 0 0 12px;
+    padding: 10px 14px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    color: var(--text-color);
+    font-size: var(--font-size-base);
+}
+
+.course-load-status[hidden] {
+    display: none !important;
+}
+
+/* Đang tải */
+.course-status-loading {
+    background: #eff6ff;
+    color: var(--primary-color);
+}
+
+/* Tải thành công */
+.course-status-success {
+    background: var(--success-bg);
+    color: var(--text-dark);
+}
+
+/* JSON rỗng */
+.course-status-empty {
+    background: #f3f4f6;
+}
+
+/* Tải dữ liệu thất bại */
+.course-status-error {
+    background: var(--danger-bg);
+    color: var(--danger-color);
+}
+
+/* Nút thử tải lại */
+.course-retry-btn {
+    min-height: 44px;
+    margin-left: 14px;
+    padding: 8px 16px;
+
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    color: var(--primary-color);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.course-retry-btn:hover {
+    background: #f3f4f6;
+}
+
+/* ==========================================
+   KHỐI 5: DANH SÁCH MÔN HỌC
+   ========================================== */
+
 #course-list {
-  margin-bottom: 32px;
+    margin-bottom: 32px;
 }
 
-/* Tùy biến Bootstrap Card */
- /* Mỗi thẻ môn học */
+/* Số lượng môn học */
+.course-result-count {
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+    margin-bottom: 16px;
+}
+
+/* Không tìm thấy kết quả */
+.course-empty {
+    width: 100%;
+    padding: 32px 16px;
+
+    text-align: center;
+    color: var(--text-color);
+    font-size: var(--font-size-base);
+}
+
+/* ==========================================
+   5.1. CARD MÔN HỌC
+   ========================================== */
+
 .course-card {
-  height: 100%;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+    height: 100%;
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    transition: box-shadow 0.15s ease,
+                transform 0.15s ease;
 }
- 
+
+/* Hover Card */
 .course-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
+
+/* Ảnh môn học */
 .course-image {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  background: #f3f4f6;
+    width: 100%;
+    height: 140px;
+
+    object-fit: cover;
+    background: #f3f4f6;
 }
- /* Nội dung thẻ môn học */
+
+/* Nội dung Card */
 .course-card-body {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
-/* Hàng chứa tag + số tín chỉ: Flexbox, dàn 2 đầu */
+
+/* Hàng nhóm môn và số tín chỉ */
 .course-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 8px;
 }
- /* Tag môn học */
+
+/* Nhãn nhóm môn */
 .course-tag {
-  display: inline-block;
-  font-size: var(--font-size-small);
-  font-weight: 600;
-  color: #4e3ec6;
-  background: #eff6ff;
-  padding: 2px 10px;
-  border-radius: 999px;
+    display: inline-block;
+
+    padding: 2px 10px;
+    border-radius: 999px;
+
+    font-size: var(--font-size-small);
+    font-weight: 600;
+
+    color: #4e3ec6;
+    background: #eff6ff;
 }
-/* Đổi màu tag theo từng khối kiến thức */
+
+/* Nhãn cơ sở ngành */
 .course-card[data-category="co-so-nganh"] .course-tag {
-  color: #2898c8;
-  background: #eff6ff;
+    color: #2898c8;
+    background: #eff6ff;
 }
- 
+
+/* Nhãn chuyên ngành */
 .course-card[data-category="chuyen-nganh"] .course-tag {
-  color: #407cd1;
-  background: #eff6ff;
+    color: #407cd1;
+    background: #eff6ff;
 }
- 
+
+/* Số tín chỉ */
 .course-credits {
-  font-size: var(--font-size-small);
-  color: #6b7280;
+    font-size: var(--font-size-small);
+    color: #6b7280;
 }
- 
+
+/* Tên môn học */
 .course-title {
-  font-size: var(--font-size-h3);
-  font-weight: 600;
-  margin-bottom: 6px;
+    font-size: var(--font-size-h3);
+    font-weight: 600;
+    margin-bottom: 6px;
 }
+
+/* Mô tả môn */
 .course-description {
-  font-size: var(--font-size-base);
-  color: #6b7280;
-  margin-bottom: 16px;
-  flex-grow: 1;
+    font-size: var(--font-size-base);
+    color: #6b7280;
+
+    margin-bottom: 16px;
+    flex-grow: 1;
 }
- 
+
+/* Liên kết xem chi tiết */
 .course-link {
-  display: flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--primary-dark);
-  font-weight: 600;
-  font-size: var(--font-size-base);
-  text-decoration: none;
-  border-top: 1px solid #f3f4f6;
-  padding-top: 12px;
+    display: flex;
+    align-items: center;
+
+    min-height: 44px;
+
+    color: var(--primary-dark);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+
+    text-decoration: none;
+
+    border-top: 1px solid #f3f4f6;
+    padding-top: 12px;
 }
- 
+
 .course-link:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
- 
-/* =========================================
-   KHỐI 4: PHÂN TRANG - BOOTSTRAP 4
-   ========================================= */
 
-/* Danh sách phân trang */
+/* ==========================================
+   KHỐI 6: PHÂN TRANG
+   ========================================== */
+
 .et-course-pagination .pagination {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 8px;
+    padding-left: 0;
+    margin-bottom: 0;
+
+    list-style: none;
 }
 
-/* Các nút số trang */
+/* Nút phân trang */
 .et-course-pagination .page-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: var(--white-color);
-  color: var(--text-color);
-  text-decoration: none;
-  font-size: var(--font-size-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+
+    background: var(--white-color);
+    color: var(--text-color);
+
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    cursor: pointer;
 }
 
-/* Khi hover */
+/* Hover phân trang */
 .et-course-pagination .page-link:hover {
-  background: #f3f4f6;
-  color: var(--primary-color);
+    background: #f3f4f6;
+    color: var(--primary-color);
 }
 
-/* Trang đang được chọn */
+/* Trang đang chọn */
 .et-course-pagination .page-item.active .page-link {
-  background: var(--primary-dark);
-  color: var(--white-color);
-  border-color: var(--primary-dark);
+    background: var(--primary-dark);
+    color: var(--white-color);
+    border-color: var(--primary-dark);
 }
-/* Nút phân trang bị vô hiệu hóa */
+
+/* Nút trước/sau bị vô hiệu hóa */
 .et-course-pagination .page-item.disabled .page-link,
 .et-course-pagination .page-link:disabled {
-  background-color: #f1f3f5;
-  color: #a0a7b4;
-  border-color: #e5e7eb;
-  opacity: 0.65;
-  cursor: not-allowed;
-  pointer-events: none;
+    background-color: #f1f3f5;
+    color: #a0a7b4;
+    border-color: #e5e7eb;
+
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
-/* Không đổi màu khi hover lên nút bị vô hiệu hóa */
 .et-course-pagination .page-item.disabled .page-link:hover {
-  background-color: #f1f3f5;
-  color: #a0a7b4;
+    background-color: #f1f3f5;
+    color: #a0a7b4;
 }
+
+/* ==========================================
+   KHỐI 7: CSS CHO TRANG CHI TIẾT MẪU
+   GIỮ NGUYÊN ĐỂ KHÔNG ẢNH HƯỞNG TRANG KHÁC
+   ========================================== */
+
+.course-detail-view {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.course-detail-back {
+    display: inline-block;
+    margin: 8px 0 20px;
+}
+
+.course-detail-panel {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-large);
+
+    background: var(--white-color);
+    overflow: hidden;
+
+    box-shadow: var(--shadow-small);
+}
+
+.course-detail-hero {
+    width: 100%;
+    height: 245px;
+    object-fit: cover;
+}
+
+.course-detail-panel-body {
+    padding: 24px;
+}
+
+.course-detail-panel h1 {
+    font-size: var(--font-size-h2);
+}
+
+.course-detail-panel .course-meta {
+    justify-content: flex-start;
+    gap: 14px;
+}
+
+.course-detail-description {
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+}
+
+.course-detail-keywords {
+    color: var(--text-light);
+}
+
+/* ==========================================
+   KHỐI 8: RESPONSIVE
+   ========================================== */
+
+/*
+   Khi chiều rộng không đủ cho cả 4 nút nhóm
+   và thanh tìm kiếm, chuyển xuống bố cục dọc.
+*/
+@media (max-width: 1099.98px) {
+
+    .filter-bar {
+        grid-template-columns: minmax(0, 1fr);
+
+        grid-template-areas:
+            "filters"
+            "search"
+            "extra";
+
+        row-gap: 12px;
+    }
+
+    .search-form {
+        width: 100%;
+        max-width: 400px;
+        justify-self: end;
+    }
+
+    .course-extra-filters {
+        width: 100%;
+        max-width: 400px;
+        justify-self: end;
+    }
+}
+
+/* MOBILE: DƯỚI 768PX */
 @media (max-width: 767.98px) {
-  .filter-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
 
-  .search-form {
-    width: 100%;
-  }
+    main {
+        padding: 24px 16px;
+    }
 
-  .search-form input[type="search"] {
-    width: 100%;
-  }
-}
-/* Số lượng môn học phù hợp */
-.course-result-count {
-  color: var(--text-light);
-  font-size: var(--font-size-base);
-  margin-bottom: 16px;
-}
+    .filter-bar {
+        row-gap: 12px;
+    }
 
-/* Thông báo không tìm thấy môn học */
-.course-empty {
-  width: 100%;
-  padding: 32px 16px;
-  text-align: center;
-  color: var(--text-color);
-  font-size: var(--font-size-base);
+    .filter-buttons {
+        justify-content: flex-start;
+    }
+
+    .search-form {
+        width: 100%;
+        max-width: none;
+    }
+
+    .search-form input[type="search"] {
+        width: 100%;
+    }
+
+    .course-extra-filters {
+        width: 100%;
+        max-width: none;
+        justify-content: flex-end;
+    }
+
+    .course-select-group {
+        width: 145px;
+        min-width: 0;
+        flex: 0 1 145px;
+    }
+
+    .course-retry-btn {
+        display: block;
+        margin: 10px 0 0;
+    }
+
+    .course-detail-hero {
+        height: 180px;
+    }
+
+    .course-detail-panel-body {
+        padding: 16px;
+    }
 }
