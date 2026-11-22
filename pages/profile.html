@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Thông tin cá nhân - EduTrack</title>
+
+    <!-- Bootstrap 4.6.2 -->
+    <link rel="stylesheet"
+          href="../assets/css/bootstrap.min.css">
+
+    <!-- CSS chung -->
+    <link rel="stylesheet"
+          href="../assets/css/main.css">
+
+    <!-- CSS riêng -->
+    <link rel="stylesheet"
+          href="../assets/css/profile.css">
+
+    <!-- JavaScript -->
+    <script src="../assets/js/main.js" defer></script>
+    <script src="../assets/js/profile.js" defer></script>
+</head>
+
+<body>
+
+    <main id="main-content" class="et-page-content">
+
+        <div class="et-profile-container">
+
+            <!-- TIÊU ĐỀ -->
+            <div class="et-profile-intro">
+
+                <h1>Thông tin cá nhân</h1>
+
+                <p>
+                    Quản lý thông tin hồ sơ và bảo mật
+                    tài khoản cá nhân.
+                </p>
+
+            </div>
+
+            <!-- CHƯA ĐĂNG NHẬP -->
+            <div
+                id="et-profile-auth"
+                class="et-profile-auth"
+                hidden>
+
+                <h2>Đăng nhập để xem hồ sơ</h2>
+
+                <p>
+                    Thông tin cá nhân được lưu riêng
+                    cho từng tài khoản Google.
+                </p>
+
+                <div id="et-google-signin"></div>
+
+                <p
+                    id="et-profile-auth-message"
+                    role="status"
+                    aria-live="polite">
+                </p>
+
+            </div>
+
+            <!-- ĐANG TẢI -->
+            <div
+                id="et-profile-loading"
+                class="et-profile-loading"
+                role="status">
+
+                Đang tải thông tin tài khoản...
+
+            </div>
+
+            <!-- BỐ CỤC HỒ SƠ -->
+            <div
+                id="et-profile-layout"
+                class="row et-profile-layout"
+                hidden>
+
+                <!-- CỘT TRÁI -->
+                <div class="col-12 col-lg-4">
+
+                    <section
+                        class="et-profile-card"
+                        aria-label="Hồ sơ cá nhân">
+
+                        <!-- ICON ĐẠI DIỆN -->
+                        <div
+                            class="et-profile-avatar"
+                            aria-hidden="true">
+
+                            <i class="fas fa-user"></i>
+
+                        </div>
+
+                        <!-- TÊN -->
+                        <h2 id="et-profile-display-name"></h2>
+
+                        <!-- NGÀNH -->
+                        <p
+                            id="et-profile-major"
+                            class="et-profile-major">
+                        </p>
+
+                        <!-- TRẠNG THÁI -->
+                        <span class="et-profile-status">
+
+                            <span
+                                class="et-profile-status-dot"
+                                aria-hidden="true">
+                            </span>
+
+                            Đang hoạt động
+
+                        </span>
+
+                    </section>
+
+                </div>
+
+                <!-- CỘT PHẢI -->
+                <div class="col-12 col-lg-8">
+
+                    <div class="et-profile-content">
+
+                        <!-- THÔNG TIN CÁ NHÂN -->
+                        <section
+                            aria-labelledby="et-profile-info-heading">
+
+                            <h2
+                                id="et-profile-info-heading"
+                                class="et-profile-section-title">
+
+                                <span class="et-profile-heading-icon">
+                                    <i
+                                        class="fas fa-user"
+                                        aria-hidden="true">
+                                    </i>
+                                </span>
+
+                                Thông tin cá nhân
+
+                            </h2>
+
+                            <!-- 6 DÒNG THÔNG TIN -->
+                            <div
+                                id="et-profile-fields"
+                                class="et-profile-fields">
+                            </div>
+
+                            <!-- THÔNG BÁO -->
+                            <p
+                                id="et-profile-message"
+                                class="et-profile-message"
+                                role="status"
+                                aria-live="polite"
+                                hidden>
+                            </p>
+
+                        </section>
+
+                        <!-- BẢO MẬT -->
+                        <section
+                            class="et-profile-security"
+                            aria-labelledby="et-profile-security-heading">
+
+                            <h2
+                                id="et-profile-security-heading"
+                                class="et-profile-section-title">
+
+                                <span class="et-profile-heading-icon">
+
+                                    <i
+                                        class="fas fa-lock"
+                                        aria-hidden="true">
+                                    </i>
+
+                                </span>
+
+                                Bảo mật
+
+                            </h2>
+
+                            <div class="et-profile-security-body">
+
+                                <div class="et-profile-password-info">
+
+                                    <h3>Mật khẩu</h3>
+
+                                    <div class="et-profile-password-box">
+
+                                        <i
+                                            class="fas fa-shield-alt"
+                                            aria-hidden="true">
+                                        </i>
+
+                                        Được quản lý bởi Google
+
+                                    </div>
+
+                                    <p>
+                                        Mật khẩu nên có ít nhất 8 ký tự,
+                                        bao gồm chữ và số.
+                                    </p>
+
+                                </div>
+
+                                <!-- ĐỔI MẬT KHẨU GOOGLE -->
+                                <a
+                                    class="et-profile-password-btn"
+                                    href="https://myaccount.google.com/security"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+
+                                    <i
+                                        class="fas fa-key"
+                                        aria-hidden="true">
+                                    </i>
+
+                                    Cập nhật mật khẩu
+
+                                </a>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

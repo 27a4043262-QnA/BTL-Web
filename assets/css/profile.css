@@ -1,0 +1,459 @@
+
+/* ==========================================
+   EDUTRACK - PROFILE.CSS
+========================================== */
+
+/* 1. KHUNG TRANG */
+
+.et-profile-container {
+    width: 100%;
+    max-width: var(--container-max, 1200px);
+    margin: auto;
+    padding: 24px;
+}
+
+.et-profile-intro {
+    margin-bottom: 24px;
+}
+
+.et-profile-intro h1 {
+    color: var(--primary-color, #2f527f);
+    font-size: var(--font-size-h1, 32px);
+    margin-bottom: 8px;
+}
+
+.et-profile-intro p {
+    color: var(--text-color, #374151);
+    margin: 0;
+}
+
+.et-profile-layout {
+    row-gap: 24px;
+}
+
+/* 2. KHUNG CHUNG */
+
+.et-profile-card,
+.et-profile-content,
+.et-profile-auth {
+    background: var(--white-color, #fff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: var(--radius-large, 16px);
+    box-shadow: var(--shadow-small, 0 2px 6px #0001);
+}
+
+/* 3. THẺ CÁ NHÂN */
+
+.et-profile-card {
+    padding: 36px 24px;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Icon đại diện */
+
+.et-profile-avatar {
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--primary-color, #2f527f);
+    background: var(--background-alt, #eaf1fb);
+
+    margin-bottom: 20px;
+}
+
+.et-profile-avatar i {
+    font-size: 66px;
+}
+
+/* Họ tên */
+
+.et-profile-card h2 {
+    font-size: 22px;
+    color: var(--primary-color, #2f527f);
+
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+}
+
+/* Ngành học */
+
+.et-profile-major {
+    font-size: 14px;
+    color: var(--text-dark, #111827);
+    margin-bottom: 16px;
+}
+
+/* Trạng thái */
+
+.et-profile-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    background: var(--success-bg, #dcfce7);
+    color: #166534;
+
+    border-radius: 99px;
+    padding: 6px 14px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.et-profile-status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #16a34a;
+}
+
+/* 4. KHUNG NỘI DUNG */
+
+.et-profile-content {
+    padding: 24px;
+}
+
+.et-profile-section-title {
+    font-size: 20px;
+    color: var(--primary-color, #2f527f);
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 16px;
+}
+
+.et-profile-heading-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+
+    background: var(--background-alt, #eaf1fb);
+}
+
+/* 5. THÔNG TIN XẾP DỌC */
+
+.et-profile-field {
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.et-profile-field-view {
+    display: grid;
+
+    grid-template-columns:
+        minmax(110px, 30%)
+        minmax(0, 1fr)
+        36px;
+
+    align-items: center;
+    gap: 16px;
+
+    min-height: 58px;
+    padding: 8px 0;
+}
+
+.et-profile-field-label {
+    font-size: 14px;
+    color: var(--text-color, #374151);
+    font-weight: 500;
+}
+
+.et-profile-required {
+    color: var(--danger-color, #b91c1c);
+    font-weight: 700;
+}
+
+.et-profile-field-value {
+    font-size: 14px;
+    color: var(--primary-color, #2f527f);
+    overflow-wrap: anywhere;
+}
+
+.et-profile-field-value.is-empty {
+    color: var(--text-light, #6b7280);
+    font-style: italic;
+}
+
+/* Nút chỉnh sửa */
+
+.et-profile-edit-btn {
+    width: 34px;
+    height: 34px;
+
+    border: 0;
+    border-radius: 6px;
+
+    color: var(--primary-color, #2f527f);
+    background: var(--background-alt, #eaf1fb);
+}
+
+.et-profile-edit-btn:hover {
+    background: #d7e6f8;
+}
+
+/* 6. FORM CHỈNH SỬA */
+
+.et-profile-field-editor {
+    padding: 16px 0;
+}
+
+.et-profile-editor-label {
+    display: block;
+    margin-bottom: 8px;
+
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.et-profile-input {
+    width: 100%;
+    padding: 10px 12px;
+
+    border: 1px solid #b8c8dc;
+    border-radius: 6px;
+
+    background: #fff;
+    color: var(--text-dark, #111827);
+
+    font-size: 14px;
+}
+
+.et-profile-input:focus {
+    outline: 2px solid #d6e6f8;
+    border-color: var(--primary-color, #2f527f);
+}
+
+/* Giới tính Nam/Nữ */
+
+.et-profile-radio-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    min-height: 42px;
+}
+
+.et-profile-radio-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.et-profile-radio-option input {
+    accent-color: var(--primary-color, #2f527f);
+}
+
+/* Nút Lưu và Hủy */
+
+.et-profile-editor-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.et-profile-save-btn,
+.et-profile-cancel-btn {
+    border-radius: 6px;
+    padding: 7px 16px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.et-profile-save-btn {
+    background: var(--primary-color, #2f527f);
+    color: #fff;
+
+    border: 1px solid var(--primary-color, #2f527f);
+}
+
+.et-profile-cancel-btn {
+    background: #fff;
+    color: var(--primary-color, #2f527f);
+
+    border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.et-profile-save-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* Thông báo */
+
+.et-profile-error {
+    font-size: 12px;
+    color: var(--danger-color, #b91c1c);
+    margin: 8px 0 0;
+}
+
+.et-profile-message {
+    font-size: 13px;
+    color: #166534;
+    margin: 12px 0 0;
+}
+
+.et-profile-message.is-error {
+    color: var(--danger-color, #b91c1c);
+}
+
+/* 7. BẢO MẬT */
+
+.et-profile-security {
+    margin-top: 24px;
+    padding-top: 24px;
+
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.et-profile-security-body {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.et-profile-password-info {
+    flex: 1;
+    min-width: 200px;
+}
+
+.et-profile-password-info h3 {
+    font-size: 15px;
+    color: var(--text-dark, #111827);
+    margin-bottom: 8px;
+}
+
+.et-profile-password-box {
+    max-width: 480px;
+    min-height: 42px;
+
+    padding: 10px 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: var(--background-alt, #eaf1fb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+
+    color: var(--primary-color, #2f527f);
+    font-size: 13px;
+}
+
+.et-profile-password-info p {
+    font-size: 13px;
+    color: var(--text-light, #6b7280);
+    margin: 8px 0 0;
+}
+
+.et-profile-password-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--primary-color, #2f527f);
+    border-radius: 6px;
+
+    color: var(--primary-color, #2f527f);
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.et-profile-password-btn:hover {
+    background: var(--primary-color, #2f527f);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* 8. CHƯA ĐĂNG NHẬP */
+
+.et-profile-auth {
+    max-width: 540px;
+    margin: auto;
+    padding: 28px;
+}
+
+.et-profile-auth h2 {
+    font-size: 22px;
+}
+
+.et-profile-auth p {
+    font-size: 14px;
+}
+
+.et-profile-loading {
+    padding: 16px;
+    color: var(--text-light, #6b7280);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* 9. RESPONSIVE */
+
+@media (max-width: 767px) {
+
+    .et-profile-container {
+        padding: 16px;
+    }
+
+    .et-profile-content {
+        padding: 16px;
+    }
+
+    .et-profile-field-view {
+        grid-template-columns:
+            minmax(86px, 35%)
+            minmax(0, 1fr)
+            32px;
+
+        gap: 8px;
+    }
+
+    .et-profile-field-label,
+    .et-profile-field-value {
+        font-size: 13px;
+    }
+
+    .et-profile-password-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .et-profile-avatar {
+        width: 115px;
+        height: 115px;
+    }
+
+    .et-profile-avatar i {
+        font-size: 52px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .et-profile-edit-btn {
+        transition: none;
+    }
+}

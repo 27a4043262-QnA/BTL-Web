@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin tức & Sự kiện - EduTrack</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/news.css">
+    <link rel="stylesheet" href="assets/css/chatbot.css">
+    <script src="assets/js/chatbot.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    <script src="../assets/js/news.js" defer></script>
+</head>
+
+<body>
+    <main id="main-content" class="et-page-content">
+        <div class="et-news-container">
+            <!-- TIÊU ĐỀ -->
+            <section class="et-news-intro">
+                <h1>Tin tức & Sự kiện</h1>
+                <p> Cập nhật những thông tin mới nhất về học tập, kỹ năng và các sự kiện dành cho sinh viên. </p>
+            </section>
+
+            <!-- DANH SÁCH TIN TỨC -->
+            <section id="et-news-list" class="row et-news-grid" aria-label="Danh sách tin tức" aria-live="polite">
+
+                <div class="col-12">
+                    <p class="et-news-message" role="status"> Đang tải tin tức... </p>
+                </div>
+
+            </section>
+
+            <!-- PHÂN TRANG -->
+            <nav class="et-news-pagination" aria-label="Phân trang tin tức">
+                <ul id="et-news-pages" class="pagination justify-content-center"></ul>
+            </nav>
+        </div>
+    </main>
+</body>
+</html>

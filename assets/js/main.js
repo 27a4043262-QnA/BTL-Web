@@ -1,50 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const toggle = document.querySelector(".et-nav-toggle");
-    const menu = document.querySelector("#et-primary-nav");
-
-    if (!toggle || !menu) return;
-
-    // Mở và đóng menu
-    toggle.addEventListener("click", function () {
-        const isOpen = menu.classList.toggle("is-open");
-
-        toggle.setAttribute("aria-expanded", isOpen);
-
-        toggle.setAttribute(
-            "aria-label",
-            isOpen ? "Đóng menu điều hướng" : "Mở menu điều hướng"
-        );
-    });
-
-    // Đóng menu khi chọn một mục
-    menu.querySelectorAll("li:not(.button) a").forEach(function (link) {
-        link.addEventListener("click", function () {
-            menu.classList.remove("is-open");
-            toggle.setAttribute("aria-expanded", "false");
-            toggle.setAttribute("aria-label", "Mở menu điều hướng");
-        });
-    });
-
-    // Đóng menu bằng phím Escape
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            menu.classList.remove("is-open");
-            toggle.setAttribute("aria-expanded", "false");
-            toggle.setAttribute("aria-label", "Mở menu điều hướng");
-            toggle.focus();
-        }
-    });
-});
-
-
-
 /* === Header / Sidebar === */
-
-/* ==================================================
-   EDUTRACK - MAIN.JS
-   Header + Sidebar cố định, chỉ thay đổi nội dung
-================================================== */
-
 (() => {
     "use strict";
 
@@ -57,15 +11,18 @@ document.addEventListener("DOMContentLoaded", function () {
         "course-detail.html": ["Chi tiết môn học", "courses"],
         "gpa-calculator.html": ["Tính GPA", "gpa"],
         "gpa-projection.html": ["Dự phóng GPA", "projection"],
-        "advising-contact.html": ["Tư vấn", "advising"],
+        "advising.html": ["Tư vấn", "advising"],
         "about.html": ["Giới thiệu", "about"],
         "profile.html": ["Thông tin cá nhân", "profile"],
         "progress.html": ["Tiến độ học tập", "progress"],
+        "progress-detail.html": ["Chi tiết lộ trình học tập", "progress"],
         "csbm.html": ["Chính sách bảo mật", "privacy"],
         "DieuKhoanSuDung.html": ["Điều khoản sử dụng", "terms"],
         "bqtl.html": ["Bản quyền tài liệu", "copyright"],
         "login.html": ["Đăng nhập", ""],
-        "register.html": ["Đăng ký", ""]
+        "register.html": ["Đăng ký", ""],
+        "news.html": ["Tin tức & Sự kiện", "news"],
+        "news-detail.html": ["Chi tiết tin tức", "news"]
     };
 
     const CATEGORIES = {
@@ -698,7 +655,22 @@ if (window.lucide) {
                 title: page.title,
                 href: location.href
             });
+        } else if (page.file === "news-detail.html") {
+
+            // Trang danh sách tin tức
+            items.push({
+                title: "Tin tức & Sự kiện",
+                href: getURL("pages/news.html")
+            });
+
+            // Trang chi tiết tin tức
+            items.push({
+                title: "Chi tiết tin tức",
+                href: location.href
+            });
+
         } else if (page.file !== "index.html") {
+
             items.push({
                 title: page.title,
                 href: location.href
@@ -763,7 +735,7 @@ if (window.lucide) {
         );
 
         const submenuButtons = navRoot.querySelectorAll(
-            ".et-submenu-toggle"
+            ".et-sidebar .et-submenu-toggle"
         );
 
         if (!sidebar || !toggle) return;
@@ -911,21 +883,24 @@ if (window.lucide) {
         setExpanded(expanded);
     }
 
+
     /* ==========================================
-       11. TÀI KHOẢN
+    11. TÀI KHOẢN TRÊN HEADER
     ========================================== */
 
+    // Cập nhật giao diện theo trạng thái đăng nhập
     function updateAccount() {
+
         const guest = navRoot.querySelector(
-            ".et-account-guest"
+            ".et-topbar-account .et-account-guest"
         );
 
         const user = navRoot.querySelector(
-            ".et-account-user"
+            ".et-topbar-account .et-account-user"
         );
 
         const logout = navRoot.querySelector(
-            ".et-logout-btn"
+            ".et-topbar-account .et-logout-btn"
         );
 
         const auth = window.EduTrackAuth;
@@ -934,37 +909,188 @@ if (window.lucide) {
             typeof auth?.isLoggedIn === "function" &&
             auth.isLoggedIn() === true;
 
-        if (guest) guest.hidden = loggedIn;
-        if (user) user.hidden = !loggedIn;
+        // Chưa đăng nhập: chỉ hiện Đăng nhập
+        if (guest) {
+            guest.hidden = loggedIn;
+        }
 
+        // Đã đăng nhập: hiện Thông tin cá nhân
+        // và Đăng xuất
+        if (user) {
+            user.hidden = !loggedIn;
+        }
+
+        // Chỉ hiện nút đăng xuất khi có hàm logout
         if (logout) {
             logout.hidden =
+                !loggedIn ||
                 typeof auth?.logout !== "function";
         }
     }
 
-    function initAccount() {
-        updateAccount();
 
-        const logout = navRoot.querySelector(
-            ".et-logout-btn"
+    // Khởi tạo menu tài khoản
+    function initAccount() {
+
+        const account = navRoot.querySelector(
+            ".et-topbar-account"
         );
 
-        logout?.addEventListener("click", async () => {
+        const toggle = navRoot.querySelector(
+            ".et-topbar-account-toggle"
+        );
+
+        const menu = navRoot.querySelector(
+            ".et-topbar-account-menu"
+        );
+
+        const logout = navRoot.querySelector(
+            ".et-topbar-account .et-logout-btn"
+        );
+
+        if (!account || !toggle || !menu) {
+            return;
+        }
+
+        // ======================================
+        // 1. ĐÓNG MENU
+        // ======================================
+
+        function closeAccountMenu() {
+
+            menu.hidden = true;
+
+            toggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+        // ======================================
+        // 2. MỞ / ĐÓNG MENU
+        // ======================================
+
+        toggle.addEventListener("click", function () {
+
+            const willOpen = menu.hidden;
+
+            menu.hidden = !willOpen;
+
+            toggle.setAttribute(
+                "aria-expanded",
+                String(willOpen)
+            );
+
+            if (willOpen) {
+                updateAccount();
+            }
+
+        });
+
+        // ======================================
+        // 3. CLICK NGOÀI MENU THÌ ĐÓNG
+        // ======================================
+
+        document.addEventListener("click", function (event) {
+
+            if (!account.contains(event.target)) {
+                closeAccountMenu();
+            }
+
+        });
+
+        // ======================================
+        // 4. NHẤN ESC ĐỂ ĐÓNG
+        // ======================================
+
+        document.addEventListener("keydown", function (event) {
+
+            if (
+                event.key === "Escape" &&
+                !menu.hidden
+            ) {
+
+                closeAccountMenu();
+                toggle.focus();
+
+            }
+
+        });
+
+        // ======================================
+        // 5. CHỌN MỤC TRONG MENU
+        // ======================================
+
+        menu.querySelectorAll("a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+                closeAccountMenu();
+            });
+
+        });
+
+        // ======================================
+        // 6. ĐĂNG XUẤT
+        // ======================================
+
+        logout?.addEventListener("click", async function () {
+
             const auth = window.EduTrackAuth;
 
-            if (typeof auth?.logout !== "function") return;
+            if (typeof auth?.logout !== "function") {
+                return;
+            }
 
             try {
+
+                logout.disabled = true;
+
                 await auth.logout();
 
-                // Trang đăng nhập được mở lại sau logout
-                location.href = getURL("pages/login.html");
+                closeAccountMenu();
+
+                // Chuyển đến trang đăng nhập
+                location.href = getURL(
+                    "pages/login.html"
+                );
+
             } catch (error) {
-                console.error("Đăng xuất thất bại:", error);
+
+                console.error(
+                    "Đăng xuất thất bại:",
+                    error
+                );
+
+                logout.disabled = false;
+
             }
+
         });
+
+        // ======================================
+        // 7. ĐỒNG BỘ KHI TRẠNG THÁI AUTH THAY ĐỔI
+        // ======================================
+
+        window.addEventListener(
+            "et:auth-changed",
+            function () {
+
+                updateAccount();
+                closeAccountMenu();
+
+            }
+        );
+
+        // ======================================
+        // 8. HIỂN THỊ BAN ĐẦU
+        // ======================================
+
+        closeAccountMenu();
+        updateAccount();
+
     }
+
 
     /* ==========================================
        12. BỘ LỌC MÔN HỌC

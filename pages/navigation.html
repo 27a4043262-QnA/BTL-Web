@@ -23,6 +23,73 @@
         <i class="far fa-bell" aria-hidden="true"></i>
     </button>
 
+
+<!-- =======================================
+     TÀI KHOẢN TRÊN HEADER
+======================================= -->
+<div class="et-topbar-account">
+
+    <!-- Nút mở menu tài khoản -->
+    <button
+        class="et-topbar-account-toggle"
+        type="button"
+        aria-label="Tài khoản cá nhân"
+        aria-haspopup="true"
+        aria-controls="et-account-menu"
+        aria-expanded="false"
+        title="Tài khoản cá nhân">
+
+        <i class="fas fa-user-circle"
+           aria-hidden="true"></i>
+
+        <i class="fas fa-chevron-down et-account-arrow"
+           aria-hidden="true"></i>
+
+    </button>
+
+    <!-- Dropdown tài khoản -->
+    <div
+        id="et-account-menu"
+        class="et-topbar-account-menu"
+        hidden>
+
+        <!-- Chưa đăng nhập -->
+        <div class="et-account-guest">
+
+            <a
+                data-et-href="pages/login.html"
+                href="login.html"
+                data-et-no-spa>
+
+                <i class="fas fa-sign-in-alt"
+                   aria-hidden="true"></i>
+
+                Đăng nhập
+
+            </a>
+
+        </div>
+
+        <!-- Đã đăng nhập -->
+        <div class="et-account-user" hidden>
+
+            <button
+                class="et-logout-btn"
+                type="button">
+
+                <i class="fas fa-sign-out-alt"
+                   aria-hidden="true"></i>
+
+                Đăng xuất
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 </header>
 
 <!-- =======================================
@@ -126,9 +193,9 @@
 
             <!-- Tư vấn -->
             <a class="et-sidebar-btn"
-               data-et-href="pages/advising-contact.html"
+               data-et-href="pages/advising.html"
                data-et-page="advising"
-               href="advising-contact.html"
+               href="advising.html"
                title="Tư vấn">
 
                 <i class="fas fa-comment-dots" aria-hidden="true"></i>
@@ -210,44 +277,6 @@
         </div>
 
     </nav>
-
-    <!-- Tài khoản dưới cùng -->
-    <div class="et-sidebar-footer">
-
-        <button class="et-sidebar-btn et-submenu-toggle"
-                type="button"
-                data-et-submenu="account"
-                aria-expanded="false"
-                title="Tài khoản cá nhân">
-
-            <i class="fas fa-user-circle" aria-hidden="true"></i>
-            <span class="et-sidebar-text">Tài khoản cá nhân</span>
-            <i class="fas fa-chevron-down et-sidebar-arrow"
-               aria-hidden="true"></i>
-        </button>
-
-        <div class="et-sidebar-submenu"
-             data-et-submenu-content="account">
-
-            <!-- Chưa đăng nhập -->
-            <div class="et-account-guest">
-                <a data-et-href="pages/login.html" href="login.html" data-et-no-spa>
-                    Đăng nhập
-                </a>
-            </div>
-
-            <!-- Đã đăng nhập -->
-            <div class="et-account-user" hidden>
-                <a data-et-href="pages/profile.html" href="#">
-                    Thông tin cá nhân
-                </a>
-
-                <button class="et-logout-btn" type="button">
-                    Đăng xuất
-                </button>
-            </div>
-        </div>
-    </div>
 </aside>
 
 <!-- Overlay khi mở Sidebar trên mobile -->

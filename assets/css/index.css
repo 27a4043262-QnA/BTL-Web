@@ -1,11 +1,3 @@
-/* =========================================================
-   EduTrack — CSS riêng cho TRANG CHỦ (index.html)
-   Thứ tự nạp: main.css -> index.css (index.css nạp SAU).
-   Chỉ dùng token var(--...) của main.css, không khai báo màu/font/cỡ chữ riêng.
-   Layout dùng sẵn: .et-section, .et-section-alt, .et-container,
-   .grid-2, .grid-3, .et-card, .et-btn (breakpoint 991px / 767px của main.css).
-   ========================================================= */
-
 /* Màu chữ chung của trang chủ = màu chính của main */
 main {
   color: var(--primary-color);
@@ -738,6 +730,43 @@ main {
 .grade-tag.plus {
   background: var(--success-bg);
   color: var(--success-color);
+}
+
+
+/* TRẠNG THÁI TIN TỨC TRANG CHỦ */
+/* Thông báo khi tải dữ liệu JSON */
+.et-home-news-status {
+    width: 100%;
+    padding: var(--spacing-3);
+
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+
+    color: var(--text-light);
+    background: var(--white-color);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+}
+
+/* Ẩn thông báo sau khi tải thành công */
+.et-home-news-status[hidden] {
+    display: none !important;
+}
+
+/* Giữ chiều cao các card đồng đều */
+#et-home-news-list .news-card {
+    height: 100%;
+}
+
+/* Không để tiêu đề dài làm vỡ card */
+#et-home-news-list .news-card h3 {
+    overflow-wrap: break-word;
+}
+
+/* Đảm bảo link Đọc thêm nằm cuối card */
+#et-home-news-list .read-more {
+    margin-top: auto;
 }
 
 /* =========================================================

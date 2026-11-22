@@ -298,42 +298,50 @@
                 </div>
             </div>
         </section>
+        
         <!-- 4. SECTION: TIN TỨC NỔI BẬT -->
         <section class="news et-section" aria-labelledby="news-h2">
+
             <div class="et-container">
-                <!-- Header -->
+
+                <!-- Tiêu đề section -->
                 <div class="section-head row">
+
                     <div>
                         <p class="eyebrow">Tin tức &amp; sự kiện</p>
-                        <h2 id="news-h2">Tin tức nổi bật</h2>
+
+                        <h2 id="news-h2">
+                            Tin tức nổi bật
+                        </h2>
                     </div>
-                    <a href="#" class="see-all">Xem tất cả →</a>
+
+                    <!-- Xem tất cả tin tức -->
+                    <a href="pages/news.html" class="see-all">
+                        Xem tất cả →
+                    </a>
+
                 </div>
-                <!-- Danh sách tin tức -->
-                <div class="grid-3">
-                    <!-- Tin 1 -->
-                    <article class="news-card et-card">
-                        <img src="assets/images/index/DangKiTin.png" alt="Hướng dẫn đăng ký học phần" width="400" height="170" loading="lazy">
-                        <h3>Hướng dẫn đăng ký học phần học kỳ mới năm 2025</h3>
-                        <p>Tổng hợp các mốc thời gian, lưu ý quan trọng và hướng dẫn chi tiết cách đăng ký môn học trên hệ thống.</p>
-                        <a href="#" class="read-more">Đọc thêm →</a>
-                    </article>
-                    <!-- Tin 2 -->
-                    <article class="news-card et-card">
-                        <img src="assets/images/index/GPA.jpg" alt="Kỹ năng giúp sinh viên bứt phá GPA" width="400" height="170" loading="lazy">
-                        <h3>5 kỹ năng giúp sinh viên bứt phá GPA</h3>
-                        <p>Những thói quen học tập và kỹ năng quản lý thời gian giúp bạn đạt kết quả học tập trong học kỳ.</p>
-                        <a href="#" class="read-more">Đọc thêm →</a>
-                    </article>
-                    <!-- Tin 3 -->
-                    <article class="news-card et-card">
-                        <img src="assets/images/index/HocBongDuHoc.jpg" alt="Học bổng và cơ hội du học" width="400" height="170" loading="lazy">
-                        <h3>Học bổng và cơ hội du học 2025</h3>
-                        <p>Cập nhật danh sách học bổng, chương trình trao đổi sinh viên và cơ hội học tập mới nhất.</p>
-                        <a href="#" class="read-more">Đọc thêm →</a>
-                    </article>
+
+                <!-- Trạng thái tải dữ liệu -->
+                <p
+                    id="et-home-news-status"
+                    class="et-home-news-status"
+                    role="status"
+                    aria-live="polite">
+
+                    Đang tải tin tức nổi bật...
+
+                </p>
+
+                <!-- Danh sách 3 bài lấy từ news.json -->
+                <div
+                    id="et-home-news-list"
+                    class="grid-3"
+                    aria-label="Danh sách tin tức nổi bật">
                 </div>
+
             </div>
+
         </section>
  
         <!-- 5. SECTION CẢM NHẬN SINH VIÊN -->

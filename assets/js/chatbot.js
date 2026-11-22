@@ -14,15 +14,15 @@
    - Không sử dụng AI API
    ===================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+(function () {
+    "use strict";
 
-    /* =====================================================
-       1. TRÁNH TẠO TRÙNG CHATBOT
-       ===================================================== */
+    function initEduTrackChatbot() {
 
-    if (document.getElementById("et-global-chatbot")) {
-        return;
-    }
+        // Tránh tạo chatbot trùng
+        if (document.getElementById("et-global-chatbot")) {
+            return;
+        }
 
     /* =====================================================
        2. SVG ROBOT - DÙNG CHUNG CHO HAI VỊ TRÍ
@@ -736,4 +736,20 @@ document.addEventListener("DOMContentLoaded", () => {
         input.focus();
     });
 
-});
+    }
+
+    // Cho phép main.js gọi khởi tạo chatbot
+    window.initEduTrackChatbot = initEduTrackChatbot;
+
+    // Khởi tạo khi file được tải
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            initEduTrackChatbot,
+            { once: true }
+        );
+    } else {
+        initEduTrackChatbot();
+    }
+
+})();

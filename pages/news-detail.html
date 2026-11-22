@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết tin tức - EduTrack</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/news.css">
+    <link rel="stylesheet" href="assets/css/chatbot.css">
+    <script src="assets/js/chatbot.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    <script src="../assets/js/news-detail.js" defer></script>
+</head>
+
+<body>
+    <main id="main-content" class="et-page-content">
+        <div class="et-news-container">
+            <!-- THÔNG BÁO TRẠNG THÁI -->
+            <div id="et-detail-status" class="et-news-message" role="status">
+                Đang tải bài viết...
+            </div>
+
+            <!-- CHI TIẾT BÀI VIẾT -->
+            <article id="et-detail-article" class="et-detail-article" hidden>
+                <!-- TIÊU ĐỀ -->
+                <h1 id="et-detail-title"></h1>
+
+                <!-- NGÀY ĐĂNG -->
+                <div class="et-detail-meta">
+                    <span class="et-detail-date">
+                        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                        <time id="et-detail-date"></time>
+                    </span>
+                </div>
+
+                <!-- ẢNH ĐẠI DIỆN -->
+                <img id="et-detail-image" class="et-detail-image img-fluid" alt="">
+
+                <!-- NỘI DUNG BÀI VIẾT -->
+                <div id="et-detail-body" class="et-detail-body"></div>
+            </article>
+
+            <!-- TIN TỨC LIÊN QUAN -->
+            <section id="et-related-section" class="et-related-news" hidden>
+                <h2>Tin tức liên quan</h2>
+                <div id="et-related-list" class="row et-related-grid"></div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

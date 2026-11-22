@@ -1,0 +1,318 @@
+[
+  {
+    "id": 1,
+    "title": "Hướng dẫn đăng ký học phần học kỳ mới",
+    "date": "2026-11-12",
+    "image": "../assets/images/news/DangKiTin.png",
+    "summary": "Tổng hợp các mốc thời gian, lưu ý quan trọng và hướng dẫn chi tiết cách đăng ký môn học trên hệ thống.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Đăng ký học phần là một trong những hoạt động quan trọng trước mỗi học kỳ. Việc lựa chọn môn học phù hợp giúp sinh viên xây dựng kế hoạch học tập hiệu quả, bảo đảm tiến độ đào tạo và tránh những sai sót không cần thiết."
+      },
+      {
+        "type": "heading",
+        "text": "1. Kiểm tra kế hoạch đào tạo"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trước khi đăng ký, sinh viên cần xem lại chương trình đào tạo của ngành học, xác định các học phần bắt buộc, học phần tự chọn và số tín chỉ cần tích lũy trong học kỳ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đặc biệt, cần chú ý những môn học có điều kiện tiên quyết hoặc học trước để tránh đăng ký không hợp lệ."
+      },
+      {
+        "type": "heading",
+        "text": "2. Lập danh sách học phần dự kiến"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sinh viên nên lập danh sách các học phần dự kiến đăng ký, cân đối giữa môn học có khối lượng kiến thức lớn và các môn học khác. Đồng thời cần kiểm tra lịch học để hạn chế trùng thời khóa biểu."
+      },
+      {
+        "type": "heading",
+        "text": "3. Theo dõi thời gian đăng ký"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi cơ sở đào tạo có thể quy định thời gian đăng ký khác nhau. Sinh viên cần thường xuyên theo dõi thông báo chính thức của nhà trường để nắm rõ thời gian mở hệ thống, điều chỉnh và kết thúc đăng ký."
+      },
+      {
+        "type": "heading",
+        "text": "4. Thực hiện đăng ký trên hệ thống"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đăng nhập vào cổng thông tin đào tạo của nhà trường.",
+          "Truy cập chức năng đăng ký học phần.",
+          "Tìm kiếm và lựa chọn lớp học phần phù hợp.",
+          "Kiểm tra thời gian học, số tín chỉ và điều kiện đăng ký.",
+          "Xác nhận đăng ký theo hướng dẫn của hệ thống."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "5. Kiểm tra kết quả đăng ký"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau khi hoàn tất, sinh viên nên kiểm tra lại danh sách học phần đã đăng ký, lưu thông tin thời khóa biểu và theo dõi những thông báo điều chỉnh từ nhà trường."
+      },
+      {
+        "type": "note",
+        "text": "Lưu ý: Các bước thực hiện và mốc thời gian cụ thể có thể khác nhau tùy theo quy định của từng trường đại học."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "5 kỹ năng giúp sinh viên bứt phá GPA",
+    "date": "2026-11-10",
+    "image": "../assets/images/news/GPA.jpg",
+    "summary": "Những thói quen học tập và kỹ năng quản lý thời gian giúp bạn đạt kết quả học tập tốt hơn.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "GPA là một trong những chỉ số phản ánh kết quả học tập của sinh viên. Tuy nhiên, để cải thiện GPA, sinh viên không chỉ cần chăm chỉ mà còn phải xây dựng phương pháp học tập phù hợp. Dưới đây là 5 kỹ năng giúp bạn nâng cao hiệu quả học tập."
+      },
+      {
+        "type": "heading",
+        "text": "1. Quản lý thời gian hiệu quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hãy lập kế hoạch học tập theo tuần, phân chia thời gian cho từng môn học và ưu tiên các nhiệm vụ quan trọng. Việc quản lý thời gian tốt giúp bạn học tập chủ động và tránh tình trạng dồn công việc vào cuối kỳ."
+      },
+      {
+        "type": "heading",
+        "text": "2. Ghi chép và hệ thống kiến thức"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ghi chép khoa học, ngắn gọn và có hệ thống giúp bạn dễ dàng ôn tập và ghi nhớ kiến thức lâu hơn. Sinh viên có thể sử dụng sơ đồ tư duy, bảng tổng hợp hoặc các ứng dụng ghi chú để tổ chức tài liệu."
+      },
+      {
+        "type": "heading",
+        "text": "3. Ôn tập thường xuyên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thay vì chỉ học dồn vào trước kỳ thi, hãy ôn tập định kỳ sau mỗi buổi học. Phương pháp này giúp củng cố kiến thức, phát hiện những phần chưa hiểu và nâng cao khả năng vận dụng."
+      },
+      {
+        "type": "heading",
+        "text": "4. Chủ động trao đổi với giảng viên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đừng ngại đặt câu hỏi khi gặp khó khăn. Việc trao đổi với giảng viên và bạn học giúp bạn hiểu rõ hơn nội dung bài học, đồng thời tránh những sai sót trong quá trình tiếp thu kiến thức."
+      },
+      {
+        "type": "heading",
+        "text": "5. Giữ tinh thần và sức khỏe tốt"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một tinh thần thoải mái và sức khỏe ổn định là nền tảng để duy trì hiệu suất học tập lâu dài. Hãy cân bằng giữa học tập, nghỉ ngơi và các hoạt động yêu thích."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Bí quyết học nhóm hiệu quả dành cho sinh viên",
+    "date": "2026-11-05",
+    "image": "../assets/images/news/LamviecNhom.webp",
+    "summary": "Cách tổ chức, phân công và duy trì tinh thần học nhóm để đạt kết quả cao.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Học nhóm là phương pháp giúp sinh viên trao đổi kiến thức, phát triển kỹ năng hợp tác và giải quyết những vấn đề khó trong quá trình học tập. Tuy nhiên, để đạt hiệu quả, nhóm cần có cách tổ chức phù hợp."
+      },
+      {
+        "type": "heading",
+        "text": "1. Xác định mục tiêu học nhóm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trước mỗi buổi học, các thành viên nên thống nhất những nội dung cần thảo luận và kết quả mong muốn đạt được."
+      },
+      {
+        "type": "heading",
+        "text": "2. Phân công nhiệm vụ rõ ràng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi thành viên nên đảm nhận phần việc phù hợp với năng lực và sở trường. Việc phân công cụ thể giúp tránh chồng chéo và nâng cao trách nhiệm."
+      },
+      {
+        "type": "heading",
+        "text": "3. Khuyến khích trao đổi ý kiến"
+      },
+      {
+        "type": "paragraph",
+        "text": "Các thành viên cần lắng nghe, tôn trọng quan điểm khác nhau và cùng tìm ra giải pháp cho những vấn đề chưa thống nhất."
+      },
+      {
+        "type": "heading",
+        "text": "4. Theo dõi tiến độ công việc"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhóm nên sử dụng bảng phân công hoặc công cụ quản lý nhiệm vụ để theo dõi tiến độ và thời hạn hoàn thành."
+      },
+      {
+        "type": "heading",
+        "text": "5. Tổng kết sau mỗi buổi học"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cuối buổi học, nhóm cần tổng hợp những kiến thức quan trọng, kết quả đạt được và các nhiệm vụ cần tiếp tục thực hiện."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Cách quản lý thời gian hiệu quả khi là sinh viên",
+    "date": "2026-10-28",
+    "image": "../assets/images/news/Quanlythoigian.jpeg",
+    "summary": "Gợi ý phương pháp lập kế hoạch và cân bằng giữa học tập, hoạt động ngoại khóa và nghỉ ngơi.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Quản lý thời gian là kỹ năng quan trọng giúp sinh viên cân bằng giữa học tập và cuộc sống cá nhân. Việc sử dụng thời gian hợp lý không chỉ nâng cao hiệu suất mà còn giảm áp lực khi có nhiều nhiệm vụ cùng lúc."
+      },
+      {
+        "type": "heading",
+        "text": "1. Xác định những công việc ưu tiên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hãy liệt kê những nhiệm vụ cần thực hiện, phân loại theo mức độ quan trọng và thời hạn hoàn thành."
+      },
+      {
+        "type": "heading",
+        "text": "2. Lập kế hoạch học tập theo tuần"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sử dụng thời khóa biểu hoặc ứng dụng lịch để phân bổ thời gian dành cho học tập, làm bài tập và nghỉ ngơi."
+      },
+      {
+        "type": "heading",
+        "text": "3. Chia nhỏ nhiệm vụ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Những công việc lớn nên được chia thành nhiều bước nhỏ để dễ theo dõi tiến độ và tránh cảm giác quá tải."
+      },
+      {
+        "type": "heading",
+        "text": "4. Hạn chế yếu tố gây xao nhãng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi học tập, hãy lựa chọn không gian phù hợp và hạn chế những thông báo hoặc hoạt động không cần thiết."
+      },
+      {
+        "type": "heading",
+        "text": "5. Đánh giá và điều chỉnh kế hoạch"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cuối mỗi tuần, sinh viên nên kiểm tra những việc đã hoàn thành, xác định nguyên nhân chậm tiến độ và điều chỉnh kế hoạch cho tuần tiếp theo."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Cách chuẩn bị tốt trước kỳ thi cuối kỳ",
+    "date": "2026-10-24",
+    "image": "../assets/images/news/Onthicuoiky.jpg",
+    "summary": "Xây dựng lộ trình ôn thi, hệ thống kiến thức và giảm áp lực trước kỳ thi.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Kỳ thi cuối kỳ là thời điểm sinh viên cần tổng hợp và vận dụng kiến thức đã học. Chuẩn bị có kế hoạch sẽ giúp quá trình ôn tập hiệu quả hơn."
+      },
+      {
+        "type": "heading",
+        "text": "1. Tổng hợp nội dung cần ôn tập"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đọc lại đề cương môn học, xác định những chương quan trọng và các dạng bài thường gặp."
+      },
+      {
+        "type": "heading",
+        "text": "2. Xây dựng lịch ôn thi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phân chia thời gian ôn tập hợp lý cho từng môn, ưu tiên những nội dung chưa nắm vững."
+      },
+      {
+        "type": "heading",
+        "text": "3. Luyện tập với câu hỏi mẫu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sử dụng bài tập, câu hỏi ôn tập và đề thi tham khảo để đánh giá khả năng vận dụng kiến thức."
+      },
+      {
+        "type": "heading",
+        "text": "4. Bảo đảm thời gian nghỉ ngơi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Duy trì thời gian ngủ và nghỉ hợp lý để giữ sự tập trung trong quá trình học tập và làm bài thi."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Những kỹ năng cần có khi đi thực tập",
+    "date": "2026-10-20",
+    "image": "../assets/images/news/Kynangthuctap.jpg",
+    "summary": "Tìm hiểu kỹ năng giao tiếp, báo cáo công việc và học hỏi trong môi trường làm việc.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Thực tập là cơ hội để sinh viên vận dụng kiến thức đã học vào môi trường làm việc thực tế. Bên cạnh kiến thức chuyên môn, việc chuẩn bị kỹ năng mềm cũng đóng vai trò quan trọng."
+      },
+      {
+        "type": "heading",
+        "text": "1. Kỹ năng giao tiếp"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sinh viên cần biết cách trao đổi công việc rõ ràng, lắng nghe phản hồi và chủ động đặt câu hỏi khi gặp khó khăn."
+      },
+      {
+        "type": "heading",
+        "text": "2. Kỹ năng làm việc nhóm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phối hợp với đồng nghiệp, thực hiện nhiệm vụ đúng thời hạn và tôn trọng quy trình làm việc chung."
+      },
+      {
+        "type": "heading",
+        "text": "3. Kỹ năng quản lý công việc"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ghi chép các nhiệm vụ được giao, theo dõi tiến độ và chủ động báo cáo khi phát sinh vấn đề."
+      },
+      {
+        "type": "heading",
+        "text": "4. Tinh thần học hỏi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chủ động quan sát, tiếp nhận góp ý và rút kinh nghiệm từ những công việc thực tế."
+      }
+    ]
+  }
+]

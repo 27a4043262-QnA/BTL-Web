@@ -971,39 +971,6 @@ footer :focus-visible {
     display: none;
 
 }
-/* ==========================================
-
-   5. TÀI KHOẢN Ở DƯỚI CÙNG
-
-\========================================== */
-
-.et-sidebar-footer {
-
-    flex-shrink: 0;
-
-    width: 100%;
-
-    padding: 7px;
-
-    border-top: 1px solid #d9e6f5;
-
-    background: #edf5ff;
-
-}
-
-.et-sidebar-footer .et-sidebar-btn {
-
-    margin: 2px 0;
-
-    width: 100%;
-
-}
-
-.et-sidebar-footer .et-sidebar-btn > i:first-child {
-
-    font-size: 23px;
-
-}
 
 /* ==========================================
 6. VỊ TRÍ NỘI DUNG TRANG
@@ -1044,6 +1011,197 @@ body.et-has-navigation.et-nav-expanded {
 
 .et-sidebar-overlay {
     display: none;
+}
+
+
+/* ==========================================
+   EDUTRACK - TÀI KHOẢN TRÊN HEADER
+========================================== */
+
+/* 1. Khung tài khoản */
+
+.et-topbar-account {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+/* 2. Nút tài khoản */
+
+.et-topbar-account-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-width: 42px;
+    height: 42px;
+    padding: 5px 9px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #ffffff;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.et-topbar-account-toggle:hover,
+.et-topbar-account-toggle[aria-expanded="true"] {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.et-topbar-account-toggle .fa-user-circle {
+    font-size: 25px;
+}
+
+.et-account-arrow {
+    font-size: 10px;
+    transition: transform 0.2s ease;
+}
+
+.et-topbar-account-toggle[aria-expanded="true"]
+.et-account-arrow {
+    transform: rotate(180deg);
+}
+
+/* 3. Menu xổ xuống */
+
+.et-topbar-account-menu {
+    position: absolute;
+
+    top: calc(100% + 8px);
+    right: 0;
+
+    width: 218px;
+    padding: 8px;
+
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-medium);
+
+    color: var(--text-color);
+    z-index: 1300;
+}
+
+.et-topbar-account-menu[hidden] {
+    display: none !important;
+}
+
+/* 5. Link và nút trong menu */
+
+.et-topbar-account-menu a,
+.et-topbar-account-menu .et-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    width: 100%;
+    min-height: 40px;
+
+    padding: 10px 12px;
+
+    border: none;
+    border-radius: var(--radius-small);
+
+    background: transparent;
+
+    color: var(--primary-color);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+
+    text-align: left;
+    cursor: pointer;
+}
+
+.et-topbar-account-menu a i,
+.et-topbar-account-menu .et-logout-btn i {
+    width: 17px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.et-topbar-account-menu a:hover,
+.et-topbar-account-menu .et-logout-btn:hover {
+    background: var(--background-alt);
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+/* 6. Trạng thái tài khoản */
+
+.et-topbar-account-menu .et-account-guest[hidden],
+.et-topbar-account-menu .et-account-user[hidden],
+.et-topbar-account-menu .et-logout-btn[hidden] {
+    display: none !important;
+}
+
+/* 7. Đảm bảo Header hiển thị đúng */
+
+.et-topbar-history {
+    flex: 1;
+    min-width: 0;
+}
+
+.et-notification-btn {
+    flex-shrink: 0;
+}
+
+/* 8. Tablet */
+
+@media (max-width: 1023px) {
+
+    .et-topbar {
+        gap: 12px;
+    }
+
+    .et-topbar-account-menu {
+        width: 210px;
+    }
+}
+
+/* 9. Mobile */
+
+@media (max-width: 767px) {
+
+    .et-topbar {
+        gap: 8px;
+    }
+
+    .et-topbar-account-toggle {
+        min-width: 36px;
+        height: 38px;
+        padding: 5px;
+        gap: 4px;
+    }
+
+    .et-topbar-account-toggle .fa-user-circle {
+        font-size: 22px;
+    }
+
+    .et-account-arrow {
+        font-size: 9px;
+    }
+
+    .et-topbar-account-menu {
+        width: min(218px, calc(100vw - 24px));
+    }
+}
+
+/* 10. Giảm chuyển động khi được yêu cầu */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .et-topbar-account-toggle,
+    .et-account-arrow {
+        transition: none;
+    }
 }
 
 /* ==========================================
