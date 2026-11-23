@@ -1,7 +1,7 @@
 
 [
   {
-    "id": 1,
+    "code": "IS52A",
     "name": "Năng lực số ứng dụng",
     "category": "dai-cuong",
     "credits": 2,
@@ -15,7 +15,7 @@
     ]
   },
   {
-    "id": 2,
+    "code": "MAT15A",
     "name": "Toán dành cho kinh tế",
     "category": "dai-cuong",
     "credits": 3,
@@ -28,7 +28,7 @@
     ]
   },
   {
-    "id": 3,
+    "code": "LAW01A",
     "name": "Pháp luật đại cương",
     "category": "dai-cuong",
     "credits": 2,
@@ -40,7 +40,7 @@
     ]
   },
   {
-    "id": 4,
+    "code": "MAT14A",
     "name": "Xác suất thống kê",
     "category": "dai-cuong",
     "credits": 3,
@@ -53,7 +53,7 @@
     ]
   },
   {
-    "id": 5,
+    "code": "IS22A",
     "name": "Cơ sở lập trình",
     "category": "co-so-nganh",
     "credits": 3,
@@ -65,7 +65,7 @@
     ]
   },
   {
-    "id": 6,
+    "code": "IS21A",
     "name": "Cơ sở dữ liệu",
     "category": "co-so-nganh",
     "credits": 3,
@@ -78,7 +78,7 @@
     ]
   },
   {
-    "id": 7,
+    "code": "IS07A",
     "name": "Cấu trúc dữ liệu và giải thuật",
     "category": "co-so-nganh",
     "credits": 4,
@@ -91,7 +91,7 @@
     ]
   },
   {
-    "id": 8,
+    "code": "MAT05A",
     "name": "Toán rời rạc",
     "category": "co-so-nganh",
     "credits": 3,
@@ -103,7 +103,7 @@
     ]
   },
   {
-    "id": 9,
+    "code": "IS49A",
     "name": "Phân tích nghiệp vụ BA",
     "category": "chuyen-nganh",
     "credits": 2,
@@ -116,7 +116,7 @@
     ]
   },
   {
-    "id": 10,
+    "code": "MIS02A",
     "name": "Hệ thống thông tin quản lý",
     "category": "chuyen-nganh",
     "credits": 3,
@@ -129,7 +129,7 @@
     ]
   },
   {
-    "id": 11,
+    "code": "IS54A",
     "name": "Trí tuệ nhân tạo",
     "category": "chuyen-nganh",
     "credits": 3,
@@ -141,7 +141,7 @@
     ]
   },
   {
-    "id": 12,
+    "code": "IS51A",
     "name": "Lập trình web PHP & MySQL",
     "category": "chuyen-nganh",
     "credits": 4,
@@ -154,7 +154,7 @@
     ]
   },
   {
-    "id": 13,
+    "code": "IS24A",
     "name": "Kho dữ liệu và kinh doanh thông minh",
     "category": "chuyen-nganh",
     "credits": 3,

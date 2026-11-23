@@ -88,7 +88,7 @@
                     id="course-search"
                     name="q"
                     class="form-control"
-                    placeholder="Tìm tên, mô tả hoặc từ khóa..."
+                    placeholder="Tìm tên môn học"
                     autocomplete="off">
             </form>
 
@@ -113,23 +113,28 @@
                     </select>
                 </div>
 
-                <!-- Sắp xếp -->
-                <div class="course-select-group">
-                    <label for="course-sort"
-                           class="sr-only">
-                        Sắp xếp
-                    </label>
+                
+            <!-- Nút sắp xếp: Nhấn để chuyển A-Z / Z-A -->
+            <div class="course-select-group">
 
-                    <select id="course-sort"
-                            class="form-control">
-                        <option value="name-asc" selected>
-                            Tên A – Z
-                        </option>
-                        <option value="name-desc">
-                            Tên Z – A
-                        </option>
-                    </select>
-                </div>
+                <button type="button"
+                        id="course-sort"
+                        class="course-sort-toggle"
+                        aria-label="Đang sắp xếp A đến Z. Nhấn để chuyển sang Z đến A"
+                        title="Chuyển sang Z–A">
+
+                    <span class="course-sort-icon" aria-hidden="true">
+                        ↓
+                    </span>
+
+                    <span class="course-sort-text">
+                        A–Z
+                    </span>
+
+                </button>
+
+            </div>
+
 
             </div>
 
