@@ -159,27 +159,13 @@
     box-shadow: 0 0 0 3px rgba(47, 82, 127, 0.08);
 }
 
-/* === Ghi nhớ + Quên mật khẩu === */
+/* === Quên mật khẩu === */
 .login-options {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 2px 0 17px;
     font-size: 14px;
-}
-
-.remember-login {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #000000;
-    cursor: pointer;
-}
-
-.remember-login input {
-    width: 13px;
-    height: 13px;
-    margin: 0;
 }
 
 .login-options a {
@@ -513,5 +499,68 @@
 .login-form-group input.is-invalid:focus-visible {
     border-color: #DC2626;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08);
+}
+
+/* ======================================
+   LOGIN - VALIDATION & BACKEND
+====================================== */
+
+/* Trường nhập sai */
+.login-form-group input.is-invalid,
+.login-form-group input[aria-invalid="true"] {
+    border-color: #DC2626;
+}
+
+/* Thông báo lỗi từng trường */
+.login-field-error {
+    display: block;
+    margin-top: 5px;
+    color: #B91C1C;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.login-field-error:empty {
+    display: none;
+}
+
+/* Thông báo chung */
+.login-message {
+    margin: 12px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.login-message:empty {
+    display: none;
+}
+
+/* Thành công */
+.login-message.is-success {
+    color: #15803D;
+}
+
+/* Thất bại */
+.login-message.is-error {
+    color: #B91C1C;
+}
+
+/* Thông tin */
+.login-message.is-info {
+    color: var(--primary-color);
+}
+
+/* Vô hiệu hóa nút khi xử lý */
+.login-submit:disabled,
+.google-login:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+/* Focus trường bị lỗi */
+.login-form-group input.is-invalid:focus {
+    border-color: #DC2626;
     box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08);
 }

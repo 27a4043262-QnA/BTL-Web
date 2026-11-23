@@ -241,6 +241,104 @@
 }
 
 
+/* ======================================
+   REGISTER - REQUIRED / OPTIONAL
+====================================== */
+
+/* Dấu sao bắt buộc */
+.register-required {
+    color: #DC2626;
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+/* Hiển thị lỗi */
+.register-form-group input.is-invalid,
+.register-form-group input[aria-invalid="true"] {
+    border-color: #DC2626;
+}
+
+/* Thông báo lỗi dưới ô nhập */
+.register-field-error {
+    display: block;
+    margin-top: 5px;
+    color: #B91C1C;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* =========================================
+   REGISTER - VALIDATION & BACKEND STATES
+========================================= */
+
+/* Tính toán kích thước phần tử */
+.register-page,
+.register-page * {
+    box-sizing: border-box;
+}
+
+/* Trường nhập không hợp lệ */
+.register-form-group input.is-invalid,
+.register-form-group input[aria-invalid="true"] {
+    border-color: #DC2626;
+}
+
+/* Thông báo lỗi của từng trường */
+.register-field-error {
+    display: block;
+    margin-top: 5px;
+    color: #B91C1C;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Hướng dẫn nhập mật khẩu */
+.register-hint {
+    display: block;
+    margin-top: 4px;
+    color: #6B7280;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Thông báo chung */
+.register-message {
+    margin: 12px 0 0;
+    min-height: 1em;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Đăng ký thành công */
+.register-message.is-success {
+    color: #15803D;
+}
+
+/* Đăng ký thất bại */
+.register-message.is-error {
+    color: #B91C1C;
+}
+
+/* Thông báo thông tin */
+.register-message.is-info {
+    color: var(--primary-color);
+}
+
+/* Vô hiệu hóa nút khi xử lý */
+.register-submit:disabled,
+.google-register:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+/* Căn chỉnh form trên mobile */
+@media (max-width: 767px) {
+    .register-form-section {
+        justify-content: center;
+    }
+}
+
 /* ========================================
    1. DESKTOP: TỪ 1024PX TRỞ LÊN
 ======================================== */
