@@ -12,7 +12,6 @@
   <!-- CSS của EduTrack -->
   <link rel="stylesheet" href="../assets/css/main.css">
   <link rel="stylesheet" href="../assets/css/courses_detail.css">
-  <link rel="stylesheet" href="../assets/css/course-detail-final.css">
   <link rel="stylesheet" href="../assets/css/chatbot.css">
 </head>
 
@@ -220,6 +219,33 @@
         <ul class="row" id="detail-related"></ul>
       </aside>
     </article>
+
+  <!-- Trình xem tài liệu / video: phủ vùng nội dung, giữ nguyên Header và Sidebar. -->
+  <div id="et-study-viewer" class="et-study-viewer" role="dialog" aria-modal="true" aria-labelledby="et-study-title" hidden>
+    <div class="et-study-panel">
+      <div class="et-study-header">
+        <div class="et-study-title-wrap"><span aria-hidden="true">▤</span><h2 id="et-study-title">Tài liệu môn học</h2></div>
+        <div class="et-study-utilities">
+          <a id="et-study-download" class="et-study-download" href="#" download aria-label="Tải tài liệu">⤓ Tải xuống</a>
+          <button id="et-study-close" class="et-study-close" type="button" aria-label="Đóng trình xem">×</button>
+        </div>
+      </div>
+      <div id="et-study-content" class="et-study-content"></div>
+    </div>
+  </div>
+
+  <!-- Thông báo dùng chung: đóng bằng X, Escape, click ra ngoài, tự đóng sau 5 giây. -->
+  <div id="et-notice" class="et-notice" role="dialog" aria-modal="true" aria-labelledby="et-notice-title" hidden>
+    <div class="et-notice-panel" role="document">
+      <button type="button" class="et-notice-close" aria-label="Đóng thông báo">×</button>
+      <div class="et-notice-symbol" aria-hidden="true">✓</div>
+      <h2 id="et-notice-title">Thông báo</h2><p id="et-notice-message"></p>
+      <div class="et-notice-actions" id="et-notice-actions" hidden>
+        <button type="button" class="et-notice-cancel">Thoát</button>
+        <a class="et-notice-login" href="login.html" data-et-no-spa>Đăng nhập</a>
+      </div>
+    </div>
+  </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -251,32 +277,7 @@
     });
   </script>
 
-  <!-- Trình xem tài liệu / video: phủ vùng nội dung, giữ nguyên Header và Sidebar. -->
-  <div id="et-study-viewer" class="et-study-viewer" role="dialog" aria-modal="true" aria-labelledby="et-study-title" hidden>
-    <div class="et-study-panel">
-      <div class="et-study-header">
-        <div class="et-study-title-wrap"><span aria-hidden="true">▤</span><h2 id="et-study-title">Tài liệu môn học</h2></div>
-        <div class="et-study-utilities">
-          <a id="et-study-download" class="et-study-download" href="#" download aria-label="Tải tài liệu">⤓ Tải xuống</a>
-          <button id="et-study-close" class="et-study-close" type="button" aria-label="Đóng trình xem">×</button>
-        </div>
-      </div>
-      <div id="et-study-content" class="et-study-content"></div>
-    </div>
-  </div>
 
-  <!-- Thông báo dùng chung: đóng bằng X, Escape, click ra ngoài, tự đóng sau 5 giây. -->
-  <div id="et-notice" class="et-notice" role="dialog" aria-modal="true" aria-labelledby="et-notice-title" hidden>
-    <div class="et-notice-panel" role="document">
-      <button type="button" class="et-notice-close" aria-label="Đóng thông báo">×</button>
-      <div class="et-notice-symbol" aria-hidden="true">✓</div>
-      <h2 id="et-notice-title">Thông báo</h2><p id="et-notice-message"></p>
-      <div class="et-notice-actions" id="et-notice-actions" hidden>
-        <button type="button" class="et-notice-cancel">Thoát</button>
-        <a class="et-notice-login" href="login.html">Đăng nhập</a>
-      </div>
-    </div>
-  </div>
 </body>
 
 </html>

@@ -1,9 +1,23 @@
 "use strict";
 /* Chỉ trang course-detail; tải đúng học liệu của 13 môn do nhóm biên soạn. */
 (() => {
+  let activeRoot = null;
+  let activeController = null;
+  function initializeCourseDetail() {
+  const root = document.getElementById("course-detail");
+  if (root && root === activeRoot && root.dataset.etInitialized === "true") return;
+  activeController?.abort();
+  activeController = null;
+  activeRoot = null;
+  if (!root) return;
+  const required = ["detail-status", "et-study-viewer", "et-study-content", "et-study-close", "et-study-download", "et-study-title"];
+  if (required.some(id => !document.getElementById(id))) return;
+  root.dataset.etInitialized = "true";
+  activeRoot = root;
+  activeController = new AbortController();
   const $ = id => document.getElementById(id);
   const params = new URLSearchParams(location.search);
-  const courseId = params.get('id') || 'MAT15A';
+  const courseId = params.get("code") || params.get("id");
   const validId = /^[A-Za-z0-9_-]{1,40}$/.test(courseId);
   const categories = {'dai-cuong':'Đại cương','co-so-nganh':'Cơ sở ngành','chuyen-nganh':'Chuyên ngành'};
   const pdfUrl = value => typeof value === 'string' && /^\.\.\/assets\/materials\/[a-zA-Z0-9_-]+\.pdf$/.test(value) ? value : null;
@@ -76,8 +90,8 @@
         if(event.shiftKey&&document.activeElement===controls[0]){event.preventDefault();controls[controls.length-1].focus();}
         else if(!event.shiftKey&&document.activeElement===controls[controls.length-1]){event.preventDefault();controls[0].focus();}
       }
-    });
-    window.addEventListener('resize',()=>{if(!viewer.hidden)positionViewer();});
+    }, {signal: activeController.signal});
+    window.addEventListener('resize',()=>{if(!viewer.hidden)positionViewer();}, {signal: activeController.signal});
   }
   const actions=[
     ['theoryPdf','Lý thuyết','theory','book'],
@@ -186,11 +200,19 @@
     try {
       const res=await fetch('../assets/data/course-details.json',{cache:'no-store'});
       if(!res.ok)throw new Error(`HTTP ${res.status}`);
-      const all=await res.json();if(!Array.isArray(all))throw new Error('Dữ liệu không hợp lệ');
+      const all=await res.json();if(!root.isConnected)return;if(!Array.isArray(all))throw new Error('Dữ liệu không hợp lệ');
       const course=all.find(c=>c.id===courseId);
       if(!course)return status('Không tìm thấy mã môn này. Hãy kiểm tra liên kết trong danh mục.');
       render(course,all);
-    }catch(error){console.error('Không tải được môn học',error);status('Không tải được dữ liệu. Hãy chạy bằng Live Server và kiểm tra file course-details.json.');}
+    }catch(error){if(!root.isConnected)return;console.error('Không tải được môn học',error);status('Không tải được dữ liệu. Hãy chạy bằng Live Server và kiểm tra file course-details.json.');}
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+  init();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeCourseDetail, {once: true});
+  } else {
+    initializeCourseDetail();
+  }
+  document.addEventListener("edutrack:page-loaded", initializeCourseDetail);
 })();

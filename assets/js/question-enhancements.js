@@ -1,9 +1,17 @@
 "use strict";
-document.addEventListener("DOMContentLoaded",function(){
+function initializeCourseQuestions(){
   const form=document.getElementById("question-form"),field=document.getElementById("question-content");
   const count=document.getElementById("question-count"),api=window.EduTrackData,ui=window.EduTrackUI;
   if(!form||!field||!api||!ui)return;
-  const courseId=new URLSearchParams(location.search).get("id")||"MAT15A";
+  if(form.dataset.etInitialized === 'true')return;
+  // Trang danh mục cũ truyền ?code=, các liên kết mới có thể dùng ?id=.
+  const params = new URLSearchParams(location.search);
+  const courseId = params.get("code") || params.get("id");
+  if(!courseId || !/^[A-Za-z0-9_-]{1,40}$/.test(courseId)) {
+    console.error("EduTrack: Không tìm thấy mã môn học hợp lệ trong URL.");
+    return;
+  }
+  form.dataset.etInitialized = 'true';
   let busy=false;
   field.addEventListener("input",()=>{if(count)count.textContent=`${field.value.length}/500 ký tự`;});
   form.addEventListener("submit",async event=>{
@@ -19,4 +27,10 @@ document.addEventListener("DOMContentLoaded",function(){
     }catch(e){ui.showNotice(e.message,"error");}
     finally{busy=false;button.disabled=false;}
   });
-});
+ }
+if(document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeCourseQuestions, {once: true});
+} else {
+  initializeCourseQuestions();
+}
+document.addEventListener('edutrack:page-loaded', initializeCourseQuestions);

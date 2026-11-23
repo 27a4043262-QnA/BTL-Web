@@ -1,16 +1,25 @@
 "use strict";
-document.addEventListener("DOMContentLoaded",function(){
+function initializeCourseReviews(){
   const form=document.getElementById("course-review-form"),input=document.getElementById("review-content");
   const list=document.getElementById("review-list"),count=document.getElementById("review-count");
   const empty=document.getElementById("detail-review-empty"),prev=document.getElementById("review-prev"),next=document.getElementById("review-next");
   const api=window.EduTrackData, ui=window.EduTrackUI;
-  if(!form||!input||!list||!api||!ui)return;
-  const courseId=new URLSearchParams(location.search).get("id")||"MAT15A";
+  if(!form||!input||!list||!prev||!next||!api||!ui)return;
+  if(form.dataset.etInitialized === 'true')return;
+  // Trang danh mục cũ truyền ?code=, các liên kết mới có thể dùng ?id=.
+  const params = new URLSearchParams(location.search);
+  const courseId = params.get("code") || params.get("id");
+  if(!courseId || !/^[A-Za-z0-9_-]{1,40}$/.test(courseId)) {
+    console.error("EduTrack: Không tìm thấy mã môn học hợp lệ trong URL.");
+    return;
+  }
+  form.dataset.etInitialized = 'true';
   let reviews=[],page=0,userId=null,busy=false;
   const PAGE=3;
   const authorName=value=>String(value||"Người học").trim();
   function initials(value){return authorName(value).split(/\s+/).slice(-2).map(s=>s.charAt(0).toUpperCase()).join("");}
   function render(){
+    if(!list.isConnected)return;
     list.replaceChildren();
     const pages=Math.max(1,Math.ceil(reviews.length/PAGE));
     page=Math.max(0,Math.min(page,pages-1));
@@ -50,7 +59,7 @@ document.addEventListener("DOMContentLoaded",function(){
       if(empty){empty.hidden=false;empty.textContent="Chưa có nhận xét nào cho môn học này.";}
       return;
     }
-    try {const u=await api.getCurrentUser();userId=u?.id||null;reviews=await api.getReviews(courseId);render();}
+    try {const u=await api.getCurrentUser();userId=u?.id||null;reviews=await api.getReviews(courseId);if(!form.isConnected)return;render();}
     catch(e){ui.showNotice(`Không tải được nhận xét: ${e.message}`,"error");}
   }
   prev.addEventListener("click",()=>{if(page>0){page--;render();}});
@@ -77,4 +86,10 @@ document.addEventListener("DOMContentLoaded",function(){
     finally{busy=false;button.disabled=false;}
   });
   refresh();
-});
+ }
+if(document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeCourseReviews, {once: true});
+} else {
+  initializeCourseReviews();
+}
+document.addEventListener('edutrack:page-loaded', initializeCourseReviews);

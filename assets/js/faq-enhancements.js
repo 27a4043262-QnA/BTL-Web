@@ -1,7 +1,9 @@
 "use strict";
-document.addEventListener("DOMContentLoaded",function(){
+function initializeCourseFAQ(){
   const faq=document.getElementById("faq"),toggle=document.getElementById("toggle-faq");
   if(!faq||!toggle)return;
+  if(faq.dataset.etInitialized === 'true')return;
+  faq.dataset.etInitialized = 'true';
   let expanded=false;
   function refresh(){
     const items=[...faq.querySelectorAll(":scope > .faq-item")];
@@ -13,4 +15,10 @@ document.addEventListener("DOMContentLoaded",function(){
   toggle.addEventListener("click",()=>{expanded=!expanded;refresh();});
   window.updateCourseFAQ=refresh;
   refresh();
-});
+ }
+if(document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeCourseFAQ, {once: true});
+} else {
+  initializeCourseFAQ();
+}
+document.addEventListener('edutrack:page-loaded', initializeCourseFAQ);

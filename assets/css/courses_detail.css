@@ -1700,18 +1700,78 @@ header.et-course-header .et-menu-toggle {
 #course-detail #course-content {grid-column:1 / -1; width:100%; min-width:0; margin-top:36px;}
 #course-detail #course-materials {grid-column:1 / -1; margin-top:42px;min-width:0;}
 #course-detail .et-chapter-list{gap:12px;}
-#course-detail .et-chapter{border-radius:13px;overflow:hidden;background:#fff;}
-#course-detail .et-chapter>summary{background:#eaf1fb;padding:20px 24px;gap:18px;}
-#course-detail .et-chapter>summary:hover,#course-detail .et-chapter[open]>summary{background:#e3edfc;}
-#course-detail .et-chapter>summary::after{
-  content:'›';width:auto;height:auto;border:0;font-family:Arial,sans-serif;
-  font-weight:400;font-size:30px;line-height:1;transform:rotate(0deg);margin:0 5px 0 auto;
-  transition:transform .2s ease;
+/* PHƯƠNG ÁN 1: Nền trắng, viền xanh mảnh, nhấn xanh bên trái. */
+#course-detail .et-chapter {
+  position: relative;
+  border: 1px solid #C7DAF4;
+  border-left: 5px solid #1874D1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(23, 65, 116, .05);
 }
-#course-detail .et-chapter[open]>summary::after{transform:rotate(90deg);margin:0 5px 0 auto;}
-#course-detail .et-chapter-index{background:transparent;color:var(--primary-color);border-radius:0;}
-#course-detail .et-lesson-list{padding:4px 18px;}
-#course-detail .et-lesson{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 10px;}
+#course-detail .et-chapter > summary {
+  background: #FFFFFF;
+  padding: 20px 24px;
+  gap: 18px;
+  color: #1A3657;
+  transition: background-color .2s ease;
+}
+#course-detail .et-chapter > summary:hover {
+  background: #F5F9FF;
+}
+#course-detail .et-chapter[open] > summary {
+  background: #F4F8FE;
+  border-bottom: 1px solid #E1EAF5;
+}
+#course-detail .et-chapter > summary::after {
+  content: '›';
+  width: auto;
+  height: auto;
+  border: 0;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  transform: rotate(0deg);
+  margin: 0 5px 0 auto;
+  transition: transform .2s ease;
+}
+#course-detail .et-chapter[open] > summary::after {
+  transform: rotate(90deg);
+  margin: 0 5px 0 auto;
+}
+#course-detail .et-chapter-index {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  background: #E8F2FF;
+  color: #1A538F;
+  font-size: 15px;
+}
+/* Danh sách bài học: một lớp trắng, chia dòng bằng viền mỏng */
+#course-detail .et-lesson-list {
+  display: block;
+  margin: 0;
+  padding: 4px 18px;
+  background: var(--white-color);
+  list-style: none;
+}
+#course-detail .et-lesson {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 10px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
+  box-shadow: none;
+}
+#course-detail .et-lesson:last-child { border-bottom: 0; }
+#course-detail .et-lesson:hover { background: #FAFCFF; }
 #course-detail .et-lesson-main{flex:1;min-width:170px;}
 #course-detail .et-lesson-actions{display:grid;grid-template-columns:repeat(4,minmax(112px,1fr));gap:10px;flex:0 1 660px;}
 #course-detail .et-lesson-actions .et-lesson-resource{
@@ -1811,3 +1871,10 @@ body.et-study-open{overflow:hidden;}
   #et-notice .et-notice-actions{flex-wrap:wrap;}
 }
 @media(prefers-reduced-motion:reduce){#course-detail .et-chapter>summary::after{transition:none;}}
+
+/* Responsive phần bài học: giữ lề thoáng trên điện thoại */
+@media (max-width: 767px) {
+  #course-detail .et-chapter > summary { padding: 16px 14px; }
+  #course-detail .et-lesson-list { padding: 4px 10px; }
+  #course-detail .et-lesson { padding: 14px 8px; }
+}
