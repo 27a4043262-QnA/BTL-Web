@@ -2149,7 +2149,7 @@
     ],
     "duration": "45 tiết (dự kiến)",
     "year": "Năm 1–2",
-    "prerequisite": "Kiến thức toán cơ bản",
+    "prerequisite": "Xác suất thống kê",
     "contentStatus": "Học liệu EduTrack tự biên soạn; cần đối chiếu đề cương học phần chính thức trước khi dùng để ôn thi."
   },
   {
@@ -3225,7 +3225,7 @@
     ],
     "duration": "45 tiết (dự kiến)",
     "year": "Năm 2–3",
-    "prerequisite": "Kiến thức tin học cơ bản",
+    "prerequisite": "Không",
     "syllabusSource": "https://itde.hvnh.edu.vn/tin_tuc/chi_tiet/569_is21a_co_so_du_lieu_2022_.html",
     "contentStatus": "Học liệu EduTrack tự biên soạn; cần đối chiếu đề cương học phần chính thức trước khi dùng để ôn thi."
   },
@@ -4302,7 +4302,7 @@
     ],
     "duration": "45 tiết (dự kiến)",
     "year": "Năm 2–3",
-    "prerequisite": "Kiến thức toán cơ bản",
+    "prerequisite": "Toán dành cho kinh tế",
     "contentStatus": "Học liệu EduTrack tự biên soạn; cần đối chiếu đề cương học phần chính thức trước khi dùng để ôn thi."
   },
   {
@@ -5916,7 +5916,7 @@
     ],
     "duration": "45 tiết (dự kiến)",
     "year": "Năm 3–4",
-    "prerequisite": "Cơ sở lập trình, Toán rời rạc",
+    "prerequisite": "Toán rời rạc",
     "syllabusSource": "https://itde.hvnh.edu.vn/tin_tuc/chi_tiet/601_is54a_tri_tue_nhan_tao_2022_.html",
     "contentStatus": "Học liệu EduTrack tự biên soạn; cần đối chiếu đề cương học phần chính thức trước khi dùng để ôn thi."
   },
@@ -6455,7 +6455,7 @@
     ],
     "duration": "45 tiết (dự kiến)",
     "year": "Năm 3–4",
-    "prerequisite": "Cơ sở lập trình, Cơ sở dữ liệu",
+    "prerequisite": "Cơ sở dữ liệu",
     "contentStatus": "Học liệu EduTrack tự biên soạn; cần đối chiếu đề cương học phần chính thức trước khi dùng để ôn thi."
   },
   {
