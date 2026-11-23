@@ -1,5 +1,9 @@
 
 "use strict";
+const GPA_COURSES_URL = new URL(
+    "../data/courses.json",
+    document.currentScript.src
+).href;
 
 function initializeCalculator() {
     const V = window.EDUValidation;
@@ -40,6 +44,469 @@ function initializeCalculator() {
         ".result-table tbody"
     );
 
+    
+    // Gợi ý môn học từ JSON
+    async function setupCourseSuggestions() {
+        const dropdown = document.createElement("div");
+        dropdown.className = "gpa-course-dropdown";
+        dropdown.id = "gpa-course-dropdown";
+        dropdown.setAttribute("role", "listbox");
+
+        // Đặt ngoài bảng để không bị vùng cuộn cắt mất
+        document.body.appendChild(dropdown);
+
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        const courseMap = new Map();
+
+        let courses = [];
+        let activeInput = null;
+        let visibleCourses = [];
+        let activeIndex = -1;
+
+        // Cho phép tìm kiếm không dấu
+        function normalize(value) {
+            return String(value ?? "")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/đ/g, "d")
+                .replace(/Đ/g, "D")
+                .trim()
+                .replace(/\s+/g, " ")
+                .toLowerCase();
+        }
+
+        function displayName(course) {
+            return `${course.name} (${course.code})`;
+        }
+
+        // Liên kết các ô tên môn với autocomplete
+        function prepareInput(input) {
+            if (!input) return;
+
+            input.removeAttribute("list");
+            input.autocomplete = "off";
+            input.setAttribute("role", "combobox");
+            input.setAttribute("aria-autocomplete", "list");
+            input.setAttribute(
+                "aria-controls",
+                dropdown.id
+            );
+            input.setAttribute("aria-expanded", "false");
+        }
+
+        courseBody.querySelectorAll("tr").forEach(row => {
+            prepareInput(
+                row.querySelector('input[type="text"]')
+            );
+        });
+
+        function closeDropdown() {
+            if (activeInput) {
+                activeInput.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+            }
+
+            dropdown.classList.remove("is-open");
+            dropdown.replaceChildren();
+
+            activeInput = null;
+            visibleCourses = [];
+            activeIndex = -1;
+        }
+
+        // Đặt danh sách ngay dưới ô đang nhập
+        function positionDropdown(input) {
+            const rect = input.getBoundingClientRect();
+
+            const width = Math.min(
+                Math.max(rect.width, 300),
+                380,
+                window.innerWidth - 16
+            );
+
+            const left = Math.max(
+                8,
+                Math.min(
+                    rect.left,
+                    window.innerWidth - width - 8
+                )
+            );
+
+            dropdown.style.width = `${width}px`;
+            dropdown.style.left = `${left}px`;
+
+            // Nếu thiếu chỗ bên dưới thì mở lên trên
+            const dropdownHeight = Math.min(
+                dropdown.scrollHeight,
+                260
+            );
+
+            const spaceBelow =
+                window.innerHeight - rect.bottom;
+
+            const spaceAbove = rect.top;
+
+            const openAbove =
+                spaceBelow < dropdownHeight + 8 &&
+                spaceAbove > spaceBelow;
+
+            dropdown.style.top = openAbove
+                ? `${Math.max(8, rect.top - dropdownHeight - 6)}px`
+                : `${Math.min(
+                    window.innerHeight - 8,
+                    rect.bottom + 6
+                )}px`;
+        }
+
+        function updateActiveOption() {
+            const options = dropdown.querySelectorAll(
+                ".gpa-course-option"
+            );
+
+            options.forEach((option, index) => {
+                option.classList.toggle(
+                    "is-active",
+                    index === activeIndex
+                );
+
+                option.setAttribute(
+                    "aria-selected",
+                    String(index === activeIndex)
+                );
+            });
+        }
+
+        // Chọn môn: điền tên, mã và tín chỉ
+        function selectCourse(course) {
+            if (!activeInput) return;
+
+            const nameInput = activeInput;
+            const row = nameInput.closest("tr");
+
+            if (!row) return;
+
+            const inputs = row.querySelectorAll("input");
+            const creditsInput = inputs[1];
+
+            if (!creditsInput) return;
+
+            nameInput.value = displayName(course);
+            nameInput.dataset.courseCode = course.code;
+
+            creditsInput.value = String(course.credits);
+
+            V.clearFieldError(nameInput);
+            V.clearFieldError(creditsInput);
+
+            closeDropdown();
+            nameInput.focus();
+        }
+
+        // Tạo giao diện từng môn gợi ý
+        function renderSuggestions(input) {
+            const keyword = normalize(input.value);
+
+            closeDropdown();
+
+            if (!keyword || courses.length === 0) {
+                return;
+            }
+
+            visibleCourses = courses
+                .filter(course => {
+                    const searchText = normalize(
+                        `${course.name} ${course.code}`
+                    );
+
+                    return searchText.includes(keyword);
+                })
+                .slice(0, 8);
+
+            if (visibleCourses.length === 0) {
+                return;
+            }
+
+            activeInput = input;
+
+            visibleCourses.forEach((course, index) => {
+                const button = document.createElement(
+                    "button"
+                );
+
+                button.type = "button";
+                button.className = "gpa-course-option";
+                button.setAttribute("role", "option");
+                button.setAttribute(
+                    "aria-selected",
+                    "false"
+                );
+                button.dataset.index = String(index);
+
+                const info = document.createElement("span");
+                info.className =
+                    "gpa-course-option-info";
+
+                const name = document.createElement("span");
+                name.className =
+                    "gpa-course-option-name";
+                name.textContent = course.name;
+
+                const code = document.createElement("span");
+                code.className =
+                    "gpa-course-option-code";
+                code.textContent = course.code;
+
+                const credits = document.createElement(
+                    "span"
+                );
+                credits.className =
+                    "gpa-course-option-credits";
+                credits.textContent =
+                    `${course.credits} TC`;
+
+                info.append(name, code);
+                button.append(info, credits);
+
+                dropdown.appendChild(button);
+            });
+
+            dropdown.classList.add("is-open");
+            input.setAttribute("aria-expanded", "true");
+            positionDropdown(input);
+        }
+
+        // Khi nhập tên, xóa thông tin môn cũ
+        function handleInput(event) {
+            if (!(event.target instanceof HTMLInputElement)) {
+                return;
+            }
+
+            const input = event.target;
+            const row = input.closest("tr");
+
+            if (!row || !courseBody.contains(row)) {
+                return;
+            }
+
+            const nameInput = row.querySelector(
+                'input[type="text"]'
+            );
+
+            if (input !== nameInput) return;
+
+            const creditsInput = row.querySelectorAll(
+                "input"
+            )[1];
+
+            const selected = courseMap.get(
+                normalize(input.value)
+            );
+
+            if (selected) {
+                input.dataset.courseCode = selected.code;
+                creditsInput.value =
+                    String(selected.credits);
+            } else {
+                delete input.dataset.courseCode;
+                creditsInput.value = "";
+            }
+
+            renderSuggestions(input);
+        }
+
+        // Nhập tên môn
+        courseBody.addEventListener(
+            "input",
+            handleInput,
+            { signal }
+        );
+
+        // Gõ phím lên/xuống, Enter hoặc Escape
+        courseBody.addEventListener(
+            "keydown",
+            event => {
+                if (
+                    !(event.target instanceof HTMLInputElement)
+                ) return;
+
+                if (event.target !== activeInput) return;
+
+                if (!visibleCourses.length) return;
+
+                if (event.key === "ArrowDown") {
+                    event.preventDefault();
+
+                    activeIndex =
+                        (activeIndex + 1) %
+                        visibleCourses.length;
+
+                    updateActiveOption();
+                } else if (event.key === "ArrowUp") {
+                    event.preventDefault();
+
+                    activeIndex =
+                        activeIndex <= 0
+                            ? visibleCourses.length - 1
+                            : activeIndex - 1;
+
+                    updateActiveOption();
+                } else if (event.key === "Enter") {
+                    if (activeIndex < 0) return;
+
+                    event.preventDefault();
+
+                    selectCourse(
+                        visibleCourses[activeIndex]
+                    );
+                } else if (event.key === "Escape") {
+                    event.preventDefault();
+                    closeDropdown();
+                }
+            },
+            { signal }
+        );
+
+        // Nhấn chuột hoặc chạm vào môn được gợi ý
+        dropdown.addEventListener(
+            "pointerdown",
+            event => {
+                if (!(event.target instanceof Element)) {
+                    return;
+                }
+
+                const option = event.target.closest(
+                    ".gpa-course-option"
+                );
+
+                if (!option) return;
+
+                event.preventDefault();
+
+                const index = Number(option.dataset.index);
+                const course = visibleCourses[index];
+
+                if (course) selectCourse(course);
+            },
+            { signal }
+        );
+
+        // Nhấn bên ngoài thì đóng danh sách
+        document.addEventListener(
+            "pointerdown",
+            event => {
+                if (
+                    event.target instanceof Node &&
+                    (
+                        dropdown.contains(event.target) ||
+                        courseBody.contains(event.target)
+                    )
+                ) {
+                    return;
+                }
+
+                closeDropdown();
+            },
+            { signal }
+        );
+
+        // Đóng khi cuộn bảng hoặc thay đổi kích thước
+        document.addEventListener(
+            "scroll",
+            event => {
+                if (
+                    event.target instanceof Node &&
+                    dropdown.contains(event.target)
+                ) {
+                    return;
+                }
+
+                closeDropdown();
+            },
+            { capture: true, signal }
+        );
+
+        window.addEventListener(
+            "resize",
+            closeDropdown,
+            { signal }
+        );
+
+        // Dọn sự kiện cũ khi SPA thay giao diện
+        document.addEventListener(
+            "edutrack:page-loaded",
+            () => {
+                if (!calculator.isConnected) {
+                    closeDropdown();
+                    controller.abort();
+                    dropdown.remove();
+                }
+            },
+            { signal }
+        );
+
+        // Tải danh sách môn học từ JSON
+        try {
+            const response = await fetch(GPA_COURSES_URL);
+
+            if (!response.ok) {
+                throw new Error(
+                    `HTTP ${response.status}`
+                );
+            }
+
+            const data = await response.json();
+
+            if (!Array.isArray(data)) {
+                throw new Error(
+                    "JSON phải chứa một mảng môn học."
+                );
+            }
+
+            // Trang cũ có thể đã bị SPA thay thế
+            if (!calculator.isConnected) {
+                closeDropdown();
+                controller.abort();
+                dropdown.remove();
+                return;
+            }
+            courses = data
+                .filter(course =>
+                    course &&
+                    typeof course.name === "string" &&
+                    typeof course.code === "string" &&
+                    V.isValidCredits(course.credits)
+                )
+                .map(course => ({
+                    name: course.name.trim(),
+                    code: course.code.trim(),
+                    credits: Number(course.credits)
+                }))
+                .filter(course =>
+                    course.name && course.code
+                );
+
+            courses.forEach(course => {
+                courseMap.set(
+                    normalize(displayName(course)),
+                    course
+                );
+            });
+
+            console.info(
+                `Đã tải ${courses.length} môn học GPA.`
+            );
+        } catch (error) {
+            console.error(
+                "Lỗi tải danh mục môn học:",
+                error
+            );
+        }
+    }
+
     // Tính điểm hệ 10 của một môn
     function calculateCourseScore(scores) {
         return (
@@ -76,25 +543,39 @@ function initializeCalculator() {
         rows.forEach(row => {
             const inputs = [...row.querySelectorAll("input")];
 
-            // HTML hiện tại: tên, mã, tín chỉ, 4 đầu điểm
-            if (inputs.length < 7) return;
+            // HTML hiện tại: tên môn, tín chỉ và 4 đầu điểm
+            if (inputs.length < 6) {
+            valid = false;
+            return;
+            }
 
-            const [nameInput, codeInput, creditsInput,
-                ...scoreInputs] = inputs;
+            const [nameInput, creditsInput, ...scoreInputs] = inputs;
 
             inputs.forEach(V.clearFieldError);
 
             const name = nameInput.value.trim();
-            const code = codeInput.value.trim();
+            const code = nameInput.dataset.courseCode || "";
             const credits = Number(creditsInput.value);
             const scores = scoreInputs
                 .slice(0, 4)
                 .map(input => Number(input.value));
+                if (!V.isRequired(name)) {
+    V.showFieldError(
+        nameInput,
+        "Vui lòng chọn môn học."
+    );
+    valid = false;
+}
+if (!V.isRequired(code)) {
+    if (V.isRequired(name)) {
+        V.showFieldError(
+            nameInput,
+            "Vui lòng chọn môn học từ danh sách gợi ý."
+        );
+    }
 
-            if (!V.isRequired(name)) {
-                V.showFieldError(nameInput, "Vui lòng nhập tên môn.");
-                valid = false;
-            }
+    valid = false;
+}
 
 if (!V.isRequired(creditsInput.value)) {
     V.showFieldError(
@@ -126,13 +607,6 @@ scoreInputs.slice(0, 4).forEach(input => {
     }
 });
 
-if (!V.isRequired(code)) {
-    V.showFieldError(
-        codeInput,
-        "Vui lòng nhập mã môn."
-    );
-    valid = false;
-}
         courses.push({
             name,
             code,
@@ -211,17 +685,15 @@ if (!V.isRequired(code)) {
 
         results.forEach((course, index) => {
             const row = document.createElement("tr");
-
-            const values = [
-                index + 1,
-                course.name,
-                course.code || "-",
-                course.credits,
-                course.score.toFixed(2),
-                course.letter,
-                course.gpa.toFixed(1),
-                course.passed ? "Đạt" : "Chưa đạt"
-            ];
+const values = [
+    index + 1,
+    course.name,
+    course.credits,
+    course.score.toFixed(2),
+    course.letter,
+    course.gpa.toFixed(1),
+    course.passed ? "Đạt" : "Chưa đạt"
+];
 
             values.forEach(value => {
                 const cell = document.createElement("td");
@@ -244,6 +716,7 @@ if (!V.isRequired(code)) {
 
         inputs.forEach(input => {
             input.value = "";
+            delete input.dataset.courseCode;
             V.clearFieldError(input);
         });
 
@@ -272,17 +745,117 @@ if (!V.isRequired(code)) {
     }
 
     // Tính điểm khi nhấn nút
-    calculateButton.addEventListener("click", function () {
-        const courses = readCourses();
 
-        if (courses === null) return;
+    // Animation cuộn mượt đến một phần tử
+    let scrollAnimationId = null;
 
-        const result = calculateGPA(courses);
+    function animateScrollTo(element) {
+        const reducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
 
-        renderSummary(result);
-        renderDetails(result.results);
-    });
+        // Hủy animation cũ nếu người dùng tính lại
+        if (scrollAnimationId !== null) {
+            cancelAnimationFrame(scrollAnimationId);
+            scrollAnimationId = null;
+        }
 
+        // Xác định vùng đang cuộn: window hoặc #main-content
+        const main = document.querySelector("#main-content");
+        const mainCanScroll = main &&
+            main.scrollHeight > main.clientHeight &&
+            ["auto", "scroll"].includes(
+                getComputedStyle(main).overflowY
+            );
+
+        const container = mainCanScroll ? main : window;
+
+        const startY = mainCanScroll
+            ? main.scrollTop
+            : window.scrollY;
+
+        const destinationY = mainCanScroll
+            ? element.getBoundingClientRect().top -
+              main.getBoundingClientRect().top +
+              main.scrollTop - 90
+            : element.getBoundingClientRect().top +
+              window.scrollY - 90;
+
+        const maxY = mainCanScroll
+            ? main.scrollHeight - main.clientHeight
+            : document.documentElement.scrollHeight -
+              window.innerHeight;
+
+        const targetY = Math.max(
+            0,
+            Math.min(destinationY, maxY)
+        );
+
+        function setScroll(y) {
+            if (container === window) {
+                window.scrollTo({ top: y, behavior: "instant" });
+            } else {
+                main.scrollTop = y;
+            }
+        }
+
+        if (reducedMotion) {
+            setScroll(targetY);
+            return;
+        }
+
+        const duration = 1500;
+        const distance = targetY - startY;
+        let startTime = null;
+
+        function frame(timestamp) {
+            if (startTime === null) {
+                startTime = timestamp;
+            }
+
+            const progress = Math.min(
+                (timestamp - startTime) / duration,
+                1
+            );
+
+            // Ease-in-out: tăng tốc rồi giảm tốc
+            const eased = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+            setScroll(startY + distance * eased);
+
+            if (progress < 1) {
+                scrollAnimationId =
+                    requestAnimationFrame(frame);
+            } else {
+                scrollAnimationId = null;
+            }
+        }
+
+        scrollAnimationId = requestAnimationFrame(frame);
+    }
+
+calculateButton.addEventListener("click", function () {
+    const courses = readCourses();
+
+    // Dữ liệu không hợp lệ thì không cuộn
+    if (courses === null) return;
+
+    const result = calculateGPA(courses);
+
+    renderSummary(result);
+    renderDetails(result.results);
+
+    // Tự động cuộn xuống Bảng điểm chi tiết
+    const detailSection = calculator.querySelector(
+        ".calc-step--detail"
+    );
+
+if (detailSection) {
+    animateScrollTo(detailSection);
+}
+});
     // Thêm môn học
     addButton.addEventListener("click", addCourse);
 
@@ -300,6 +873,7 @@ courseBody.addEventListener("click", function (event) {
     } else {
         row.querySelectorAll("input").forEach(input => {
             input.value = "";
+            delete input.dataset.courseCode;
             V.clearFieldError(input);
         });
     }
@@ -328,6 +902,7 @@ resetButton.addEventListener("click", function () {
     // Xóa dữ liệu và thông báo lỗi
     emptyRow.querySelectorAll("input").forEach(input => {
         input.value = "";
+        delete input.dataset.courseCode;
         V.clearFieldError(input);
     });
 
@@ -337,13 +912,16 @@ resetButton.addEventListener("click", function () {
 
     // Xóa kết quả GPA cũ
     summary.querySelectorAll(".result-gpa-card .result-card-value strong")
-        .forEach(element => element.textContent = "—");
+        .forEach(element => element.textContent = "-");
 
     summary.querySelectorAll(".result-stat-card > strong")
         .forEach(element => element.textContent = "0");
 
     detailBody.replaceChildren();
 });
+
+// Khởi tạo gợi ý môn học từ JSON
+setupCourseSuggestions();
 }
 
 // Khởi tạo khi tải trực tiếp trang Tính GPA

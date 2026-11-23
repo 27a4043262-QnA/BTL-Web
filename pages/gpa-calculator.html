@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/gpa-calculator.css">
-    <script src="../assets/js/validation.js"></script>
-    <script src="../assets/js/calculator.js"></script>
+    <script src="../assets/js/validation.js" defer></script>
+    <script src="../assets/js/calculator.js" defer></script>
     <link rel="stylesheet" href="../assets/css/chatbot.css">
     <script src="../assets/js/chatbot.js" defer></script>
     <script src="../assets/js/main.js" defer></script>
@@ -76,8 +76,7 @@
               <tr>
                 <th><span class="sr-only">Kéo để sắp xếp</span></th>                
                 <th>STT</th>
-                <th>Tên môn học</th>
-                <th>Mã môn</th>
+                <th>Môn học</th>
                 <th>Tín chỉ</th>
                 <th>Chuyên cần (10%)</th>
                 <th>Kiểm tra 1 (15%)</th>
@@ -86,54 +85,91 @@
                 <th><span class="sr-only">Xóa</span></th>  
               </tr>
             </thead>
-            <tbody>
-              <tr>
-  <td class="drag-handle" aria-hidden="true">⠿</td>
-  <td>1</td>
-  <td><input type="text"   aria-label="Tên môn học"     value="Toán cao cấp A1" /></td>
-  <td><input type="text"   aria-label="Mã môn"          value="MATH101" /></td>
-  <td><input type="number" aria-label="Tín chỉ"         value="3" min="1" /></td>
-  <td><input type="number" aria-label="Điểm chuyên cần" value="9.0" min="0" max="10" step="0.1" /></td>
-  <td><input type="number" aria-label="Điểm kiểm tra 1"  value="8.5" min="0" max="10" step="0.1" /></td>
-  <td><input type="number" aria-label="Điểm kiểm tra 2"  value="8.0" min="0" max="10" step="0.1" /></td>
-  <td><input type="number" aria-label="Điểm cuối kỳ"    value="7.5" min="0" max="10" step="0.1" /></td>
-<td>
-  <button type="button" class="btn-icon-delete" aria-label="Xóa môn Toán cao cấp A1">
-    <i data-lucide="trash-2" aria-hidden="true"></i>
-  </button>
-</td></tr>
-<tr>
-  <td class="drag-handle" aria-hidden="true">⠿</td>
-  <td>2</td>
-  <td><input type="text"   aria-label="Tên môn học"     value="Vật lý đại cương" /></td>
-  <td><input type="text"   aria-label="Mã môn"          value="PHYS101" /></td>
-  <td><input type="number" aria-label="Tín chỉ"         value="3" min="1" /></td>
-  <td><input type="number" aria-label="Điểm chuyên cần" value="8.5" min="0" max="10" step="0.1" /></td>
-  <td><input type="number" aria-label="Điểm kiểm tra 1"  value="7.5" min="0" max="10" step="0.1" /></td>
-  <td><input type="number" aria-label="Điểm kiểm tra 2"  value="7.0" min="0" max="10" step="0.1" /></td>
-  <td><input type="number" aria-label="Điểm cuối kỳ"    value="6.5" min="0" max="10" step="0.1" /></td>
-<td>
-  <button type="button" class="btn-icon-delete" aria-label="Xóa môn Vật lý đại cương">
-    <i data-lucide="trash-2" aria-hidden="true"></i>
-  </button>
-</td></tr>
-<tr>
-  <td class="drag-handle" aria-hidden="true">⠿</td>
-  <td>3</td>
-  <td><input type="text"   aria-label="Tên môn học"     value="Lập trình C" /></td>
-  <td><input type="text"   aria-label="Mã môn"          value="IT101" /></td>
-  <td><input type="number" aria-label="Tín chỉ"         value="4" min="1" /></td>
-  <td><input type="number" aria-label="Điểm chuyên cần" value="9.5" min="0" max="10" step="0.1" /></td>
-  <td><input type="number" aria-label="Điểm kiểm tra 1"  value="8.5" min="0" max="10" step="0.1" /></td>
-  <td><input type="number" aria-label="Điểm kiểm tra 2"  value="8.0" min="0" max="10" step="0.1" /></td>
-  <td><input type="number" aria-label="Điểm cuối kỳ"    value="8.0" min="0" max="10" step="0.1" /></td>
-<td>
-  <button type="button" class="btn-icon-delete" aria-label="Xóa môn Lập trình C">
-    <i data-lucide="trash-2" aria-hidden="true"></i>
-  </button>
-</td></tr>
-            </tbody>
-          </table>
+            
+<tbody>
+    <tr>
+        <td class="drag-handle" aria-hidden="true">⠿</td>
+
+        <td>1</td>
+
+        <!-- Tên môn học: có gợi ý từ JSON -->
+        <td>
+            <input
+                type="text"
+                aria-label="Tên môn học"
+                autocomplete="off"
+                placeholder="Nhập môn học"
+            >
+        </td>
+
+        <!-- Tín chỉ: tự động điền -->
+        <td>
+            <input
+                type="number"
+                aria-label="Tín chỉ"
+                min="1"
+                max="10"
+                readonly
+            >
+        </td>
+
+        <!-- Bốn đầu điểm do người dùng nhập -->
+        <td>
+            <input
+                type="number"
+                aria-label="Điểm chuyên cần"
+                min="0"
+                max="10"
+                step="0.1"
+                placeholder="Nhập điểm"
+            >
+        </td>
+
+        <td>
+            <input
+                type="number"
+                aria-label="Điểm kiểm tra 1"
+                min="0"
+                max="10"
+                step="0.1"
+                placeholder="Nhập điểm"
+            >
+        </td>
+
+        <td>
+            <input
+                type="number"
+                aria-label="Điểm kiểm tra 2"
+                min="0"
+                max="10"
+                step="0.1"
+                placeholder="Nhập điểm"
+            >
+        </td>
+
+        <td>
+            <input
+                type="number"
+                aria-label="Điểm cuối kỳ"
+                min="0"
+                max="10"
+                step="0.1"
+                placeholder="Nhập điểm"
+            >
+        </td>
+
+        <td>
+            <button
+                type="button"
+                class="btn-icon-delete"
+                aria-label="Xóa môn học"
+            >
+                <i data-lucide="trash-2" aria-hidden="true"></i>
+            </button>
+        </td>
+    </tr>
+  </tbody>
+ </table>
 </div>
           <button type="button" 	class="et-btn btn-add-row">+ Thêm môn học</button>
 
@@ -173,7 +209,7 @@
               </div>
 
               <div class="result-card-value">
-                <strong>8.25</strong>
+                <strong>-</strong>
                 <small>/ 10.00</small>
               </div>
             </div>
@@ -186,7 +222,7 @@
               </div>
 
               <div class="result-card-value">
-                <strong>3.25</strong>
+                <strong>-</strong>
                 <small>/ 4.00</small>
               </div>
             </div>
@@ -197,7 +233,7 @@
                 <span>Tổng số tín chỉ</span>
                 <i data-lucide="layers" aria-hidden="true"></i>
               </div>
-              <strong>10</strong>
+              <strong>0</strong>
             </div>
 
             <!-- Tổng số môn -->
@@ -206,7 +242,7 @@
                 <span>Tổng số môn</span>
                 <i data-lucide="list" aria-hidden="true"></i>
               </div>
-              <strong>3</strong>
+              <strong>0</strong>
             </div>
 
             <!-- Số môn đạt -->
@@ -215,7 +251,7 @@
                 <span>Số môn đạt</span>
                 <i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>
               </div>
-              <strong>3</strong>
+              <strong>0</strong>
             </div>
 
             <!-- Số môn chưa đạt -->
@@ -245,8 +281,7 @@
             <thead>
                 <tr>
                     <th>STT</th>
-                    <th>Tên môn học</th>
-                    <th>Mã môn</th>
+                    <th>Môn học</th>
                     <th>Tín chỉ</th>
                     <th>Điểm tổng kết (hệ 10)</th>
                     <th>Điểm chữ</th>
@@ -256,36 +291,7 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Toán cao cấp A1</td>
-                    <td>MATH101</td>
-                    <td>3</td>
-                    <td>7.88</td>
-                    <td>B</td>
-                    <td>3.0</td>
-                    <td>Đạt</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Vật lý đại cương</td>
-                    <td>PHYS101</td>
-                    <td>3</td>
-                    <td>6.93</td>
-                    <td>C+</td>
-                    <td>2.0</td>
-                    <td>Đạt</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lập trình C</td>
-                    <td>IT101</td>
-                    <td>4</td>
-                    <td>8.23</td>
-                    <td>B+</td>
-                    <td>3.5</td>
-                    <td>Đạt</td>
-                </tr>
+               
             </tbody>
         </table>
     </div>
