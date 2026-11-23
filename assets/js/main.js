@@ -15,7 +15,9 @@
         "about.html": ["Giới thiệu", "about"],
         "profile.html": ["Thông tin cá nhân", "profile"],
         "progress.html": ["Tiến độ học tập", "progress"],
-        "progress-detail.html": ["Chi tiết lộ trình học tập", "progress"],
+        "progress-detail.html": ["Chi tiết nhiệm vụ", "progress"],
+        "progress-subject.html": ["Tiến độ theo môn", "progress"],
+        "progress-material.html": ["Tài liệu học tập", "progress"],
         "csbm.html": ["Chính sách bảo mật", "privacy"],
         "DieuKhoanSuDung.html": ["Điều khoản sử dụng", "terms"],
         "bqtl.html": ["Bản quyền tài liệu", "copyright"],
@@ -390,6 +392,21 @@
             // CHỈ THAY NỘI DUNG BÊN PHẢI
             mainContent.innerHTML = content.innerHTML;
             mainContent.className = newMain.className;
+
+            // =============================================
+            // ĐỒNG BỘ LOẠI TRANG CHO PROGRESS.JS
+            // =============================================
+
+            // Giúp progress.js nhận diện đúng:
+            // dashboard, detail, subject, material
+            if (newMain.hasAttribute("data-progress-page")) {
+                mainContent.setAttribute(
+                    "data-progress-page",
+                    newMain.getAttribute("data-progress-page")
+                );
+            } else {
+                mainContent.removeAttribute("data-progress-page");
+            }
 
             // Cập nhật URL không reload website
             if (addHistory) {
