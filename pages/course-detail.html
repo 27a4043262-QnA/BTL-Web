@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chi tiết môn học | Toán cao cấp A1</title>
+  <title>Chi tiết môn học | EduTrack</title>
 
   <!-- Bootstrap 4 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -12,28 +12,29 @@
   <!-- CSS của EduTrack -->
   <link rel="stylesheet" href="../assets/css/main.css">
   <link rel="stylesheet" href="../assets/css/courses_detail.css">
+  <link rel="stylesheet" href="../assets/css/course-detail-final.css">
   <link rel="stylesheet" href="../assets/css/chatbot.css">
 </head>
 
 <body>
   <!-- MAIN CONTENT: chỉ 1 main duy nhất -->
   <main id="main-content">
-    <article id="course-detail" aria-labelledby="course-title">
+    <p id="detail-status" class="detail-status" role="status" aria-live="polite">Đang tải thông tin môn học...</p>
+    <article id="course-detail" aria-labelledby="course-title" hidden>
 
-      <div class="course-hero">
+      <div class="course-hero" id="course-hero">
 
         <div class="course-hero-main">
+          <div class="et-hero-top">
+            <div class="et-course-title-group">
           <p class="breadcrumb">
             <span class="chip">Đại cương</span>
-            <span class="course-code">Mã môn: MATH101</span>
+            <span class="course-code">Mã môn: MAT15A</span>
           </p>
           <h1 id="course-title">Toán dành cho kinh tế</h1>
-          <p>
-            Môn học bắt buộc đối với khối kỹ thuật và khoa học tự nhiên.
-            Cung cấp kiến thức cốt lõi về giới hạn và hàm liên tục,
-            phép tính đạo hàm, tích phân của hàm một biến và lý thuyết chuỗi.
-            Làm nền cơ bản cho việc tiếp thu các môn kỹ thuật chuyên sâu kế tiếp.
-          </p>
+          <p id="detail-description"></p>
+            </div>
+          </div>
         </div>
 
         <!-- ASIDE: thông tin nhanh, tangential so với nội dung chính -->
@@ -43,114 +44,46 @@
             <tbody>
               <tr>
                 <th scope="row">Số tín chỉ</th>
-                <td>3 Tín chỉ</td>
-              </tr>
-              <tr>
-                <th scope="row">Thời lượng</th>
-                <td>45 Tiết học</td>
+                <td id="detail-credits">Đang cập nhật</td>
               </tr>
               <tr>
                 <th scope="row">Mã môn</th>
-                <td>MATH101</td>
+                <td id="detail-code">Đang cập nhật</td>
               </tr>
               <tr>
                 <th scope="row">Năm học đề xuất</th>
-                <td>Năm 2</td>
+                <td id="detail-year">Đang cập nhật</td>
               </tr>
               <tr>
                 <th scope="row">Học phần tiên quyết</th>
-                <td>MATH100</td>
+                <td id="detail-prerequisite">Đang cập nhật</td>
               </tr>
               <tr>
                 <th scope="row">Phân loại</th>
-                <td>Đại cương</td>
+                <td id="detail-category">Đang cập nhật</td>
               </tr>
             </tbody>
           </table>
-          <a href="advising-contact.html" class="btn-cta btn-block">Đăng ký tư vấn lộ trình</a>
         </aside>
-
       </div>
-
-      <!-- SECTION: Nội dung môn học -->
-      <section id="course-content">
-        <h2>Nội dung môn học</h2>
-
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">STT</th>
-              <th scope="col">Chương học</th>
-              <th scope="col">Tài liệu</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>01</td>
-              <td>Giới hạn và sự liên tục</td>
-              <td>3 tài liệu</td>
-            </tr>
-            <tr>
-              <td>02</td>
-              <td>Đạo hàm và vi phân</td>
-              <td>4 tài liệu</td>
-            </tr>
-            <tr>
-              <td>03</td>
-              <td>Các định lý về hàm khả vi</td>
-              <td>2 tài liệu</td>
-            </tr>
-            <tr>
-              <td>04</td>
-              <td>Tích phân bất định và xác định</td>
-              <td>5 tài liệu</td>
-            </tr>
-            <tr>
-              <td>05</td>
-              <td>Chuỗi số và chuỗi hàm</td>
-              <td>3 tài liệu</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- SECTION: Nội dung môn học: chương > bài > PDF / video -->
+      <section id="course-content" aria-labelledby="course-content-heading">
+        <div class="et-content-toolbar">
+          <h2 id="course-content-heading">Nội dung môn học</h2>
+        </div>
+        <div id="detail-chapters-list" class="et-chapter-list" aria-live="polite">
+          <p>Đang tải danh sách bài học...</p>
+        </div>
       </section>
 
       <!-- SECTION: Tài liệu tham khảo -->
-      <section id="course-materials">
-        <h2>Tài liệu tham khảo</h2>
-
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Tên tài liệu</th>
-              <th scope="col">Định dạng</th>
-              <th scope="col">Dung lượng</th>
-              <th scope="col">Tải về</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Đề thi giữa kỳ môn Toán cao cấp A1 - Năm 2024</td>
-              <td>PDF</td>
-              <td>1.2 MB</td>
-              <td><a href="#">Tải xuống</a></td>
-            </tr>
-            <tr>
-              <td>Tóm tắt công thức giải nhanh Đạo hàm &amp; Tích phân</td>
-              <td>PDF</td>
-              <td>650 KB</td>
-              <td><a href="#">Tải xuống</a></td>
-            </tr>
-            <tr>
-              <td>Bài tập rèn luyện Vi phân có lời giải chi tiết</td>
-              <td>PDF</td>
-              <td>2.4 MB</td>
-              <td><a href="#">Tải xuống</a></td>
-            </tr>
-          </tbody>
-        </table>
+      <section id="course-materials" aria-labelledby="materials-heading">
+        <div class="et-section-heading">
+          <h2 id="materials-heading">Tài liệu tham khảo</h2>
+        </div>
+        <div id="detail-materials-list" class="et-reference-grid" aria-live="polite"></div>
       </section>
 
-      <!-- SECTION: đánh giá & FAQ -->
       <!-- SECTION: đánh giá & FAQ -->
       <section id="course-reviews-faq">
 
@@ -160,67 +93,16 @@
             <h2 id="reviews-heading">Nhận xét từ sinh viên</h2>
 
             <button type="button" class="btn btn-cta" data-toggle="modal" data-target="#reviewModal">
-              Gửi đánh giá
+              Viết nhận xét
             </button>
           </div>
 
-          <div class="review-list row" id="review-list">
-            <div class="col-12 col-md-6 col-xl-4">
-              <article>
-                <div class="review-author">
-                  <span class="avatar" aria-hidden="true">PH</span>
-                  <div>
-                    <h3>Phạm Văn Hùng</h3>
-                    <p class="review-cohort">Khóa 2026</p>
-                  </div>
-                </div>
-                <p class="review-text">Môn học khá nặng nhưng kiến thức nền tảng rất tốt. Giảng viên truyền đạt rõ ràng,
-                  tài liệu tham khảo đầy đủ.</p>
-                <time datetime="2026-01-12">12/01/2026</time>
-              </article>
-            </div>
-            <div class="col-12 col-md-6 col-xl-4">
-              <article>
-                <div class="review-author">
-                  <span class="avatar" aria-hidden="true">NM</span>
-                  <div>
-                    <h3>Nguyễn Thị Mai</h3>
-                    <p class="review-cohort">Khóa 2026</p>
-                  </div>
-                </div>
-                <p class="review-text">Bài tập nhiều nhưng có hướng dẫn rõ ràng. Đề thi không quá đánh đố, phù hợp với
-                  sinh viên chăm chỉ ôn tập.</p>
-                <time datetime="2025-12-28">28/12/2025</time>
-              </article>
-            </div>
-            <div class="col-12 col-md-6 col-xl-4">
-              <article>
-                <div class="review-author">
-                  <span class="avatar" aria-hidden="true">TA</span>
-                  <div>
-                    <h3>Trần Đức Anh</h3>
-                    <p class="review-cohort">Khóa 2025</p>
-                  </div>
-                </div>
-                <p class="review-text">Môn cần nền tảng toán tốt. Nếu nắm chắc đại cương thì sẽ dễ tiếp thu hơn, nhưng
-                  nếu
-                  yếu thì khá vất vả.</p>
-                <time datetime="2025-11-05">05/11/2025</time>
-              </article>
-            </div>
+          <div class="et-review-carousel" aria-label="Danh sách nhận xét">
+            <button type="button" id="review-prev" class="et-review-arrow" aria-label="Nhận xét trước" disabled>‹</button>
+            <div class="review-list" id="review-list" aria-live="polite"></div>
+            <button type="button" id="review-next" class="et-review-arrow" aria-label="Nhận xét tiếp theo" disabled>›</button>
           </div>
-          <div class="reviews-more-row">
-            <button type="button" id="toggle-reviews" class="reviews-more">
-              Xem thêm 
-
-            </button>
-          </div>
-
-
-
-
-          <!-- FORM ĐÁNH GIÁ MÔN HỌC - BOOTSTRAP 4 -->
-
+          <p class="detail-empty" id="detail-review-empty">Chưa có nhận xét nào cho môn học này.</p>
 
           <!-- MODAL ĐÁNH GIÁ MÔN HỌC -->
           <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel"
@@ -231,7 +113,7 @@
 
                 <div class="modal-header">
                   <h2 class="modal-title" id="reviewModalLabel">
-                    Đánh giá môn học
+                    Nhận xét môn học
                   </h2>
 
                   <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
@@ -243,8 +125,9 @@
                   <form id="course-review-form" novalidate>
 
                     <div class="form-group">
+                      <label for="review-content">Nội dung nhận xét</label>
                       <textarea class="form-control" id="review-content" name="review-content" rows="5" maxlength="500"
-                        placeholder="Viết đánh giá của bạn..." aria-label="Nội dung đánh giá"
+                        placeholder="Chia sẻ trải nghiệm học tập của bạn..." aria-label="Nội dung nhận xét"
                         aria-describedby="review-count review-error"></textarea>
                     </div>
 
@@ -260,7 +143,7 @@
                       </button>
 
                       <button type="submit" class="btn btn-cta">
-                        Gửi đánh giá
+                        Viết nhận xét
                       </button>
                     </div>
 
@@ -270,41 +153,16 @@
               </div>
             </div>
           </div>
-
-
-
         </section>
 
         <section id="faq" aria-labelledby="faq-heading">
-
           <div class="faq-heading-row">
             <h2 id="faq-heading">Câu hỏi thường gặp</h2>
-
             <button type="button" class="btn-cta btn-icon" data-toggle="modal" data-target="#questionModal">
               Hỏi đáp ngay
             </button>
           </div>
-          <details class="faq-item">
-            <summary>Môn học này có yêu cầu môn tiên quyết không?</summary>
-            <p>Không, sinh viên có thể đăng ký môn này ngay từ học kỳ đầu tiên.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Thang điểm đánh giá như thế nào?</summary>
-            <p>Điểm số được tính theo thang 10, quy đổi sang thang chữ theo quy chế đào tạo của trường.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Có tài liệu ôn thi miễn phí không?</summary>
-            <p>Có, sinh viên có thể tải miễn phí tại mục Tài liệu tham khảo phía trên.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Lịch thi cuối kỳ thường vào thời gian nào?</summary>
-            <p>Lịch thi cuối kỳ được nhà trường công bố khoảng 2 tuần trước kỳ thi, sinh viên theo dõi tại trang cá
-              nhân.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Làm sao để đăng ký nhận tài liệu ôn thi?</summary>
-            <p>Bấm nút "Hỏi đáp ngay" hoặc liên hệ mục Tư vấn để được hỗ trợ.</p>
-          </details>
+          <p id="detail-faq-empty" class="detail-empty" hidden>Chưa có câu hỏi thường gặp cho môn này.</p>
           <div class="faq-more-row">
             <button type="button" id="toggle-faq" class="faq-more" aria-expanded="false">
               Xem thêm
@@ -312,15 +170,11 @@
           </div>
         </section>
 
-
-
         <!-- BOOTSTRAP MODAL - HỎI ĐÁP -->
         <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel"
           aria-hidden="true">
-
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-
               <div class="modal-header">
                 <h2 class="modal-title" id="questionModalLabel">
                   Đặt câu hỏi về môn học
@@ -329,18 +183,15 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-
               <div class="modal-body">
-                <form id="question-form">
-                  <div class="form-group">
-                    <label for="question-name">Họ và tên</label>
-                    <input type="text" class="form-control" id="question-name" placeholder="Nhập họ và tên" required>
-                  </div>
 
+                <form id="question-form" novalidate>
                   <div class="form-group">
                     <label for="question-content">Nội dung câu hỏi</label>
-                    <textarea class="form-control" id="question-content" rows="4" maxlength="500"
-                      placeholder="Nhập câu hỏi của bạn..." required></textarea>
+
+                    <textarea class="form-control" id="question-content" name="question-content" rows="4"
+                      maxlength="500" placeholder="Nhập câu hỏi của bạn..." required></textarea>
+
                     <small id="question-count" class="form-text text-muted text-right">
                       0/500 ký tự
                     </small>
@@ -349,123 +200,80 @@
                   </div>
 
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      Hủy
+                    </button>
                     <button type="submit" class="btn btn-cta">
                       Gửi câu hỏi
                     </button>
                   </div>
                 </form>
               </div>
-
             </div>
           </div>
         </div>
-
       </section>
 
       <!-- ASIDE: môn học liên quan - nội dung tangential, gợi ý thêm -->
-
-
       <aside class="related-courses" aria-labelledby="related-heading">
         <h2 id="related-heading">Môn học liên quan</h2>
-
-        <ul class="row">
-          <li class="col-12 col-md-6 col-xl-4">
-            <article class="course-card card">
-              <img src="../assets/images/course/01_nang_luc_so_ung_dung.png" class="card-img-top"
-                alt="Năng lực số ứng dụng">
-
-              <div class="card-body">
-                <h3>
-                  <a href="courses.html">Năng lực số ứng dụng</a>
-                </h3>
-                <p>Đại cương &middot; 3 Tín chỉ</p>
-              </div>
-            </article>
-          </li>
-
-          <li class="col-12 col-md-6 col-xl-4">
-            <article class="course-card card">
-              <img src="../assets/images/course/07_cau_truc_du_lieu_va_giai_thuat.png" class="card-img-top" alt="Cấu trúc dữ liệu và giải thuật">
-
-              <div class="card-body">
-                <h3>
-                  <a href="courses.html">Cấu trúc dữ liệu và giải thuật</a>
-                </h3>
-                <p>Đại cương &middot; 3 Tín chỉ</p>
-              </div>
-            </article>
-          </li>
-
-          <li class="col-12 col-md-6 col-xl-4">
-            <article class="course-card card">
-              <img src="../assets/images/course/08_toan_roi_rac.png" class="card-img-top" alt="Toán rời rạc">
-
-              <div class="card-body">
-                <h3>
-                  <a href="courses.html">Toán rời rạc</a>
-                </h3>
-                <p>Cơ sở ngành &middot; 3 Tín chỉ</p>
-              </div>
-            </article>
-          </li>
-        </ul>
+        <ul class="row" id="detail-related"></ul>
       </aside>
-
-
     </article>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <!-- JavaScript cho Bootstrap 4 Collapse -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/review-enhancements.js"></script>
-  <script src="../assets/js/faq-enhancements.js"></script>
-  <script src="../assets/js/validation.js"></script>
-  <script src="../assets/js/question-enhancements.js"></script>
+  <script src="../assets/js/course-data-config.js" defer></script>
+  <script src="../assets/js/course-data-service.js" defer></script>
+  <script src="../assets/js/course-ui.js" defer></script>
+  <script src="../assets/js/course-detail.js" defer></script>
+  <script src="../assets/js/review-enhancements.js" defer></script>
+  <script src="../assets/js/faq-enhancements.js" defer></script>
+  <script src="../assets/js/validation.js" defer></script>
+  <script src="../assets/js/question-enhancements.js" defer></script>
   <script src="../assets/js/chatbot.js" defer></script>
   <script src="../assets/js/main.js" defer></script>
-  <!-- MODAL CẢM ƠN ĐÁNH GIÁ -->
-  <div class="modal fade" id="reviewSuccessModal" tabindex="-1" role="dialog" aria-labelledby="reviewSuccessTitle"
-    aria-hidden="true">
 
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content review-success-content">
+  <script>
+    // Dự phòng nếu JS bị thiếu / đường dẫn sai: không để màn hình tải vô hạn.
+    window.addEventListener("load", () => {
+      window.setTimeout(() => {
+        const status = document.getElementById("detail-status");
+        const detail = document.getElementById("course-detail");
+        if (status && detail && detail.hidden && !status.classList.contains("detail-error")) {
+          status.textContent = "Chưa tải được môn học. Kiểm tra file assets/js/course-detail.js và assets/data/course-details.json (F12 → Console).";
+          status.classList.add("detail-error");
+        }
+      }, 8000);
+    });
+  </script>
 
-        <div class="modal-body text-center">
-          <div class="review-success-icon">✓</div>
-
-          <h3 id="reviewSuccessTitle">
-            Cảm ơn bạn đã đánh giá!
-          </h3>
-
-          <p>
-            Đánh giá của bạn đã được ghi nhận.
-          </p>
+  <!-- Trình xem tài liệu / video: phủ vùng nội dung, giữ nguyên Header và Sidebar. -->
+  <div id="et-study-viewer" class="et-study-viewer" role="dialog" aria-modal="true" aria-labelledby="et-study-title" hidden>
+    <div class="et-study-panel">
+      <div class="et-study-header">
+        <div class="et-study-title-wrap"><span aria-hidden="true">▤</span><h2 id="et-study-title">Tài liệu môn học</h2></div>
+        <div class="et-study-utilities">
+          <a id="et-study-download" class="et-study-download" href="#" download aria-label="Tải tài liệu">⤓ Tải xuống</a>
+          <button id="et-study-close" class="et-study-close" type="button" aria-label="Đóng trình xem">×</button>
         </div>
-
       </div>
+      <div id="et-study-content" class="et-study-content"></div>
     </div>
   </div>
-  <!-- MODAL THÔNG BÁO GỬI CÂU HỎI THÀNH CÔNG -->
-  <div class="modal fade" id="questionSuccessModal" tabindex="-1" role="dialog" aria-labelledby="questionSuccessTitle"
-    aria-hidden="true">
 
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content question-success-content">
-
-        <div class="modal-body text-center">
-          <div class="question-success-icon">✓</div>
-
-          <h3 id="questionSuccessTitle">
-            Câu hỏi của bạn đã được ghi nhận!
-          </h3>
-
-          <p>
-            Cảm ơn bạn đã gửi câu hỏi.
-          </p>
-        </div>
-
+  <!-- Thông báo dùng chung: đóng bằng X, Escape, click ra ngoài, tự đóng sau 5 giây. -->
+  <div id="et-notice" class="et-notice" role="dialog" aria-modal="true" aria-labelledby="et-notice-title" hidden>
+    <div class="et-notice-panel" role="document">
+      <button type="button" class="et-notice-close" aria-label="Đóng thông báo">×</button>
+      <div class="et-notice-symbol" aria-hidden="true">✓</div>
+      <h2 id="et-notice-title">Thông báo</h2><p id="et-notice-message"></p>
+      <div class="et-notice-actions" id="et-notice-actions" hidden>
+        <button type="button" class="et-notice-cancel">Thoát</button>
+        <a class="et-notice-login" href="login.html">Đăng nhập</a>
       </div>
     </div>
   </div>
