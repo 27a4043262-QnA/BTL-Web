@@ -1,5 +1,12 @@
 "use strict";
-
+const PROJECTION_COURSES_URL = new URL(
+    "../data/courses.json",
+    document.currentScript.src
+).href;
+const PROJECTION_DETAILS_URL = new URL(
+    "../data/course-details.json",
+    document.currentScript.src
+).href;
 function initializeProjection() {
     const projection = document.querySelector("#projection-wrapper");
     const V = window.EDUValidation;
@@ -55,62 +62,57 @@ function initializeProjection() {
     // Lưu cấu trúc một hàng để tạo hàng mới
     const template = courseBody.querySelector("tr").cloneNode(true);
 
-    // Dữ liệu môn tiên quyết minh họa cho EDUTRACK
-    const prerequisites = {
-        "lập trình hướng đối tượng": [
-            { name: "Lập trình C", credits: 4 }
-        ],
+   // Dữ liệu chi tiết môn học lấy từ JSON
+let detailCourses = [];
 
-        "cấu trúc dữ liệu và giải thuật": [
-            { name: "Lập trình C", credits: 4 }
-        ],
+// Tìm môn tiên quyết của một học phần bằng mã môn
+function getPrerequisiteCourses(courseCode) {
+    const selectedCourse = detailCourses.find(
+        course => course.id === courseCode
+    );
 
-        "cơ sở dữ liệu nâng cao": [
-            { name: "Cơ sở dữ liệu", credits: 3 }
-        ],
+    if (!selectedCourse) return [];
 
-        "lập trình web": [
-            { name: "Lập trình C", credits: 4 }
-        ],
+    const prerequisite = selectedCourse.prerequisite;
 
-        "lập trình web nâng cao": [
-            { name: "Lập trình web", credits: 3 }
-        ],
+    if (
+        typeof prerequisite !== "string" ||
+        !prerequisite.trim() ||
+        normalizeCourseName(prerequisite) === "khong"
+    ) {
+        return [];
+    }
 
-        "phát triển ứng dụng web": [
-            { name: "Lập trình web", credits: 3 },
-            { name: "Cơ sở dữ liệu", credits: 3 }
-        ],
+    // Hỗ trợ nhiều môn nếu dữ liệu ngăn cách bằng , hoặc ;
+    const names = prerequisite
+        .split(/[,;]/)
+        .map(name => name.trim())
+        .filter(Boolean);
 
-        "phân tích và thiết kế hệ thống": [
-            { name: "Cơ sở dữ liệu", credits: 3 }
-        ],
+    return names.map(name => {
+        const matchedCourse = detailCourses.find(course =>
+            normalizeCourseName(course.name) ===
+                normalizeCourseName(name) ||
+            course.id.toLowerCase() === name.toLowerCase()
+        );
 
-        "phát triển ứng dụng di động": [
-            { name: "Lập trình hướng đối tượng", credits: 3 }
-        ],
+        if (!matchedCourse) {
+            // Giữ nguyên tên từ JSON, không tự đoán tín chỉ
+            return {
+                name,
+                credits: "—",
+                code: null
+            };
+        }
 
-        "trí tuệ nhân tạo": [
-            { name: "Cấu trúc dữ liệu và giải thuật", credits: 3 },
-            { name: "Xác suất thống kê", credits: 3 }
-        ],
-
-        "khai phá và học máy": [
-            { name: "Xác suất thống kê", credits: 3 }
-        ],
-
-        "an toàn thông tin": [
-            { name: "Mạng máy tính", credits: 3 }
-        ],
-
-        "hệ quản trị cơ sở dữ liệu": [
-            { name: "Cơ sở dữ liệu", credits: 3 }
-        ],
-        "xác suất thống kê": [
-            { name: "Toán kinh tế 1", credits: 3 }
-        ],
-    };
-
+        return {
+            name: matchedCourse.name,
+            credits: matchedCourse.credits,
+            code: matchedCourse.id
+        };
+    });
+}
+   
     // Tạo lại bảng môn tiên quyết từ danh sách môn kỳ tới
     function updatePrerequisites() {
         const prerequisiteBody = projection.querySelector(
@@ -131,7 +133,16 @@ function initializeProjection() {
 
         // Tìm tất cả môn tiên quyết, không cho trùng lặp
         const requiredCourses = new Map();
+// Tập hợp mã các môn đang dự định học kỳ tới
+const plannedCourseCodes = new Set();
 
+courseBody.querySelectorAll(
+    'input[type="text"]'
+).forEach(input => {
+    if (input.dataset.courseCode) {
+        plannedCourseCodes.add(input.dataset.courseCode);
+    }
+});
         courseBody.querySelectorAll("tr").forEach(row => {
             const nameInput = row.querySelector(
                 'input[type="text"]'
@@ -139,20 +150,32 @@ function initializeProjection() {
 
 const creditsInput = row.querySelector('input[type="number"]');
 
-if (!nameInput || !creditsInput ||
-    !V.isValidCredits(creditsInput.value)) return;
+if (
+    !nameInput ||
+    !creditsInput ||
+    !nameInput.dataset.courseCode ||
+    !V.isValidCredits(creditsInput.value)
+) {
+    return;
+}
 
-            const courseName = nameInput.value
-                .trim()
-                .replace(/\s+/g, " ")
-                .toLowerCase();
+const courseCode = nameInput.dataset.courseCode;
 
-            const matches = prerequisites[courseName] || [];
+const matches = getPrerequisiteCourses(courseCode);
 
-            matches.forEach(course => {
-                requiredCourses.set(course.name, course);
-            });
-        });
+matches.forEach(course => {
+    const isPlanned = course.code &&
+        plannedCourseCodes.has(course.code);
+
+    requiredCourses.set(
+        normalizeCourseName(course.name),
+        {
+            ...course,
+            isPlanned: Boolean(isPlanned)
+        }
+    );
+});
+});
 
         // Xóa các hàng cũ
         prerequisiteBody.replaceChildren();
@@ -160,7 +183,20 @@ if (!nameInput || !creditsInput ||
         // Tạo hàng mới cho từng môn tiên quyết
         requiredCourses.forEach(course => {
             const row = document.createElement("tr");
+if (course.isPlanned) {
+    const cell = document.createElement("td");
+    cell.colSpan = 3;
+    cell.style.color = "var(--danger-color)";
 
+    cell.textContent =
+        `⚠ ${course.name} đang nằm trong danh sách ` +
+        "môn học kỳ tới nhưng cũng là môn tiên quyết. " +
+        "Vui lòng kiểm tra và điều chỉnh kế hoạch học.";
+
+    row.appendChild(cell);
+    prerequisiteBody.appendChild(row);
+    return;
+}
             const nameCell = document.createElement("td");
             nameCell.textContent = course.name;
 
@@ -190,10 +226,7 @@ if (!nameInput || !creditsInput ||
             // Khôi phục điểm của môn vẫn còn trong danh sách
             input.value = savedScores.get(course.name) ?? "";
 
-            const unit = document.createElement("span");
-            unit.textContent = "/10";
-
-            field.append(input, unit);
+            field.append(input);
             scoreCell.appendChild(field);
 
             row.append(nameCell, creditsCell, scoreCell);
@@ -207,7 +240,7 @@ if (!nameInput || !creditsInput ||
 
             cell.colSpan = 3;
             cell.textContent =
-                "Chưa có môn tiên quyết trong dữ liệu mẫu.";
+                "Không có môn tiên quyết được khai báo cho các môn đã chọn.";
 
             row.appendChild(cell);
             prerequisiteBody.appendChild(row);
@@ -254,16 +287,502 @@ if (!nameInput || !creditsInput ||
             );
         });
     }
+// Tự tính tổng tín chỉ từ danh sách môn đã chọn
+function updateSemesterCredits() {
+    let total = 0;
+
+    courseBody.querySelectorAll(
+        ".projection-credit-input"
+    ).forEach(input => {
+        const credits = Number(input.value);
+
+        if (V.isValidCredits(input.value)) {
+            total += credits;
+        }
+    });
+
+    semesterInput.value = total > 0
+        ? String(total)
+        : "";
+}
+
+    // Autocomplete môn học cho trang Dự phóng GPA
+    async function setupProjectionAutocomplete() {
+        const dropdown = document.createElement("div");
+        dropdown.className = "gpa-course-dropdown";
+        dropdown.id = "projection-course-dropdown";
+        dropdown.setAttribute("role", "listbox");
+        document.body.appendChild(dropdown);
+
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        let courses = [];
+        let activeInput = null;
+        let visibleCourses = [];
+        let activeIndex = -1;
+
+        function normalizeSearch(value) {
+            return String(value ?? "")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/đ/g, "d")
+                .replace(/Đ/g, "D")
+                .trim()
+                .replace(/\s+/g, " ")
+                .toLowerCase();
+        }
+
+        function courseLabel(course) {
+            return `${course.name} (${course.code})`;
+        }
+
+        function prepareInput(input) {
+            if (!input) return;
+
+            input.removeAttribute("list");
+            input.autocomplete = "off";
+            input.setAttribute("role", "combobox");
+            input.setAttribute("aria-autocomplete", "list");
+            input.setAttribute(
+                "aria-controls",
+                dropdown.id
+            );
+            input.setAttribute("aria-expanded", "false");
+        }
+
+        function closeDropdown() {
+            if (activeInput) {
+                activeInput.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+            }
+
+            dropdown.classList.remove("is-open");
+            dropdown.replaceChildren();
+
+            activeInput = null;
+            visibleCourses = [];
+            activeIndex = -1;
+        }
+
+        function positionDropdown(input) {
+            const rect = input.getBoundingClientRect();
+
+            const width = Math.min(
+                Math.max(rect.width, 300),
+                380,
+                window.innerWidth - 16
+            );
+
+            const left = Math.max(
+                8,
+                Math.min(
+                    rect.left,
+                    window.innerWidth - width - 8
+                )
+            );
+
+            dropdown.style.width = `${width}px`;
+            dropdown.style.left = `${left}px`;
+
+            const height = Math.min(
+                dropdown.scrollHeight,
+                260
+            );
+
+            const spaceBelow =
+                window.innerHeight - rect.bottom;
+
+            const openAbove =
+                spaceBelow < height + 8 &&
+                rect.top > spaceBelow;
+
+            dropdown.style.top = openAbove
+                ? `${Math.max(8, rect.top - height - 6)}px`
+                : `${rect.bottom + 6}px`;
+        }
+
+        function updateActiveOption() {
+            dropdown.querySelectorAll(
+                ".gpa-course-option"
+            ).forEach((option, index) => {
+                const selected = index === activeIndex;
+
+                option.classList.toggle(
+                    "is-active",
+                    selected
+                );
+
+                option.setAttribute(
+                    "aria-selected",
+                    String(selected)
+                );
+
+                if (selected) {
+                    option.scrollIntoView({
+                        block: "nearest"
+                    });
+                }
+            });
+        }
+
+        function selectCourse(course) {
+            if (!activeInput) return;
+
+            const nameInput = activeInput;
+            const row = nameInput.closest("tr");
+
+            if (!row) return;
+
+            const creditsInput = row.querySelector(
+                ".projection-credit-input"
+            );
+
+            if (!creditsInput) return;
+
+            nameInput.value = courseLabel(course);
+            nameInput.dataset.courseCode = course.code;
+            creditsInput.value = String(course.credits);
+
+            V.clearFieldError(nameInput);
+            V.clearFieldError(creditsInput);
+
+            closeDropdown();
+
+            // Cập nhật ngay sau khi tự điền tín chỉ
+            updateSemesterCredits();
+            updatePrerequisites();
+            clearNotice();
+
+            nameInput.focus();
+        }
+
+        function renderSuggestions(input) {
+            const keyword = normalizeSearch(input.value);
+
+            closeDropdown();
+
+            if (!keyword || !courses.length) return;
+
+            visibleCourses = courses.filter(course => {
+                const searchable = normalizeSearch(
+                    `${course.name} ${course.code}`
+                );
+
+                return searchable.includes(keyword);
+            }).slice(0, 8);
+
+            if (!visibleCourses.length) return;
+
+            activeInput = input;
+
+            visibleCourses.forEach((course, index) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "gpa-course-option";
+                button.setAttribute("role", "option");
+                button.setAttribute("aria-selected", "false");
+                button.dataset.index = String(index);
+
+                const info = document.createElement("span");
+                info.className = "gpa-course-option-info";
+
+                const name = document.createElement("span");
+                name.className = "gpa-course-option-name";
+                name.textContent = course.name;
+
+                const code = document.createElement("span");
+                code.className = "gpa-course-option-code";
+                code.textContent = course.code;
+
+                const credits = document.createElement("span");
+                credits.className =
+                    "gpa-course-option-credits";
+                credits.textContent = `${course.credits} TC`;
+
+                info.append(name, code);
+                button.append(info, credits);
+                dropdown.appendChild(button);
+            });
+
+            dropdown.classList.add("is-open");
+            input.setAttribute("aria-expanded", "true");
+            positionDropdown(input);
+        }
+
+        // Xử lý cho cả dòng ban đầu và dòng thêm mới
+        courseBody.addEventListener(
+            "input",
+            event => {
+                const input = event.target;
+
+                if (!(input instanceof HTMLInputElement)) {
+                    return;
+                }
+
+                if (input.type !== "text") return;
+
+                const row = input.closest("tr");
+                if (!row || !courseBody.contains(row)) return;
+
+                const creditsInput = row.querySelector(
+                    ".projection-credit-input"
+                );
+
+                // Khi sửa tên, thông tin môn đã chọn không còn hợp lệ
+                delete input.dataset.courseCode;
+
+                if (creditsInput) {
+                    creditsInput.value = "";
+                }
+
+                updateSemesterCredits();
+                updatePrerequisites();
+                renderSuggestions(input);
+            },
+            { signal }
+        );
+
+        // Hiện lại gợi ý khi người dùng quay về ô nhập
+        courseBody.addEventListener(
+            "focusin",
+            event => {
+                const input = event.target;
+
+                if (!(input instanceof HTMLInputElement)) {
+                    return;
+                }
+
+                if (input.type !== "text") return;
+
+                if (input.dataset.courseCode) return;
+
+                renderSuggestions(input);
+            },
+            { signal }
+        );
+
+        courseBody.addEventListener(
+            "keydown",
+            event => {
+                if (event.target !== activeInput) return;
+                if (!visibleCourses.length) return;
+
+                if (event.key === "ArrowDown") {
+                    event.preventDefault();
+
+                    activeIndex =
+                        (activeIndex + 1) %
+                        visibleCourses.length;
+
+                    updateActiveOption();
+                } else if (event.key === "ArrowUp") {
+                    event.preventDefault();
+
+                    activeIndex = activeIndex <= 0
+                        ? visibleCourses.length - 1
+                        : activeIndex - 1;
+
+                    updateActiveOption();
+                } else if (event.key === "Enter") {
+                    if (activeIndex < 0) {
+                        activeIndex = 0;
+                    }
+
+                    event.preventDefault();
+                    selectCourse(visibleCourses[activeIndex]);
+                } else if (event.key === "Escape") {
+                    event.preventDefault();
+                    closeDropdown();
+                }
+            },
+            { signal }
+        );
+
+        // Chọn gợi ý bằng chuột hoặc cảm ứng
+        dropdown.addEventListener(
+            "pointerdown",
+            event => {
+                if (!(event.target instanceof Element)) {
+                    return;
+                }
+
+                const button = event.target.closest(
+                    ".gpa-course-option"
+                );
+
+                if (!button) return;
+
+                event.preventDefault();
+
+                const index = Number(button.dataset.index);
+                const course = visibleCourses[index];
+
+                if (course) selectCourse(course);
+            },
+            { signal }
+        );
+
+        // Đóng khi nhấn bên ngoài
+        document.addEventListener(
+            "pointerdown",
+            event => {
+                if (
+                    event.target instanceof Node &&
+                    (
+                        dropdown.contains(event.target) ||
+                        courseBody.contains(event.target)
+                    )
+                ) {
+                    return;
+                }
+
+                closeDropdown();
+            },
+            { signal }
+        );
+
+        // Đóng khi cuộn để danh sách không lệch vị trí
+        document.addEventListener(
+            "scroll",
+            event => {
+                if (
+                    event.target instanceof Node &&
+                    dropdown.contains(event.target)
+                ) {
+                    return;
+                }
+
+                closeDropdown();
+            },
+            { capture: true, signal }
+        );
+
+        window.addEventListener(
+            "resize",
+            closeDropdown,
+            { signal }
+        );
+
+        // Dọn dropdown khi SPA chuyển sang trang khác
+        document.addEventListener(
+            "edutrack:page-loaded",
+            () => {
+                if (!projection.isConnected) {
+                    closeDropdown();
+                    controller.abort();
+                    dropdown.remove();
+                }
+            },
+            { signal }
+        );
+
+        // Tải môn học từ JSON
+        try {
+           const [response, detailResponse] = await Promise.all([
+    fetch(PROJECTION_COURSES_URL),
+    fetch(PROJECTION_DETAILS_URL)
+]);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+if (!detailResponse.ok) {
+    throw new Error(
+        `Không tải được course-details.json: HTTP ${detailResponse.status}`
+    );
+}
+            const data = await response.json();
+const details = await detailResponse.json();
+
+if (!Array.isArray(details)) {
+    throw new Error(
+        "course-details.json phải chứa một mảng học phần."
+    );
+}
+
+detailCourses = details
+    .filter(course =>
+        course &&
+        typeof course.id === "string" &&
+        typeof course.name === "string" &&
+        V.isValidCredits(course.credits)
+    )
+    .map(course => ({
+        id: course.id.trim(),
+        name: course.name.trim(),
+        credits: Number(course.credits),
+        prerequisite: course.prerequisite
+    }));
+            if (!Array.isArray(data)) {
+                throw new Error(
+                    "courses.json phải chứa một mảng môn học."
+                );
+            }
+
+            if (!projection.isConnected) {
+                controller.abort();
+                dropdown.remove();
+                return;
+            }
+
+            const uniqueCourses = new Map();
+
+            data.forEach(course => {
+                if (
+                    !course ||
+                    typeof course.name !== "string" ||
+                    typeof course.code !== "string" ||
+                    !V.isValidCredits(course.credits)
+                ) {
+                    return;
+                }
+
+                const name = course.name.trim();
+                const code = course.code.trim();
+
+                if (!name || !code) return;
+
+                uniqueCourses.set(code, {
+                    name,
+                    code,
+                    credits: Number(course.credits)
+                });
+            });
+
+            courses = [...uniqueCourses.values()];
+// Làm mới bảng tiên quyết theo dữ liệu JSON
+updatePrerequisites();
+            courseBody.querySelectorAll(
+                'input[type="text"]'
+            ).forEach(prepareInput);
+
+            console.info(
+                `Đã tải ${courses.length} môn cho trang Dự phóng.`
+            );
+        } catch (error) {
+            console.error(
+                "Không tải được danh sách môn dự phóng:",
+                error
+            );
+
+            showNotice(
+                "Không tải được danh sách môn học. " +
+                "Vui lòng kiểm tra courses.json."
+            );
+        }
+    }
 
     // 4. Thêm một môn học mới
-
     addButton.addEventListener("click", function () {
         const row = template.cloneNode(true);
 
         row.querySelectorAll("input").forEach(input => {
-            input.value = "";
-            V.clearFieldError(input);
-        });
+    input.value = "";
+    delete input.dataset.courseCode;
+    V.clearFieldError(input);
+});
 
         // Giữ nguyên cấu trúc thùng rác trong HTML
         const deleteButton = row.querySelector(
@@ -276,6 +795,7 @@ if (!nameInput || !creditsInput ||
         courseBody.appendChild(row);
 
         updateCourseRows();
+        updateSemesterCredits();
         updatePrerequisites();
 
         // Hiển thị icon cho hàng mới
@@ -299,13 +819,15 @@ if (!nameInput || !creditsInput ||
         if (courseBody.rows.length > 1) {
             button.closest("tr").remove();
         } else {
-            courseBody.querySelectorAll("input").forEach(input => {
-                input.value = "";
-                V.clearFieldError(input);
-            });
+courseBody.querySelectorAll("input").forEach(input => {
+    input.value = "";
+    delete input.dataset.courseCode;
+    V.clearFieldError(input);
+});
         }
 
         updateCourseRows();
+        updateSemesterCredits();
         updatePrerequisites();
         clearNotice();
     });
@@ -323,9 +845,20 @@ if (!nameInput || !creditsInput ||
     projection.addEventListener("change", handleInput);
 
 courseBody.addEventListener("input", function (event) {
-    if (event.target.matches("input")) {
-        updatePrerequisites();
-    }
+    if (!event.target.matches("input")) return;
+
+    // Cập nhật tổng tín chỉ kỳ tới
+    updateSemesterCredits();
+
+    // Cập nhật các môn tiên quyết
+    updatePrerequisites();
+});
+
+courseBody.addEventListener("change", function (event) {
+    if (!event.target.matches("input")) return;
+
+    updateSemesterCredits();
+    updatePrerequisites();
 });
 
     // 7. Kiểm tra một trường bắt buộc
@@ -372,30 +905,37 @@ courseBody.addEventListener("input", function (event) {
             "GPA mục tiêu phải từ 0 đến 4."
         )) valid = false;
 
-        if (!checkField(
-            semesterInput,
-            value => Number.isInteger(Number(value))
-                && Number(value) > 0,
-            "Vui lòng nhập tín chỉ kỳ tới.",
-            "Tín chỉ kỳ tới phải là số nguyên dương."
-        )) valid = false;
+if (!checkField(
+    semesterInput,
+    value => Number.isInteger(Number(value))
+        && Number(value) > 0,
+    "Vui lòng chọn ít nhất một môn học hợp lệ.",
+    "Tổng tín chỉ kỳ tới không hợp lệ."
+)) valid = false;
 
         // Kiểm tra danh sách môn học kỳ tới
         courseBody.querySelectorAll("tr").forEach(row => {
             const nameInput = row.querySelector('input[type="text"]');
             const creditInput = row.querySelector('input[type="number"]');
 
-            const name = nameInput.value.trim();
+const name = nameInput.value.trim();
+const code = nameInput.dataset.courseCode || "";
 
-            V.clearFieldError(nameInput);
+V.clearFieldError(nameInput);
 
-            if (!V.isRequired(name)) {
-                V.showFieldError(
-                    nameInput,
-                    "Vui lòng nhập tên môn học."
-                );
-                valid = false;
-            }
+if (!V.isRequired(name)) {
+    V.showFieldError(
+        nameInput,
+        "Vui lòng chọn môn học."
+    );
+    valid = false;
+} else if (!V.isRequired(code)) {
+    V.showFieldError(
+        nameInput,
+        "Vui lòng chọn môn từ danh sách gợi ý."
+    );
+    valid = false;
+}
 
             if (!checkField(
                 creditInput,
@@ -405,12 +945,33 @@ courseBody.addEventListener("input", function (event) {
             )) valid = false;
 
             courses.push({
-                name: name,
-                credits: Number(creditInput.value)
-            });
+    name,
+    code,
+    credits: Number(creditInput.value)
+});
         });
 
         // Kiểm tra điểm các môn tiên quyết
+        const plannedCodes = new Set(
+    courses.map(course => course.code)
+);
+
+const hasPrerequisiteConflict = courses.some(course =>
+    getPrerequisiteCourses(course.code).some(
+        prerequisite =>
+            prerequisite.code &&
+            plannedCodes.has(prerequisite.code)
+    )
+);
+
+if (hasPrerequisiteConflict) {
+    showNotice(
+        "Có môn tiên quyết đang nằm trong danh sách môn " +
+        "học kỳ tới. Vui lòng kiểm tra điều kiện học phần " +
+        "và điều chỉnh kế hoạch trước khi tính dự phóng."
+    );
+    return null;
+}
 projection.querySelectorAll(
     "#prerequisite-course-list input"
 ).forEach(input => {
@@ -430,14 +991,14 @@ projection.querySelectorAll(
             0
         );
 
-        if (totalCredits !== Number(semesterInput.value)) {
-            V.showFieldError(
-                semesterInput,
-                `Tổng tín chỉ các môn là ${totalCredits}. ` +
-                "Hãy nhập số tín chỉ kỳ tới cho khớp."
-            );
-            return null;
-        }
+if (totalCredits !== Number(semesterInput.value)) {
+    V.showFieldError(
+        semesterInput,
+        "Tổng tín chỉ chưa được cập nhật. " +
+        "Vui lòng kiểm tra danh sách môn học."
+    );
+    return null;
+}
 
         return {
             currentGPA: Number(currentInput.value),
@@ -466,10 +1027,17 @@ projection.querySelectorAll(
     }
 
     // Chuẩn hóa tên môn để tìm môn tiên quyết
-    function normalizeCourseName(name) {
-        return name.trim().replace(/\s+/g, " ").toLowerCase();
-    }
-
+function normalizeCourseName(name) {
+    return String(name ?? "")
+        .replace(/\s*\([A-Za-z0-9_-]+\)\s*$/, "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/Đ/g, "D")
+        .trim()
+        .replace(/\s+/g, " ")
+        .toLowerCase();
+}
     // Lấy điểm nền tảng của từng môn từ môn tiên quyết
     function getCourseReferences(courses) {
         const scoreMap = new Map();
@@ -489,8 +1057,7 @@ projection.querySelectorAll(
         });
 
         return courses.map(course => {
-            const key = normalizeCourseName(course.name);
-            const related = prerequisites[key] || [];
+const related = getPrerequisiteCourses(course.code);
 
             // Mức giả định khi môn không có dữ liệu tiên quyết
             let referenceScore = 7.0;
@@ -725,6 +1292,7 @@ projection.querySelectorAll(
             "Đã tìm được phương án điểm đề xuất để hướng tới " +
             `GPA ${data.targetGPA.toFixed(2)}.`;
 
+        resultMessage.classList.add("is-success");
         setSummaryValue(
             summaryTarget,
             data.targetGPA.toFixed(2),
@@ -782,10 +1350,10 @@ projection.querySelectorAll(
     // 14. Cập nhật biểu đồ GPA tích lũy bằng SVG
     function renderChart(data, result) {
         // Biểu đồ đang có trục 2.0 đến 4.0
-        function positionY(gpa) {
-            const value = Math.min(4, Math.max(2, gpa));
-            return 430 - value * 100;
-        }
+function positionY(gpa) {
+    const value = Math.min(4, Math.max(0, gpa));
+    return 230 - value * 50;
+}
 
         const currentY = positionY(data.currentGPA);
         const forecastY = positionY(result.forecastGPA);
@@ -841,13 +1409,128 @@ projection.querySelectorAll(
         requiredResult.textContent = "—";
         resultMessage.textContent =
             "Chưa có kết quả dự phóng hợp lệ.";
-
+        resultMessage.classList.remove("is-success");
         setSummaryValue(summaryTarget, "—", "4.00");
         setSummaryValue(summaryForecast, "—", "4.00");
         setSummaryValue(summaryAverage, "—", "10");
 
         resultBody.replaceChildren();
-        chart.hidden = true;
+chart.setAttribute("hidden", "");
+    }
+
+    // Animation cuộn từ từ đến kết quả dự phóng
+    let projectionScrollId = null;
+
+    function scrollToProjectionResults() {
+        const target = projection.querySelector(
+            "#projection-results"
+        );
+
+        if (!target) return;
+
+        if (projectionScrollId !== null) {
+            cancelAnimationFrame(projectionScrollId);
+            projectionScrollId = null;
+        }
+
+        // Tìm vùng cuộn thực sự
+        let parent = target.parentElement;
+
+        while (parent) {
+            const style = getComputedStyle(parent);
+
+            if (
+                /(auto|scroll)/.test(style.overflowY) &&
+                parent.scrollHeight > parent.clientHeight
+            ) {
+                break;
+            }
+
+            parent = parent.parentElement;
+        }
+
+        const useWindow =
+            !parent ||
+            parent === document.body ||
+            parent === document.documentElement;
+
+        const start = useWindow
+            ? window.scrollY
+            : parent.scrollTop;
+
+        const containerTop = useWindow
+            ? 0
+            : parent.getBoundingClientRect().top;
+
+        const desired = start +
+            target.getBoundingClientRect().top -
+            containerTop - 90;
+
+        const maxScroll = useWindow
+            ? Math.max(
+                0,
+                document.documentElement.scrollHeight -
+                window.innerHeight
+            )
+            : Math.max(
+                0,
+                parent.scrollHeight - parent.clientHeight
+            );
+
+        const end = Math.max(
+            0,
+            Math.min(desired, maxScroll)
+        );
+
+        function setScroll(value) {
+            if (useWindow) {
+                window.scrollTo({
+                    top: value,
+                    behavior: "instant"
+                });
+            } else {
+                parent.scrollTop = value;
+            }
+        }
+
+        if (
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches
+        ) {
+            setScroll(end);
+            return;
+        }
+
+        const duration = 1400;
+        const distance = end - start;
+        let startTime = null;
+
+        function animate(timestamp) {
+            if (startTime === null) {
+                startTime = timestamp;
+            }
+
+            const progress = Math.min(
+                (timestamp - startTime) / duration,
+                1
+            );
+
+            const eased =
+                (1 - Math.cos(Math.PI * progress)) / 2;
+
+            setScroll(start + distance * eased);
+
+            if (progress < 1) {
+                projectionScrollId =
+                    requestAnimationFrame(animate);
+            } else {
+                projectionScrollId = null;
+            }
+        }
+
+        projectionScrollId =
+            requestAnimationFrame(animate);
     }
 
     // 16. Nút Tính toán dự phóng
@@ -892,11 +1575,17 @@ projection.querySelectorAll(
             return;
         }
 
-        renderSummary(data, result);
-        renderCourses(data, result);
-        renderChart(data, result);
+renderSummary(data, result);
+renderCourses(data, result);
 
-        chart.hidden = false;
+// Hiện biểu đồ trước khi cập nhật dữ liệu
+chart.removeAttribute("hidden");
+
+// Vẽ biểu đồ từ kết quả dự phóng
+renderChart(data, result);
+
+// Cuộn mượt xuống mục Kết quả tổng quan
+scrollToProjectionResults();
 
         showNotice(
             "Đã tính được điểm mục tiêu đề xuất cho từng môn. " +
@@ -907,8 +1596,12 @@ projection.querySelectorAll(
         );
     });
 
-    updateCourseRows();
-    updatePrerequisites();
+updateCourseRows();
+updateSemesterCredits();
+updatePrerequisites();
+clearResults();
+// Khởi tạo autocomplete từ courses.json
+setupProjectionAutocomplete();
 }
 
 if (document.readyState === "loading") {
