@@ -22,17 +22,16 @@
     box.querySelector('.et-notice-close')?.focus();
     timer=setTimeout(closeNotice,5000);
   }
-  function requestLogin(reason='nhận xét'){
-    const message=reason==='câu hỏi'?'Vui lòng đăng nhập để đặt câu hỏi!':'Vui lòng đăng nhập để nhận xét!';
-    showNotice('', 'error',message,{login:true});
+  function requestLogin(){
+    showNotice('', 'error','Vui lòng đăng nhập để nhận xét!',{login:true});
   }
   function closeBootstrap(id){if(window.jQuery?.fn?.modal)window.jQuery(`#${id}`).modal('hide');}
-  async function ensureSignedIn(reason='nhận xét'){
-    // Trạng thái xác thực thật phải do Supabase Auth xác nhận; không tin localStorage của trình duyệt.
-    if(!window.EduTrackData?.isCloudConfigured()){requestLogin(reason);return false;}
+  async function ensureSignedIn(){
+    // Kiểm tra phiên đăng nhập do backend Express/Passport quản lý.
+    if(!window.EduTrackData){requestLogin();return false;}
     try {
       const user=await window.EduTrackData.getCurrentUser();
-      if(!user||!String(user.user_metadata?.full_name||'').trim()){requestLogin(reason);return false;}
+      if(!user||!String(user.user_metadata?.full_name||'').trim()){requestLogin();return false;}
       return true;
     }catch(e){showNotice('Không kiểm tra được phiên đăng nhập. Vui lòng thử lại.','error');return false;}
   }
@@ -57,5 +56,5 @@
     initializeCourseUI();
   }
   document.addEventListener('edutrack:page-loaded', initializeCourseUI);
-  window.EduTrackUI=Object.freeze({showNotice,closeNotice,requestLogin,ensureSignedIn,closeBootstrap});
+  window.EduTrackUI=Object.freeze({showNotice,closeNotice,ensureSignedIn,closeBootstrap});
 })();

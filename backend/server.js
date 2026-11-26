@@ -29,6 +29,8 @@ const app = express();
 
 const root = path.resolve(__dirname, "..");
 
+const courseDetailsPath = path.join(root, "assets", "data", "course-details.json");
+
 const dataDir = path.join(__dirname, "data");
 
 fs.mkdirSync(dataDir, { recursive: true });
@@ -1096,6 +1098,85 @@ app.post(
         }
     }
 );
+
+
+// =====================================
+// API CHI TIẾT MÔN HỌC
+// GET /api/courses/:courseId/detail
+// =====================================
+
+app.get("/api/courses/:courseId/detail", function (req, res) {
+    const courseId = req.params.courseId;
+
+    // Kiểm tra mã môn học
+    if (!/^[A-Za-z0-9_-]{1,40}$/.test(courseId)) {
+        return res.status(400).json({
+            message: "Mã môn học không hợp lệ."
+        });
+    }
+
+    // Đọc dữ liệu môn học từ file JSON
+    fs.readFile(courseDetailsPath, "utf8", function (error, content) {
+        if (error) {
+            console.error("Không đọc được dữ liệu môn học:", error);
+
+            return res.status(500).json({
+                message: "Không thể tải dữ liệu môn học."
+            });
+        }
+
+        let courses;
+
+        try {
+            courses = JSON.parse(content);
+        } catch (parseError) {
+            console.error("Dữ liệu môn học không hợp lệ:", parseError);
+
+            return res.status(500).json({
+                message: "Dữ liệu môn học không hợp lệ."
+            });
+        }
+
+        // Kiểm tra dữ liệu phải là một mảng
+        if (!Array.isArray(courses)) {
+            return res.status(500).json({
+                message: "Cấu trúc dữ liệu môn học không hợp lệ."
+            });
+        }
+
+        // Tìm môn học theo ID
+        const course = courses.find(function (item) {
+            return item && item.id === courseId;
+        });
+
+        if (!course) {
+            return res.status(404).json({
+                message: "Không tìm thấy môn học."
+            });
+        }
+
+        // Lấy danh sách môn học liên quan
+        const relatedIds = Array.isArray(course.related)
+            ? course.related
+            : [];
+
+        const relatedCourses = relatedIds
+            .map(function (id) {
+                return courses.find(function (item) {
+                    return item && item.id === id;
+                });
+            })
+            .filter(Boolean);
+
+        res.set("Cache-Control", "no-store");
+
+        return res.json({
+            course: course,
+            relatedCourses: relatedCourses
+        });
+    });
+});
+
 
 // =====================================
 // 12. API LẤY NGƯỜI DÙNG HIỆN TẠI

@@ -155,13 +155,6 @@
   margin-top: var(--spacing-3);
 }
 
-#course-detail .btn-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-2);
-  margin-top: var(--spacing-4);
-}
-
 /* ---------- NỘI DUNG MÔN HỌC ---------- */
 #course-content,
 #course-materials {
@@ -854,60 +847,6 @@ header.et-course-header .et-menu-toggle {
   }
 }
 
-/* ===== BOOTSTRAP MODAL - HỎI ĐÁP ===== */
-
-#questionModal .modal-content {
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-medium);
-  overflow: hidden;
-}
-
-#questionModal .modal-header {
-  align-items: center;
-  padding: 20px 24px;
-}
-
-#questionModal .modal-title {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text-dark);
-}
-
-#questionModal .modal-body {
-  padding: 24px;
-}
-
-#questionModal label {
-  font-weight: 600;
-  color: var(--text-dark);
-}
-
-#questionModal .form-control {
-  min-height: 44px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-small);
-}
-
-#questionModal .modal-footer {
-  padding: 16px 0 0;
-  border-top: 0;
-}
-
-#questionModal .btn {
-  min-height: 44px;
-}
-
-@media (max-width: 767px) {
-  #questionModal .modal-dialog {
-    margin: 12px;
-  }
-
-  #questionModal .modal-body {
-    padding: 16px;
-  }
-}
-
 /* ===== REDESIGN NHẬN XÉT & FAQ - chỉ áp dụng trang chi tiết ===== */
 #reviews .reviews-heading-row {display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
 #reviews .reviews-heading-row h2, #faq>h2 {margin:0!important;color:var(--primary-color);font-weight:700;letter-spacing:-.3px}
@@ -997,7 +936,7 @@ header.et-course-header .et-menu-toggle {
     display: none !important;
 }
 
-/* Tiêu đề FAQ và nút hỏi đáp cùng một hàng */
+/* Tiêu đề FAQ */
 #faq .faq-heading-row {
     display: flex;
     align-items: center;
@@ -1009,12 +948,6 @@ header.et-course-header .et-menu-toggle {
 
 #faq .faq-heading-row h2 {
     margin: 0;
-}
-
-#faq .faq-heading-row .btn-cta {
-    width: auto;
-    margin: 0;
-    flex-shrink: 0;
 }
 
 /* Bỏ icon trước tiêu đề Câu hỏi thường gặp */
@@ -1201,43 +1134,6 @@ header.et-course-header .et-menu-toggle {
     font-size: 15px;
     margin: 0;
 }
-
-/* ===== THÔNG BÁO GỬI CÂU HỎI THÀNH CÔNG ===== */
-
-#questionSuccessModal .question-success-content {
-    border: none;
-    border-radius: 18px;
-    padding: 30px 20px;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
-}
-
-#questionSuccessModal .question-success-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    background: #dcfce7;
-    color: #16a34a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 34px;
-    font-weight: bold;
-}
-
-#questionSuccessModal h3 {
-    color: #166534;
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-#questionSuccessModal p {
-    color: #64748b;
-    font-size: 15px;
-    margin: 0;
-}
-
 
 /* ===== XEM THÊM CÂU HỎI ===== */
 
@@ -1672,7 +1568,7 @@ header.et-course-header .et-menu-toggle {
 #course-detail .et-related-info {padding:14px 0 2px;display:flex;flex-direction:column;gap:5px;}
 #course-detail .et-related-info strong {font-size:16px;color:var(--text-dark);}
 #course-detail .et-related-info small {font-size:14px;color:var(--text-light);}
-#course-detail .review-message,#course-detail #question-error {display:none!important;}
+#course-detail .review-message {display:none!important;}
 #course-detail .et-review-status {display:none!important;}
 #et-notice[hidden] {display:none!important;}
 #et-notice {position:fixed;inset:0;z-index:4000;background:rgba(18,31,48,.58);display:flex;align-items:center;justify-content:center;padding:18px;}

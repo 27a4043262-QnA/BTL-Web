@@ -18,7 +18,7 @@
   const $ = id => document.getElementById(id);
   const params = new URLSearchParams(location.search);
   const courseId = params.get("code") || params.get("id");
-  const validId = /^[A-Za-z0-9_-]{1,40}$/.test(courseId);
+  const validId = typeof courseId === 'string' && /^[A-Za-z0-9_-]{1,40}$/.test(courseId);
   const categories = {'dai-cuong':'Đại cương','co-so-nganh':'Cơ sở ngành','chuyen-nganh':'Chuyên ngành'};
   const pdfUrl = value => typeof value === 'string' && /^\.\.\/assets\/materials\/[a-zA-Z0-9_-]+\.pdf$/.test(value) ? value : null;
   const videoUrl = value => typeof value === 'string' && /^\.\.\/assets\/videos\/[a-zA-Z0-9_-]+\.mp4$/.test(value) ? value : null;
@@ -40,7 +40,7 @@
     svg.setAttribute('aria-hidden','true');return svg;
   };
   const text=(tag,cls,value)=>{const el=document.createElement(tag);if(cls)el.className=cls;el.textContent=value||'';return el;};
-  const state={opener:null,course:null};
+  const state={opener:null};
   const viewer=$('et-study-viewer');
   const viewerContent=$('et-study-content');
   const viewerClose=$('et-study-close');
@@ -154,9 +154,9 @@
     $('detail-faq-empty').hidden=items.length>0;
     if(typeof window.updateCourseFAQ==='function')window.updateCourseFAQ();
   }
-  function renderRelated(course,all){
+  function renderRelated(relatedCourses){
     const ul=$('detail-related');ul.replaceChildren();
-    const related=(course.related||[]).map(id=>all.find(c=>c.id===id)).filter(Boolean);
+    const related=Array.isArray(relatedCourses)?relatedCourses:[];
     related.forEach(item=>{
       const li=document.createElement('li');li.className='et-related-item';
       const anchor=document.createElement('a');anchor.className='et-related-card';
@@ -171,7 +171,7 @@
       anchor.append(media,info);li.append(anchor);ul.append(li);
     });
   }
-  function render(course,all){
+  function render(course,relatedCourses){
     document.title=`${course.name} | EduTrack`;
     $('course-title').textContent=course.name;
     const code=document.querySelector('.course-hero .course-code');if(code)code.textContent=`Mã môn: ${course.id}`;
@@ -184,27 +184,30 @@
       course.objectives.forEach(item=>list.append(text('li','',item)));objectives.append(h,list);
     }
     if(!objectives.isConnected)$('detail-description').insertAdjacentElement('afterend',objectives);
-    const notice=$('detail-content-status');if(notice)notice.hidden=true;
     $('detail-credits').textContent=`${course.credits} tín chỉ`;
     $('detail-code').textContent=course.id;
     $('detail-year').textContent=course.year||'—';
     $('detail-prerequisite').textContent=course.prerequisite||'—';
     $('detail-category').textContent=categories[course.category]||course.category;
     renderChapters(course.chapters||[]);renderReferences(course.materials||[]);
-    renderFaq(course.faq||[]);renderRelated(course,all);
+    renderFaq(course.faq||[]);renderRelated(relatedCourses);
     $('course-detail').hidden=false;$('detail-status').hidden=true;
   }
   function status(message){const el=$('detail-status');el.textContent=message;el.hidden=false;el.classList.add('detail-error');}
   async function init(){
     if(!validId)return status('Mã môn không hợp lệ.');
     try {
-      const res=await fetch('../assets/data/course-details.json',{cache:'no-store'});
-      if(!res.ok)throw new Error(`HTTP ${res.status}`);
-      const all=await res.json();if(!root.isConnected)return;if(!Array.isArray(all))throw new Error('Dữ liệu không hợp lệ');
-      const course=all.find(c=>c.id===courseId);
-      if(!course)return status('Không tìm thấy mã môn này. Hãy kiểm tra liên kết trong danh mục.');
-      render(course,all);
-    }catch(error){if(!root.isConnected)return;console.error('Không tải được môn học',error);status('Không tải được dữ liệu. Hãy chạy bằng Live Server và kiểm tra file course-details.json.');}
+      const res=await fetch(`/api/courses/${encodeURIComponent(courseId)}/detail`,{
+        headers:{Accept:'application/json'},
+        cache:'no-store'
+      });
+      const payload=await res.json();
+      if(!root.isConnected)return;
+      if(res.status===404)return status('Không tìm thấy mã môn này. Hãy kiểm tra liên kết trong danh mục.');
+      if(!res.ok)throw new Error(payload.message||`HTTP ${res.status}`);
+      if(!payload?.course||!Array.isArray(payload.relatedCourses))throw new Error('Dữ liệu không hợp lệ');
+      render(payload.course,payload.relatedCourses);
+    }catch(error){if(!root.isConnected)return;console.error('Không tải được môn học',error);status('Không tải được dữ liệu. Hãy khởi động backend bằng lệnh npm start và thử lại.');}
   }
   init();
   }
