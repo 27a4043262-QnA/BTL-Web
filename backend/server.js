@@ -1867,6 +1867,16 @@ app.get(
         )(req, res, next);
     }
 );
+// =====================================
+// API LƯU KẾT QUẢ HỌC TẬP
+// =====================================
+
+const learningRoutes = require("./routes/learning.routes");
+
+app.use(
+    "/api/learning",
+    learningRoutes(db, sameOrigin)
+);
 
 // =====================================
 // 16. PHỤC VỤ FRONTEND
@@ -1932,9 +1942,31 @@ app.use(function (error, req, res, next) {
 // 18. KHỞI ĐỘNG SERVER
 // =====================================
 
-app.listen(port, function () {
+const server = app.listen(port, function () {
 
-    console.log(
-        `EduTrack running at http://localhost:${port}/pages/register.html`
-    );
+    console.log("====================================");
+    console.log("EduTrack Server đã khởi động!");
+    console.log("PID:", process.pid);
+    console.log(`Trang chủ: http://localhost:${port}/index.html`);
+    console.log(`Đăng ký: http://localhost:${port}/pages/register.html`);
+    console.log(`Đăng nhập: http://localhost:${port}/pages/login.html`);
+    console.log("====================================");
+
+});
+
+server.on("error", function (error) {
+
+    if (error.code === "EADDRINUSE") {
+
+        console.error(`Cổng ${port} đang được sử dụng.`);
+        console.error("Hãy tắt server cũ trước khi khởi động lại.");
+
+    } else {
+
+        console.error("Lỗi khởi động server:", error);
+
+    }
+
+    process.exit(1);
+
 });

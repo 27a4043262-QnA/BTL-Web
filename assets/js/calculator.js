@@ -1,9 +1,6 @@
 
 "use strict";
-const GPA_COURSES_URL = new URL(
-    "../data/courses.json",
-    document.currentScript.src
-).href;
+const GPA_COURSES_URL = "/assets/data/courses.json";
 
 function initializeCalculator() {
     const V = window.EDUValidation;
@@ -835,6 +832,92 @@ const values = [
 
         scrollAnimationId = requestAnimationFrame(frame);
     }
+// Khởi tạo gợi ý môn học trước chức năng lưu GPA
+setupCourseSuggestions();
+
+
+// ==========================================
+// KHÔI PHỤC DỮ LIỆU GPA ĐÃ LƯU
+// ==========================================
+
+function restoreGPA(record) {
+
+    const { input, result } = record;
+
+    // 1. Khôi phục thông tin học kỳ
+    calculator.querySelector("#academic-year").value =
+        input.academicYear;
+
+    calculator.querySelector("#semester").value =
+        input.semester;
+
+    calculator.querySelector("#student-year").value =
+        input.studentYear;
+
+    // 2. Xóa các dòng môn học hiện tại
+    courseBody.replaceChildren();
+
+    // 3. Khôi phục từng môn học đã lưu
+    input.courses.forEach(course => {
+
+        const row = savedGpaRowTemplate.cloneNode(true);
+
+        const inputs = row.querySelectorAll("input");
+
+        // Tên môn học và mã môn
+        inputs[0].value = course.name;
+        inputs[0].dataset.courseCode = course.code;
+
+        // Số tín chỉ
+        inputs[1].value = course.credits;
+
+        // Khôi phục 4 đầu điểm
+        course.scores.forEach((score, index) => {
+            inputs[index + 2].value = score;
+        });
+
+        // Xóa thông báo lỗi nếu có
+        inputs.forEach(input => {
+            V.clearFieldError(input);
+        });
+
+        courseBody.appendChild(row);
+    });
+
+    // 4. Cập nhật số thứ tự
+    updateRowNumbers();
+
+    // 5. Khôi phục kết quả tổng quan
+    renderSummary(result);
+
+    // 6. Khôi phục bảng điểm chi tiết
+    renderDetails(result.results);
+
+    // 7. Cập nhật biểu tượng
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+}
+
+// Lưu cấu trúc hàng môn học ban đầu
+const savedGpaRowTemplate =
+    courseBody.querySelector("tr").cloneNode(true);
+
+// Khởi tạo chức năng lưu và khôi phục
+let gpaStorage = null;
+
+try {
+
+    gpaStorage = window.EDULearningStorage.mount(
+        "gpa",
+        calculateButton,
+        restoreGPA
+    );
+
+} catch (error) {
+
+    console.error("Lỗi khởi tạo lưu GPA:", error);
+}
 
 calculateButton.addEventListener("click", function () {
     const courses = readCourses();
@@ -846,7 +929,25 @@ calculateButton.addEventListener("click", function () {
 
     renderSummary(result);
     renderDetails(result.results);
+// Lưu kết quả GPA vào SQLite
+gpaStorage?.save(
+    {
+        academicYear: calculator.querySelector(
+            "#academic-year"
+        ).value,
 
+        semester: calculator.querySelector(
+            "#semester"
+        ).value,
+
+        studentYear: calculator.querySelector(
+            "#student-year"
+        ).value,
+
+        courses: courses
+    },
+    result
+);
     // Tự động cuộn xuống Bảng điểm chi tiết
     const detailSection = calculator.querySelector(
         ".calc-step--detail"
@@ -891,8 +992,18 @@ courseBody.addEventListener("input", function (event) {
 });
 
     // Làm mới bảng nhập liệu
-resetButton.addEventListener("click", function () {
-    // Giữ lại một dòng môn học để người dùng nhập tiếp
+resetButton.addEventListener("click", async function () {
+
+    if (calculateButton.disabled) return;
+
+    if (gpaStorage) {
+
+        const success = await gpaStorage.clear();
+
+        if (!success) return;
+    }
+
+    // Giữ nguyên toàn bộ code làm mới cũ phía dưới    // Giữ lại một dòng môn học để người dùng nhập tiếp
     const firstRow = courseBody.querySelector("tr");
 
     if (!firstRow) return;
@@ -917,11 +1028,12 @@ resetButton.addEventListener("click", function () {
     summary.querySelectorAll(".result-stat-card > strong")
         .forEach(element => element.textContent = "0");
 
-    detailBody.replaceChildren();
+detailBody.replaceChildren();
 });
 
-// Khởi tạo gợi ý môn học từ JSON
-setupCourseSuggestions();
+// Tự động tải kết quả GPA khi mở trang
+gpaStorage?.load();
+
 }
 
 // Khởi tạo khi tải trực tiếp trang Tính GPA
