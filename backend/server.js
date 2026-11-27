@@ -92,6 +92,49 @@ if (!userColumns.some(col => col.name === "auth_version")) {
     `);
 }
 
+
+/* =====================================
+   TẠO BẢNG THÔNG TIN HỒ SƠ
+===================================== */
+db.exec(`
+    CREATE TABLE IF NOT EXISTS user_profiles (
+
+        user_id INTEGER PRIMARY KEY,
+
+        birth_date TEXT,
+
+        gender TEXT,
+
+        address TEXT,
+
+        major TEXT NOT NULL DEFAULT 'Hệ thống thông tin quản lý',
+
+        created_at TEXT NOT NULL
+            DEFAULT (datetime('now')),
+
+        updated_at TEXT NOT NULL
+            DEFAULT (datetime('now')),
+
+        FOREIGN KEY (user_id)
+            REFERENCES users(id)
+            ON DELETE CASCADE
+    );
+`);
+// =====================================
+// NGÀNH HỌC MẶC ĐỊNH EDUTRACK
+// =====================================
+
+const DEFAULT_PROFILE_MAJOR =
+    "Hệ thống thông tin quản lý";
+
+// Cập nhật các hồ sơ cũ chưa có ngành học
+db.prepare(`
+    UPDATE user_profiles
+    SET major = ?
+    WHERE major IS NULL
+       OR TRIM(major) = ''
+`).run(DEFAULT_PROFILE_MAJOR);
+
 // =====================================
 // TẠO BẢNG TOKEN KHÔI PHỤC MẬT KHẨU
 // =====================================
@@ -1099,85 +1142,6 @@ app.post(
     }
 );
 
-
-// =====================================
-// API CHI TIẾT MÔN HỌC
-// GET /api/courses/:courseId/detail
-// =====================================
-
-app.get("/api/courses/:courseId/detail", function (req, res) {
-    const courseId = req.params.courseId;
-
-    // Kiểm tra mã môn học
-    if (!/^[A-Za-z0-9_-]{1,40}$/.test(courseId)) {
-        return res.status(400).json({
-            message: "Mã môn học không hợp lệ."
-        });
-    }
-
-    // Đọc dữ liệu môn học từ file JSON
-    fs.readFile(courseDetailsPath, "utf8", function (error, content) {
-        if (error) {
-            console.error("Không đọc được dữ liệu môn học:", error);
-
-            return res.status(500).json({
-                message: "Không thể tải dữ liệu môn học."
-            });
-        }
-
-        let courses;
-
-        try {
-            courses = JSON.parse(content);
-        } catch (parseError) {
-            console.error("Dữ liệu môn học không hợp lệ:", parseError);
-
-            return res.status(500).json({
-                message: "Dữ liệu môn học không hợp lệ."
-            });
-        }
-
-        // Kiểm tra dữ liệu phải là một mảng
-        if (!Array.isArray(courses)) {
-            return res.status(500).json({
-                message: "Cấu trúc dữ liệu môn học không hợp lệ."
-            });
-        }
-
-        // Tìm môn học theo ID
-        const course = courses.find(function (item) {
-            return item && item.id === courseId;
-        });
-
-        if (!course) {
-            return res.status(404).json({
-                message: "Không tìm thấy môn học."
-            });
-        }
-
-        // Lấy danh sách môn học liên quan
-        const relatedIds = Array.isArray(course.related)
-            ? course.related
-            : [];
-
-        const relatedCourses = relatedIds
-            .map(function (id) {
-                return courses.find(function (item) {
-                    return item && item.id === id;
-                });
-            })
-            .filter(Boolean);
-
-        res.set("Cache-Control", "no-store");
-
-        return res.json({
-            course: course,
-            relatedCourses: relatedCourses
-        });
-    });
-});
-
-
 // =====================================
 // 12. API LẤY NGƯỜI DÙNG HIỆN TẠI
 // GET /api/auth/me
@@ -1867,6 +1831,890 @@ app.get(
         )(req, res, next);
     }
 );
+
+
+// =====================================
+// PROFILE - KIỂM TRA ĐĂNG NHẬP
+// =====================================
+
+function requireProfileAuth(req, res, next) {
+
+    if (
+        typeof req.isAuthenticated === "function" &&
+        req.isAuthenticated() &&
+        req.user &&
+        req.user.id
+    ) {
+        return next();
+    }
+
+    return res.status(401).json({
+        message:
+            "Bạn cần đăng nhập để truy cập thông tin cá nhân."
+    });
+}
+
+// =====================================
+// PROFILE - KIỂM TRA CSRF TOKEN
+// =====================================
+
+function requireProfileCsrf(req, res, next) {
+
+    const receivedToken =
+        req.get("X-CSRF-Token");
+
+    const savedToken =
+        req.session?.profileCsrfToken;
+
+    if (
+        typeof receivedToken !== "string" ||
+        typeof savedToken !== "string"
+    ) {
+        return res.status(403).json({
+            message:
+                "Phiên bảo mật không hợp lệ. Vui lòng tải lại trang."
+        });
+    }
+
+    const received = Buffer.from(receivedToken);
+    const saved = Buffer.from(savedToken);
+
+    if (
+        received.length !== saved.length ||
+        !crypto.timingSafeEqual(received, saved)
+    ) {
+        return res.status(403).json({
+            message:
+                "Mã bảo mật không hợp lệ. Vui lòng tải lại trang."
+        });
+    }
+
+    next();
+}
+
+// =====================================
+// API GET PROFILE
+// LẤY HỒ SƠ TÀI KHOẢN ĐANG ĐĂNG NHẬP
+// =====================================
+app.get(
+    "/api/profile",
+    requireProfileAuth,
+    function (req, res) {
+
+        try {
+
+            const userId = req.user.id;
+
+            // =====================================
+            // 1. LẤY THÔNG TIN TÀI KHOẢN
+            // =====================================
+
+            const user = db.prepare(`
+                SELECT
+                    id,
+                    fullname,
+                    email,
+                    phone,
+                    password_hash,
+                    google_id
+                FROM users
+                WHERE id = ?
+            `).get(userId);
+
+            if (!user) {
+
+                return res.status(404).json({
+                    message:
+                        "Không tìm thấy tài khoản."
+                });
+            }
+
+            // =====================================
+            // 2. TẠO HỒ SƠ NẾU CHƯA CÓ
+            // =====================================
+
+            db.prepare(`
+                INSERT OR IGNORE INTO user_profiles (
+                    user_id,
+                    major
+                )
+                VALUES (?, ?)
+            `).run(
+                userId,
+                DEFAULT_PROFILE_MAJOR
+            );
+
+            // =====================================
+            // 3. LẤY THÔNG TIN HỒ SƠ
+            // =====================================
+
+            const detail = db.prepare(`
+                SELECT
+                    birth_date,
+                    gender,
+                    address,
+                    major
+                FROM user_profiles
+                WHERE user_id = ?
+            `).get(userId);
+
+            // =====================================
+            // 4. TẠO CSRF TOKEN
+            // =====================================
+
+            if (!req.session.profileCsrfToken) {
+
+                req.session.profileCsrfToken =
+                    crypto.randomBytes(32).toString("hex");
+            }
+
+            // =====================================
+            // 5. XÁC ĐỊNH PHƯƠNG THỨC ĐĂNG NHẬP
+            // =====================================
+
+            const authMethod =
+                user.google_id && !user.password_hash
+                    ? "google"
+                    : "password";
+
+            // =====================================
+            // 6. TRẢ DỮ LIỆU CHO FRONTEND
+            // =====================================
+
+            return res.json({
+
+                profile: {
+
+                    fullName: user.fullname || "",
+
+                    birthDate:
+                        detail.birth_date || "",
+
+                    gender:
+                        detail.gender || "",
+
+                    phone:
+                        user.phone || "",
+
+                    email:
+                        user.email || "",
+
+                    address:
+                        detail.address || "",
+
+                    major:
+                        detail.major || "",
+
+                    authMethod
+                },
+
+                csrfToken:
+                    req.session.profileCsrfToken
+            });
+
+        } catch (error) {
+
+            console.error(
+                "GET PROFILE ERROR:",
+                error
+            );
+
+            return res.status(500).json({
+                message:
+                    "Không thể tải thông tin hồ sơ."
+            });
+        }
+    }
+);
+
+// =====================================
+// API PUT PROFILE
+// CẬP NHẬT HỒ SƠ TÀI KHOẢN
+// =====================================
+
+app.put(
+    "/api/profile",
+    sameOrigin,
+    requireProfileAuth,
+    requireProfileCsrf,
+    function (req, res) {
+
+        try {
+
+            const userId = req.user.id;
+
+            const body = req.body || {};
+
+            // =====================================
+            // 1. LẤY TÀI KHOẢN HIỆN TẠI
+            // =====================================
+
+            const user = db.prepare(`
+                SELECT
+                    id,
+                    fullname,
+                    email,
+                    phone
+                FROM users
+                WHERE id = ?
+            `).get(userId);
+
+            if (!user) {
+
+                return res.status(404).json({
+                    message:
+                        "Không tìm thấy tài khoản."
+                });
+            }
+
+            // =====================================
+            // 2. KIỂM TRA HỌ VÀ TÊN
+            // =====================================
+
+            if (
+                typeof body.fullName !== "string"
+            ) {
+
+                return res.status(400).json({
+                    message:
+                        "Họ và tên không hợp lệ."
+                });
+            }
+
+            const fullName = body.fullName.trim();
+
+            if (
+                fullName.length < 2 ||
+                fullName.length > 100
+            ) {
+
+                return res.status(400).json({
+                    message:
+                        "Họ và tên phải có từ 2 đến 100 ký tự."
+                });
+            }
+
+            // =====================================
+            // 3. EMAIL KHÔNG ĐƯỢC TỰ Ý THAY ĐỔI
+            // =====================================
+
+            if (
+                body.email !== undefined &&
+                (
+                    typeof body.email !== "string" ||
+                    body.email.trim().toLowerCase() !==
+                        (user.email || "").toLowerCase()
+                )
+            ) {
+
+                return res.status(400).json({
+                    message:
+                        "Thay đổi email cần xác minh email mới."
+                });
+            }
+
+            // =====================================
+            // 4. KIỂM TRA SỐ ĐIỆN THOẠI
+            // =====================================
+
+            if (
+                body.phone !== undefined &&
+                body.phone !== null &&
+                typeof body.phone !== "string"
+            ) {
+
+                return res.status(400).json({
+                    message:
+                        "Số điện thoại không hợp lệ."
+                });
+            }
+
+            const rawPhone =
+                typeof body.phone === "string"
+                    ? body.phone.trim()
+                    : "";
+
+            const phone = rawPhone
+                ? rawPhone.replace(/[\s.-]/g, "")
+                : null;
+
+            if (
+                phone &&
+                !/^0\d{9}$/.test(phone)
+            ) {
+
+                return res.status(400).json({
+                    message:
+                        "Số điện thoại phải có 10 chữ số và bắt đầu bằng 0."
+                });
+            }
+
+            // =====================================
+            // 5. KIỂM TRA NGÀY SINH
+            // =====================================
+
+            const birthDate =
+                typeof body.birthDate === "string"
+                    ? body.birthDate.trim()
+                    : "";
+
+            if (birthDate) {
+
+                const match =
+                    /^(\d{4})-(\d{2})-(\d{2})$/.exec(
+                        birthDate
+                    );
+
+                if (!match) {
+
+                    return res.status(400).json({
+                        message:
+                            "Ngày sinh không đúng định dạng."
+                    });
+                }
+
+                const date = new Date(
+                    `${birthDate}T00:00:00.000Z`
+                );
+
+                if (
+                    Number.isNaN(date.getTime()) ||
+                    date.toISOString().slice(0, 10) !== birthDate ||
+                    birthDate > new Date().toISOString().slice(0, 10)
+                ) {
+
+                    return res.status(400).json({
+                        message:
+                            "Ngày sinh không hợp lệ."
+                    });
+                }
+            }
+
+            // =====================================
+            // 6. KIỂM TRA GIỚI TÍNH
+            // =====================================
+
+            const gender =
+                typeof body.gender === "string"
+                    ? body.gender.trim()
+                    : "";
+
+            if (
+                gender &&
+                !["Nam", "Nữ"].includes(gender)
+            ) {
+
+                return res.status(400).json({
+                    message:
+                        "Giới tính không hợp lệ."
+                });
+            }
+
+            // =====================================
+            // 7. KIỂM TRA ĐỊA CHỈ
+            // =====================================
+
+            const address =
+                typeof body.address === "string"
+                    ? body.address.trim()
+                    : "";
+
+            if (address.length > 255) {
+
+                return res.status(400).json({
+                    message:
+                        "Địa chỉ không được vượt quá 255 ký tự."
+                });
+            }
+
+            // =====================================
+            // 8. KIỂM TRA SỐ ĐIỆN THOẠI TRÙNG
+            // =====================================
+
+            if (phone) {
+
+                const phoneOwner = db.prepare(`
+                    SELECT id
+                    FROM users
+                    WHERE phone = ?
+                    AND id <> ?
+                `).get(phone, userId);
+
+                if (phoneOwner) {
+
+                    return res.status(409).json({
+                        message:
+                            "Số điện thoại này đã được sử dụng bởi tài khoản khác."
+                    });
+                }
+            }
+
+            // =====================================
+            // 9. LƯU CẢ HAI BẢNG TRONG TRANSACTION
+            // =====================================
+
+            const saveProfile = db.transaction(function () {
+
+                // Cập nhật tài khoản
+                db.prepare(`
+                    UPDATE users
+                    SET
+                        fullname = ?,
+                        phone = ?
+                    WHERE id = ?
+                `).run(
+                    fullName,
+                    phone,
+                    userId
+                );
+
+                // Cập nhật hồ sơ
+                db.prepare(`
+                    INSERT INTO user_profiles (
+                        user_id,
+                        birth_date,
+                        gender,
+                        address,
+                        major
+                    )
+                    VALUES (?, ?, ?, ?, ?)
+                    ON CONFLICT(user_id)
+                    DO UPDATE SET
+                        birth_date = excluded.birth_date,
+                        gender = excluded.gender,
+                        address = excluded.address,
+                        updated_at = datetime('now')
+
+                    ON CONFLICT(user_id)
+                    DO UPDATE SET
+                        birth_date = excluded.birth_date,
+                        gender = excluded.gender,
+                        address = excluded.address,
+                        updated_at = datetime('now')
+                `).run(
+                    userId,
+                    birthDate || null,
+                    gender || null,
+                    address || null,
+                    DEFAULT_PROFILE_MAJOR
+                );
+            });
+
+            saveProfile();
+
+            // =====================================
+            // 10. LẤY DỮ LIỆU MỚI SAU KHI LƯU
+            // =====================================
+
+            const updatedUser = db.prepare(`
+                SELECT
+                    fullname,
+                    email,
+                    phone,
+                    password_hash,
+                    google_id
+                FROM users
+                WHERE id = ?
+            `).get(userId);
+
+            const detail = db.prepare(`
+                SELECT
+                    birth_date,
+                    gender,
+                    address,
+                    major
+                FROM user_profiles
+                WHERE user_id = ?
+            `).get(userId);
+
+            // =====================================
+            // 11. TRẢ VỀ HỒ SƠ ĐÃ CẬP NHẬT
+            // =====================================
+
+            return res.json({
+
+                message:
+                    "Cập nhật thông tin thành công.",
+
+                profile: {
+
+                    fullName:
+                        updatedUser.fullname,
+
+                    birthDate:
+                        detail.birth_date || "",
+
+                    gender:
+                        detail.gender || "",
+
+                    phone:
+                        updatedUser.phone || "",
+
+                    email:
+                        updatedUser.email || "",
+
+                    address:
+                        detail.address || "",
+
+                    major:
+                        detail.major || "",
+
+                    authMethod:
+                        updatedUser.google_id &&
+                        !updatedUser.password_hash
+                            ? "google"
+                            : "password"
+                }
+            });
+
+        } catch (error) {
+
+            console.error(
+                "UPDATE PROFILE ERROR:",
+                error
+            );
+
+            if (
+                error.code ===
+                "SQLITE_CONSTRAINT_UNIQUE"
+            ) {
+
+                return res.status(409).json({
+                    message:
+                        "Thông tin bị trùng với tài khoản khác."
+                });
+            }
+
+            return res.status(500).json({
+                message:
+                    "Không thể cập nhật thông tin. Vui lòng thử lại."
+            });
+        }
+    }
+);
+
+// =====================================
+// API PUT PROFILE PASSWORD
+// THAY ĐỔI MẬT KHẨU EDUTrack
+// =====================================
+
+app.put(
+    "/api/profile/password",
+    sameOrigin,
+    requireProfileAuth,
+    requireProfileCsrf,
+    async function (req, res) {
+
+        try {
+
+            const userId = req.user.id;
+
+            const {
+                currentPassword,
+                newPassword,
+                confirmPassword
+            } = req.body || {};
+
+            // =====================================
+            // 1. KIỂM TRA DỮ LIỆU
+            // =====================================
+
+            if (
+                typeof currentPassword !== "string" ||
+                !currentPassword
+            ) {
+
+                return res.status(400).json({
+                    message:
+                        "Vui lòng nhập mật khẩu hiện tại."
+                });
+            }
+
+            if (
+                typeof newPassword !== "string" ||
+                newPassword.length < 8 ||
+                newPassword.length > 64
+            ) {
+
+                return res.status(400).json({
+                    message:
+                        "Mật khẩu mới phải từ 8 đến 64 ký tự."
+                });
+            }
+
+            if (
+                typeof confirmPassword !== "string" ||
+                confirmPassword !== newPassword
+            ) {
+
+                return res.status(400).json({
+                    message:
+                        "Mật khẩu xác nhận không trùng khớp."
+                });
+            }
+
+            if (currentPassword === newPassword) {
+
+                return res.status(400).json({
+                    message:
+                        "Mật khẩu mới phải khác mật khẩu hiện tại."
+                });
+            }
+
+            // =====================================
+            // 2. LẤY TÀI KHOẢN HIỆN TẠI
+            // =====================================
+
+            const user = db.prepare(`
+                SELECT
+                    id,
+                    password_hash,
+                    google_id
+                FROM users
+                WHERE id = ?
+            `).get(userId);
+
+            if (!user) {
+
+                return res.status(404).json({
+                    message:
+                        "Không tìm thấy tài khoản."
+                });
+            }
+
+            // Tài khoản Google-only không có mật khẩu
+            if (!user.password_hash) {
+
+                return res.status(400).json({
+                    message:
+                        "Tài khoản này sử dụng Google để xác thực. Vui lòng thay đổi mật khẩu trong tài khoản Google."
+                });
+            }
+
+            // =====================================
+            // 3. XÁC MINH MẬT KHẨU HIỆN TẠI
+            // =====================================
+
+            const matched = await bcrypt.compare(
+                currentPassword,
+                user.password_hash
+            );
+
+            if (!matched) {
+
+                return res.status(400).json({
+                    message:
+                        "Mật khẩu hiện tại không chính xác."
+                });
+            }
+
+            // =====================================
+            // 4. BĂM MẬT KHẨU MỚI
+            // =====================================
+
+            const newHash = await bcrypt.hash(
+                newPassword,
+                12
+            );
+
+            // =====================================
+            // 5. CẬP NHẬT MẬT KHẨU
+            // VÔ HIỆU HÓA CÁC SESSION CŨ
+            // =====================================
+
+            const result = db.prepare(`
+                UPDATE users
+                SET
+                    password_hash = ?,
+                    auth_version = auth_version + 1
+                WHERE id = ?
+            `).run(
+                newHash,
+                userId
+            );
+
+            if (result.changes !== 1) {
+
+                return res.status(500).json({
+                    message:
+                        "Không thể cập nhật mật khẩu."
+                });
+            }
+
+            // =====================================
+            // 6. TẠO LẠI SESSION CHO THIẾT BỊ HIỆN TẠI
+            // =====================================
+
+            req.session.regenerate(function (sessionError) {
+
+                if (sessionError) {
+
+                    console.error(
+                        "Password session regenerate error:",
+                        sessionError
+                    );
+
+                    return res.status(200).json({
+
+                        message:
+                            "Đổi mật khẩu thành công. Vui lòng đăng nhập lại.",
+
+                        mustLoginAgain: true
+                    });
+                }
+
+                // Passport lấy auth_version mới nhất
+                req.login(
+                    { id: userId },
+                    function (loginError) {
+
+                        if (loginError) {
+
+                            console.error(
+                                "Password re-login error:",
+                                loginError
+                            );
+
+                            return res.status(200).json({
+
+                                message:
+                                    "Đổi mật khẩu thành công. Vui lòng đăng nhập lại.",
+
+                                mustLoginAgain: true
+                            });
+                        }
+
+                        // Tạo CSRF token mới vì session đã đổi
+                        const newCsrfToken =
+                            crypto.randomBytes(32).toString("hex");
+
+                        req.session.profileCsrfToken =
+                            newCsrfToken;
+
+                        req.session.save(function (saveError) {
+
+                            if (saveError) {
+
+                                console.error(
+                                    "Password session save error:",
+                                    saveError
+                                );
+
+                                return res.status(200).json({
+
+                                    message:
+                                        "Đổi mật khẩu thành công. Vui lòng đăng nhập lại.",
+
+                                    mustLoginAgain: true
+                                });
+                            }
+
+                            return res.json({
+
+                                message:
+                                    "Thay đổi mật khẩu thành công.",
+
+                                csrfToken: newCsrfToken,
+
+                                mustLoginAgain: false
+                            });
+                        });
+                    }
+                );
+            });
+
+        } catch (error) {
+
+            console.error(
+                "CHANGE PASSWORD ERROR:",
+                error
+            );
+
+            return res.status(500).json({
+                message:
+                    "Máy chủ không thể thay đổi mật khẩu. Vui lòng thử lại."
+            });
+        }
+    }
+);
+
+// =====================================
+// API CHI TIẾT MÔN HỌC
+// GET /api/courses/:courseId/detail
+// =====================================
+
+app.get("/api/courses/:courseId/detail", function (req, res) {
+    const courseId = req.params.courseId;
+
+    // Kiểm tra mã môn học
+    if (!/^[A-Za-z0-9_-]{1,40}$/.test(courseId)) {
+        return res.status(400).json({
+            message: "Mã môn học không hợp lệ."
+        });
+    }
+
+    // Đọc dữ liệu môn học từ file JSON
+    fs.readFile(courseDetailsPath, "utf8", function (error, content) {
+        if (error) {
+            console.error("Không đọc được dữ liệu môn học:", error);
+
+            return res.status(500).json({
+                message: "Không thể tải dữ liệu môn học."
+            });
+        }
+
+        let courses;
+
+        try {
+            courses = JSON.parse(content);
+        } catch (parseError) {
+            console.error("Dữ liệu môn học không hợp lệ:", parseError);
+
+            return res.status(500).json({
+                message: "Dữ liệu môn học không hợp lệ."
+            });
+        }
+
+        // Kiểm tra dữ liệu phải là một mảng
+        if (!Array.isArray(courses)) {
+            return res.status(500).json({
+                message: "Cấu trúc dữ liệu môn học không hợp lệ."
+            });
+        }
+
+        // Tìm môn học theo ID
+        const course = courses.find(function (item) {
+            return item && item.id === courseId;
+        });
+
+        if (!course) {
+            return res.status(404).json({
+                message: "Không tìm thấy môn học."
+            });
+        }
+
+        // Lấy danh sách môn học liên quan
+        const relatedIds = Array.isArray(course.related)
+            ? course.related
+            : [];
+
+        const relatedCourses = relatedIds
+            .map(function (id) {
+                return courses.find(function (item) {
+                    return item && item.id === id;
+                });
+            })
+            .filter(Boolean);
+
+        res.set("Cache-Control", "no-store");
+
+        return res.json({
+            course: course,
+            relatedCourses: relatedCourses
+        });
+    });
+});
+
 // =====================================
 // API LƯU KẾT QUẢ HỌC TẬP
 // =====================================
