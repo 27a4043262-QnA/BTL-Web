@@ -631,108 +631,236 @@ if (window.lucide) {
        9. BREADCRUMB TRÊN HEADER
     ========================================== */
 
-    function updateBreadcrumb() {
-        const container = navRoot.querySelector(
-            ".et-topbar-history"
+    
+/* ==========================================
+   9. BREADCRUMB TRÊN HEADER
+   Dùng chung cho toàn bộ website
+========================================== */
+
+function updateBreadcrumb() {
+
+    const container = navRoot.querySelector(
+        ".et-topbar-history"
+    );
+
+    if (!container) return;
+
+    const page = getCurrentPage();
+
+    const params = new URLSearchParams(
+        location.search
+    );
+
+    const items = [
+        {
+            title: "Trang chủ",
+            href: getURL("index.html")
+        }
+    ];
+
+    /* ======================================
+       1. CÁC TRANG TIẾN ĐỘ HỌC TẬP
+    ====================================== */
+
+    const progressPages = [
+        "progress.html",
+        "progress-detail.html",
+        "progress-subject.html",
+        "progress-material.html"
+    ];
+
+    if (progressPages.includes(page.file)) {
+
+        const dashboardURL = new URL(
+            "pages/progress.html",
+            ROOT
         );
 
-        if (!container) return;
+        // Giữ chế độ demo khi quay lại Dashboard
+        if (params.get("view") === "demo") {
+            dashboardURL.searchParams.set(
+                "view",
+                "demo"
+            );
+        }
 
-        const page = getCurrentPage();
-
-        const items = [
-            {
-                title: "Trang chủ",
-                href: getURL("index.html")
-            }
-        ];
-
-        if (page.file === "courses.html") {
-            items.push({
-                title: "Môn học",
-                href: getURL("pages/courses.html")
-            });
-
-            if (
-                page.category &&
-                CATEGORIES[page.category]
-            ) {
-                items.push({
-                    title: CATEGORIES[page.category],
-                    href: location.href
-                });
-            }
-        } else if (page.file === "course-detail.html") {
-            items.push({
-                title: "Môn học",
-                href: getURL("pages/courses.html")
-            });
+        // Trang Dashboard
+        if (page.file === "progress.html") {
 
             items.push({
-                title: page.title,
-                href: location.href
-            });
-        } else if (page.file === "news-detail.html") {
-
-            // Trang danh sách tin tức
-            items.push({
-                title: "Tin tức & Sự kiện",
-                href: getURL("pages/news.html")
-            });
-
-            // Trang chi tiết tin tức
-            items.push({
-                title: "Chi tiết tin tức",
+                title: "Tiến độ học tập",
                 href: location.href
             });
 
-        } else if (page.file !== "index.html") {
+        } else {
 
+            // Cấp cha: Tiến độ học tập
             items.push({
-                title: page.title,
+                title: "Tiến độ học tập",
+                href: dashboardURL.href
+            });
+
+            let currentTitle = page.title;
+
+            // Trang chi tiết nhiệm vụ hoặc giai đoạn
+            if (page.file === "progress-detail.html") {
+
+                currentTitle =
+                    params.has("week") &&
+                    !params.has("task")
+                        ? "Chi tiết giai đoạn"
+                        : "Chi tiết nhiệm vụ";
+            }
+
+            // Trang tài liệu hoặc bài tập
+            else if (page.file === "progress-material.html") {
+
+                const isExercise =
+                    params.get("type") === "exercise";
+
+                currentTitle = isExercise
+                    ? "Bài tập thực hành"
+                    : "Tài liệu học tập";
+
+                // Giữ đường dẫn quay lại nhiệm vụ
+                if (
+                    params.has("week") &&
+                    params.has("task")
+                ) {
+
+                    const detailURL = new URL(
+                        "pages/progress-detail.html",
+                        ROOT
+                    );
+
+                    ["view", "week", "task"].forEach(key => {
+
+                        if (params.has(key)) {
+                            detailURL.searchParams.set(
+                                key,
+                                params.get(key)
+                            );
+                        }
+
+                    });
+
+                    items.push({
+                        title: "Chi tiết nhiệm vụ",
+                        href: detailURL.href
+                    });
+                }
+            }
+
+            // Cấp cuối: trang hiện tại
+            items.push({
+                title: currentTitle,
+                href: location.href
+            });
+        }
+    }
+
+    /* ======================================
+       2. CÁC TRANG MÔN HỌC
+    ====================================== */
+
+    else if (page.file === "courses.html") {
+
+        items.push({
+            title: "Môn học",
+            href: getURL("pages/courses.html")
+        });
+
+        if (
+            page.category &&
+            CATEGORIES[page.category]
+        ) {
+            items.push({
+                title: CATEGORIES[page.category],
                 href: location.href
             });
         }
 
-        container.replaceChildren();
+    }
 
-        items.forEach((item, index) => {
-            if (index > 0) {
-                const separator = document.createElement(
-                    "span"
-                );
+    else if (page.file === "course-detail.html") {
 
-                separator.className =
-                    "et-history-separator";
-
-                separator.textContent = "›";
-
-                container.appendChild(separator);
-            }
-
-            const last = index === items.length - 1;
-
-            const element = document.createElement(
-                last ? "span" : "a"
-            );
-
-            element.textContent = item.title;
-
-            if (last) {
-                element.className = "et-history-current";
-                element.setAttribute(
-                    "aria-current",
-                    "page"
-                );
-            } else {
-                element.href = item.href;
-            }
-
-            container.appendChild(element);
+        items.push({
+            title: "Môn học",
+            href: getURL("pages/courses.html")
         });
 
-        container.scrollLeft = container.scrollWidth;
+        items.push({
+            title: page.title,
+            href: location.href
+        });
+
     }
+
+    /* ======================================
+       3. CÁC TRANG CÒN LẠI
+    ====================================== */
+
+    else if (page.file !== "index.html") {
+
+        items.push({
+            title: page.title,
+            href: location.href
+        });
+
+    }
+
+    /* ======================================
+       4. RENDER BREADCRUMB
+    ====================================== */
+
+    container.replaceChildren();
+
+    items.forEach((item, index) => {
+
+        if (index > 0) {
+
+            const separator = document.createElement(
+                "span"
+            );
+
+            separator.className =
+                "et-history-separator";
+
+            separator.textContent = "›";
+
+            container.appendChild(separator);
+        }
+
+        const last = index === items.length - 1;
+
+        const element = document.createElement(
+            last ? "span" : "a"
+        );
+
+        element.textContent = item.title;
+
+        if (last) {
+
+            element.className =
+                "et-history-current";
+
+            element.setAttribute(
+                "aria-current",
+                "page"
+            );
+
+        } else {
+
+            element.href = item.href;
+        }
+
+        container.appendChild(element);
+
+    });
+
+    container.scrollLeft = container.scrollWidth;
+}
+
 
     /* ==========================================
        10. SIDEBAR - HAMBURGER + SUBMENU
