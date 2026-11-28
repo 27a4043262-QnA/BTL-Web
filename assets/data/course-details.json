@@ -3,7 +3,7 @@
     "id": "IS52A",
     "name": "Năng lực số ứng dụng",
     "category": "dai-cuong",
-    "credits": 3,
+    "credits": 2,
     "image": "../assets/images/course/01_nang_luc_so_ung_dung.png",
     "description": "Học phần định hướng năng lực sử dụng công nghệ số trong học tập và công việc: quản lý thông tin, cộng tác trực tuyến, tạo nội dung số, bảo vệ dữ liệu và sử dụng công cụ AI một cách có trách nhiệm.",
     "objectives": [
@@ -505,7 +505,7 @@
     "id": "LAW01A",
     "name": "Pháp luật đại cương",
     "category": "dai-cuong",
-    "credits": 3,
+    "credits": 2,
     "image": "../assets/images/course/03_phap_luat_dai_cuong.png",
     "description": "Giới thiệu các khái niệm nền tảng của nhà nước và pháp luật, hệ thống văn bản quy phạm, quan hệ pháp luật, trách nhiệm pháp lý và một số lĩnh vực pháp luật gần gũi với đời sống sinh viên. Nội dung dùng để định hướng học tập, không thay thế tư vấn pháp lý.",
     "objectives": [
@@ -1509,7 +1509,7 @@
     "id": "IS07A",
     "name": "Cấu trúc dữ liệu và giải thuật",
     "category": "co-so-nganh",
-    "credits": 3,
+    "credits": 4,
     "image": "../assets/images/course/07_cau_truc_du_lieu_va_giai_thuat.png",
     "description": "Nghiên cứu cách biểu diễn dữ liệu và lựa chọn thuật toán xử lý hiệu quả, kết hợp phân tích độ phức tạp và thực hành giải các bài toán tìm kiếm, sắp xếp và duyệt cấu trúc.",
     "objectives": [
@@ -2011,7 +2011,7 @@
     "id": "IS49A",
     "name": "Phân tích nghiệp vụ BA",
     "category": "chuyen-nganh",
-    "credits": 3,
+    "credits": 2,
     "image": "../assets/images/course/09_phan_tich_nghiep_vu_BA.png",
     "description": "Học cách tìm hiểu nhu cầu của các bên liên quan, mô hình hóa quy trình nghiệp vụ, xác định yêu cầu hệ thống và đề xuất giải pháp đem lại giá trị cho tổ chức.",
     "objectives": [
@@ -2764,7 +2764,7 @@
     "id": "IS51A",
     "name": "Lập trình web PHP & MySQL",
     "category": "chuyen-nganh",
-    "credits": 3,
+    "credits": 4,
     "image": "../assets/images/course/12_lap_trinh_web_PHP_MySQL.png",
     "description": "Thực hành phát triển website động với PHP và cơ sở dữ liệu MySQL: xử lý biểu mẫu, quản lý phiên làm việc, thao tác dữ liệu và một số nguyên tắc bảo mật ứng dụng web.",
     "objectives": [
