@@ -1,27 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thông tin cá nhân - EduTrack</title>
 
-    <!-- Bootstrap 4.6.2 -->
-    <link rel="stylesheet"
-          href="../assets/css/bootstrap.min.css">
-
-    <!-- CSS chung -->
-    <link rel="stylesheet"
-          href="../assets/css/main.css">
-
-    <!-- CSS riêng -->
-    <link rel="stylesheet"
-          href="../assets/css/profile.css">
-
-    <!-- JavaScript -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/profile.css">
+    <link rel="stylesheet" href="../assets/css/chatbot.css">
+    <script src="../assets/js/chatbot.js" defer></script>
     <script src="../assets/js/main.js" defer></script>
     <script src="../assets/js/profile.js" defer></script>
 </head>
@@ -31,18 +19,6 @@
     <main id="main-content" class="et-page-content">
 
         <div class="et-profile-container">
-
-            <!-- TIÊU ĐỀ -->
-            <div class="et-profile-intro">
-
-                <h1>Thông tin cá nhân</h1>
-
-                <p>
-                    Quản lý thông tin hồ sơ và bảo mật
-                    tài khoản cá nhân.
-                </p>
-
-            </div>
 
             <!-- CHƯA ĐĂNG NHẬP -->
             <div
@@ -54,10 +30,10 @@
 
                 <p>
                     Thông tin cá nhân được lưu riêng
-                    cho từng tài khoản Google.
+                    cho từng tài khoản EduTrack.
                 </p>
 
-                <div id="et-google-signin"></div>
+                <div id="et-profile-login-link"></div>
 
                 <p
                     id="et-profile-auth-message"
@@ -163,8 +139,6 @@
                                 hidden>
                             </p>
 
-                        </section>
-
                         <!-- BẢO MẬT -->
                         <section
                             class="et-profile-security"
@@ -189,7 +163,14 @@
 
                             <div class="et-profile-security-body">
 
-                                <div class="et-profile-password-info">
+                                <!-- =================================
+                                    TÀI KHOẢN ĐĂNG NHẬP BẰNG MẬT KHẨU
+                                ================================== -->
+
+                                <div
+                                    id="et-profile-local-password"
+                                    class="et-profile-password-info"
+                                    hidden>
 
                                     <h3>Mật khẩu</h3>
 
@@ -200,32 +181,248 @@
                                             aria-hidden="true">
                                         </i>
 
+                                        <span
+                                            class="et-profile-password-mask">
+                                            ••••••••••
+                                        </span>
+
+                                    </div>
+
+                                    <p>
+                                        Mật khẩu được mã hóa và bảo vệ bởi EduTrack.
+                                    </p>
+
+                                    <button
+                                        type="button"
+                                        id="et-profile-change-password"
+                                        class="et-profile-password-btn">
+
+                                        <i class="fas fa-key" aria-hidden="true"></i>
+
+                                        Thay đổi mật khẩu
+
+                                    </button>
+                                    <!-- THÔNG BÁO ĐỔI MẬT KHẨU -->
+                                    <div
+                                        id="et-profile-password-message"
+                                        class="et-profile-message"
+                                        role="status"
+                                        aria-live="polite"
+                                        hidden>
+                                    </div>
+                                </div>
+
+                                <!-- =================================
+                                    TÀI KHOẢN ĐĂNG NHẬP GOOGLE
+                                ================================== -->
+
+                                <div
+                                    id="et-profile-google-password"
+                                    class="et-profile-password-info"
+                                    hidden>
+
+                                    <h3>Mật khẩu</h3>
+
+                                    <div class="et-profile-password-box">
+
+                                        <i
+                                            class="fab fa-google"
+                                            aria-hidden="true">
+                                        </i>
+
                                         Được quản lý bởi Google
 
                                     </div>
 
                                     <p>
-                                        Mật khẩu nên có ít nhất 8 ký tự,
-                                        bao gồm chữ và số.
+                                        Mật khẩu của bạn được quản lý
+                                        trong tài khoản Google.
                                     </p>
+
+                                    <a
+                                        class="et-profile-password-btn"
+                                        href="https://myaccount.google.com/security"
+                                        target="_blank"
+                                        rel="noopener noreferrer">
+
+                                        <i class="fas fa-key" aria-hidden="true"></i>
+
+                                        Cập nhật mật khẩu Google
+
+                                    </a>
 
                                 </div>
 
-                                <!-- ĐỔI MẬT KHẨU GOOGLE -->
-                                <a
-                                    class="et-profile-password-btn"
-                                    href="https://myaccount.google.com/security"
-                                    target="_blank"
-                                    rel="noopener noreferrer">
+                            </div>
 
-                                    <i
-                                        class="fas fa-key"
-                                        aria-hidden="true">
-                                    </i>
+                            <!-- =====================================
+                                KHUNG THAY ĐỔI MẬT KHẨU
+                            ===================================== -->
 
-                                    Cập nhật mật khẩu
+                            <div
+                                id="et-profile-password-editor"
+                                class="et-profile-password-editor"
+                                hidden>
 
-                                </a>
+                                <h3>Thay đổi mật khẩu</h3>
+
+                                <p class="et-profile-password-editor-desc">
+                                    Nhập mật khẩu hiện tại và mật khẩu mới của bạn.
+                                </p>
+
+                                <form
+                                    id="et-profile-password-form"
+                                    novalidate>
+
+                                    <!-- MẬT KHẨU HIỆN TẠI -->
+
+                                    <div class="et-profile-password-group">
+
+                                        <label for="et-current-password">
+                                            Mật khẩu hiện tại
+                                        </label>
+
+                                        <div class="et-profile-password-input-wrap">
+
+                                            <input
+                                                type="password"
+                                                id="et-current-password"
+                                                name="currentPassword"
+                                                class="et-profile-input"
+                                                placeholder="Nhập mật khẩu hiện tại"
+                                                autocomplete="current-password"
+                                                maxlength="64"
+                                                required>
+
+                                            <button
+                                                type="button"
+                                                class="et-profile-password-toggle"
+                                                data-password-target="et-current-password"
+                                                aria-label="Hiển thị mật khẩu hiện tại"
+                                                aria-pressed="false">
+
+                                                <i class="fas fa-eye" aria-hidden="true"></i>
+
+                                            </button>
+
+                                        </div>
+
+                                        <small
+                                            id="et-current-password-error"
+                                            class="et-profile-error">
+                                        </small>
+
+                                    </div>
+
+                                    <!-- MẬT KHẨU MỚI -->
+
+                                    <div class="et-profile-password-group">
+
+                                        <label for="et-new-password">
+                                            Mật khẩu mới
+                                        </label>
+
+                                        <div class="et-profile-password-input-wrap">
+
+                                            <input
+                                                type="password"
+                                                id="et-new-password"
+                                                name="newPassword"
+                                                class="et-profile-input"
+                                                placeholder="Nhập mật khẩu mới"
+                                                autocomplete="new-password"
+                                                minlength="8"
+                                                maxlength="64"
+                                                required>
+
+                                            <button
+                                                type="button"
+                                                class="et-profile-password-toggle"
+                                                data-password-target="et-new-password"
+                                                aria-label="Hiển thị mật khẩu mới"
+                                                aria-pressed="false">
+
+                                                <i class="fas fa-eye" aria-hidden="true"></i>
+
+                                            </button>
+
+                                        </div>
+
+                                        <small class="et-profile-hint">
+                                            Mật khẩu phải từ 8 đến 64 ký tự.
+                                        </small>
+
+                                        <small
+                                            id="et-new-password-error"
+                                            class="et-profile-error">
+                                        </small>
+
+                                    </div>
+
+                                    <!-- XÁC NHẬN MẬT KHẨU -->
+
+                                    <div class="et-profile-password-group">
+
+                                        <label for="et-confirm-password">
+                                            Xác nhận mật khẩu mới
+                                        </label>
+
+                                        <div class="et-profile-password-input-wrap">
+
+                                            <input
+                                                type="password"
+                                                id="et-confirm-password"
+                                                name="confirmPassword"
+                                                class="et-profile-input"
+                                                placeholder="Nhập lại mật khẩu mới"
+                                                autocomplete="new-password"
+                                                maxlength="64"
+                                                required>
+
+                                            <button
+                                                type="button"
+                                                class="et-profile-password-toggle"
+                                                data-password-target="et-confirm-password"
+                                                aria-label="Hiển thị mật khẩu xác nhận"
+                                                aria-pressed="false">
+
+                                                <i class="fas fa-eye" aria-hidden="true"></i>
+
+                                            </button>
+
+                                        </div>
+
+                                        <small
+                                            id="et-confirm-password-error"
+                                            class="et-profile-error">
+                                        </small>
+
+                                    </div>
+
+                                    <!-- NÚT -->
+
+                                    <div class="et-profile-editor-actions">
+
+                                        <button
+                                            type="submit"
+                                            class="et-profile-save-btn">
+
+                                            Lưu mật khẩu
+
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            id="et-profile-cancel-password"
+                                            class="et-profile-cancel-btn">
+
+                                            Hủy
+
+                                        </button>
+
+                                    </div>
+
+                                </form>
 
                             </div>
 

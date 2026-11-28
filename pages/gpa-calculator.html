@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/gpa-calculator.css">
     <script src="../assets/js/validation.js" defer></script>
+    <script src="../assets/js/learning-storage.js" defer></script>
     <script src="../assets/js/calculator.js" defer></script>
     <link rel="stylesheet" href="../assets/css/chatbot.css">
     <script src="../assets/js/chatbot.js" defer></script>
@@ -25,50 +26,11 @@
       <!-- Tính GPA section -->
     <div id="calculator-wrapper">
       <section class="gpa-calculator">
-        <!-- Bước 1: Thông tin chung -->
-        <div class="calc-step">
-          <h3><span class="step-badge">1</span> Thông tin chung</h3>
-      <!-- THÔNG TIN CHUNG -->
-    <div class="row calc-fields-row">
-
-    <!-- Năm học -->
-    <div class="col-12 col-md-4 mb-3">
-        <label for="academic-year">Năm học</label>
-        <select id="academic-year" class="form-control">
-            <option value="2026-2027">2026 - 2027</option>
-            <option value="2025-2026">2025 - 2026</option>
-            <option value="2024-2025">2024 - 2025</option>
-            <option value="2023-2024">2023 - 2024</option>
-       </select>
-    </div>
-
-    <!-- Học kỳ -->
-    <div class="col-12 col-md-4 mb-3">
-        <label for="semester">Học kỳ</label>
-        <select id="semester" class="form-control">
-            <option value="1">Học kỳ 1</option>
-            <option value="2">Học kỳ 2</option>
-            <option value="3">Học kỳ hè</option>
-        </select>
-    </div>
-
-    <!-- Sinh viên năm -->
-    <div class="col-12 col-md-4 mb-3">
-        <label for="student-year">Sinh viên năm</label>
-        <select id="student-year" class="form-control">
-            <option value="1">Năm 1</option>
-            <option value="2">Năm 2</option>
-            <option value="3">Năm 3</option>
-            <option value="4">Năm 4</option>
-        </select>
-    </div>
-          </div>
-        </div>
-
-        <!-- Bước 2: Danh sách môn học -->
+    
+        <!-- Bước 1: Danh sách môn học -->
         <div class="calc-step calc-step--courses">
           <div class="calc-heading">
-            <h3><span class="step-badge">2</span> Danh sách môn học</h3>
+            <h3><span class="step-badge">1</span> Danh sách môn học</h3>
           </div>
         <div class="calc-table-wrapper table-responsive"  role="region" aria-label="Bảng nhập điểm các môn học" tabindex="0">
           <table class="calc-table">
@@ -189,12 +151,12 @@
     <!-- JavaScript sẽ cập nhật nội dung thông báo -->
 </div>
 
-        <!-- MỤC 3: KẾT QUẢ GPA -->
+        <!-- MỤC 2: KẾT QUẢ GPA -->
         <div class="calc-step calc-step--result">
 
           <div class="calc-heading">
             <h3>
-              <span class="step-badge">3</span>
+              <span class="step-badge">2</span>
               Kết quả GPA
             </h3>
           </div>
@@ -267,11 +229,11 @@
         </div>
 
 
-<!-- MỤC 4: BẢNG ĐIỂM CHI TIẾT -->
+<!-- MỤC 3: BẢNG ĐIỂM CHI TIẾT -->
 <div class="calc-step calc-step--detail">
     <div class="calc-heading">
         <h3>
-            <span class="step-badge">4</span>
+            <span class="step-badge">3</span>
             Bảng điểm chi tiết
         </h3>
     </div>

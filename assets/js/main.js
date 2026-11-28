@@ -1030,6 +1030,178 @@ function updateBreadcrumb() {
 
 
     /* ==========================================
+    11. QUẢN LÝ TRẠNG THÁI ĐĂNG NHẬP EDUTRACK
+    ========================================== */
+
+    function createEduTrackAuth() {
+
+        let currentUser = null;
+        let initialized = false;
+
+        // Phát thông báo khi trạng thái đăng nhập thay đổi
+        function notifyAuthChanged() {
+
+            window.dispatchEvent(
+                new CustomEvent("et:auth-changed", {
+                    detail: {
+                        user: currentUser,
+                        isLoggedIn: Boolean(currentUser)
+                    }
+                })
+            );
+        }
+
+        // =====================================
+        // KIỂM TRA PHIÊN ĐĂNG NHẬP
+        // GET /api/auth/me
+        // =====================================
+
+        async function refresh() {
+
+            try {
+
+                const response = await fetch(
+                    getURL("api/auth/me"),
+                    {
+                        method: "GET",
+
+                        credentials: "same-origin",
+
+                        headers: {
+                            "Accept": "application/json"
+                        },
+
+                        cache: "no-store"
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Không thể kiểm tra phiên đăng nhập."
+                    );
+                }
+
+                const result = await response.json();
+
+                currentUser =
+                    result.user &&
+                    typeof result.user === "object"
+                        ? result.user
+                        : null;
+
+            } catch (error) {
+
+                console.error(
+                    "Lỗi kiểm tra trạng thái đăng nhập:",
+                    error
+                );
+
+                currentUser = null;
+
+            } finally {
+
+                initialized = true;
+
+                notifyAuthChanged();
+            }
+
+            return currentUser;
+        }
+
+        // =====================================
+        // KIỂM TRA ĐÃ ĐĂNG NHẬP CHƯA
+        // =====================================
+
+        function isLoggedIn() {
+            return Boolean(currentUser);
+        }
+
+        // =====================================
+        // LẤY THÔNG TIN TÀI KHOẢN
+        // =====================================
+
+        function getUser() {
+            return currentUser;
+        }
+
+        // =====================================
+        // KIỂM TRA ĐÃ TẢI TRẠNG THÁI CHƯA
+        // =====================================
+
+        function isReady() {
+            return initialized;
+        }
+
+        // =====================================
+        // ĐĂNG XUẤT
+        // POST /api/auth/logout
+        // =====================================
+
+        async function logout() {
+
+            const response = await fetch(
+                getURL("api/auth/logout"),
+                {
+                    method: "POST",
+
+                    credentials: "same-origin",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+
+                    body: JSON.stringify({})
+                }
+            );
+
+            const result = await response.json()
+                .catch(() => ({}));
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.message ||
+                    "Đăng xuất không thành công."
+                );
+            }
+
+            currentUser = null;
+            initialized = true;
+
+            notifyAuthChanged();
+
+            return result;
+        }
+
+        return {
+            refresh,
+            isLoggedIn,
+            getUser,
+            isReady,
+            logout
+        };
+    }
+
+    // =====================================
+    // KHỞI TẠO AUTH
+    // =====================================
+
+    async function initializeAuth() {
+
+        if (
+            !window.EduTrackAuth ||
+            typeof window.EduTrackAuth.refresh !== "function"
+        ) {
+
+            window.EduTrackAuth = createEduTrackAuth();
+        }
+
+        // Phải kiểm tra tài khoản trước khi tạo Header
+        await window.EduTrackAuth.refresh();
+    }
+
+    /* ==========================================
     11. TÀI KHOẢN TRÊN HEADER
     ========================================== */
 
@@ -1048,31 +1220,112 @@ function updateBreadcrumb() {
             ".et-topbar-account .et-logout-btn"
         );
 
+        const toggle = navRoot.querySelector(
+            ".et-topbar-account-toggle"
+        );
+
         const auth = window.EduTrackAuth;
 
         const loggedIn =
             typeof auth?.isLoggedIn === "function" &&
-            auth.isLoggedIn() === true;
+            auth.isLoggedIn();
 
-        // Chưa đăng nhập: chỉ hiện Đăng nhập
-        if (guest) {
-            guest.hidden = loggedIn;
+        const currentUser =
+            typeof auth?.getUser === "function"
+                ? auth.getUser()
+                : null;
+
+        // =====================================
+        // HIỂN THỊ / ẨN THÀNH PHẦN TÀI KHOẢN
+        // =====================================
+
+        function setVisible(element, visible) {
+
+            if (!element) return;
+
+            element.hidden = !visible;
+
+            element.style.display =
+                visible ? "" : "none";
         }
 
-        // Đã đăng nhập: hiện Thông tin cá nhân
-        // và Đăng xuất
-        if (user) {
-            user.hidden = !loggedIn;
+        setVisible(guest, !loggedIn);
+
+        setVisible(user, loggedIn);
+
+        setVisible(
+            logout,
+            loggedIn &&
+            typeof auth?.logout === "function"
+        );
+
+        // =====================================
+        // LẤY TÊN NGƯỜI DÙNG
+        // =====================================
+
+        if (!loggedIn || !currentUser) return;
+
+        const fullName =
+            (currentUser.fullname || "").trim();
+
+        // =====================================
+        // TẠO CHỮ CÁI ĐẦU
+        // Nguyễn Văn An => NVA
+        // =====================================
+
+        let initials = "";
+
+        if (fullName) {
+
+            initials = fullName
+                .split(/\s+/)
+                .filter(Boolean)
+                .map(word => Array.from(word)[0])
+                .join("")
+                .slice(0, 3)
+                .toLocaleUpperCase("vi-VN");
+
+        } else if (currentUser.email) {
+
+            initials = Array.from(
+                currentUser.email
+            )[0].toLocaleUpperCase("vi-VN");
+
+        } else {
+
+            initials = "U";
         }
 
-        // Chỉ hiện nút đăng xuất khi có hàm logout
-        if (logout) {
-            logout.hidden =
-                !loggedIn ||
-                typeof auth?.logout !== "function";
+        // =====================================
+        // CẬP NHẬT CHỮ CÁI TRÊN HEADER
+        // =====================================
+
+        navRoot.querySelectorAll(
+            "[data-et-user-initials]"
+        ).forEach(element => {
+
+            element.textContent = initials;
+        });
+
+        // Nếu có nơi hiển thị họ tên đầy đủ
+        navRoot.querySelectorAll(
+            "[data-et-user-name]"
+        ).forEach(element => {
+
+            element.textContent =
+                fullName || currentUser.email || "Tài khoản";
+        });
+
+        // Hỗ trợ truy cập bằng bàn phím và trình đọc màn hình
+        if (toggle) {
+
+            toggle.setAttribute(
+                "aria-label",
+                "Tài khoản " +
+                (fullName || currentUser.email || "")
+            );
         }
     }
-
 
     // Khởi tạo menu tài khoản
     function initAccount() {
@@ -1329,7 +1582,14 @@ function loadFontAwesome() {
         registerInitialAssets();
 
         try {
+            // KIỂM TRA TRẠNG THÁI ĐĂNG NHẬP
+
+            await initializeAuth();
+
+            // =====================================
             // HEADER + SIDEBAR CHỈ TẢI MỘT LẦN
+            // =====================================
+
             await loadNavigation();
 
             updateActiveMenu();

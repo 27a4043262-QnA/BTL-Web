@@ -1069,6 +1069,19 @@ body.et-has-navigation.et-nav-expanded {
     transform: rotate(180deg);
 }
 
+/* Họ tên đầy đủ */
+.et-account-user-name {
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.et-topbar-account-toggle .fa-chevron-down {
+    font-size: 12px;
+    margin-left: 5px;
+    transition: transform 0.2s ease;
+}
+
 /* 3. Menu xổ xuống */
 
 .et-topbar-account-menu {

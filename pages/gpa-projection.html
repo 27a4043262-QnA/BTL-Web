@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/gpa-calculator.css">
     <script src="../assets/js/validation.js" defer></script>
+    <script src="../assets/js/learning-storage.js" defer></script>
     <script src="../assets/js/projection.js" defer></script>
     <link rel="stylesheet" href="../assets/css/chatbot.css">
     <script src="../assets/js/chatbot.js" defer></script>
@@ -226,12 +227,18 @@
                     </div>
 
                 </div>
-<div class = "projection-actions">
-<button type="button"
-        class="et-btn et-btn-primary projection-calculate-button">
-    <span aria-hidden="true">▦</span>
-    Tính toán dự phóng
-</button>
+<div class="projection-actions calc-actions">
+
+    <button type="button"
+            class="et-btn et-btn-outline projection-reset-button">
+        ↺ Làm mới
+    </button>
+
+    <button type="button"
+            class="et-btn et-btn-primary projection-calculate-button">
+        ▦ Tính toán dự phóng
+    </button>
+
 </div>
             </div>
         </section>
@@ -342,10 +349,10 @@
                 <!-- Nhãn trục -->
                 <g class="chart-axis">
                     <text x="40" y="34"  text-anchor="end">4.0</text>
-                    <text x="40" y="84"  text-anchor="end">3.5</text>
-                    <text x="40" y="134" text-anchor="end">3.0</text>
-                    <text x="40" y="184" text-anchor="end">2.5</text>
-                    <text x="40" y="234" text-anchor="end">2.0</text>
+                    <text x="40" y="84"  text-anchor="end">3.0</text>
+                    <text x="40" y="134" text-anchor="end">2.0</text>
+                    <text x="40" y="184" text-anchor="end">1.0</text>
+                    <text x="40" y="234" text-anchor="end">0.0</text>
                     <text x="90"  y="258" text-anchor="middle">HK trước</text>
                     <text x="310" y="258" text-anchor="middle">HK này</text>
                     <text x="540" y="258" text-anchor="middle">Mục tiêu</text>

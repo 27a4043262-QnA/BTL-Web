@@ -1,9 +1,6 @@
 
 "use strict";
-const GPA_COURSES_URL = new URL(
-    "../data/courses.json",
-    document.currentScript.src
-).href;
+const GPA_COURSES_URL = "/assets/data/courses.json";
 
 function initializeCalculator() {
     const V = window.EDUValidation;
@@ -201,6 +198,9 @@ function initializeCalculator() {
 
             V.clearFieldError(nameInput);
             V.clearFieldError(creditsInput);
+
+            // Môn học đã thay đổi
+            clearGPAResults();
 
             closeDropdown();
             nameInput.focus();
@@ -531,14 +531,14 @@ function initializeCalculator() {
             { min: 0,   letter: "F",  gpa: 0.0 }
         ];
 
-        return scale.find(item => score >= item.min);
-    }
+            return scale.find(item => score + 1e-9 >= item.min);    }
 
     // Đọc dữ liệu từ bảng HTML
     function readCourses() {
-        const rows = [...courseBody.querySelectorAll("tr")];
-        const courses = [];
-        let valid = true;
+    const rows = [...courseBody.querySelectorAll("tr")];
+    const courses = [];
+    const selectedCodes = new Set();
+    let valid = true;
 
         rows.forEach(row => {
             const inputs = [...row.querySelectorAll("input")];
@@ -575,6 +575,21 @@ if (!V.isRequired(code)) {
     }
 
     valid = false;
+}
+// Kiểm tra môn học bị trùng
+if (code) {
+    const normalizedCode = code.trim().toUpperCase();
+
+    if (selectedCodes.has(normalizedCode)) {
+        V.showFieldError(
+            nameInput,
+            "Môn học này đã được chọn."
+        );
+
+        valid = false;
+    } else {
+        selectedCodes.add(normalizedCode);
+    }
 }
 
 if (!V.isRequired(creditsInput.value)) {
@@ -678,7 +693,23 @@ scoreInputs.slice(0, 4).forEach(input => {
         cards[5].querySelector("strong").textContent =
             data.failed;
     }
+// Xóa kết quả GPA khi dữ liệu đầu vào thay đổi
+function clearGPAResults() {
 
+    summary.querySelectorAll(
+        ".result-gpa-card .result-card-value strong"
+    ).forEach(element => {
+        element.textContent = "-";
+    });
+
+    summary.querySelectorAll(
+        ".result-stat-card > strong"
+    ).forEach(element => {
+        element.textContent = "0";
+    });
+
+    detailBody.replaceChildren();
+}
     // Cập nhật bảng điểm chi tiết
     function renderDetails(results) {
         detailBody.replaceChildren();
@@ -722,6 +753,7 @@ const values = [
 
         courseBody.appendChild(newRow);
         updateRowNumbers();
+        clearGPAResults();
     }
 
     // Cập nhật STT và nhãn của nút xóa
@@ -835,6 +867,81 @@ const values = [
 
         scrollAnimationId = requestAnimationFrame(frame);
     }
+// Khởi tạo gợi ý môn học trước chức năng lưu GPA
+setupCourseSuggestions();
+
+
+// ==========================================
+// KHÔI PHỤC DỮ LIỆU GPA ĐÃ LƯU
+// ==========================================
+
+function restoreGPA(record) {
+
+    const { input, result } = record;
+
+    // Xóa các dòng môn học hiện tại
+    courseBody.replaceChildren();
+    // 3. Khôi phục từng môn học đã lưu
+    input.courses.forEach(course => {
+
+        const row = savedGpaRowTemplate.cloneNode(true);
+
+        const inputs = row.querySelectorAll("input");
+
+        // Tên môn học và mã môn
+        inputs[0].value = course.name;
+        inputs[0].dataset.courseCode = course.code;
+
+        // Số tín chỉ
+        inputs[1].value = course.credits;
+
+        // Khôi phục 4 đầu điểm
+        course.scores.forEach((score, index) => {
+            inputs[index + 2].value = score;
+        });
+
+        // Xóa thông báo lỗi nếu có
+        inputs.forEach(input => {
+            V.clearFieldError(input);
+        });
+
+        courseBody.appendChild(row);
+    });
+
+    // 4. Cập nhật số thứ tự
+    updateRowNumbers();
+
+    // 5. Khôi phục kết quả tổng quan
+    renderSummary(result);
+
+    // 6. Khôi phục bảng điểm chi tiết
+    renderDetails(result.results);
+
+    // 7. Cập nhật biểu tượng
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+}
+
+// Lưu cấu trúc hàng môn học ban đầu
+const savedGpaRowTemplate =
+    courseBody.querySelector("tr").cloneNode(true);
+
+// Khởi tạo chức năng lưu và khôi phục
+let gpaStorage = null;
+
+try {
+
+    gpaStorage = window.EDULearningStorage.mount(
+        "gpa",
+        calculateButton,
+        restoreGPA
+    );
+
+} catch (error) {
+
+    console.error("Lỗi khởi tạo lưu GPA:", error);
+}
 
 calculateButton.addEventListener("click", function () {
     const courses = readCourses();
@@ -846,7 +953,13 @@ calculateButton.addEventListener("click", function () {
 
     renderSummary(result);
     renderDetails(result.results);
-
+// Lưu kết quả GPA vào SQLite
+gpaStorage?.save(
+    {
+        courses: courses
+    },
+    result
+);
     // Tự động cuộn xuống Bảng điểm chi tiết
     const detailSection = calculator.querySelector(
         ".calc-step--detail"
@@ -879,6 +992,7 @@ courseBody.addEventListener("click", function (event) {
     }
 
     updateRowNumbers();
+    clearGPAResults();
 });
 
 /* Xóa thông báo lỗi khi người dùng nhập lại */
@@ -888,11 +1002,34 @@ courseBody.addEventListener("input", function (event) {
     if (!input || !courseBody.contains(input)) return;
 
     V.clearFieldError(input);
+
+    // Kết quả cũ không còn phù hợp
+    clearGPAResults();
 });
 
+// Khi thay đổi thông tin học kỳ
+calculator.addEventListener("change", function (event) {
+
+    if (event.target.matches(
+        "#academic-year, #semester, #student-year"
+    )) {
+        clearGPAResults();
+    }
+
+});
     // Làm mới bảng nhập liệu
-resetButton.addEventListener("click", function () {
-    // Giữ lại một dòng môn học để người dùng nhập tiếp
+resetButton.addEventListener("click", async function () {
+
+    if (calculateButton.disabled) return;
+
+    if (gpaStorage) {
+
+        const success = await gpaStorage.clear();
+
+        if (!success) return;
+    }
+
+    // Giữ nguyên toàn bộ code làm mới cũ phía dưới    // Giữ lại một dòng môn học để người dùng nhập tiếp
     const firstRow = courseBody.querySelector("tr");
 
     if (!firstRow) return;
@@ -911,17 +1048,12 @@ resetButton.addEventListener("click", function () {
     updateRowNumbers();
 
     // Xóa kết quả GPA cũ
-    summary.querySelectorAll(".result-gpa-card .result-card-value strong")
-        .forEach(element => element.textContent = "-");
-
-    summary.querySelectorAll(".result-stat-card > strong")
-        .forEach(element => element.textContent = "0");
-
-    detailBody.replaceChildren();
+    clearGPAResults();
 });
 
-// Khởi tạo gợi ý môn học từ JSON
-setupCourseSuggestions();
+// Tự động tải kết quả GPA khi mở trang
+gpaStorage?.load();
+
 }
 
 // Khởi tạo khi tải trực tiếp trang Tính GPA

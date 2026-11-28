@@ -20,6 +20,9 @@ function initializeProjection() {
     const calculateButton = projection.querySelector(
         ".projection-calculate-button"
     );
+    const resetButton = projection.querySelector(
+    ".projection-reset-button"
+);
     const actions = projection.querySelector(
         ".projection-section:nth-child(3) .projection-actions"
     );
@@ -455,6 +458,7 @@ function updateSemesterCredits() {
             updateSemesterCredits();
             updatePrerequisites();
             clearNotice();
+            clearResults();
 
             nameInput.focus();
         }
@@ -804,8 +808,8 @@ updatePrerequisites();
         }
 
         clearNotice();
-    });
-
+        clearResults();
+});
 
     // 5. Xóa môn học
 
@@ -830,16 +834,22 @@ courseBody.querySelectorAll("input").forEach(input => {
         updateSemesterCredits();
         updatePrerequisites();
         clearNotice();
+        clearResults();
     });
 
 
     // 6. Khi người dùng sửa dữ liệu, xóa lỗi cũ
     function handleInput(event) {
-        if (event.target.matches("input, select")) {
-            V.clearFieldError(event.target);
-            clearNotice();
-        }
+    if (event.target.matches("input, select")) {
+
+        V.clearFieldError(event.target);
+
+        clearNotice();
+
+        // Xóa kết quả và biểu đồ cũ
+        clearResults();
     }
+}
 
     projection.addEventListener("input", handleInput);
     projection.addEventListener("change", handleInput);
@@ -880,8 +890,9 @@ courseBody.addEventListener("change", function (event) {
 
     // 8. Đọc và kiểm tra toàn bộ dữ liệu dự phóng
     function readData() {
-        let valid = true;
-        const courses = [];
+    let valid = true;
+    const courses = [];
+    const selectedCodes = new Set();
 
         if (!checkField(
             currentInput,
@@ -935,6 +946,21 @@ if (!V.isRequired(name)) {
         "Vui lòng chọn môn từ danh sách gợi ý."
     );
     valid = false;
+}
+// Kiểm tra môn học bị trùng
+if (code) {
+    const normalizedCode = code.trim().toUpperCase();
+
+    if (selectedCodes.has(normalizedCode)) {
+        V.showFieldError(
+            nameInput,
+            "Môn học này đã được chọn."
+        );
+
+        valid = false;
+    } else {
+        selectedCodes.add(normalizedCode);
+    }
 }
 
             if (!checkField(
@@ -1023,7 +1049,7 @@ if (totalCredits !== Number(semesterInput.value)) {
             { min: 0,   letter: "F",  gpa: 0.0 }
         ];
 
-        return scale.find(item => score >= item.min);
+        return scale.find(item => score + 1e-9 >= item.min);
     }
 
     // Chuẩn hóa tên môn để tìm môn tiên quyết
@@ -1146,6 +1172,10 @@ const related = getPrerequisiteCourses(course.code);
 
             states.forEach((state, points) => {
                 choices.forEach(choice => {
+
+                    // Không đề xuất phương án trượt môn
+                    if (choice.gpa === 0) return;
+
                     const newPoints = points +
                         Math.round(choice.gpa * 2 * course.credits);
 
@@ -1533,6 +1563,194 @@ chart.setAttribute("hidden", "");
             requestAnimationFrame(animate);
     }
 
+// ==========================================
+// KHÔI PHỤC DỮ LIỆU DỰ PHÓNG GPA
+// ==========================================
+
+function restoreProjection(record) {
+
+    const { input, result } = record;
+
+    // 1. Khôi phục thông tin GPA
+    currentInput.value = input.currentGPA;
+
+    earnedInput.value = input.earnedCredits;
+
+    targetInput.value = input.targetGPA;
+
+    // 2. Xóa danh sách môn học hiện tại
+    courseBody.replaceChildren();
+
+    // 3. Khôi phục các môn học kỳ tới
+    input.courses.forEach(course => {
+
+        const row = template.cloneNode(true);
+
+        const nameInput = row.querySelector(
+            'input[type="text"]'
+        );
+
+        const creditInput = row.querySelector(
+            'input[type="number"]'
+        );
+
+        nameInput.value = course.name;
+
+        nameInput.dataset.courseCode = course.code;
+
+        creditInput.value = course.credits;
+
+        courseBody.appendChild(row);
+    });
+
+    // 4. Cập nhật danh sách và tổng tín chỉ
+    updateCourseRows();
+
+    updateSemesterCredits();
+
+    // 5. Tạo lại bảng môn tiên quyết
+    updatePrerequisites();
+
+    // 6. Khôi phục điểm môn tiên quyết
+    const savedScores = new Map(
+        (input.prerequisiteScores || []).map(item => [
+            normalizeCourseName(item.name),
+            item.score
+        ])
+    );
+
+    projection.querySelectorAll(
+        "#prerequisite-course-list tr"
+    ).forEach(row => {
+
+        const scoreInput = row.querySelector(
+            'input[type="number"]'
+        );
+
+        if (!scoreInput) return;
+
+        const name = normalizeCourseName(
+            row.cells[0].textContent
+        );
+
+        if (savedScores.has(name)) {
+            scoreInput.value = savedScores.get(name);
+        }
+    });
+
+    // 7. Khôi phục kết quả tổng quan
+    renderSummary(input, result);
+
+    // 8. Khôi phục bảng điểm đề xuất
+    renderCourses(input, result);
+
+    // 9. Hiện lại biểu đồ
+    chart.removeAttribute("hidden");
+
+    renderChart(input, result);
+
+    // 10. Cập nhật biểu tượng
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+}
+
+// Khởi tạo chức năng lưu dự phóng
+let projectionStorage = null;
+
+try {
+
+    projectionStorage = window.EDULearningStorage.mount(
+        "projection",
+        calculateButton,
+        restoreProjection
+    );
+
+} catch (error) {
+
+    console.error(
+        "Lỗi khởi tạo lưu dự phóng:",
+        error
+    );
+}
+
+// ==========================================
+// NÚT LÀM MỚI DỰ PHÓNG GPA
+// ==========================================
+
+
+resetButton?.addEventListener("click", async function () {
+
+    // Không làm mới khi đang tải hoặc lưu dữ liệu
+    if (calculateButton.disabled) return;
+
+    // Xóa dữ liệu dự phóng đã lưu trong SQLite
+    if (projectionStorage) {
+
+        const success = await projectionStorage.clear();
+
+        // Nếu xóa thất bại thì giữ nguyên dữ liệu
+        if (!success) return;
+    }
+
+    // 1. Tạo lại một dòng môn học trống
+    const emptyRow = template.cloneNode(true);
+
+    emptyRow.querySelectorAll("input").forEach(input => {
+        input.value = "";
+        delete input.dataset.courseCode;
+        V.clearFieldError(input);
+    });
+
+    // Khôi phục biểu tượng xóa môn học
+    const deleteButton = emptyRow.querySelector(
+        ".projection-icon-button"
+    );
+
+    deleteButton.innerHTML =
+        '<i data-lucide="trash-2" aria-hidden="true"></i>';
+
+    // 2. Xóa danh sách môn học cũ
+    courseBody.replaceChildren(emptyRow);
+
+    // 3. Xóa thông tin GPA và tín chỉ
+    [
+        currentInput,
+        earnedInput,
+        targetInput,
+        semesterInput
+    ].forEach(input => {
+        input.value = "";
+        V.clearFieldError(input);
+    });
+
+    // 4. Cập nhật lại danh sách môn học
+    updateCourseRows();
+
+    // 5. Cập nhật tổng số tín chỉ
+    updateSemesterCredits();
+
+    // 6. Xóa danh sách môn tiên quyết
+    updatePrerequisites();
+
+    // 7. Xóa toàn bộ kết quả và ẩn biểu đồ
+    clearResults();
+
+    // 8. Xóa thông báo cũ
+    clearNotice();
+
+    // 9. Dừng hiệu ứng cuộn nếu đang chạy
+    if (projectionScrollId !== null) {
+        cancelAnimationFrame(projectionScrollId);
+        projectionScrollId = null;
+    }
+
+    // 10. Cập nhật biểu tượng
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+});
+
     // 16. Nút Tính toán dự phóng
     calculateButton.addEventListener("click", function () {
         clearNotice();
@@ -1584,6 +1802,33 @@ chart.removeAttribute("hidden");
 // Vẽ biểu đồ từ kết quả dự phóng
 renderChart(data, result);
 
+
+// Lấy điểm các môn tiên quyết
+const prerequisiteScores = Array.from(
+    projection.querySelectorAll(
+        "#prerequisite-course-list tr"
+    )
+)
+.filter(row =>
+    row.querySelector('input[type="number"]')
+)
+.map(row => ({
+    name: row.cells[0].textContent.trim(),
+
+    score: Number(
+        row.querySelector('input[type="number"]').value
+    )
+}));
+
+// Tự động lưu toàn bộ dữ liệu
+projectionStorage?.save(
+    {
+        ...data,
+        prerequisiteScores
+    },
+    result
+);
+
 // Cuộn mượt xuống mục Kết quả tổng quan
 scrollToProjectionResults();
 
@@ -1600,8 +1845,13 @@ updateCourseRows();
 updateSemesterCredits();
 updatePrerequisites();
 clearResults();
-// Khởi tạo autocomplete từ courses.json
-setupProjectionAutocomplete();
+
+// Tải danh sách môn học và môn tiên quyết
+const catalogReady = setupProjectionAutocomplete();
+
+// Khôi phục dữ liệu sau khi tải danh sách môn
+projectionStorage?.load(catalogReady);
+
 }
 
 if (document.readyState === "loading") {
