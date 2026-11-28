@@ -83,7 +83,17 @@ module.exports = function (db, sameOrigin) {
         )) {
             return false;
         }
+        // Không cho phép lưu danh sách môn học trùng mã
+        const courseCodes = input.courses.map(course =>
+            course.code.trim().toUpperCase()
+        );
 
+        if (
+            courseCodes.some(code => !code) ||
+            new Set(courseCodes).size !== courseCodes.length
+        ) {
+            return false;
+        }
         if (kind === "gpa") {
             return input.courses.every(course =>
                 Array.isArray(course.scores) &&

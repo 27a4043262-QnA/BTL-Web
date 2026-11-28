@@ -458,6 +458,7 @@ function updateSemesterCredits() {
             updateSemesterCredits();
             updatePrerequisites();
             clearNotice();
+            clearResults();
 
             nameInput.focus();
         }
@@ -807,8 +808,8 @@ updatePrerequisites();
         }
 
         clearNotice();
-    });
-
+        clearResults();
+});
 
     // 5. Xóa môn học
 
@@ -833,16 +834,22 @@ courseBody.querySelectorAll("input").forEach(input => {
         updateSemesterCredits();
         updatePrerequisites();
         clearNotice();
+        clearResults();
     });
 
 
     // 6. Khi người dùng sửa dữ liệu, xóa lỗi cũ
     function handleInput(event) {
-        if (event.target.matches("input, select")) {
-            V.clearFieldError(event.target);
-            clearNotice();
-        }
+    if (event.target.matches("input, select")) {
+
+        V.clearFieldError(event.target);
+
+        clearNotice();
+
+        // Xóa kết quả và biểu đồ cũ
+        clearResults();
     }
+}
 
     projection.addEventListener("input", handleInput);
     projection.addEventListener("change", handleInput);
@@ -883,8 +890,9 @@ courseBody.addEventListener("change", function (event) {
 
     // 8. Đọc và kiểm tra toàn bộ dữ liệu dự phóng
     function readData() {
-        let valid = true;
-        const courses = [];
+    let valid = true;
+    const courses = [];
+    const selectedCodes = new Set();
 
         if (!checkField(
             currentInput,
@@ -938,6 +946,21 @@ if (!V.isRequired(name)) {
         "Vui lòng chọn môn từ danh sách gợi ý."
     );
     valid = false;
+}
+// Kiểm tra môn học bị trùng
+if (code) {
+    const normalizedCode = code.trim().toUpperCase();
+
+    if (selectedCodes.has(normalizedCode)) {
+        V.showFieldError(
+            nameInput,
+            "Môn học này đã được chọn."
+        );
+
+        valid = false;
+    } else {
+        selectedCodes.add(normalizedCode);
+    }
 }
 
             if (!checkField(
@@ -1026,7 +1049,7 @@ if (totalCredits !== Number(semesterInput.value)) {
             { min: 0,   letter: "F",  gpa: 0.0 }
         ];
 
-        return scale.find(item => score >= item.min);
+        return scale.find(item => score + 1e-9 >= item.min);
     }
 
     // Chuẩn hóa tên môn để tìm môn tiên quyết
@@ -1149,6 +1172,10 @@ const related = getPrerequisiteCourses(course.code);
 
             states.forEach((state, points) => {
                 choices.forEach(choice => {
+
+                    // Không đề xuất phương án trượt môn
+                    if (choice.gpa === 0) return;
+
                     const newPoints = points +
                         Math.round(choice.gpa * 2 * course.credits);
 
