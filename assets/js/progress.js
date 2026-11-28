@@ -10,11 +10,11 @@
    - Chỉ click checkbox mới đổi trạng thái
    - Xem kiến thức, ví dụ và bài thực hành
    - Xem gợi ý đáp án
-   - Lưu tiến độ bằng localStorage
+   - Lưu tiến độ lộ trình trong backend theo tài khoản
    - Hỗ trợ lộ trình từ trang Tư vấn
    ===================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
     const main = document.querySelector(
         "[data-progress-page]"
@@ -32,6 +32,64 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     const viewMode = params.get("view");
+    let syncedMemory = null;
+    let demoMemory = null;
+
+    async function renderMentorProposalNotice() {
+        if (PAGE !== "dashboard" || viewMode === "demo") return;
+
+        try {
+            const response = await fetch("/api/advising/roadmaps", {
+                credentials: "same-origin",
+                cache: "no-store"
+            });
+            if (!response.ok) return;
+
+            const payload = await response.json();
+            const proposals = Array.isArray(payload.roadmaps)
+                ? payload.roadmaps.filter(item => item.status === "offered")
+                : [];
+            proposals.sort((a, b) =>
+                Date.parse(b.createdAt || "") - Date.parse(a.createdAt || "")
+            );
+            const proposal = proposals[0];
+            if (!proposal) return;
+
+            const container = document.createElement("section");
+            container.className = "ep-mentor-proposal";
+            container.setAttribute("role", "status");
+            container.setAttribute("aria-live", "polite");
+
+            const copy = document.createElement("div");
+            const title = document.createElement("h2");
+            title.textContent = "Mentor đã gửi đề xuất V2 cần bạn phản hồi";
+            copy.appendChild(title);
+
+            const description = document.createElement("p");
+            description.textContent =
+                "Mở đề xuất để xem lộ trình mới và chấp nhận hoặc từ chối. " +
+                "Lộ trình hiện tại vẫn được giữ cho đến khi bạn chọn.";
+            copy.appendChild(description);
+
+            if (proposal.mentorNote) {
+                const note = document.createElement("p");
+                note.className = "ep-mentor-proposal-note";
+                note.textContent = `Lời nhắn của mentor: ${proposal.mentorNote}`;
+                copy.appendChild(note);
+            }
+
+            const link = document.createElement("a");
+            link.className = "ep-button ep-button-primary";
+            link.href = "advising-contact.html";
+            link.textContent = "Xem và phản hồi đề xuất →";
+
+            container.append(copy, link);
+            const heading = main.querySelector(".ep-page-heading");
+            if (heading) heading.insertAdjacentElement("afterend", container);
+        } catch (_) {
+            // Progress should remain usable if the advising endpoint is unavailable.
+        }
+    }
 
     /* =====================================================
        1. DỮ LIỆU MINH HỌA
@@ -895,25 +953,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function readStorage(key) {
-        try {
-            const value = localStorage.getItem(key);
-
-            return value ? JSON.parse(value) : null;
-        } catch (error) {
-            return null;
-        }
+        return key === SYNC_KEY ? syncedMemory : (key === DEMO_KEY ? demoMemory : null);
     }
 
     function writeStorage(key, value) {
-        try {
-            localStorage.setItem(
-                key,
-                JSON.stringify(value)
-            );
-            return true;
-        } catch (error) {
-            return false;
-        }
+        if (key === DEMO_KEY) { demoMemory = value; return true; }
+        if (key !== SYNC_KEY || !value?.roadmapId) return false;
+        syncedMemory = value;
+        fetch("/api/progress/roadmap", {
+            method: "PUT", credentials: "same-origin",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ roadmapId: value.roadmapId, progress: value })
+        }).then(response => {
+            if (!response.ok) throw new Error("Không lưu được tiến độ trên máy chủ.");
+        }).catch(() => {
+            const status = byId("ep-live-status");
+            if (status) status.textContent = "Không lưu được tiến độ lên máy chủ. Hãy thử lại.";
+        });
+        return true;
     }
 
     function cloneDemo() {
@@ -996,6 +1053,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return {
             source: "synced",
+            roadmapId: saved.roadmapId,
             title: String(
                 saved.title || "Lộ trình từ trang Tư vấn"
             ),
@@ -2322,7 +2380,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (status) {
                 status.textContent =
                     "Không lưu được tiến độ. " +
-                    "Hãy kiểm tra bộ nhớ trình duyệt.";
+                    "Hãy kiểm tra kết nối hoặc tải lại trang.";
             }
 
             return;
@@ -2355,6 +2413,20 @@ document.addEventListener("DOMContentLoaded", () => {
        16. KHỞI TẠO
        ===================================================== */
 
+    try {
+        const response = await fetch("/api/progress/roadmap", { credentials: "same-origin" });
+        if (response.ok) {
+            const payload = await response.json();
+            syncedMemory = payload.roadmap;
+        } else if (response.status === 401) {
+            const status = byId("ep-live-status");
+            if (status) status.textContent = "Đăng nhập để đồng bộ tiến độ với tài khoản.";
+        }
+    } catch (_) {
+        const status = byId("ep-live-status");
+        if (status) status.textContent = "Không thể tải tiến độ từ máy chủ.";
+    }
+
     if (PAGE === "dashboard") {
         renderDashboard();
     }
@@ -2363,23 +2435,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderDetail();
     }
 
-    /* =====================================================
-       17. ĐỒNG BỘ KHI DỮ LIỆU ĐỔI Ở TAB KHÁC
-       ===================================================== */
-
-    window.addEventListener("storage", event => {
-        if (
-            event.key !== DEMO_KEY &&
-            event.key !== SYNC_KEY
-        ) {
-            return;
-        }
-
-        if (PAGE === "dashboard") {
-            renderDashboard();
-        } else if (PAGE === "detail") {
-            renderDetail();
-        }
-    });
+    // Load mentor proposals in the background so existing progress UI is not delayed.
+    void renderMentorProposalNotice();
 
 });

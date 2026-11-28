@@ -1,1229 +1,180 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-          content="EduTrack hỗ trợ sinh viên đánh giá năng lực và xây dựng lộ trình học tập cá nhân hóa.">
-
-    <title>EduTrack - Tư vấn học tập</title>
-
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="../assets/css/main.css">
-
-    <link rel="stylesheet" href="../assets/css/advising-contact.css">
-
-    <script src="../assets/js/advising-contact.js" defer></script>
-    <link rel="stylesheet" href="../assets/css/chatbot.css">
-    <script src="../assets/js/chatbot.js" defer></script>
-    <script src="../assets/js/main.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kiểm tra năng lực theo môn, phân tích trọng số kiến thức và thiết kế lộ trình GPA tại EduTrack.">
+  <title>Tư vấn lộ trình | EduTrack</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/advising-contact.css">
+  <link rel="stylesheet" href="../assets/css/chatbot.css">
+  <script src="../assets/js/advising-contact.js" defer></script>
+  <script src="../assets/js/chatbot.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
 </head>
-
 <body>
-    <!-- ================= MAIN ================= -->
-    <main id="main-content" class="advising-dashboard">
-
-        <!-- =========================================
-             TRẠNG THÁI 1: CHƯA CÓ DỮ LIỆU GPA
-             ========================================= -->
-        <div id="state-1-no-data"
-             class="advising-state"
-             data-state="1"
-             hidden>
-
-            <section class="hero-banner hero-banner-centered">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <span class="hero-eyebrow">
-                            TƯ VẤN LỘ TRÌNH
-                        </span>
-
-                        <h1>Tư vấn học tập</h1>
-
-                        <p>
-                            Đánh giá năng lực, phân tích kết quả
-                            và xây dựng lộ trình học tập cá nhân hóa
-                            dựa trên mục tiêu từ Dự phóng GPA.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Chưa có dữ liệu -->
-            <section class="dashboard-card card empty-state-card">
-                <div class="empty-state-content">
-                    <div class="empty-icon-wrapper" aria-hidden="true">
-                        🎓📋
-                    </div>
-
-                    <h2>Bạn chưa có dữ liệu từ Dự phóng GPA!</h2>
-
-                    <p>
-                        Để nhận được tư vấn học tập cá nhân hóa,
-                        hãy thực hiện Dự phóng GPA và chọn các môn
-                        bạn muốn cải thiện.
-                    </p>
-
-                    <a class="et-action-primary et-btn-large"
-                       href="gpa-calculator.html">
-                        Dự phóng GPA ngay <span aria-hidden="true">➜</span>
-                    </a>
-                </div>
-            </section>
-
-            <!-- Tổng quan tính năng -->
-            <section class="dashboard-card card feature-overview-card">
-                <h2>Tư vấn có thể giúp bạn những gì?</h2>
-
-                <div class="row et-feature-grid">
-
-                    <article class="col-12 col-sm-6 col-xl-3 mb-3">
-                        <div class="feature-box feature-blue h-100">
-                            <div class="box-icon icon-blue" aria-hidden="true">
-                                📊
-                            </div>
-                            <h3>Đánh giá năng lực hiện tại</h3>
-                        </div>
-                    </article>
-
-                    <article class="col-12 col-sm-6 col-xl-3 mb-3">
-                        <div class="feature-box feature-green h-100">
-                            <div class="box-icon icon-green" aria-hidden="true">
-                                🎯
-                            </div>
-                            <h3>Phân tích điểm mạnh, điểm yếu</h3>
-                        </div>
-                    </article>
-
-                    <article class="col-12 col-sm-6 col-xl-3 mb-3">
-                        <div class="feature-box feature-purple h-100">
-                            <div class="box-icon icon-purple" aria-hidden="true">
-                                🛣️
-                            </div>
-                            <h3>Đề xuất lộ trình học tập cá nhân hóa</h3>
-                        </div>
-                    </article>
-
-                    <article class="col-12 col-sm-6 col-xl-3 mb-3">
-                        <div class="feature-box feature-orange h-100">
-                            <div class="box-icon icon-orange" aria-hidden="true">
-                                📚
-                            </div>
-                            <h3>Gợi ý tài liệu và phương pháp học</h3>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            
+  <!-- Header và Sidebar được main.js tải chung. Chỉ có MỘT main. -->
+  <main id="main-content" class="et-deep-page">
+    <!-- data-advising-deep đặt trên phần tử con vì main.js chỉ thay innerHTML/class khi chuyển trang. -->
+    <div class="et-deep-container" data-advising-deep>
+      <header class="et-deep-header">
+        <div>
+          <p class="et-deep-eyebrow">EDUTRACK · TƯ VẤN LỘ TRÌNH</p>
         </div>
+      </header>
 
-        <!-- =========================================
-             TRẠNG THÁI 2: ĐÃ DỰ PHÓNG GPA
-             CHƯA HOÀN THÀNH BÀI TEST
-             ========================================= -->
-        <div id="state-2-has-data"
-             class="advising-state"
-             data-state="2" hidden>
-
-            <section class="hero-banner">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <span class="hero-eyebrow">
-                            TƯ VẤN LỘ TRÌNH
-                        </span>
-
-                        <h1>Tư vấn học tập</h1>
-
-                        <p>
-                            Dựa trên các môn bạn đã chọn từ Dự phóng GPA,
-                            hãy hoàn thành bài test năng lực để nhận tư vấn
-                            chính xác hơn.
-                        </p>
-                    </div>
-                </div>
-
-                <ol class="stepper-bar" aria-label="Các bước tư vấn">
-                    <li class="step-item active" aria-current="step">
-                        <span class="step-number">1</span>
-                        <span class="step-label">Làm bài test</span>
-                    </li>
-
-                    <li class="step-item">
-                        <span class="step-number">2</span>
-                        <span class="step-label">Phân tích kết quả</span>
-                    </li>
-
-                    <li class="step-item">
-                        <span class="step-number">3</span>
-                        <span class="step-label">Nhận lộ trình</span>
-                    </li>
-
-                    <li class="step-item">
-                        <span class="step-number">4</span>
-                        <span class="step-label">Chat với trợ lý</span>
-                    </li>
-                </ol>
-            </section>
-
-            <!-- Bài test -->
-            <section class="dashboard-card card">
-                <div class="card-header-step">
-                    <span class="step-badge" aria-hidden="true">1</span>
-                    <h2>Làm bài test năng lực</h2>
-                </div>
-
-                <p class="section-desc">
-                    Hãy hoàn thành bài test cho từng môn dưới đây.
-                    Kết quả sẽ giúp hệ thống đánh giá năng lực hiện tại
-                    và đưa ra lộ trình phù hợp.
-                </p>
-
-                <div class="subject-results-carousel" data-carousel
-                     aria-label="Danh sách bài test">
-                    <button
-                        type="button"
-                        class="subject-carousel-arrow carousel-prev"
-                        data-carousel-prev
-                        aria-label="Xem môn trước">
-                        <span aria-hidden="true">‹</span>
-                    </button>                  
-
-                    <div class="subject-results-viewport">
-                        <div class="subject-results-track">
-
-                            <article class="subject-card-test">
-                                <h3>Cơ sở dữ liệu</h3>
-                                <p>
-                                    Kiến thức SQL, truy vấn,
-                                    thiết kế và quản trị CSDL.
-                                </p>
-
-                                <div class="test-progress-bar"
-                                     role="progressbar"
-                                     aria-label="Tiến độ bài test Cơ sở dữ liệu"
-                                     aria-valuemin="0"
-                                     aria-valuemax="20"
-                                     aria-valuenow="0">
-                                    <div class="fill" style="width:0%"></div>
-                                </div>
-
-                                <div class="test-count">0/20 câu hỏi</div>
-
-                                <button type="button"
-                                        class="et-action-primary btn-full"
-                                        data-notice="Bài test Cơ sở dữ liệu đang được xây dựng. Đây là màn hình minh họa của trang Tư vấn.">
-                                    Bắt đầu làm bài
-                                </button>
-                            </article>
-
-                            <article class="subject-card-test">
-                                <h3>Lập trình C#</h3>
-                                <p>
-                                    Lập trình hướng đối tượng,
-                                    C# cơ bản và nâng cao.
-                                </p>
-
-                                <div class="test-progress-bar"
-                                     role="progressbar"
-                                     aria-label="Tiến độ bài test Lập trình C#"
-                                     aria-valuemin="0"
-                                     aria-valuemax="20"
-                                     aria-valuenow="0">
-                                    <div class="fill" style="width:0%"></div>
-                                </div>
-
-                                <div class="test-count">0/20 câu hỏi</div>
-
-                                <button type="button"
-                                        class="et-action-primary btn-full"
-                                        data-notice="Bài test Lập trình C# đang được xây dựng. Đây là màn hình minh họa của trang Tư vấn.">
-                                    Bắt đầu làm bài
-                                </button>
-                            </article>
-
-                            <article class="subject-card-test">
-                                <h3>Phân tích hệ thống</h3>
-                                <p>
-                                    Phân tích yêu cầu, UML
-                                    và thiết kế hệ thống.
-                                </p>
-
-                                <div class="test-progress-bar"
-                                     role="progressbar"
-                                     aria-label="Tiến độ bài test Phân tích hệ thống"
-                                     aria-valuemin="0"
-                                     aria-valuemax="20"
-                                     aria-valuenow="0">
-                                    <div class="fill" style="width:0%"></div>
-                                </div>
-
-                                <div class="test-count">0/20 câu hỏi</div>
-
-                                <button type="button"
-                                        class="et-action-primary btn-full"
-                                        data-notice="Bài test Phân tích hệ thống đang được xây dựng. Đây là màn hình minh họa của trang Tư vấn.">
-                                    Bắt đầu làm bài
-                                </button>
-                            </article>
-                        </div>
-                    </div>
-
+      
+        <nav class="et-deep-steps" aria-label="Các bước tư vấn lộ trình">
+            <ol>
+                <li data-step="quiz" class="is-active">
                     <button type="button"
-                            class="subject-carousel-arrow carousel-next"
-                            data-carousel-next
-                            aria-label="Xem môn tiếp theo">
-                        <span aria-hidden="true">›</span>
+                            class="et-deep-step-btn"
+                            data-action="go-quiz">
+                        <span>1</span> Kiểm tra năng lực
                     </button>
-                </div>
+                </li>
 
-                <p class="sr-only" aria-live="polite"
-                   data-carousel-status></p>
-
-                <div class="alert alert-info test-footer-notice"
-                     role="status">
-                    <span class="info-icon" aria-hidden="true">ℹ️</span>
-
-                    <span>
-                        Vui lòng hoàn thành tất cả bài test để xem
-                        kết quả phân tích và nhận lộ trình học tập.
-                    </span>
-
-                    <button class="et-btn-disabled"
-                            type="button"
-                            disabled>
-                        Xem kết quả phân tích ➜
+                <li data-step="result">
+                    <button type="button"
+                            class="et-deep-step-btn"
+                            data-action="go-result">
+                        <span>2</span> Phân tích
                     </button>
-                </div>
-            </section>
+                </li>
 
-            <!-- Kết quả bị khóa -->
-            <section class="dashboard-card card locked-card">
-                <div class="card-header-step">
-                    <span class="step-badge disabled" aria-hidden="true">2</span>
-                    <h2>Kết quả phân tích &amp; đánh giá năng lực</h2>
-                </div>
+                <li data-step="roadmap">
+                    <button type="button"
+                            class="et-deep-step-btn"
+                            data-action="return-roadmap">
+                        <span>3</span> Lộ trình
+                    </button>
+                </li>
+            </ol>
+        </nav>
 
-                <div class="locked-message">
-                    🔒 Hoàn thành tất cả bài test ở mục 1
-                    để xem kết quả phân tích.
-                </div>
-            </section>
 
-            <!-- Lộ trình bị khóa -->
-            <section class="dashboard-card card locked-card">
-                <div class="card-header-step">
-                    <span class="step-badge disabled" aria-hidden="true">3</span>
-                    <h2>Lộ trình học tập cá nhân hóa</h2>
-                </div>
+      <p class="et-deep-feedback" data-feedback role="status" aria-live="polite" hidden></p>
 
-                <div class="locked-message">
-                    🔒 Kết quả phân tích sẽ được hiển thị tại đây
-                    sau khi bạn hoàn thành bài test.
-                </div>
-            </section>
+      <section class="et-deep-panel et-deep-empty" data-no-forecast hidden>
+        <span class="et-deep-index">BẮT ĐẦU TỪ DỰ PHÓNG</span>
+        <h2>Chưa có môn học để kiểm tra</h2>
+        <p>Hãy hoàn thành và lưu một lần dự phóng GPA. Danh sách môn và điểm mục tiêu sẽ được chuyển sang đây tự động.</p>
+        <a class="et-deep-btn et-deep-btn-primary" href="gpa-projection.html">Mở Dự phóng GPA →</a>
+      </section>
 
-            <!-- Chi tiết môn bị khóa -->
-            <section class="dashboard-card card locked-card">
-                <div class="card-header-step">
-                    <span class="step-badge disabled" aria-hidden="true">4</span>
-                    <h2>Chi tiết từng môn</h2>
-                </div>
-
-                <div class="locked-message">
-                    🔒 Hoàn thành bài test để xem gợi ý tài liệu
-                    và phương pháp học.
-                </div>
-            </section>
-
-        
+      <!-- BƯỚC 1: danh sách môn lấy tự động từ dự phóng mới nhất -->
+      <section class="et-deep-panel" data-view="quiz" aria-labelledby="et-quiz-title" hidden>
+        <div class="et-deep-section-heading">
+          <span class="et-deep-index">01</span>
+          <div>
+            <h2 id="et-quiz-title">Kiểm tra năng lực theo môn đã dự phóng</h2>
+            <p>Câu hỏi được ghép theo mã môn; nếu chưa có bộ mẫu, Gemini tạo bộ chẩn đoán. Bài kiểm tra không thay thế đề cương chính thức.</p>
+          </div>
         </div>
-
-        <!-- =========================================
-             TRẠNG THÁI 3: ĐÃ HOÀN THÀNH BÀI TEST
-             ========================================= -->
-        <div id="state-3-completed"
-             class="advising-state"
-             data-state="3" >
-
-            <section class="hero-banner">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <span class="hero-eyebrow">
-                            TƯ VẤN LỘ TRÌNH
-                        </span>
-
-                        <h1>Tư vấn học tập</h1>
-
-                        <p>
-                            Dựa trên kết quả bài test năng lực của bạn
-                            và mục tiêu từ Dự phóng GPA, EduTrack đã
-                            phân tích và xây dựng lộ trình học tập phù hợp.
-                        </p>
-                    </div>
-                </div>
-
-                <ol class="stepper-bar" aria-label="Các bước tư vấn">
-                    <li class="step-item completed">
-                        <span class="step-number">✓</span>
-                        <span class="step-label">Làm bài test</span>
-                    </li>
-
-                    <li class="step-item completed">
-                        <span class="step-number">✓</span>
-                        <span class="step-label">Phân tích kết quả</span>
-                    </li>
-
-                    <li class="step-item completed">
-                        <span class="step-number">✓</span>
-                        <span class="step-label">Nhận lộ trình</span>
-                    </li>
-
-                    <li class="step-item active" aria-current="step">
-                        <span class="step-number">4</span>
-                        <span class="step-label">Chat với trợ lý</span>
-                    </li>
-                </ol>
-            </section>
-
-            <!-- ================= KẾT QUẢ TEST ================= -->
-            <section class="dashboard-card card">
-                <div class="card-header-flex">
-                    <div class="card-header-step">
-                        <span class="step-badge" aria-hidden="true">1</span>
-                        <h2>Kết quả bài test</h2>
-                    </div>
-
-                    <button type="button"
-                            class="et-action-outline et-btn-small"
-                            data-notice="Chức năng làm lại bài test đang được phát triển. Điểm trên trang hiện là dữ liệu minh họa.">
-                        🔄 Làm lại bài test
-                    </button>
-                </div>
-
-                <div class="subject-results-carousel" data-carousel
-                     aria-label="Kết quả các môn học">
-                <button
-                    type="button"
-                    class="subject-carousel-arrow carousel-prev"
-                    data-carousel-prev
-                    aria-label="Xem môn trước">
-                    <span aria-hidden="true">‹</span>
-                </button>
-
-                    <div class="subject-results-viewport">
-                        <div class="subject-results-track">
-
-                            <!-- Cơ sở dữ liệu -->
-                            <article class="subject-card-result">
-                                <h3>Cơ sở dữ liệu</h3>
-
-                                <div class="score-display">
-                                    <span class="score-main">5.5</span>
-                                    <span class="score-max">/10</span>
-                                </div>
-
-                                <div class="score-progress-bar"
-                                     role="progressbar"
-                                     aria-label="Điểm Cơ sở dữ liệu: 55%"
-                                     aria-valuemin="0"
-                                     aria-valuemax="100"
-                                     aria-valuenow="55">
-                                    <div class="fill orange"
-                                         style="width:55%"></div>
-                                </div>
-
-                                <div class="score-meta">
-                                    11/20 câu đúng
-                                </div>
-
-                                <button type="button"
-                                        class="btn-link-action"
-                                        data-notice="Phần xem lại bài làm môn Cơ sở dữ liệu chưa có dữ liệu câu trả lời chi tiết.">
-                                    Xem lại bài làm
-                                </button>
-                            </article>
-
-                            <!-- Lập trình C# -->
-                            <article class="subject-card-result">
-                                <h3>Lập trình C#</h3>
-
-                                <div class="score-display">
-                                    <span class="score-main green">8.0</span>
-                                    <span class="score-max">/10</span>
-                                </div>
-
-                                <div class="score-progress-bar"
-                                     role="progressbar"
-                                     aria-label="Điểm Lập trình C#: 80%"
-                                     aria-valuemin="0"
-                                     aria-valuemax="100"
-                                     aria-valuenow="80">
-                                    <div class="fill green"
-                                         style="width:80%"></div>
-                                </div>
-
-                                <div class="score-meta">
-                                    16/20 câu đúng
-                                </div>
-
-                                <button type="button"
-                                        class="btn-link-action"
-                                        data-notice="Phần xem lại bài làm môn Lập trình C# chưa có dữ liệu câu trả lời chi tiết.">
-                                    Xem lại bài làm
-                                </button>
-                            </article>
-
-                            <!-- Phân tích hệ thống -->
-                            <article class="subject-card-result">
-                                <h3>Phân tích hệ thống</h3>
-
-                                <div class="score-display">
-                                    <span class="score-main">6.8</span>
-                                    <span class="score-max">/10</span>
-                                </div>
-
-                                <div class="score-progress-bar"
-                                     role="progressbar"
-                                     aria-label="Điểm Phân tích hệ thống: 68%"
-                                     aria-valuemin="0"
-                                     aria-valuemax="100"
-                                     aria-valuenow="68">
-                                    <div class="fill yellow"
-                                         style="width:68%"></div>
-                                </div>
-
-                                <div class="score-meta">
-                                    14/20 câu đúng
-                                </div>
-
-                                <button type="button"
-                                        class="btn-link-action"
-                                        data-notice="Phần xem lại bài làm môn Phân tích hệ thống chưa có dữ liệu câu trả lời chi tiết.">
-                                    Xem lại bài làm
-                                </button>
-                            </article>
-                        </div>
-                    </div>
-
-                    <button type="button"
-                            class="subject-carousel-arrow carousel-next"
-                            data-carousel-next
-                            aria-label="Xem môn tiếp theo">
-                        <span aria-hidden="true">›</span>
-                    </button>
-                </div>
-
-                <p class="sr-only"
-                   aria-live="polite"
-                   data-carousel-status></p>
-            </section>
-
-            <!-- ================= PHÂN TÍCH NĂNG LỰC ================= -->
-            <section class="dashboard-card card">
-                <div class="card-header-flex">
-                    <div class="card-header-step">
-                        <span class="step-badge" aria-hidden="true">2</span>
-                        <h2>Phân tích kết quả &amp; đánh giá năng lực</h2>
-                    </div>
-
-                    <span class="timestamp-text">
-                        🕒 Ngày làm bài: 12/10/2026
-                    </span>
-                </div>
-
-                <div class="row analysis-three-columns">
-
-                    <!-- Tổng quan năng lực -->
-                    <article class="col-12 col-md-6 col-xl-4 mb-3">
-                        <div class="analysis-col h-100">
-                            <h3>Tổng quan năng lực</h3>
-
-                            <div class="circle-chart-wrapper">
-                                <div class="circle-chart"
-                                     role="img"
-                                     aria-label="Năng lực tổng quan: 68 phần trăm">
-                                    <span>68%</span>
-                                </div>
-
-                                <div class="chart-label-badge">
-                                    Khá
-                                </div>
-
-                                <p class="chart-desc">
-                                    Bạn có nền tảng tốt nhưng vẫn còn
-                                    một số nội dung cần cải thiện
-                                    để đạt mục tiêu GPA.
-                                </p>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Điểm từng môn -->
-                    <article class="col-12 col-md-6 col-xl-4 mb-3">
-                        <div class="analysis-col h-100">
-                            <h3>Điểm từng môn</h3>
-
-                            <div class="subject-bars-list">
-
-                                <div class="bar-item">
-                                    <div class="bar-label">
-                                        <span>Cơ sở dữ liệu</span>
-                                        <span>55%</span>
-                                    </div>
-                                    <div class="bar-bg">
-                                        <div class="bar-fill orange"
-                                             style="width:55%"></div>
-                                    </div>
-                                </div>
-
-                                <div class="bar-item">
-                                    <div class="bar-label">
-                                        <span>Lập trình C#</span>
-                                        <span>80%</span>
-                                    </div>
-                                    <div class="bar-bg">
-                                        <div class="bar-fill green"
-                                             style="width:80%"></div>
-                                    </div>
-                                </div>
-
-                                <div class="bar-item">
-                                    <div class="bar-label">
-                                        <span>Phân tích hệ thống</span>
-                                        <span>68%</span>
-                                    </div>
-                                    <div class="bar-bg">
-                                        <div class="bar-fill yellow"
-                                             style="width:68%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Môn cần cải thiện -->
-                    <article class="col-12 col-md-12 col-xl-4 mb-3">
-                        <div class="analysis-col warning-col h-100">
-                            <div class="warning-header">
-                                <span aria-hidden="true">⚠️</span>
-                                <h3>Môn cần ưu tiên cải thiện</h3>
-                            </div>
-
-                            <div class="priority-list">
-                                <div class="priority-item">
-                                    <span class="p-num"
-                                          aria-hidden="true">1</span>
-
-                                    <div class="p-text">
-                                        <strong>Cơ sở dữ liệu</strong>
-                                        <p>
-                                            Cần củng cố kiến thức
-                                            SQL, JOIN, Subquery.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="priority-item">
-                                    <span class="p-num"
-                                          aria-hidden="true">2</span>
-
-                                    <div class="p-text">
-                                        <strong>Phân tích hệ thống</strong>
-                                        <p>
-                                            Cần cải thiện kỹ năng
-                                            phân tích yêu cầu và UML.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="button"
-                                    class="btn-link-action"
-                                    data-open-modal="warning-modal">
-                                Xem gợi ý cải thiện ➜
-                            </button>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <!-- ================= LỘ TRÌNH HỌC TẬP ================= -->
-            <section class="dashboard-card card">
-                <div class="card-header-flex">
-                    <div class="card-header-step">
-                        <span class="step-badge" aria-hidden="true">3</span>
-                        <h2>Lộ trình học tập cá nhân hóa</h2>
-                    </div>
-
-                    <div class="action-buttons">
-                        <button type="button"
-                                class="et-action-outline et-btn-small"
-                                data-notice="Lộ trình chi tiết hiện được minh họa ngay bên dưới theo 4 tuần học.">
-                            📑 Xem chi tiết lộ trình
-                        </button>
-
-                        <button type="button"
-                                class="et-action-primary et-btn-small"
-                                data-notice="Chức năng đồng bộ lộ trình vào trang Tiến độ học tập đang được phát triển. Bạn vẫn có thể đánh dấu các công việc ở bên dưới.">
-                            ➕ Thêm vào Tiến độ học tập
-                        </button>
-                    </div>
-                </div>
-
-                <div class="row weekly-roadmap-grid">
-
-                    <!-- Tuần 1 -->
-                    <article class="col-12 col-sm-6 col-xl-3 mb-3">
-                        <div class="week-card h-100">
-                            <div class="week-header">
-                                <span class="week-icon" aria-hidden="true">
-                                    📅
-                                </span>
-
-                                <div class="week-title">
-                                    <h3>Tuần 1</h3>
-                                    <small>Củng cố nền tảng</small>
-                                </div>
-                            </div>
-
-                            <ul class="task-checklist">
-                                <li>
-                                    <input type="checkbox" id="task-1"
-                                           data-task>
-                                    <label for="task-1">Ôn SELECT, WHERE</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="task-2"
-                                           data-task>
-                                    <label for="task-2">Làm bài tập cơ bản</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="task-3"
-                                           data-task>
-                                    <label for="task-3">Xem video hướng dẫn</label>
-                                </li>
-                            </ul>
-
-                            <div class="week-time">⏱️ 3 - 4 giờ</div>
-                        </div>
-                    </article>
-
-                    <!-- Tuần 2 -->
-                    <article class="col-12 col-sm-6 col-xl-3 mb-3">
-                        <div class="week-card h-100">
-                            <div class="week-header">
-                                <span class="week-icon" aria-hidden="true">
-                                    📅
-                                </span>
-
-                                <div class="week-title">
-                                    <h3>Tuần 2</h3>
-                                    <small>Tập trung điểm yếu</small>
-                                </div>
-                            </div>
-
-                            <ul class="task-checklist">
-                                <li>
-                                    <input type="checkbox" id="task-4"
-                                           data-task>
-                                    <label for="task-4">Ôn JOIN</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="task-5"
-                                           data-task>
-                                    <label for="task-5">Làm bài tập JOIN</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="task-6"
-                                           data-task>
-                                    <label for="task-6">Học Subquery</label>
-                                </li>
-                            </ul>
-
-                            <div class="week-time">⏱️ 4 - 5 giờ</div>
-                        </div>
-                    </article>
-
-                    <!-- Tuần 3 -->
-                    <article class="col-12 col-sm-6 col-xl-3 mb-3">
-                        <div class="week-card h-100">
-                            <div class="week-header">
-                                <span class="week-icon" aria-hidden="true">
-                                    📅
-                                </span>
-
-                                <div class="week-title">
-                                    <h3>Tuần 3</h3>
-                                    <small>Nâng cao</small>
-                                </div>
-                            </div>
-
-                            <ul class="task-checklist">
-                                <li>
-                                    <input type="checkbox" id="task-7"
-                                           data-task>
-                                    <label for="task-7">Trigger, Index</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="task-8"
-                                           data-task>
-                                    <label for="task-8">Bài tập tổng hợp</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="task-9"
-                                           data-task>
-                                    <label for="task-9">Làm mini project</label>
-                                </li>
-                            </ul>
-
-                            <div class="week-time">⏱️ 4 - 5 giờ</div>
-                        </div>
-                    </article>
-
-                    <!-- Tuần 4 -->
-                    <article class="col-12 col-sm-6 col-xl-3 mb-3">
-                        <div class="week-card h-100">
-                            <div class="week-header">
-                                <span class="week-icon" aria-hidden="true">
-                                    📅
-                                </span>
-
-                                <div class="week-title">
-                                    <h3>Tuần 4</h3>
-                                    <small>Đánh giá lại</small>
-                                </div>
-                            </div>
-
-                            <ul class="task-checklist">
-                                <li>
-                                    <input type="checkbox" id="task-10"
-                                           data-task>
-                                    <label for="task-10">Làm đề kiểm tra</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="task-11"
-                                           data-task>
-                                    <label for="task-11">Ôn tập toàn bộ</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="task-12"
-                                           data-task>
-                                    <label for="task-12">Test lại năng lực</label>
-                                </li>
-                            </ul>
-
-                            <div class="week-time">⏱️ 3 - 4 giờ</div>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <!-- ================= CHI TIẾT TỪNG MÔN ================= -->
-            <section class="dashboard-card card">
-                <div class="card-header-step">
-                    <span class="step-badge" aria-hidden="true">4</span>
-                    <h2>Chi tiết từng môn</h2>
-                </div>
-
-                <!-- Tabs -->
-                <div class="subject-tabs-menu"
-                     role="tablist"
-                     aria-label="Chọn môn học">
-
-                    <button type="button"
-                            class="tab-item active"
-                            id="tab-database"
-                            role="tab"
-                            aria-selected="true"
-                            aria-controls="panel-database"
-                            tabindex="0">
-                        Cơ sở dữ liệu
-                    </button>
-
-                    <button type="button"
-                            class="tab-item"
-                            id="tab-csharp"
-                            role="tab"
-                            aria-selected="false"
-                            aria-controls="panel-csharp"
-                            tabindex="-1">
-                        Lập trình C#
-                    </button>
-
-                    <button type="button"
-                            class="tab-item"
-                            id="tab-analysis"
-                            role="tab"
-                            aria-selected="false"
-                            aria-controls="panel-analysis"
-                            tabindex="-1">
-                        Phân tích hệ thống
-                    </button>
-                </div>
-
-                <!-- ===== Panel 1: Cơ sở dữ liệu ===== -->
-                <div id="panel-database"
-                     class="subject-tab-panel"
-                     role="tabpanel"
-                     aria-labelledby="tab-database"
-                     tabindex="0">
-
-                    <div class="row tab-content-grid">
-
-                        <article class="col-12 col-lg-4 mb-3">
-                            <div class="tab-panel-card h-100">
-                                <h3>Kiến thức cần học</h3>
-
-                                <ul class="check-list-green">
-                                    <li>✓ JOIN (INNER, LEFT, RIGHT)</li>
-                                    <li>✓ Subquery</li>
-                                    <li>✓ GROUP BY, HAVING</li>
-                                    <li>✓ Trigger và Index</li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="col-12 col-lg-4 mb-3">
-                            <div class="tab-panel-card h-100">
-                                <h3>Tài liệu đề xuất</h3>
-
-                                <div class="resource-list">
-                                    <div class="resource-item">
-                                        <span class="res-icon"
-                                              aria-hidden="true">📄</span>
-
-                                        <div class="res-info">
-                                            <strong>
-                                                SQL cơ bản đến nâng cao
-                                            </strong>
-                                            <small>PDF - 120 trang</small>
-                                        </div>
-
-                                        <button class="btn-xs"
-                                                type="button"
-                                                data-notice="Tài liệu SQL cơ bản đến nâng cao hiện chưa được liên kết với file PDF thực tế.">
-                                            Xem
-                                        </button>
-                                    </div>
-
-                                    <div class="resource-item">
-                                        <span class="res-icon"
-                                              aria-hidden="true">📝</span>
-
-                                        <div class="res-info">
-                                            <strong>
-                                                Bài tập thực hành SQL
-                                            </strong>
-                                            <small>PDF - 80 trang</small>
-                                        </div>
-
-                                        <button class="btn-xs"
-                                                type="button"
-                                                data-notice="Tài liệu bài tập SQL hiện chưa được liên kết với file PDF thực tế.">
-                                            Xem
-                                        </button>
-                                    </div>
-
-                                    <div class="resource-item">
-                                        <span class="res-icon"
-                                              aria-hidden="true">🎥</span>
-
-                                        <div class="res-info">
-                                            <strong>
-                                                Video hướng dẫn JOIN
-                                            </strong>
-                                            <small>Video - 45 phút</small>
-                                        </div>
-
-                                        <button class="btn-xs"
-                                                type="button"
-                                                data-notice="Video hướng dẫn JOIN chưa có đường dẫn nguồn được xác minh.">
-                                            Xem
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="col-12 col-lg-4 mb-3">
-                            <div class="tab-panel-card h-100">
-                                <h3>Phương pháp học</h3>
-
-                                <ol class="method-steps">
-                                    <li>Học lý thuyết cơ bản</li>
-                                    <li>Làm bài tập theo chủ đề</li>
-                                    <li>Thực hành trên hệ quản trị CSDL</li>
-                                    <li>Làm bài kiểm tra đánh giá</li>
-                                </ol>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-
-                <!-- ===== Panel 2: Lập trình C# ===== -->
-                <div id="panel-csharp"
-                     class="subject-tab-panel"
-                     role="tabpanel"
-                     aria-labelledby="tab-csharp"
-                     tabindex="0"
-                     hidden>
-
-                    <div class="row tab-content-grid">
-
-                        <article class="col-12 col-lg-4 mb-3">
-                            <div class="tab-panel-card h-100">
-                                <h3>Kiến thức cần học</h3>
-
-                                <ul class="check-list-green">
-                                    <li>✓ Lập trình hướng đối tượng</li>
-                                    <li>✓ Class, Object, Interface</li>
-                                    <li>✓ Exception Handling</li>
-                                    <li>✓ Collections và LINQ</li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="col-12 col-lg-4 mb-3">
-                            <div class="tab-panel-card h-100">
-                                <h3>Tài liệu đề xuất</h3>
-
-                                <div class="resource-list">
-                                    <div class="resource-item">
-                                        <span class="res-icon"
-                                              aria-hidden="true">📄</span>
-
-                                        <div class="res-info">
-                                            <strong>
-                                                Tổng hợp kiến thức C#
-                                            </strong>
-                                            <small>Tài liệu tham khảo</small>
-                                        </div>
-
-                                        <button class="btn-xs"
-                                                type="button"
-                                                data-notice="Tài liệu C# chưa được tải lên hệ thống.">
-                                            Xem
-                                        </button>
-                                    </div>
-
-                                    <div class="resource-item">
-                                        <span class="res-icon"
-                                              aria-hidden="true">📝</span>
-
-                                        <div class="res-info">
-                                            <strong>
-                                                Bài tập C# hướng đối tượng
-                                            </strong>
-                                            <small>Bài tập thực hành</small>
-                                        </div>
-
-                                        <button class="btn-xs"
-                                                type="button"
-                                                data-notice="Bài tập C# chưa được tải lên hệ thống.">
-                                            Xem
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="col-12 col-lg-4 mb-3">
-                            <div class="tab-panel-card h-100">
-                                <h3>Phương pháp học</h3>
-
-                                <ol class="method-steps">
-                                    <li>Ôn tập cú pháp và OOP</li>
-                                    <li>Luyện bài tập theo chủ đề</li>
-                                    <li>Xây dựng ứng dụng C# nhỏ</li>
-                                    <li>Kiểm tra và sửa lỗi chương trình</li>
-                                </ol>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-
-                <!-- ===== Panel 3: Phân tích hệ thống ===== -->
-                <div id="panel-analysis"
-                     class="subject-tab-panel"
-                     role="tabpanel"
-                     aria-labelledby="tab-analysis"
-                     tabindex="0"
-                     hidden>
-
-                    <div class="row tab-content-grid">
-
-                        <article class="col-12 col-lg-4 mb-3">
-                            <div class="tab-panel-card h-100">
-                                <h3>Kiến thức cần học</h3>
-
-                                <ul class="check-list-green">
-                                    <li>✓ Khảo sát và phân tích yêu cầu</li>
-                                    <li>✓ Use Case Diagram</li>
-                                    <li>✓ Activity và Sequence Diagram</li>
-                                    <li>✓ Thiết kế hệ thống thông tin</li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="col-12 col-lg-4 mb-3">
-                            <div class="tab-panel-card h-100">
-                                <h3>Tài liệu đề xuất</h3>
-
-                                <div class="resource-list">
-                                    <div class="resource-item">
-                                        <span class="res-icon"
-                                              aria-hidden="true">📄</span>
-
-                                        <div class="res-info">
-                                            <strong>
-                                                Tài liệu phân tích hệ thống
-                                            </strong>
-                                            <small>Tài liệu tham khảo</small>
-                                        </div>
-
-                                        <button class="btn-xs"
-                                                type="button"
-                                                data-notice="Tài liệu phân tích hệ thống chưa được tải lên hệ thống.">
-                                            Xem
-                                        </button>
-                                    </div>
-
-                                    <div class="resource-item">
-                                        <span class="res-icon"
-                                              aria-hidden="true">📝</span>
-
-                                        <div class="res-info">
-                                            <strong>
-                                                Bài tập thực hành UML
-                                            </strong>
-                                            <small>Bài tập thực hành</small>
-                                        </div>
-
-                                        <button class="btn-xs"
-                                                type="button"
-                                                data-notice="Bài tập UML chưa được tải lên hệ thống.">
-                                            Xem
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="col-12 col-lg-4 mb-3">
-                            <div class="tab-panel-card h-100">
-                                <h3>Phương pháp học</h3>
-
-                                <ol class="method-steps">
-                                    <li>Đọc và phân tích yêu cầu</li>
-                                    <li>Vẽ các biểu đồ UML</li>
-                                    <li>Phân tích bài toán thực tế</li>
-                                    <li>Thực hiện bài tập tình huống</li>
-                                </ol>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            
+        <div class="et-deep-course-tabs" data-quiz-tabs aria-label="Chọn môn đang làm bài"></div>
+        <p class="et-deep-progress-label" data-quiz-progress></p>
+        <div class="et-deep-quiz-meta-bar">
+          <span data-question-step></span>
+          <span class="et-deep-timer" data-quiz-timer aria-live="polite"></span>
         </div>
-
-        <!-- ================= MODAL GỢI Ý CẢI THIỆN ================= -->
-        <div class="modal fade"
-             id="warning-modal"
-             tabindex="-1"
-             role="dialog"
-             aria-labelledby="warning-modal-title"
-             aria-modal="true"
-             aria-hidden="true">
-
-            <div class="modal-dialog modal-dialog-centered"
-                 role="document">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="warning-modal-title">
-                            Chi tiết gợi ý cải thiện
-                        </h2>
-
-                        <button type="button"
-                                class="close"
-                                aria-label="Đóng hộp thoại"
-                                data-close-modal>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <p>
-                            <strong>Cơ sở dữ liệu (5.5/10):</strong>
-                            Cần dành thêm thời gian học thực hành
-                            truy vấn SQL. Nên tập trung vào JOIN
-                            và câu lệnh lồng nhau Subquery.
-                        </p>
-
-                        <p>
-                            <strong>Phân tích hệ thống (6.8/10):</strong>
-                            Hãy ôn tập lại các biểu đồ UML và cách
-                            xác định yêu cầu bài toán thực tế.
-                        </p>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button"
-                                class="et-action-primary"
-                                data-close-modal>
-                            Đã hiểu
-                        </button>
-                    </div>
-                </div>
+        <form class="et-deep-quiz-form" data-quiz-form novalidate>
+          <div data-question-list></div>
+          <div class="et-deep-actions et-deep-actions-between">
+            <div class="et-deep-actions">
+              <button type="button" class="et-deep-btn et-deep-btn-outline" data-action="previous-question">Câu trước</button>
+              <button type="button" class="et-deep-btn et-deep-btn-outline" data-action="next-question">Câu tiếp</button>
             </div>
+            <button type="submit" class="et-deep-btn et-deep-btn-primary">Nộp bài môn này</button>
+          </div>
+        </form>
+        <div class="et-deep-actions">
+          <button type="button" class="et-deep-btn et-deep-btn-primary" data-action="show-results" disabled>Xem kết quả phân tích</button>
         </div>
+      </section>
 
-        <!-- ================= MODAL THÔNG BÁO ================= -->
-        <div class="modal fade"
-             id="notice-modal"
-             tabindex="-1"
-             role="dialog"
-             aria-labelledby="notice-modal-title"
-             aria-modal="true"
-             aria-hidden="true">
-
-            <div class="modal-dialog modal-dialog-centered"
-                 role="document">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="notice-modal-title">
-                            Thông báo từ EduTrack
-                        </h2>
-
-                        <button type="button"
-                                class="close"
-                                aria-label="Đóng thông báo"
-                                data-close-modal>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <p id="notice-message"></p>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button"
-                                class="et-action-primary"
-                                data-close-modal>
-                            Đóng
-                        </button>
-                    </div>
-                </div>
+      <!-- BƯỚC 3: điểm quy đổi, điểm theo chủ đề, xem lại từng câu -->
+      <section class="et-deep-panel" data-view="result" aria-labelledby="et-result-title" hidden>
+        <div class="et-deep-section-heading">
+          <span class="et-deep-index">02</span>
+          <div>
+            <h2 id="et-result-title">Phân tích kết quả</h2>
+          </div>
+        </div>
+        <div data-result-list>
+        </div>
+        <section class="et-deep-roadmap-settings" aria-labelledby="roadmap-settings-title">
+          <h3 id="roadmap-settings-title">Để lộ trình vừa sức với bạn</h3>
+          <p>Cho biết thời gian thật sự có thể dành mỗi tuần. V1 sẽ được tạo từ dự phóng và kết quả kiểm tra.</p>
+          <div class="et-deep-form-grid">
+            <div class="et-deep-field">
+              <label for="roadmap-hours">Giờ học mỗi tuần</label>
+              <input id="roadmap-hours" name="roadmapHoursPerWeek" type="number" min="2" max="40" step="1" value="8">
             </div>
+            <div class="et-deep-field">
+              <label for="roadmap-weeks">Số tuần dự kiến</label>
+              <input id="roadmap-weeks" name="roadmapWeeks" type="number" min="2" max="12" step="1" value="4">
+            </div>
+            <div class="et-deep-field">
+              <label for="roadmap-style">Cách học phù hợp</label>
+              <select id="roadmap-style" name="roadmapLearningStyle">
+                <option value="practice">Làm bài và thực hành</option>
+                <option value="reading">Đọc tài liệu, ghi chú</option>
+                <option value="mixed">Kết hợp lý thuyết và thực hành</option>
+              </select>
+            </div>
+          </div>
+        </section>
+        <button type="button"
+                class="et-deep-btn et-deep-btn-outline"
+                data-action="return-roadmap">
+            Trở lại lộ trình đã tạo →
+            </button>
+        <div class="et-deep-actions">
+          <button type="button" class="et-deep-btn et-deep-btn-outline" data-action="retake">Làm lại bài test</button>
+          <button type="button" class="et-deep-btn et-deep-btn-primary" data-action="build-roadmap">Tạo lộ trình cá nhân hóa <span aria-hidden="true">→</span></button>
         </div>
-    </main>
+      </section>
 
+      <!-- BƯỚC 4: lộ trình mở chi tiết ngay trong trang -->
+      <section class="et-deep-panel" data-view="roadmap" aria-labelledby="et-roadmap-title" hidden>
+        <div class="et-deep-section-heading">
+          <span class="et-deep-index">03</span>
+          <div>
+            <h2 id="et-roadmap-title">Lộ trình học đề xuất</h2>
+            <p data-roadmap-explanation>Kế hoạch dựa trên kết quả từng chủ đề và thời gian học bạn đã cung cấp.</p>
+          </div>
+        </div>
+        <section class="et-deep-assistant" aria-labelledby="et-assistant-title">
+          <!-- <div class="et-deep-assistant-head">
+            <span class="et-deep-assistant-symbol" aria-hidden="true">✦</span>
+            <div>
+              <h3 id="et-assistant-title">Trợ lý EduTrack đề xuất</h3>
+              <p>Giải thích dựa trên kết quả test · Phản hồi theo quy tắc, chưa phải AI thật</p>
+            </div>
+          </div> -->
+          <div class="et-deep-assistant-log" data-assistant-log role="log" aria-live="polite" aria-label="Trao đổi về lộ trình"></div>
+          <form class="et-deep-assistant-form" data-assistant-form novalidate>
+            <label for="et-assistant-question">Hỏi về lộ trình vừa tạo</label>
+            <div class="et-deep-assistant-input">
+              <input id="et-assistant-question" name="question" type="text" maxlength="250" placeholder="Vì sao mình cần ôn JOIN trước?" required>
+              <button class="et-deep-btn et-deep-btn-outline" type="submit">Hỏi trợ lý</button>
+            </div>
+          </form>
+        </section>
+        <div class="et-deep-summary" data-roadmap-summary></div>
+        <div class="et-deep-status" data-review-status role="status"></div>
+        <div class="et-deep-roadmap-list" data-roadmap-list></div>
+
+        <div class="et-deep-actions et-deep-actions-wrap">
+          <button type="button" class="et-deep-btn et-deep-btn-outline" data-action="edit-roadmap">Chỉnh sửa lộ trình</button>
+          <button type="button" class="et-deep-btn et-deep-btn-primary" data-action="sync-progress" disabled>Thêm vào Tiến độ học tập</button>
+        </div>
+        <p class="et-deep-help">V1 được lưu trong tài khoản và dùng được ngay. Mentor có thể gửi V2; bạn tự chọn áp dụng hay giữ V1. Lộ trình và tiến độ được lưu trên máy chủ.</p>
+
+
+      </section>
+    </div>
+  </main>
 </body>
 </html>

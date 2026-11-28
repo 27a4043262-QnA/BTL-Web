@@ -1,7 +1,7 @@
 /* ===========================================================
-   EDUTRACK - TƯ VẤN CHAT (BẢN DEMO KHÔNG CẦN DỮ LIỆU THẬT)
+   EDUTRACK - TƯ VẤN CHAT QUA BACKEND GEMINI
    - Có 4 chủ đề và tư vấn theo kịch bản.
-   - Có validation, Enter/Shift+Enter, lịch sử localStorage.
+   - Có validation, Enter/Shift+Enter, lịch sử lưu theo tài khoản ở backend.
    - Chạy được khi mở HTML trực tiếp hoặc khi main.js đổi trang.
    - Công cụ/chức năng liên quan chỉ xuất hiện khi có ngữ cảnh phù hợp.
    - Không đọc/ghi dữ liệu GPA, môn học, tiến độ của nhóm khác.
@@ -9,7 +9,6 @@
 (() => {
     "use strict";
 
-    const STORAGE_KEY = "edutrack-advising-chat-demo-v1";
     const MAX_LENGTH = 500;
     const MAX_HISTORY = 50;
 
@@ -24,16 +23,9 @@
     // Chỉ cho phép các đường dẫn được xác định sẵn, không lấy URL từ người dùng.
     const LINKS = {
         courses: { href: "courses.html", label: "Xem trang Môn học →" },
-        gpa: { href: "gpa-calculator.html", label: "Mở công cụ GPA →" },
+        gpa: { href: "gpa-projection.html", label: "Mở công cụ GPA →" },
         progress: { href: "progress.html", label: "Xem trang Tiến độ →" }
     };
-
-    const DEMO_PLAN =
-        "Đây là LỘ TRÌNH MẪU 3 TUẦN (chưa cá nhân hóa):\n\n" +
-        "• Tuần 1: Xác định 3 chủ đề chưa vững, ôn lý thuyết 30 phút/ngày.\n" +
-        "• Tuần 2: Luyện bài tập 45 phút/ngày, ghi lại lỗi sai thường gặp.\n" +
-        "• Tuần 3: Làm đề thử, chữa lỗi sai và hệ thống lại kiến thức.\n\n" +
-        "Để lập kế hoạch phù hợp hơn, bạn hãy cho biết môn học, ngày thi và thời gian rảnh mỗi ngày.";
 
     function normalize(text) {
         return text.toLowerCase()
@@ -42,99 +34,7 @@
             .replace(/đ/g, "d");
     }
 
-    function getReply(question, topic = "") {
-        const text = normalize(question);
-
-        if (topic === "gpa" || /\bgpa\b|diem trung binh|du phong/.test(text)) {
-            return {
-                text: "Để cải thiện GPA, bạn nên:\n" +
-                    "1. Xác định GPA hiện tại và GPA mục tiêu.\n" +
-                    "2. Ưu tiên các môn có nhiều tín chỉ và còn khả năng cải thiện điểm.\n" +
-                    "3. Lên lịch ôn tập theo thời gian trước kỳ thi.\n\n" +
-                    "EduTrack có công cụ tính/dự phóng GPA. Khi phần dữ liệu của nhóm hoàn thiện, trang Tư vấn có thể dùng kết quả đó để đưa gợi ý cụ thể hơn.",
-                link: "gpa"
-            };
-        }
-
-        if (topic === "subject" || /mon hoc|co so du lieu|lap trinh|khong hieu|hoc yeu/.test(text)) {
-            return {
-                text: "Mình có thể giúp bạn tìm hướng học. Trước tiên hãy trả lời 3 câu:\n" +
-                    "1. Bạn đang học môn nào?\n" +
-                    "2. Chủ đề hoặc dạng bài nào khiến bạn thấy khó nhất?\n" +
-                    "3. Bạn còn bao lâu trước bài kiểm tra?\n\n" +
-                    "Gợi ý ban đầu: chia môn học thành các chủ đề nhỏ, học lại phần nền tảng rồi luyện bài từ dễ đến khó.",
-                link: "courses"
-            };
-        }
-
-        if (topic === "plan" || /ke hoach|lo trinh|lich hoc|thoi gian/.test(text)) {
-            return {
-                text: "Để lên lịch học hợp lý, bạn hãy cho mình biết: môn cần ôn, số ngày còn lại và số giờ rảnh mỗi ngày.\n\n" +
-                    "Bạn có thể bấm “Xem lộ trình 3 tuần mẫu” ngay dưới tin nhắn này để tham khảo. Lộ trình mẫu chưa được đồng bộ sang Tiến độ.",
-                link: "progress",
-                action: "sample-plan"
-            };
-        }
-
-        if (topic === "exam" || /thi|kiem tra|on tap|de cuong/.test(text)) {
-            return {
-                text: "Nếu sắp thi, bạn có thể thử cách ôn tập sau:\n" +
-                    "1. Tổng hợp đề cương và đánh dấu phần chưa chắc.\n" +
-                    "2. Ôn lý thuyết bằng câu hỏi tự kiểm tra.\n" +
-                    "3. Làm đề có giới hạn thời gian và chữa lỗi sai.\n" +
-                    "4. Dành buổi cuối để ôn ngắn, tránh học dồn.\n\n" +
-                    "Bạn có thể cho mình biết môn thi và còn bao nhiêu ngày không?"
-            };
-        }
-
-        if (topic === "method" || /phuong phap|tap trung|ghi nho|hay quen|pomodoro/.test(text)) {
-            return {
-                text: "Bạn có thể thử 3 phương pháp:\n" +
-                    "• Pomodoro: học tập trung 25 phút, nghỉ 5 phút.\n" +
-                    "• Active Recall: tự trả lời câu hỏi thay vì chỉ đọc lại.\n" +
-                    "• Spaced Repetition: ôn lại kiến thức theo các khoảng thời gian.\n\n" +
-                    "Bạn thường gặp khó khăn vì thiếu tập trung, khó hiểu bài hay nhanh quên?"
-            };
-        }
-
-        return {
-            text: "Mình đã nhận được câu hỏi của bạn. Hiện đây là bản Tư vấn mô phỏng nên mình chưa thể trả lời linh hoạt như AI thực sự.\n\n" +
-                "Bạn có thể chọn một chủ đề như môn học, GPA, phương pháp học hoặc kế hoạch ôn tập. Nếu nói rõ môn học và mục tiêu, mình sẽ gợi ý theo kịch bản tương ứng."
-        };
-    }
-
-    function loadHistory() {
-        try {
-            const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-            if (!Array.isArray(stored)) return [];
-
-            return stored.slice(-MAX_HISTORY).filter(item =>
-                item &&
-                (item.role === "user" || item.role === "assistant") &&
-                typeof item.text === "string" &&
-                item.text.length <= 3000
-            ).map(item => ({
-                role: item.role,
-                text: item.text,
-                link: Object.prototype.hasOwnProperty.call(LINKS, item.link)
-                    ? item.link : null,
-                action: item.action === "sample-plan" ? "sample-plan" : null
-            }));
-        } catch (error) {
-            console.warn("Không thể đọc lịch sử Tư vấn:", error);
-            return [];
-        }
-    }
-
-    function saveHistory(history) {
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(-MAX_HISTORY)));
-        } catch (error) {
-            console.warn("Không thể lưu lịch sử Tư vấn:", error);
-        }
-    }
-
-    function initAdvising() {
+    async function initAdvising() {
         // Chọn phần nội dung riêng, vì main.js có thể thay HTML mà không tải lại trang.
         const root = document.querySelector("[data-advising-root]");
         if (!root || root.dataset.initialized === "true") return;
@@ -148,7 +48,7 @@
         const errorBox = root.querySelector("[data-chat-error]");
         if (!welcome || !log || !form || !input || !counter || !errorBox) return;
 
-        let history = loadHistory();
+        let history = [];
 
         function displayError(message) {
             errorBox.textContent = message;
@@ -243,10 +143,9 @@
             }
             renderMessage(message);
             log.scrollTop = log.scrollHeight;
-            saveHistory(history);
         }
 
-        function sendQuestion(value, topic = "") {
+        async function sendQuestion(value, topic = "") {
             const question = value.trim();
 
             if (!question) {
@@ -261,12 +160,37 @@
 
             displayError("");
             appendMessage("user", question);
-            const answer = getReply(question, topic);
-            appendMessage("assistant", answer.text, answer.link || null, answer.action || null);
             input.value = "";
             updateCounter();
             resizeInput();
-            input.focus();
+            const sendButton = form.querySelector('[type="submit"]');
+            sendButton.disabled = true;
+            input.disabled = true;
+            try {
+                const response = await fetch("/api/advising/chat", {
+                    method: "POST",
+                    credentials: "same-origin",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        question,
+                        history: history.slice(0, -1)
+                            .filter(item => item.role === "user" || item.role === "assistant")
+                            .slice(-12)
+                    })
+                });
+                const payload = await response.json().catch(() => ({}));
+                if (!response.ok) throw new Error(payload.message || "Không gửi được câu hỏi.");
+                if (typeof payload.reply !== "string" || !payload.reply.trim()) {
+                    throw new Error("Trợ lý chưa trả lời được. Vui lòng thử lại.");
+                }
+                appendMessage("assistant", payload.reply.trim());
+            } catch (error) {
+                displayError(error.message || "Không kết nối được trợ lý. Vui lòng thử lại.");
+            } finally {
+                input.disabled = false;
+                sendButton.disabled = false;
+                input.focus();
+            }
         }
 
         form.addEventListener("submit", event => {
@@ -302,16 +226,16 @@
 
             if (button.dataset.action === "sample-plan") {
                 appendMessage("user", "Cho mình xem lộ trình ôn tập mẫu trong 3 tuần.");
-                appendMessage("assistant", DEMO_PLAN);
+                appendMessage("assistant", "Đây là kế hoạch mẫu tham khảo; để tạo lộ trình cá nhân hóa, hãy hoàn thành dự phóng GPA và bài kiểm tra ở trang Tư vấn lộ trình.");
                 input.focus();
                 return;
             }
 
             if (button.dataset.action === "new-chat") {
+                fetch("/api/advising/chat/history", { method: "DELETE", credentials: "same-origin" })
+                    .then(response => { if (!response.ok) throw new Error("Không xóa được lịch sử chat trên máy chủ."); })
+                    .catch(error => displayError(error.message));
                 history = [];
-                try { localStorage.removeItem(STORAGE_KEY); } catch (error) {
-                    console.warn("Không xóa được lịch sử Tư vấn:", error);
-                }
                 input.value = "";
                 resizeInput();
                 displayError("");
@@ -321,6 +245,14 @@
             }
         });
 
+        try {
+            const response = await fetch("/api/advising/chat/history", { credentials: "same-origin" });
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(payload.message || "Vui lòng đăng nhập để mở lịch sử tư vấn.");
+            history = Array.isArray(payload.messages) ? payload.messages.slice(-MAX_HISTORY) : [];
+        } catch (error) {
+            displayError(error.message);
+        }
         refreshConversation();
         updateCounter();
         resizeInput();

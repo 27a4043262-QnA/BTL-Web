@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Không gian mentor xem kết quả học tập và góp ý lộ trình sinh viên EduTrack.">
+  <title>Không gian Mentor | EduTrack</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/mentor-dashboard.css">
+  <script src="../assets/js/mentor-dashboard.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+</head>
+<body>
+  <main id="main-content" class="et-mentor" data-mentor-dashboard>
+    <header class="et-mentor-header">
+      <div><p class="et-mentor-eyebrow">EDUTRACK · CỐ VẤN HỌC TẬP</p><h1>Không gian Mentor</h1><p>Xem kết quả kiểm tra, rà soát V1 và gửi đề xuất V2 cho sinh viên được phân công.</p></div>
+      <a class="et-mentor-link" href="advising-contact.html">Mở trang tư vấn ↗</a>
+    </header>
+    <p class="et-mentor-feedback" data-feedback role="status" aria-live="polite"></p>
+    <div class="et-mentor-layout">
+      <aside class="et-mentor-queue" aria-label="Sinh viên được phân công">
+        <div class="et-mentor-panel-heading"><span>HÀNG ĐỢI</span><h2>Sinh viên</h2></div>
+        <div data-student-list></div>
+      </aside>
+      <section class="et-mentor-detail" data-student-detail hidden>
+        <div class="et-mentor-panel-heading"><span>HỒ SƠ SINH VIÊN</span><h2 data-student-name></h2></div>
+        <div class="et-mentor-analysis" data-analysis></div>
+        <section class="et-mentor-v1">
+          <h3>Lộ trình đang áp dụng</h3>
+          <div data-v1></div>
+        </section>
+        <form class="et-mentor-editor" data-proposal-form>
+          <div class="et-mentor-panel-heading"><span>ĐỀ XUẤT CỦA MENTOR</span><h3>Tạo phiên bản V2</h3></div>
+          <label for="mentor-note">Nhận xét và mục tiêu điều chỉnh</label>
+          <textarea id="mentor-note" name="note" rows="3" maxlength="2000" required placeholder="Ví dụ: giảm khối lượng ở tuần 1 và dành thêm thời gian cho SQL JOIN."></textarea>
+          <button class="et-mentor-secondary" type="button" data-suggest-v2>✦ Gợi ý V2 bằng Gemini</button>
+          <label for="mentor-v2-json">Nội dung V2 (mentor có thể chỉnh JSON trước khi gửi)</label>
+          <textarea id="mentor-v2-json" name="roadmap" rows="18" spellcheck="false" required></textarea>
+          <button class="et-mentor-primary" type="submit">Gửi V2 để sinh viên quyết định →</button>
+          <p>V1 được giữ trong lịch sử. Sinh viên sẽ chọn chấp nhận V2 hoặc tiếp tục dùng V1.</p>
+        </form>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

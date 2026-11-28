@@ -1111,6 +1111,7 @@ const related = getPrerequisiteCourses(course.code);
 
             return {
                 name: course.name,
+                code: course.code,
                 credits: course.credits,
                 referenceScore,
                 hasPrerequisites: related.length > 0
@@ -1693,6 +1694,23 @@ resetButton?.addEventListener("click", async function () {
         if (!success) return;
     }
 
+    // Clear the advising-specific forecast as well as the legacy learning snapshot.
+    try {
+        const response = await fetch("/api/forecasts", {
+            method: "DELETE",
+            credentials: "same-origin"
+        });
+        if (!response.ok && response.status !== 401) {
+            const payload = await response.json().catch(() => ({}));
+            showNotice(payload.message || "Không thể xóa dự phóng đã lưu trên máy chủ.");
+            return;
+        }
+    } catch (error) {
+        console.warn("Không xóa được dự phóng dùng cho tư vấn:", error);
+        showNotice("Không thể kết nối backend để xóa dự phóng.");
+        return;
+    }
+
     // 1. Tạo lại một dòng môn học trống
     const emptyRow = template.cloneNode(true);
 
@@ -1828,6 +1846,38 @@ projectionStorage?.save(
     },
     result
 );
+
+// Also save the normalized forecast consumed by advising-contact; keep the
+// existing learning-storage snapshot for GPA restore/reset compatibility.
+fetch("/api/forecasts", {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        savedAt: new Date().toISOString(),
+        currentGPA: data.currentGPA,
+        targetGPA: data.targetGPA,
+        forecastGPA: result.forecastGPA,
+        semesterCredits: data.semesterCredits,
+        courses: result.courses.map(course => ({
+            code: course.code,
+            name: course.name,
+            credits: course.credits,
+            referenceScore: course.referenceScore,
+            targetScore: course.targetScore,
+            targetGPA: course.targetGPA,
+            targetLetter: course.targetLetter
+        }))
+    })
+}).then(async response => {
+    if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        showNotice(payload.message || "Không lưu được dự phóng cho trang Tư vấn. Hãy đăng nhập rồi thử lại.");
+    }
+}).catch(error => {
+    console.warn("Không lưu được dự phóng cho trang Tư vấn:", error);
+    showNotice("Không kết nối được backend để lưu dự phóng cho trang Tư vấn.");
+});
 
 // Cuộn mượt xuống mục Kết quả tổng quan
 scrollToProjectionResults();

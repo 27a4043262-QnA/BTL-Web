@@ -12,6 +12,7 @@
         "gpa-calculator.html": ["Tính GPA", "gpa"],
         "gpa-projection.html": ["Dự phóng GPA", "projection"],
         "advising.html": ["Tư vấn", "advising"],
+        "advising-contact.html": ["Tư vấn lộ trình", "advising"],
         "about.html": ["Giới thiệu", "about"],
         "profile.html": ["Thông tin cá nhân", "profile"],
         "progress.html": ["Tiến độ học tập", "progress"],
@@ -795,6 +796,18 @@ function updateBreadcrumb() {
         });
 
     }
+
+    else if (page.file === "advising-contact.html") {
+    items.push({
+        title: "Dự phóng GPA",
+        href: getURL("pages/gpa-projection.html")
+    });
+
+    items.push({
+        title: "Tư vấn lộ trình",
+        href: location.href
+    });
+}
 
     /* ======================================
        3. CÁC TRANG CÒN LẠI

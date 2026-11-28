@@ -1,0 +1,305 @@
+[
+  {
+    "key": "database",
+    "courseId": "IS21A",
+    "name": "Cơ sở dữ liệu",
+    "aliases": [
+      "CSDL"
+    ],
+    "description": "SQL, JOIN và thiết kế dữ liệu",
+    "questions": [
+      {
+        "id": "db1",
+        "topic": "SQL cơ bản",
+        "weight": 1,
+        "level": "Cơ bản",
+        "text": "Câu lệnh nào dùng để lấy dữ liệu từ bảng SinhVien?",
+        "choices": [
+          "PUSH * FROM SinhVien",
+          "SELECT * FROM SinhVien",
+          "DELETE * FROM SinhVien",
+          "CREATE FROM SinhVien"
+        ],
+        "correct": 1,
+        "explain": "SELECT được dùng để truy vấn bản ghi từ bảng."
+      },
+      {
+        "id": "db2",
+        "topic": "SQL cơ bản",
+        "weight": 2,
+        "level": "Vận dụng",
+        "text": "Điều kiện lọc điểm lớn hơn hoặc bằng 8 trong SQL được viết thế nào?",
+        "choices": [
+          "WHERE diem >= 8",
+          "HAVING diem === 8",
+          "GROUP BY diem > 8",
+          "ORDER BY diem >= 8"
+        ],
+        "correct": 0,
+        "explain": "WHERE giới hạn các hàng theo biểu thức điều kiện."
+      },
+      {
+        "id": "db3",
+        "topic": "JOIN",
+        "weight": 2,
+        "level": "Vận dụng",
+        "text": "Loại JOIN nào giữ tất cả hàng ở bảng bên trái dù không tìm được hàng tương ứng bên phải?",
+        "choices": [
+          "INNER JOIN",
+          "CROSS JOIN",
+          "LEFT JOIN",
+          "RIGHT JOIN"
+        ],
+        "correct": 2,
+        "explain": "LEFT JOIN giữ tất cả hàng của bảng bên trái, ghép NULL khi không khớp."
+      },
+      {
+        "id": "db4",
+        "topic": "JOIN",
+        "weight": 3,
+        "level": "Nâng cao",
+        "text": "Muốn ghép SinhVien với DangKy theo mã sinh viên, điều kiện ghép nên đặt ở đâu?",
+        "choices": [
+          "ORDER BY SinhVien.maSV",
+          "ON SinhVien.maSV = DangKy.maSV",
+          "LIMIT SinhVien.maSV",
+          "GROUP BY DangKy.maSV"
+        ],
+        "correct": 1,
+        "explain": "Mệnh đề ON biểu diễn điều kiện kết hợp các bảng trong JOIN."
+      },
+      {
+        "id": "db5",
+        "topic": "Thiết kế dữ liệu",
+        "weight": 2,
+        "level": "Vận dụng",
+        "text": "Khóa chính (PRIMARY KEY) có nhiệm vụ chủ yếu gì?",
+        "choices": [
+          "Lưu mật khẩu bảng",
+          "Sắp xếp bảng theo ABC",
+          "Định danh duy nhất mỗi bản ghi",
+          "Tự tạo bản sao bảng"
+        ],
+        "correct": 2,
+        "explain": "PRIMARY KEY xác định duy nhất bản ghi và không chấp nhận giá trị NULL."
+      },
+      {
+        "id": "db6",
+        "topic": "Thiết kế dữ liệu",
+        "weight": 3,
+        "level": "Nâng cao",
+        "text": "Để giảm việc lặp lại tên khoa ở nhiều bản ghi sinh viên, giải pháp thiết kế phù hợp là gì?",
+        "choices": [
+          "Gộp mọi thông tin vào một cột",
+          "Xóa mã khoa",
+          "Lặp tên khoa ở mọi bảng",
+          "Tách bảng Khoa và liên kết qua khóa ngoại"
+        ],
+        "correct": 3,
+        "explain": "Tách thực thể Khoa và dùng khóa ngoại giúp giảm dư thừa và cập nhật sai lệch."
+      }
+    ]
+  },
+  {
+    "key": "csharp",
+    "name": "Lập trình C#",
+    "aliases": [
+      "Lập trình hướng đối tượng",
+      "Lập trình hướng đối tượng C#"
+    ],
+    "description": "Cú pháp, hướng đối tượng và xử lý dữ liệu",
+    "questions": [
+      {
+        "id": "cs1",
+        "topic": "Cú pháp C#",
+        "weight": 1,
+        "level": "Cơ bản",
+        "text": "Kiểu dữ liệu nào thường dùng để lưu giá trị đúng/sai trong C#?",
+        "choices": [
+          "string",
+          "bool",
+          "double",
+          "char"
+        ],
+        "correct": 1,
+        "explain": "bool nhận hai giá trị true hoặc false."
+      },
+      {
+        "id": "cs2",
+        "topic": "Cú pháp C#",
+        "weight": 2,
+        "level": "Vận dụng",
+        "text": "Từ khóa nào dùng để tạo đối tượng từ một lớp?",
+        "choices": [
+          "new",
+          "static",
+          "return",
+          "override"
+        ],
+        "correct": 0,
+        "explain": "new khởi tạo đối tượng và gọi constructor phù hợp."
+      },
+      {
+        "id": "cs3",
+        "topic": "Hướng đối tượng",
+        "weight": 2,
+        "level": "Vận dụng",
+        "text": "Nguyên lý cho phép lớp Con kế thừa thuộc tính và hành vi của lớp Cha gọi là gì?",
+        "choices": [
+          "Đóng gói",
+          "Nạp chồng",
+          "Kế thừa",
+          "Tuần tự"
+        ],
+        "correct": 2,
+        "explain": "Kế thừa giúp tái sử dụng đặc tính từ lớp cha."
+      },
+      {
+        "id": "cs4",
+        "topic": "Hướng đối tượng",
+        "weight": 3,
+        "level": "Nâng cao",
+        "text": "Để định nghĩa lại phương thức virtual trong lớp con, nên dùng từ khóa nào?",
+        "choices": [
+          "readonly",
+          "override",
+          "using",
+          "const"
+        ],
+        "correct": 1,
+        "explain": "override ghi đè triển khai của thành viên virtual/abstract từ lớp cha."
+      },
+      {
+        "id": "cs5",
+        "topic": "Tập hợp & lỗi",
+        "weight": 2,
+        "level": "Vận dụng",
+        "text": "Kiểu nào phù hợp lưu danh sách động các số nguyên?",
+        "choices": [
+          "int",
+          "bool",
+          "char",
+          "List<int>"
+        ],
+        "correct": 3,
+        "explain": "List<int> là tập hợp có thể thêm/xóa phần tử trong C#."
+      },
+      {
+        "id": "cs6",
+        "topic": "Tập hợp & lỗi",
+        "weight": 3,
+        "level": "Nâng cao",
+        "text": "Khối nào dùng để xử lý ngoại lệ phát sinh trong một đoạn mã?",
+        "choices": [
+          "try/catch",
+          "for/while",
+          "switch/case",
+          "get/set"
+        ],
+        "correct": 0,
+        "explain": "try bọc đoạn có thể phát sinh lỗi và catch xử lý ngoại lệ."
+      }
+    ]
+  },
+  {
+    "key": "analysis",
+    "name": "Phân tích và thiết kế hệ thống",
+    "aliases": [
+      "Phân tích hệ thống",
+      "Phân tích và thiết kế HTTT"
+    ],
+    "description": "Yêu cầu, UML và mô hình dữ liệu",
+    "questions": [
+      {
+        "id": "pa1",
+        "topic": "Phân tích yêu cầu",
+        "weight": 1,
+        "level": "Cơ bản",
+        "text": "Yêu cầu nào sau đây là yêu cầu chức năng?",
+        "choices": [
+          "Hệ thống phản hồi trong 2 giây",
+          "Hệ thống cho sinh viên đăng nhập",
+          "Hệ thống có độ sẵn sàng 99,9%",
+          "Hệ thống hỗ trợ 1.000 người cùng lúc"
+        ],
+        "correct": 1,
+        "explain": "Đăng nhập là hành vi hệ thống phải cung cấp, thuộc yêu cầu chức năng."
+      },
+      {
+        "id": "pa2",
+        "topic": "Phân tích yêu cầu",
+        "weight": 2,
+        "level": "Vận dụng",
+        "text": "Khi cần tìm hiểu quy trình nghiệp vụ hiện tại, hoạt động nào phù hợp nhất để bắt đầu?",
+        "choices": [
+          "Phỏng vấn người dùng liên quan",
+          "Viết ngay code UI",
+          "Xóa tài liệu nghiệp vụ",
+          "Chọn màu thương hiệu"
+        ],
+        "correct": 0,
+        "explain": "Phỏng vấn và quan sát giúp thu thập nhu cầu thực tế trước khi thiết kế."
+      },
+      {
+        "id": "pa3",
+        "topic": "UML",
+        "weight": 2,
+        "level": "Vận dụng",
+        "text": "Biểu đồ UML nào mô tả actor và những chức năng họ tương tác?",
+        "choices": [
+          "Class Diagram",
+          "Sequence Diagram",
+          "Use Case Diagram",
+          "Deployment Diagram"
+        ],
+        "correct": 2,
+        "explain": "Use Case mô tả tác nhân và các ca sử dụng ở mức yêu cầu."
+      },
+      {
+        "id": "pa4",
+        "topic": "UML",
+        "weight": 3,
+        "level": "Nâng cao",
+        "text": "Muốn diễn tả luồng rẽ nhánh và các bước xử lý nghiệp vụ, nên dùng biểu đồ nào?",
+        "choices": [
+          "Component Diagram",
+          "Activity Diagram",
+          "Package Diagram",
+          "Object Diagram"
+        ],
+        "correct": 1,
+        "explain": "Activity Diagram biểu diễn hoạt động, quyết định và luồng điều khiển."
+      },
+      {
+        "id": "pa5",
+        "topic": "Thiết kế hệ thống",
+        "weight": 2,
+        "level": "Vận dụng",
+        "text": "Trong sơ đồ ERD, thực thể thường đại diện cho điều gì?",
+        "choices": [
+          "Màu giao diện",
+          "Độ trễ mạng",
+          "Biểu tượng trang",
+          "Đối tượng nghiệp vụ cần lưu dữ liệu"
+        ],
+        "correct": 3,
+        "explain": "Thực thể là đối tượng nghiệp vụ mà hệ thống cần quản lý thông tin."
+      },
+      {
+        "id": "pa6",
+        "topic": "Thiết kế hệ thống",
+        "weight": 3,
+        "level": "Nâng cao",
+        "text": "Khi một SinhVien có thể đăng ký nhiều MonHoc và mỗi MonHoc có nhiều SinhVien, nên thiết kế quan hệ như thế nào?",
+        "choices": [
+          "Bảng liên kết DangKy ở giữa",
+          "Chỉ một bảng SinhVien",
+          "Lưu danh sách mã môn thành một chuỗi duy nhất",
+          "Hai bảng không có khóa"
+        ],
+        "correct": 0,
+        "explain": "Quan hệ nhiều-nhiều nên được phân rã qua bảng liên kết DangKy."
+      }
+    ]
+  }
+]
